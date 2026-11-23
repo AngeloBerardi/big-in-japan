@@ -141,67 +141,78 @@
    "data": "2026-12-28",
    "zona": "Tokyo",
    "scena": "shibuya",
-   "titolo": "Meiji Jingu, Harajuku e Shibuya",
-   "citta": "Harajuku · Shibuya",
-   "riassunto": "Il santuario nel bosco quando è ancora tranquillo, le strade di Harajuku e l'incrocio di Shibuya al tramonto.",
+   "titolo": "Ikebukuro e Shibuya",
+   "citta": "Ikebukuro · Shibuya",
+   "riassunto": "La mattina a Ikebukuro tra Sunshine City e le vie dei negozi, il pomeriggio a Shibuya con l'incrocio più famoso del mondo al tramonto.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
     "Ultimo giorno sicuro per prelevare contanti: dal 29 dicembre molte banche e gli sportelli delle poste chiudono fino a inizio gennaio. Gli ATM dei konbini restano la riserva."
    ],
    "eventi": [
     {
-     "ora": "09:30",
-     "fine": "11:00",
-     "tipo": "visita",
-     "fonte": "mappa",
-     "titolo": "Santuario Meiji",
-     "luogo": "Santuario Meiji",
-     "lat": 35.6763976,
-     "lng": 139.6993259,
-     "note": "Viali alberati che isolano dal traffico. Da Capodanno qui arrivano milioni di persone: oggi è il giorno per vederlo con calma.",
-     "wiki": "Meiji Shrine"
+     "ora": "10:00",
+     "tipo": "trasferimento",
+     "fonte": "piano",
+     "titolo": "JR Yamanote fino a Ikebukuro",
+     "luogo": "Stazione di Ikebukuro",
+     "wiki": "Ikebukuro",
+     "lat": 35.7295,
+     "lng": 139.7109
     },
     {
-     "ora": "11:15",
+     "ora": "10:15",
+     "tipo": "attivita",
+     "fonte": "piano",
+     "titolo": "Sunshine City",
+     "fine": "13:00",
+     "luogo": "Sunshine City",
+     "wiki": "Sunshine City, Tokyo",
+     "note": "Centro commerciale, acquario, Pokémon Center e l'osservatorio Sky Circus al 60° piano.",
+     "lat": 35.7289709,
+     "lng": 139.7195415
+    },
+    {
+     "ora": "14:30",
+     "tipo": "visita",
+     "fonte": "mappa",
+     "titolo": "Santuario Meiji, se c'è tempo",
+     "fine": "15:30",
+     "luogo": "Santuario Meiji",
+     "wiki": "Meiji Shrine",
+     "note": "A metà strada verso Shibuya: oggi è tranquillo, da Capodanno arrivano milioni di persone.",
+     "lat": 35.6763976,
+     "lng": 139.6993259
+    },
+    {
+     "ora": "15:45",
      "tipo": "attivita",
      "fonte": "mappa",
      "titolo": "Harajuku e Takeshita-dori",
-     "luogo": "HARAJUKU Stazione",
+     "luogo": "Harajuku",
+     "wiki": "Takeshita Street",
      "lat": 35.6707835,
-     "lng": 139.7027406,
-     "wiki": "Takeshita Street"
+     "lng": 139.7027406
     },
     {
-     "ora": "14:00",
+     "ora": "16:45",
      "tipo": "attivita",
      "fonte": "mappa",
      "titolo": "Shibuya PARCO, Pokémon Center al 6° piano",
-     "luogo": "Centro commerciale Shibuya PARCO",
+     "luogo": "Shibuya PARCO",
+     "wiki": "Shibuya",
      "lat": 35.6620484,
-     "lng": 139.6987767,
-     "note": "Pochi minuti a piedi dall'uscita Hachiko.",
-     "wiki": "Shibuya"
+     "lng": 139.6987767
     },
     {
-     "ora": "16:30",
+     "ora": "17:30",
      "tipo": "visita",
-     "fonte": "mappa",
+     "fonte": "piano",
      "titolo": "Shibuya Crossing al tramonto",
      "luogo": "Shibuya Crossing",
+     "wiki": "Shibuya Crossing",
+     "note": "Per vederlo dall'alto: le vetrate dei piani alti intorno all'incrocio o Shibuya Sky (biglietti online).",
      "lat": 35.659482,
-     "lng": 139.7005596,
-     "note": "Per vederlo dall'alto: le vetrate dei piani alti dei palazzi intorno all'incrocio.",
-     "wiki": "Shibuya Crossing"
-    },
-    {
-     "ora": "18:00",
-     "tipo": "trasferimento",
-     "fonte": "proposta",
-     "titolo": "Rientro con la JR Yamanote",
-     "luogo": "SHIBUYA Stazione",
-     "lat": 35.6580339,
-     "lng": 139.7016358,
-     "wiki": "Shibuya Station"
+     "lng": 139.7005596
     }
    ],
    "cover": "Shibuya Crossing"
@@ -210,9 +221,9 @@
    "data": "2026-12-29",
    "zona": "Tokyo",
    "scena": "asakusa",
-   "titolo": "Asakusa e Tokyo Skytree",
-   "citta": "Asakusa",
-   "riassunto": "La Tokyo antica del Sensō-ji la mattina, la vista dall'alto dello Skytree nel pomeriggio fino alle luci della sera.",
+   "titolo": "Asakusa e Odaiba",
+   "citta": "Asakusa · Odaiba",
+   "riassunto": "La Tokyo antica del Sensō-ji la mattina, poi verso la baia: Odaiba con il Rainbow Bridge e le luci della sera.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
     "Inizia la settimana di Capodanno: musei e piccoli ristoranti possono chiudere o ridurre gli orari. Templi e santuari restano aperti."
@@ -221,45 +232,55 @@
     {
      "ora": "09:00",
      "tipo": "trasferimento",
-     "fonte": "mappa",
+     "fonte": "proposta",
      "titolo": "Metro fino ad Asakusa",
-     "luogo": "ASAKUSA Stazione",
-     "lat": 35.7119535,
-     "lng": 139.7983367,
+     "luogo": "Asakusa",
+     "wiki": "Asakusa",
      "note": "Circa 30-40 minuti da Shinjuku.",
-     "wiki": "Asakusa"
+     "lat": 35.7119535,
+     "lng": 139.7983367
     },
     {
      "ora": "09:30",
-     "fine": "12:00",
      "tipo": "visita",
-     "fonte": "mappa",
+     "fonte": "piano",
      "titolo": "Sensō-ji, Kaminarimon e Nakamise",
+     "fine": "12:00",
      "luogo": "Sensō-ji",
+     "wiki": "Sensō-ji",
+     "note": "La grande porta con la lanterna, la via degli snack e il tempio più antico di Tokyo.",
      "lat": 35.7147651,
-     "lng": 139.7966553,
-     "note": "Il tempio più antico di Tokyo: la grande porta con la lanterna, la via degli snack e dei souvenir.",
-     "wiki": "Sensō-ji"
+     "lng": 139.7966553
     },
     {
      "ora": "12:30",
      "tipo": "pasto",
      "fonte": "proposta",
      "titolo": "Pranzo ad Asakusa",
-     "note": "Tempura o soba nelle strade intorno al tempio.",
-     "wiki": "Tempura"
+     "wiki": "Tempura",
+     "note": "Tempura o soba nelle vie intorno al tempio."
     },
     {
-     "ora": "15:00",
-     "fine": "17:30",
+     "ora": "14:00",
+     "tipo": "trasferimento",
+     "fonte": "proposta",
+     "titolo": "Battello Tokyo Cruise da Asakusa a Odaiba",
+     "luogo": "Molo Asakusa",
+     "note": "Si scende lungo il fiume Sumida fino alla baia; in alternativa metro. Controllare gli orari invernali.",
+     "lat": 35.7104,
+     "lng": 139.7999
+    },
+    {
+     "ora": "15:30",
      "tipo": "visita",
-     "fonte": "mappa",
-     "titolo": "Tokyo Skytree",
-     "luogo": "Tokyo Skytree",
-     "lat": 35.7100627,
-     "lng": 139.8107004,
-     "note": "Due piattaforme panoramiche: salire prima del tramonto e restare per le luci. Biglietti a orario, meglio online.",
-     "wiki": "Tokyo Skytree"
+     "fonte": "piano",
+     "titolo": "Odaiba e il Rainbow Bridge al tramonto",
+     "fine": "19:00",
+     "luogo": "Odaiba",
+     "wiki": "Odaiba",
+     "note": "Lungomare, centri commerciali e la vista sulla città illuminata.",
+     "lat": 35.6205834,
+     "lng": 139.7805445
     }
    ],
    "cover": "Sensō-ji"
@@ -270,50 +291,53 @@
    "scena": "akiba",
    "titolo": "Akihabara e Ueno",
    "citta": "Akihabara · Ueno",
-   "riassunto": "Il quartiere dell'elettronica, dei manga e dei videogiochi, poi il parco di Ueno e il mercato di Ameyoko.",
+   "riassunto": "Elettronica, manga e videogiochi ad Akihabara, poi il parco di Ueno e il mercato di Ameyoko pieno di gente che compra per Capodanno.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "eventi": [
     {
      "ora": "10:00",
-     "tipo": "trasferimento",
-     "fonte": "mappa",
-     "titolo": "JR Chuo fino ad Akihabara",
-     "luogo": "AKIHABARA Stazione",
-     "lat": 35.6978852,
-     "lng": 139.7754412,
-     "wiki": "Akihabara Station"
+     "tipo": "attivita",
+     "fonte": "piano",
+     "titolo": "Akihabara Electric Town",
+     "fine": "13:00",
+     "luogo": "Akihabara",
+     "wiki": "Akihabara",
+     "note": "Negozi a più piani, retrogaming, sale giochi e cafè a tema.",
+     "lat": 35.6996473,
+     "lng": 139.7713703
     },
     {
-     "ora": "10:15",
-     "fine": "13:30",
-     "tipo": "attivita",
+     "ora": "13:15",
+     "tipo": "visita",
      "fonte": "mappa",
-     "titolo": "Akihabara Electric Town",
-     "luogo": "Akihabara Electric Town",
-     "lat": 35.6996473,
-     "lng": 139.7713703,
-     "note": "Elettronica a più piani, retrogaming, sale giochi e cafè a tema.",
-     "wiki": "Akihabara"
+     "titolo": "Santuario Kanda",
+     "luogo": "Santuario Kanda",
+     "wiki": "Kanda Shrine",
+     "note": "A dieci minuti a piedi da Akihabara.",
+     "lat": 35.7020186,
+     "lng": 139.7678943
     },
     {
      "ora": "14:30",
-     "fine": "16:30",
      "tipo": "visita",
-     "fonte": "mappa",
+     "fonte": "piano",
      "titolo": "Parco di Ueno",
+     "fine": "16:30",
      "luogo": "Parco di Ueno",
+     "wiki": "Ueno Park",
+     "note": "Templi e laghetto. I musei sono quasi tutti chiusi per le feste.",
      "lat": 35.7147557,
-     "lng": 139.7734312,
-     "note": "Templi e laghetto nel parco. I musei sono quasi tutti chiusi per le feste.",
-     "wiki": "Ueno Park"
+     "lng": 139.7734312
     },
     {
-     "ora": "17:00",
+     "ora": "16:45",
      "tipo": "attivita",
      "fonte": "proposta",
      "titolo": "Ameyoko, il mercato sotto la ferrovia",
-     "note": "Negli ultimi giorni dell'anno è pieno di gente che compra il cibo per Capodanno.",
-     "wiki": "Ameya-Yokochō"
+     "luogo": "Ameyoko",
+     "wiki": "Ameya-Yokochō",
+     "lat": 35.7101,
+     "lng": 139.7745
     }
    ],
    "cover": "Akihabara"
@@ -322,52 +346,40 @@
    "data": "2026-12-31",
    "zona": "Tokyo",
    "scena": "capodanno",
-   "titolo": "Ikebukuro e notte di Capodanno",
-   "citta": "Ikebukuro",
-   "riassunto": "Giornata al coperto a Sunshine City, poi l'ultima notte dell'anno all'uso giapponese: campane nei templi e prima preghiera dell'anno.",
+   "titolo": "Ultimo dell'anno a Shinjuku o Shibuya",
+   "citta": "Shinjuku · Shibuya",
+   "riassunto": "Mattina libera per riposare o recuperare quello che è rimasto indietro. La sera cena prenotata e notte di Capodanno tra Shinjuku e Shibuya.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
-    "Negozi e grandi magazzini chiudono prima stasera. I principali treni urbani viaggiano tutta la notte tra il 31 e il 1°.",
-    "Al Santuario Meiji la folla è massima tra le 22 e le 3: per la preghiera di mezzanotte si fanno anche tre ore di coda."
+    "Da fare: prenotare la cena del 31 per 6 persone, molti ristoranti chiudono o hanno menu speciali.",
+    "I principali treni urbani viaggiano tutta la notte tra il 31 e il 1°. Al Santuario Meiji la folla è massima tra le 22 e le 3."
    ],
    "eventi": [
     {
-     "ora": "11:00",
-     "tipo": "trasferimento",
-     "fonte": "mappa",
-     "titolo": "JR Yamanote fino a Ikebukuro",
-     "luogo": "IKEBUKURO Stazione",
-     "lat": 35.7260173,
-     "lng": 139.7189977,
-     "wiki": "Ikebukuro"
-    },
-    {
-     "ora": "11:30",
-     "fine": "16:30",
-     "tipo": "attivita",
-     "fonte": "mappa",
-     "titolo": "Sunshine City",
-     "luogo": "Sunshine City",
-     "lat": 35.7289709,
-     "lng": 139.7195415,
-     "note": "Centro commerciale, acquario, planetario e l'osservatorio Sky Circus. Verificare gli orari ridotti del 31.",
-     "wiki": "Sunshine City, Tokyo"
-    },
-    {
-     "ora": "19:00",
-     "tipo": "pasto",
+     "ora": "10:00",
+     "tipo": "nota",
      "fonte": "proposta",
-     "titolo": "Toshikoshi soba",
-     "note": "La tradizione della sera: soba lunghi per un anno lungo.",
-     "wiki": "Toshikoshi soba"
+     "titolo": "Mattina libera",
+     "note": "Spazio per le vostre proposte: shopping, un quartiere rimasto fuori, riposo."
+    },
+    {
+     "ora": "19:30",
+     "tipo": "pasto",
+     "fonte": "piano",
+     "titolo": "Cena di fine anno (da prenotare)",
+     "wiki": "Toshikoshi soba",
+     "note": "Tradizione della sera: toshikoshi soba, soba lunghi per un anno lungo."
     },
     {
      "ora": "23:00",
      "tipo": "evento",
-     "fonte": "proposta",
-     "titolo": "Notte di Capodanno: joya no kane o Meiji Jingu",
-     "note": "Due possibilità: le 108 campane in un tempio buddhista, oppure la folla della mezzanotte al Santuario Meiji, aperto tutta la notte.",
-     "wiki": "Japanese New Year"
+     "fonte": "piano",
+     "titolo": "Notte di Capodanno a Shinjuku o Shibuya",
+     "luogo": "Shibuya",
+     "wiki": "Japanese New Year",
+     "note": "In alternativa le campane di mezzanotte in un tempio, o la preghiera di mezzanotte al Santuario Meiji.",
+     "lat": 35.659482,
+     "lng": 139.7005596
     }
    ],
    "cover": "Japanese New Year"
@@ -375,99 +387,84 @@
   {
    "data": "2027-01-01",
    "zona": "Tokyo",
-   "scena": "kanda",
-   "titolo": "Capodanno: Kanda Myojin e Odaiba",
-   "citta": "Kanda · Odaiba",
-   "riassunto": "Il primo dell'anno è il giorno più tranquillo per la città e il più pieno per i santuari. Hatsumode a Kanda, poi il lungomare di Odaiba.",
+   "scena": "palazzo",
+   "titolo": "Capodanno: Ginza e Palazzo imperiale",
+   "citta": "Ginza · Marunouchi",
+   "riassunto": "Primo giorno dell'anno: Ginza la mattina e il Palazzo imperiale con il ponte Nijubashi nel pomeriggio.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
-    "Il 1° gennaio quasi tutti i grandi magazzini di Shinjuku, Shibuya e Ginza sono chiusi. Konbini, catene di fast food e ristoranti degli hotel restano aperti."
+    "Il 1° gennaio quasi tutti i grandi magazzini di Ginza sono chiusi: si passeggia, ma per gli acquisti è meglio l'8 gennaio.",
+    "Il 1° il Palazzo si vede solo dall'esterno. Il saluto dell'Imperatore al pubblico, con l'ingresso nei cortili, è solo il 2 gennaio mattina: se vi interessa, valutate di scambiare con la gita fuori porta."
    ],
    "eventi": [
     {
      "ora": "10:30",
-     "fine": "12:30",
-     "tipo": "visita",
-     "fonte": "mappa",
-     "titolo": "Hatsumode al Santuario Kanda",
-     "luogo": "Santuario Kanda",
-     "lat": 35.7020186,
-     "lng": 139.7678943,
-     "note": "Prima visita dell'anno: bancarelle, omikuji e amuleti nuovi.",
-     "wiki": "Kanda Shrine"
+     "tipo": "attivita",
+     "fonte": "piano",
+     "titolo": "Ginza a Capodanno",
+     "fine": "13:00",
+     "luogo": "Ginza",
+     "wiki": "Ginza",
+     "note": "Chuo-dori chiusa alle auto nei giorni di festa; caffè e konbini aperti.",
+     "lat": 35.6717279,
+     "lng": 139.7644425
     },
     {
-     "ora": "15:00",
-     "fine": "19:00",
+     "ora": "14:00",
      "tipo": "visita",
-     "fonte": "mappa",
-     "titolo": "Odaiba e la baia al tramonto",
-     "luogo": "Odaiba",
-     "lat": 35.6205834,
-     "lng": 139.7805445,
-     "note": "Vista sul Rainbow Bridge e sulla città illuminata. Controllare quali centri commerciali aprono il 1°.",
-     "wiki": "Odaiba"
-    }
-   ],
-   "cover": "Kanda Shrine"
-  },
-  {
-   "data": "2027-01-02",
-   "zona": "Tokyo",
-   "scena": "palazzo",
-   "titolo": "Saluto dell'Imperatore, Tokyo Station e Ginza",
-   "citta": "Marunouchi · Ginza",
-   "riassunto": "Il giorno in cui il Palazzo imperiale apre i cortili interni al pubblico per il saluto di Capodanno. Poi Ginza con i saldi del nuovo anno.",
-   "pernotto": "Shinjuku Washington Hotel Annex",
-   "avvisi": [
-    "Code e controlli di sicurezza al Palazzo: arrivare presto e con bagaglio minimo."
-   ],
-   "eventi": [
-    {
-     "ora": "09:00",
-     "fine": "12:00",
-     "tipo": "evento",
-     "fonte": "mappa",
-     "titolo": "Saluto di Capodanno al Palazzo imperiale",
+     "fonte": "piano",
+     "titolo": "Palazzo imperiale e ponte Nijubashi",
+     "fine": "16:00",
      "luogo": "Palazzo imperiale di Tokyo",
-     "lat": 35.685175,
-     "lng": 139.7527995,
-     "note": "La famiglia imperiale si affaccia più volte dal balcone tra mattina e primo pomeriggio.",
-     "wiki": "Tokyo Imperial Palace"
+     "wiki": "Tokyo Imperial Palace",
+     "note": "Dalla piazza Kokyo Gaien si vede il ponte con il palazzo dietro.",
+     "lat": 35.6801,
+     "lng": 139.7532
     },
     {
-     "ora": "12:30",
+     "ora": "16:30",
      "tipo": "visita",
-     "fonte": "mappa",
+     "fonte": "proposta",
      "titolo": "Stazione di Tokyo e Marunouchi",
      "luogo": "Stazione di Tokyo",
+     "wiki": "Tokyo Station",
+     "note": "La facciata in mattoni rossi illuminata; sotto la via del ramen.",
      "lat": 35.6812996,
-     "lng": 139.7670658,
-     "note": "La facciata in mattoni rossi; sotto, la Ramen Street.",
-     "wiki": "Tokyo Station"
-    },
-    {
-     "ora": "14:30",
-     "fine": "18:00",
-     "tipo": "attivita",
-     "fonte": "mappa",
-     "titolo": "Ginza e i fukubukuro",
-     "luogo": "GINZA Stazione",
-     "lat": 35.6717279,
-     "lng": 139.7644425,
-     "note": "Riaprono i grandi magazzini con i saldi e le buste a sorpresa del nuovo anno.",
-     "wiki": "Ginza"
+     "lng": 139.7670658
     }
    ],
    "cover": "Tokyo Imperial Palace"
   },
   {
+   "data": "2027-01-02",
+   "zona": "Tokyo",
+   "scena": "shinkansen",
+   "titolo": "Gita fuori porta",
+   "citta": "Da scegliere",
+   "riassunto": "Una giornata fuori Tokyo: la meta è da scegliere. Proponetela qui sotto e votate.",
+   "pernotto": "Shinjuku Washington Hotel Annex",
+   "avvisi": [
+    "Il 2 gennaio i treni sono pieni per il rientro dalle feste: partire presto.",
+    "Idee a un'ora o due da Tokyo: Kamakura (il Grande Buddha e i templi sul mare), Hakone o il lago Kawaguchi (vista sul Fuji e terme), Nikko (santuari nel bosco), Yokohama (Chinatown e porto)."
+   ],
+   "eventi": [
+    {
+     "ora": "08:00",
+     "tipo": "trasferimento",
+     "fonte": "piano",
+     "titolo": "Partenza per la gita",
+     "note": "Meta da decidere con le proposte del gruppo."
+    }
+   ],
+   "cover": "Kamakura"
+  },
+  {
    "data": "2027-01-03",
    "zona": "Kyoto",
-   "scena": "shinkansen",
-   "titolo": "Shinkansen per Kyoto e Fushimi Inari",
+   "scena": "gion",
+   "titolo": "Shinkansen per Kyoto, Kiyomizu-dera e Gion",
    "citta": "Tokyo → Kyoto",
-   "riassunto": "Check-out a Shinjuku, Nozomi per Kyoto con il Fuji dal finestrino, hotel davanti alla stazione e i torii di Fushimi Inari nella luce del pomeriggio.",
+   "riassunto": "Shinkansen con il Fuji dal finestrino, hotel davanti alla stazione e il pomeriggio a Higashiyama: Kiyomizu-dera, le vie lastricate e Gion la sera.",
    "pernotto": "Hotel New Hankyu Kyoto (3 – 4 gen)",
    "avvisi": [
     "Shinkansen già pagati: 6 biglietti con posto al finestrino lato Fuji. Il 3 gennaio è il giorno di punta del rientro dalle feste: arrivare in stazione con anticipo."
@@ -513,29 +510,39 @@
     },
     {
      "ora": "14:30",
-     "fine": "17:30",
      "tipo": "visita",
      "fonte": "proposta",
-     "titolo": "Fushimi Inari Taisha",
-     "luogo": "Fushimi Inari Taisha",
-     "lat": 34.9671,
-     "lng": 135.7727,
-     "note": "Cinque minuti di JR Nara Line dalla stazione. Aperto sempre: salire fino al belvedere di Yotsutsuji per il tramonto.",
-     "wiki": "Fushimi Inari-taisha"
+     "titolo": "Kiyomizu-dera",
+     "fine": "16:00",
+     "luogo": "Kiyomizu-dera",
+     "wiki": "Kiyomizu-dera",
+     "note": "La terrazza di legno sulla collina, verso il tramonto.",
+     "lat": 34.9949,
+     "lng": 135.785
     },
     {
-     "ora": "19:00",
-     "tipo": "pasto",
+     "ora": "16:00",
+     "tipo": "attivita",
      "fonte": "proposta",
-     "titolo": "Cena alla stazione di Kyoto",
-     "luogo": "Stazione di Kyoto",
-     "lat": 34.9858,
-     "lng": 135.7588,
-     "note": "La via del ramen al 10° piano e la grande scalinata illuminata.",
-     "wiki": "Kyoto Station"
+     "titolo": "Sannenzaka e Ninenzaka",
+     "luogo": "Ninenzaka",
+     "wiki": "Sannenzaka",
+     "lat": 34.998,
+     "lng": 135.781
+    },
+    {
+     "ora": "17:30",
+     "tipo": "visita",
+     "fonte": "proposta",
+     "titolo": "Santuario Yasaka e Gion la sera",
+     "luogo": "Santuario Yasaka",
+     "wiki": "Yasaka Shrine",
+     "note": "Nei primi giorni dell'anno è pieno di bancarelle.",
+     "lat": 35.0037,
+     "lng": 135.7785
     }
    ],
-   "cover": "Fushimi Inari-taisha"
+   "cover": "Kiyomizu-dera"
   },
   {
    "data": "2027-01-04",
@@ -591,9 +598,9 @@
    "data": "2027-01-05",
    "zona": "Kyoto",
    "scena": "gion",
-   "titolo": "Ritorno a Kyoto: Kiyomizu-dera e Gion",
+   "titolo": "Ritorno a Kyoto e sumo la sera",
    "citta": "Kyoto est",
-   "riassunto": "Bagno del mattino e rientro. Check-in a Shijo, poi il tempio sulla collina, le vie lastricate di Higashiyama e la sera a Gion.",
+   "riassunto": "Bagno del mattino e rientro a Kyoto. Pomeriggio al mercato Nishiki vicino all'hotel, cena a Pontocho e alle 21 lo spettacolo di sumo, a pochi minuti a piedi.",
    "pernotto": "Hotel Mystays Kyoto Shijo (5 – 8 gen)",
    "eventi": [
     {
@@ -618,114 +625,110 @@
      "wiki": "Shijō Street"
     },
     {
-     "ora": "15:00",
-     "fine": "16:30",
-     "tipo": "visita",
+     "ora": "15:30",
+     "tipo": "pasto",
      "fonte": "proposta",
-     "titolo": "Kiyomizu-dera",
-     "luogo": "Kiyomizu-dera",
-     "lat": 34.9949,
-     "lng": 135.785,
-     "note": "La terrazza di legno sulla collina, verso il tramonto.",
-     "wiki": "Kiyomizu-dera"
+     "titolo": "Mercato Nishiki",
+     "fine": "17:30",
+     "luogo": "Mercato Nishiki",
+     "wiki": "Nishiki Market",
+     "note": "A pochi minuti dall'hotel. Molti banchi chiudono verso le 18.",
+     "lat": 35.005,
+     "lng": 135.7649
     },
     {
-     "ora": "16:30",
-     "fine": "18:00",
-     "tipo": "attivita",
+     "ora": "18:30",
+     "tipo": "pasto",
      "fonte": "proposta",
-     "titolo": "Sannenzaka e Ninenzaka",
-     "luogo": "Ninenzaka",
-     "lat": 34.998,
-     "lng": 135.781,
-     "note": "Vie lastricate con case di legno, tè e dolci.",
-     "wiki": "Sannenzaka"
+     "titolo": "Cena a Pontocho",
+     "luogo": "Pontocho",
+     "wiki": "Pontochō",
+     "lat": 35.0045,
+     "lng": 135.7708
     },
     {
-     "ora": "18:00",
-     "tipo": "visita",
-     "fonte": "proposta",
-     "titolo": "Santuario Yasaka e Hanamikoji",
-     "luogo": "Santuario Yasaka",
-     "lat": 35.0037,
-     "lng": 135.7785,
-     "note": "Lanterne accese e le vie delle case da tè di Gion.",
-     "wiki": "Yasaka Shrine"
+     "ora": "21:00",
+     "tipo": "evento",
+     "fonte": "prenotato",
+     "titolo": "Spettacolo di sumo dal vivo",
+     "wiki": "Sumo",
+     "note": "Prenotato su Viator per 6 adulti, in inglese, circa 1 h 30. Incontri dal vivo, regole e rituali spiegati, sfida sul ring con un lottatore e foto. Indirizzo: 359 Shimizuchō, Nakagyō, Kyoto: cercate l'insegna «INSIDE SUMO KYOTO», piano B1. Biglietto elettronico; cancellazione gratuita fino a 24 ore prima.",
+     "fine": "22:30",
+     "luogo": "Inside Sumo Kyoto",
+     "lat": 35.01383,
+     "lng": 135.76947,
+     "link": "https://www.google.com/maps/search/?api=1&query=359%20Shimizuch%C5%8D%2C%20Nakagyo%20Ward%2C%20Kyoto%20604-0911"
     }
    ],
-   "cover": "Kiyomizu-dera"
+   "cover": "Sumo"
   },
   {
    "data": "2027-01-06",
    "zona": "Kyoto",
-   "scena": "arashiyama",
-   "titolo": "Arashiyama e Kinkaku-ji",
-   "citta": "Kyoto ovest",
-   "riassunto": "Il bosco di bambù appena dopo l'alba, il giardino del Tenryū-ji, il ponte sul fiume e il Padiglione d'oro nel pomeriggio.",
+   "scena": "fushimi",
+   "titolo": "I mille portali di Fushimi Inari",
+   "citta": "Kyoto",
+   "riassunto": "La mattina presto tra i torii arancioni di Fushimi Inari fino al belvedere sulla città. Il pomeriggio è libero per le vostre proposte, ad esempio Arashiyama o il Padiglione d'oro.",
    "pernotto": "Hotel Mystays Kyoto Shijo",
    "eventi": [
     {
+     "ora": "07:30",
+     "tipo": "trasferimento",
+     "fonte": "proposta",
+     "titolo": "JR Nara Line fino a Inari",
+     "note": "Da Kyoto pochi minuti; dall'hotel a Shijo meglio la Keihan fino a Fushimi-Inari."
+    },
+    {
      "ora": "08:00",
-     "fine": "09:00",
+     "tipo": "visita",
+     "fonte": "piano",
+     "titolo": "Fushimi Inari Taisha, i mille portali",
+     "fine": "11:30",
+     "luogo": "Fushimi Inari Taisha",
+     "wiki": "Fushimi Inari-taisha",
+     "note": "Presto la mattina i torii sono quasi vuoti; fino a Yotsutsuji circa 45 minuti di salita.",
+     "lat": 34.9671,
+     "lng": 135.7727
+    },
+    {
+     "ora": "14:00",
      "tipo": "visita",
      "fonte": "proposta",
-     "titolo": "Foresta di bambù di Arashiyama",
-     "luogo": "Arashiyama Bamboo Grove",
+     "titolo": "Arashiyama: bambù e ponte Togetsukyo",
+     "fine": "16:30",
+     "luogo": "Arashiyama",
+     "wiki": "Arashiyama",
      "lat": 35.017,
-     "lng": 135.6713,
-     "note": "Dalle 10 diventa affollata: andarci il prima possibile.",
-     "wiki": "Arashiyama"
+     "lng": 135.6713
     },
     {
-     "ora": "09:00",
-     "fine": "10:30",
-     "tipo": "visita",
-     "fonte": "proposta",
-     "titolo": "Tenryū-ji",
-     "luogo": "Tenryū-ji",
-     "lat": 35.0157,
-     "lng": 135.6738,
-     "wiki": "Tenryū-ji"
-    },
-    {
-     "ora": "11:00",
-     "tipo": "attivita",
-     "fonte": "proposta",
-     "titolo": "Ponte Togetsukyō",
-     "luogo": "Togetsukyō",
-     "lat": 35.0129,
-     "lng": 135.6777,
-     "wiki": "Arashiyama"
-    },
-    {
-     "ora": "14:30",
-     "fine": "16:00",
+     "ora": "16:30",
      "tipo": "visita",
      "fonte": "proposta",
      "titolo": "Kinkaku-ji, il Padiglione d'oro",
      "luogo": "Kinkaku-ji",
+     "wiki": "Kinkaku-ji",
+     "note": "Chiude verso le 17: in alternativa ad Arashiyama.",
      "lat": 35.0394,
-     "lng": 135.7292,
-     "note": "Con il sole di gennaio l'oro si riflette nel laghetto.",
-     "wiki": "Kinkaku-ji"
+     "lng": 135.7292
     }
    ],
-   "cover": "Arashiyama"
+   "cover": "Fushimi Inari-taisha"
   },
   {
    "data": "2027-01-07",
    "zona": "Kyoto",
    "scena": "nara",
-   "titolo": "Gita a Nara, sera a Nishiki",
+   "titolo": "Nara?",
    "citta": "Nara · Kyoto",
-   "riassunto": "Treno per Nara: il grande Buddha, i cervi nel parco e le lanterne del Kasuga Taisha. Al rientro il mercato Nishiki, a due passi dall'hotel.",
+   "riassunto": "Dal vostro piano, con il punto di domanda: la gita a Nara con il Grande Buddha e i cervi. Se non vi convince, proponete un'alternativa.",
    "pernotto": "Hotel Mystays Kyoto Shijo",
    "eventi": [
     {
      "ora": "08:30",
      "fine": "09:20",
      "tipo": "treno",
-     "fonte": "proposta",
+     "fonte": "piano",
      "titolo": "Kintetsu Kyoto → Kintetsu Nara",
      "luogo": "Kintetsu Nara",
      "lat": 34.6843,
@@ -737,7 +740,7 @@
      "ora": "09:45",
      "fine": "11:30",
      "tipo": "visita",
-     "fonte": "proposta",
+     "fonte": "piano",
      "titolo": "Tōdai-ji e il Grande Buddha",
      "luogo": "Tōdai-ji",
      "lat": 34.689,
@@ -934,7 +937,8 @@
   "eSIM o pocket wifi",
   "Suica nel portafoglio del telefono",
   "Assicurazione sanitaria di viaggio: in Giappone le cure per i turisti si pagano",
-  "Avvisare la banca dei pagamenti in Giappone"
+  "Avvisare la banca dei pagamenti in Giappone",
+  "Tenere a portata il biglietto elettronico Viator del sumo (5 gennaio, 21:00)"
  ],
  "bagaglio": [
   {
@@ -1051,7 +1055,7 @@
     "tel": "+81 3 3544 6811"
    }
   ],
-  "note": "Le tappe 'Dalla tua mappa' vengono dalla mappa Big In Japan; le 'Proposta' sono suggerimenti da confermare. Per modificare il programma usate la vista Pianifica nell'artifact privato."
+  "note": "Le tappe 'Dal vostro piano' vengono dal taccuino, 'Dalla vostra mappa' dalla mappa Big In Japan, i 'Suggerimenti' sono da votare."
  },
  "spese": [],
  "pianifica": "https://claude.ai/artifact/YH69huEV2jzNDAcFtFTpNx",

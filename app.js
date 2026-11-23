@@ -4,7 +4,7 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const COL=['#e2412b','#2c3e8f','#b07800','#7b45c4','#13808a','#c03a6e','#4f6375','#2b7a3e'];
 const TIPI={visita:'Visita',attivita:'Da fare',pasto:'Cibo',evento:'Evento',trasferimento:'Spostamento',treno:'Treno',bus:'Bus',volo:'Volo',hotel:'Alloggio',nota:'Nota'};
-const FONTI={mappa:'Dalla vostra mappa',proposta:'Suggerimento',prenotato:'Prenotato',gruppo:'Approvata dal gruppo'};
+const FONTI={piano:'Dal vostro piano',mappa:'Dalla vostra mappa',proposta:'Suggerimento',prenotato:'Prenotato',gruppo:'Approvata dal gruppo'};
 const FASCE=[['mattina','Mattina','10:00'],['pomeriggio','Pomeriggio','15:00'],['sera','Sera','20:00']];
 const PERSONE=['Angelo','Luigi','Valerio','Daniele','Luca','Dario'];
 const PCOL={Angelo:'#e2412b',Luigi:'#2c3e8f',Valerio:'#13808a',Daniele:'#7b45c4',Luca:'#b07800',Dario:'#c03a6e'};
