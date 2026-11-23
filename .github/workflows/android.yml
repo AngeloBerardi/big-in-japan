@@ -18,6 +18,27 @@ jobs:
         with: { distribution: temurin, java-version: 17 }
       - uses: gradle/actions/setup-gradle@v5
         with: { gradle-version: '8.10.2' }
+      - name: Chiave di firma salvata (cache privata delle Actions)
+        uses: actions/cache@v4
+        with: { path: ~/firma-viaggio, key: firma-big-in-japan-v1 }
+      - name: Chiave di firma
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE }}
+          KSP: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -n "$KS" ]; then
+            printf '%s' "$KS" | base64 -d > "$RUNNER_TEMP/viaggio.jks"; echo "ANDROID_KEYSTORE_PASSWORD=$KSP" >> "$GITHUB_ENV"
+          else
+            mkdir -p ~/firma-viaggio
+            if [ ! -f ~/firma-viaggio/viaggio.jks ]; then
+              head -c 24 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' > ~/firma-viaggio/pw
+              keytool -genkeypair -keystore ~/firma-viaggio/viaggio.jks -storetype JKS -alias viaggio -keyalg RSA -keysize 2048 -validity 10000 \
+                -storepass "$(cat ~/firma-viaggio/pw)" -keypass "$(cat ~/firma-viaggio/pw)" -dname "CN=Big in Japan, C=IT"
+            fi
+            cp ~/firma-viaggio/viaggio.jks "$RUNNER_TEMP/viaggio.jks"
+            echo "::add-mask::$(cat ~/firma-viaggio/pw)"; echo "ANDROID_KEYSTORE_PASSWORD=$(cat ~/firma-viaggio/pw)" >> "$GITHUB_ENV"
+          fi
+          echo "ANDROID_KEYSTORE_FILE=$RUNNER_TEMP/viaggio.jks" >> "$GITHUB_ENV"
       - name: Compila e firma
         run: |
           set -o pipefail
@@ -25,6 +46,7 @@ jobs:
             { echo '### Errore di compilazione'; echo '```'; grep -A25 -E 'What went wrong|FAILURE|error:' build.log | head -80; echo '```'; } >> "$GITHUB_STEP_SUMMARY"; exit 1
           fi
           cp "$(ls android/app/build/outputs/apk/release/*.apk | head -1)" big-in-japan.apk
+          rm -f "$RUNNER_TEMP/viaggio.jks"
       - uses: actions/upload-artifact@v6
         with: { name: big-in-japan-apk, path: big-in-japan.apk }
       - name: Release «android» con il link fisso

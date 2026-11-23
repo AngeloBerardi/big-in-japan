@@ -1,10 +1,10 @@
 // App Android di Big in Japan: una Trusted Web Activity (Chrome a tutto schermo) che apre il sito su GitHub Pages.
-// Niente codice nostro: tutto è configurato nel manifest. Firma: android/firma/big-in-japan.jks (vedi README).
+// Niente codice nostro: tutto è configurato nel manifest. Firma: chiave passata dal workflow (segreto ANDROID_KEYSTORE o chiave generata e tenuta nella cache delle Actions).
 plugins { id 'com.android.application' }
 
 def sito = 'angeloberardi.github.io'
 def numero = (System.getenv('GITHUB_RUN_NUMBER') ?: '1') as int
-def ks = System.getenv('ANDROID_KEYSTORE_FILE') ?: file('../firma/big-in-japan.jks').path
+def ks = System.getenv('ANDROID_KEYSTORE_FILE')
 
 android {
     namespace 'io.github.angeloberardi.biginjapan'

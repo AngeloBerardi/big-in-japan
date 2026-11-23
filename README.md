@@ -14,4 +14,4 @@ Mappe © OpenStreetMap, CARTO, Esri, OpenRailwayMap. Foto da Wikipedia e Wikimed
 `android/` è una Trusted Web Activity (Chrome a tutto schermo) che apre il sito. Il workflow `.github/workflows/android.yml` la compila a ogni modifica di `android/` e la pubblica nella release `android`:
 https://github.com/AngeloBerardi/big-in-japan/releases/download/android/big-in-japan.apk
 
-La chiave di firma è `android/firma/big-in-japan.jks` (password nel `build.gradle`): sta nel repository pubblico per semplicità, così chiunque potrebbe firmare un APK «compatibile». Per un'app tra amici va bene; per toglierla si spostano file e password nei segreti `ANDROID_KEYSTORE` e `ANDROID_KEYSTORE_PASSWORD`.
+La chiave di firma non è nel repository: il workflow usa i segreti `ANDROID_KEYSTORE` (file .jks in base64) e `ANDROID_KEYSTORE_PASSWORD` se ci sono; altrimenti genera una chiave e la tiene nella cache privata delle Actions. Se la cache scade (7 giorni senza compilazioni) la chiave cambia e l'app va reinstallata: per evitarlo, mettete una chiave nei segreti.
