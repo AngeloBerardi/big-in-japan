@@ -9,13 +9,16 @@
   "fine": "2027-01-09",
   "fuso": "Asia/Tokyo",
   "valuta": "JPY",
-  "persone": 3,
+  "persone": 6,
   "viaggiatori": [
    "Angelo",
+   "Luigi",
+   "Valerio",
    "Daniele",
-   "Luigi"
+   "Luca",
+   "Dario"
   ],
-  "notaCosti": "Hotel: totale della camera dalle conferme. Treni e bus: prezzo a persona, moltiplicato per 3 nel totale. Voli e terme non ancora inseriti.",
+  "notaCosti": "Hotel: importo della camera dalle conferme (in yen). Shinkansen: 12 biglietti già pagati, in euro. Voli e terme non ancora inseriti.",
   "hero": "Mount Fuji"
  },
  "giorni": [
@@ -61,7 +64,7 @@
    "riassunto": "Atterraggio a fine mattinata, bus fino a Shinjuku e una prima sera leggera tra i vicoli, a dieci minuti a piedi dall'hotel.",
    "pernotto": "Shinjuku Washington Hotel Annex (27 dic – 3 gen)",
    "avvisi": [
-    "La camera di Shinjuku è prenotata per 2 adulti, mentre Kyoto e Ginza sono per 3: controllare che il terzo viaggiatore abbia una sistemazione."
+    "Il gruppo è di 6: la prenotazione di Shinjuku è per 2 adulti, Kyoto e Ginza per 3. Verificate che tutte le camere siano coperte."
    ],
    "eventi": [
     {
@@ -467,7 +470,7 @@
    "riassunto": "Check-out a Shinjuku, Nozomi per Kyoto con il Fuji dal finestrino, hotel davanti alla stazione e i torii di Fushimi Inari nella luce del pomeriggio.",
    "pernotto": "Hotel New Hankyu Kyoto (3 – 4 gen)",
    "avvisi": [
-    "Il 3 gennaio è il giorno di punta del rientro dalle feste: prenotare il Nozomi in anticipo."
+    "Shinkansen già pagati: 6 biglietti con posto al finestrino lato Fuji. Il 3 gennaio è il giorno di punta del rientro dalle feste: arrivare in stazione con anticipo."
    ],
    "eventi": [
     {
@@ -485,14 +488,15 @@
      "ora": "10:30",
      "fine": "12:45",
      "tipo": "treno",
-     "fonte": "proposta",
-     "titolo": "Nozomi Tokyo → Kyoto",
+     "fonte": "prenotato",
+     "titolo": "Shinkansen Tokyo → Kyoto",
      "luogo": "Stazione di Tokyo",
      "lat": 35.6812996,
      "lng": 139.7670658,
-     "note": "Circa 2 h 15 min, posto riservato su SmartEX. Fuji sul lato destro, sedili E. Orario indicativo.",
-     "costoPersona": 14170,
-     "wiki": "Tōkaidō Shinkansen"
+     "note": "6 biglietti Japan Experience, classe ordinaria, finestrino lato Fuji (sedili E). Circa 2 h 15 min. Orario del treno da confermare al ritiro dei biglietti.",
+     "wiki": "Tōkaidō Shinkansen",
+     "costo": 564,
+     "valuta": "EUR"
     },
     {
      "ora": "13:00",
@@ -814,14 +818,15 @@
      "ora": "11:00",
      "fine": "13:15",
      "tipo": "treno",
-     "fonte": "proposta",
-     "titolo": "Nozomi Kyoto → Tokyo",
+     "fonte": "prenotato",
+     "titolo": "Shinkansen Kyoto → Tokyo",
      "luogo": "Stazione di Kyoto",
      "lat": 34.9858,
      "lng": 135.7588,
-     "note": "Il Fuji ora è a sinistra, sedili A. Orario indicativo.",
-     "costoPersona": 14170,
-     "wiki": "Tōkaidō Shinkansen"
+     "note": "6 biglietti Japan Experience, classe ordinaria, finestrino lato Fuji (sedili A). Orario del treno da confermare al ritiro dei biglietti.",
+     "wiki": "Tōkaidō Shinkansen",
+     "costo": 546,
+     "valuta": "EUR"
     },
     {
      "ora": "14:00",
@@ -923,8 +928,8 @@
   "Check-in online ITA Airways 24 ore prima del volo",
   "Registrarsi su Visit Japan Web per il QR di immigrazione e dogana",
   "Scegliere località e ryokan per la notte alle terme del 4 gennaio",
-  "Verificare la sistemazione del terzo viaggiatore a Shinjuku",
-  "Prenotare i Nozomi del 3 e dell'8 gennaio su SmartEX",
+  "Verificare le camere per tutti e 6 a Shinjuku, Kyoto e Ginza",
+  "Controllare come si ritirano o attivano i biglietti dello shinkansen di Japan Experience",
   "Comprare i biglietti online per lo Skytree",
   "eSIM o pocket wifi",
   "Suica nel portafoglio del telefono",
