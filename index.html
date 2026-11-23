@@ -224,6 +224,23 @@ textarea{min-height:70px;resize:vertical}
 .posok{font-size:12.5px;color:var(--muted);margin-top:6px}
 @media(max-width:860px){.msearch{flex:1 1 100%}.layers{top:118px}.lpanel{top:118px;right:66px;width:min(290px,calc(100vw - 90px))}.pcols{gap:4px}.pi{font-size:11.5px;padding:4px 5px}.pcell{padding:4px}.pgroup{margin-left:8px}}
 .apk{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:center;background:#15171c;color:#fff;border-radius:16px;padding:14px;margin:0 0 16px}.apk small{display:block;color:#c9ccd3;font-size:12.5px;line-height:1.4}.apk .btn{grid-column:1/-1;justify-content:center;background:var(--ver);border-color:var(--ver);color:#fff}
+.leg{margin:2px 0 10px 64px;font-size:13.5px;color:var(--muted)}
+.leg>summary,div.leg{display:flex;gap:8px;align-items:center;cursor:pointer;list-style:none;padding:6px 10px;border-radius:12px;background:var(--soft);flex-wrap:wrap}
+.leg>summary::-webkit-details-marker{display:none}
+.leg>summary b{color:var(--ink)}.leg em{font-style:normal;color:var(--ver);font-weight:600;margin-left:4px}
+.leg[open]>summary{border-radius:12px 12px 0 0}
+.leg[open]{background:var(--soft);border-radius:12px;padding-bottom:10px}
+.leg .li{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--bg);color:var(--ink);flex:none}
+.lchip{display:inline-block;background:var(--lc);color:#fff;font-weight:700;font-size:11.5px;border-radius:6px;padding:1px 6px;line-height:1.5}
+.leg i{font-style:normal;margin:0 3px}
+.opt{width:calc(100% - 20px);margin:8px 10px;border-collapse:collapse;font-size:13px;background:var(--bg);border-radius:10px;overflow:hidden}
+.opt td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+.opt td small{color:var(--muted)}.opt td.r{text-align:right;white-space:nowrap}
+.opt tr.best td{background:#eef8f1}.consig{font-size:11px;font-weight:700;color:#16683a;background:#d6f0de;border-radius:99px;padding:1px 7px}
+.leg h5{margin:10px 10px 4px;font-size:12.5px;color:var(--ink)}
+.leg ol{margin:0 10px 0 28px;padding:0;color:var(--ink)}.leg li{margin:5px 0;line-height:1.45}
+.leg .nb{margin:8px 10px 0;font-size:12px}
+@media(max-width:860px){.leg{margin-left:0}}
 #bnav{display:none}
 .mob{display:none}
 @media(max-width:860px){

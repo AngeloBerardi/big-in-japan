@@ -56,6 +56,80 @@ const gmap=e=>e.link&&/^https:\/\//.test(e.link)?e.link:`https://www.google.com/
 const arrivo=(e,da)=>`https://www.google.com/maps/dir/?api=1${da?`&origin=${q(da)}`:''}&destination=${q(e)}&travelmode=transit`;
 function coords(s){if(!s)return null;try{s=decodeURIComponent(s)}catch(e){}const m=s.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/)||s.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||s.match(/[?&](?:q|query|ll|destination|center)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/)||s.match(/^\s*(-?\d{1,2}\.\d+)\s*[, ]\s*(-?\d{1,3}\.\d+)\s*$/);return m?{lat:+m[1],lng:+m[2]}:null}
 
+/* ---------- spostamenti: percorso minimo su treni e metro (dati aperti, tempi stimati) ---------- */
+const ESCLUSE=/Narita Express|Scenic|Shinkansen/;
+let GR=null;const ROUTE={};
+function grafo(){if(GR||!ST)return GR;const S=ST.stazioni,N=[],idx={},adj=[];
+ const nodo=(s,l)=>{const k=s+'|'+l;if(idx[k]==null){idx[k]=N.length;N.push({s,l});adj.push([])}return idx[k]};
+ const ed=(a,b,w,t)=>{adj[a].push([b,w,t]);adj[b].push([a,w,t])};
+ ST.linee.forEach((L,li)=>{if(ESCLUSE.test(L.n))return;const cand=S.map((s,i)=>[s,i]).filter(([s])=>s.l.includes(li));let prev=null;const seq=[];
+  L.s.forEach(([a,b])=>{let best=null,bd=.5;for(const[s,i]of cand){const d=km(a,b,s.lat,s.lon);if(d<bd){bd=d;best=i}}if(best==null){prev=null;return}if(best===prev)return;
+   if(prev!=null){const d=km(S[prev].lat,S[prev].lon,S[best].lat,S[best].lon);if(d<12)ed(nodo(prev,li),nodo(best,li),d/32*60+.7,'r')}seq.push(best);prev=best});
+  L.seq=seq;if(/Yamanote/.test(L.n)&&seq.length>2)ed(nodo(seq[0],li),nodo(seq.at(-1),li),2.5,'r')});
+ S.forEach((s,i)=>{const ls=s.l.filter(l=>idx[i+'|'+l]!=null);for(let a=0;a<ls.length;a++)for(let b=a+1;b<ls.length;b++)ed(idx[i+'|'+ls[a]],idx[i+'|'+ls[b]],5,'c')});
+ S.forEach((s,i)=>S.forEach((t,j)=>{if(j<=i)return;const d=km(s.lat,s.lon,t.lat,t.lon);if(d<.35)s.l.forEach(la=>t.l.forEach(lb=>{if(idx[i+'|'+la]!=null&&idx[j+'|'+lb]!=null)ed(idx[i+'|'+la],idx[j+'|'+lb],piedi(d)+4,'w')}))}));
+ return GR={N,adj,idx}}
+const nomeS=i=>{const s=ST.stazioni[i];return s.n||s.k};
+function percorso(a,b){const key=`${a.lat},${a.lng}>${b.lat},${b.lng}`;if(ROUTE[key]!==undefined)return ROUTE[key];
+ const dir=km(a.lat,a.lng,b.lat,b.lng),camm=piedi(dir);if(dir<.08)return ROUTE[key]=null;
+ const G=grafo();let r=null;
+ if(G&&dir<40){const S=ST.stazioni,near=p=>S.map((s,i)=>[i,km(p.lat,p.lng,s.lat,s.lon)]).filter(x=>x[1]<1.6).sort((x,y)=>x[1]-y[1]).slice(0,9);
+  const da=near(a),aa=near(b),dist=new Float64Array(G.N.length).fill(1e9),prev=new Int32Array(G.N.length).fill(-1),done=new Uint8Array(G.N.length),fine={};
+  da.forEach(([i,d])=>ST.stazioni[i].l.forEach(l=>{const n=G.idx[i+'|'+l];if(n!=null&&piedi(d)+3<dist[n]){dist[n]=piedi(d)+3}}));
+  aa.forEach(([i,d])=>{fine[i]=piedi(d)});
+  for(;;){let u=-1,m=1e9;for(let k=0;k<dist.length;k++)if(!done[k]&&dist[k]<m){m=dist[k];u=k}if(u<0||m>150)break;done[u]=1;for(const[v,w]of G.adj[u])if(m+w<dist[v]){dist[v]=m+w;prev[v]=u}}
+  let best=-1,bt=1e9;G.N.forEach((n,k)=>{if(fine[n.s]!=null&&dist[k]+fine[n.s]<bt){bt=dist[k]+fine[n.s];best=k}});
+  if(best>=0){const path=[];for(let k=best;k>=0;k=prev[k])path.unshift(k);const tratte=[];
+   for(let k=0;k<path.length;k++){const n=G.N[path[k]],t=tratte.at(-1);if(t&&t.l===n.l&&t.ultima!==n.s){t.fermate.push(n.s);t.ultima=n.s}else if(!t||t.l!==n.l)tratte.push({l:n.l,fermate:[n.s],ultima:n.s})}
+   const corse=tratte.filter(t=>t.fermate.length>1);
+   if(corse.length){const s0=corse[0].fermate[0],sN=corse.at(-1).ultima;
+    corse.forEach(t=>{const L=ST.linee[t.l],seq=L.seq||[],ia=seq.indexOf(t.fermate[0]),ib=seq.indexOf(t.ultima);t.verso=/Yamanote/.test(L.n)?'':(ib>ia?nomeS(seq.at(-1)):nomeS(seq[0]));t.min=0;
+     for(let k=1;k<t.fermate.length;k++){const p=ST.stazioni[t.fermate[k-1]],q=ST.stazioni[t.fermate[k]];t.min+=km(p.lat,p.lon,q.lat,q.lon)/32*60+.7}t.min=Math.max(1,Math.round(t.min))});
+    r={tipo:'treno',tot:Math.round(bt),pa:piedi(km(a.lat,a.lng,ST.stazioni[s0].lat,ST.stazioni[s0].lon)),s0,sN,pb:fine[sN],corse,cambi:corse.length-1}}}}
+ if(!r||camm<=Math.max(15,r.tot*.9))r={tipo:'piedi',tot:camm,km:dir,alt:r};else if(r&&camm<=30)r.alt={tipo:'piedi',tot:camm,km:dir};
+ if(dir>=40)r={tipo:'lungo',km:dir};
+ return ROUTE[key]=r}
+/* tariffe a persona (IC card), stime per distanza: Tokyo Metro e taxi da fonti ufficiali 2026, gli altri approssimati */
+const OPER=n=>/^Tokyo Metro/.test(n)?'metro':/^Toei/.test(n)?'toei':/^Karasuma|Tozai Line \(Kyoto\)/.test(n)?'kyosub':/^Randen/.test(n)?'randen':/Yurikamome/.test(n)?'yuri':/^(JR|Yamanote|Keihin|Saikyo|Shonan|Ueno|Takasaki|Utsunomiya|Yokosuka|Nambu|Keiyo|Sobu|Biwako|Kosei|Sagano|Nara Line \(JR|Sakurai|Yamatoji)/.test(n)?(/Biwako|Kosei|Sagano|Nara Line \(JR|Sakurai|Yamatoji|JR Kyoto/.test(n)?'jrw':'jr'):'priv';
+const scala=(km,t)=>{for(const[l,p]of t)if(km<=l)return p;return t.at(-1)[1]};
+const TARIFFA={metro:k=>scala(k,[[6,178],[11,209],[19,252],[27,293],[99,324]]),toei:k=>scala(k,[[4,180],[8,220],[12,280],[16,330],[20,380],[99,430]]),
+ jr:k=>scala(k,[[3,150],[6,170],[10,210],[15,240],[20,320],[99,410]]),jrw:k=>scala(k,[[3,150],[6,190],[10,200],[15,240],[99,330]]),
+ kyosub:k=>scala(k,[[3,220],[7,260],[11,290],[15,330],[99,360]]),randen:()=>250,yuri:k=>scala(k,[[2,190],[5,250],[9,330],[99,390]]),priv:k=>scala(k,[[3,150],[7,190],[12,240],[20,300],[99,380]])};
+const NOME_OP={metro:'Tokyo Metro',toei:'Toei',jr:'JR East',jrw:'JR West',kyosub:'metro di Kyoto',randen:'Randen',yuri:'Yurikamome',priv:'linea privata'};
+function costoTreno(r){let tot=0;const parti=[];let cur=null;
+ r.corse.forEach(t=>{const op=OPER(ST.linee[t.l].n);let k=0;for(let i=1;i<t.fermate.length;i++){const p=ST.stazioni[t.fermate[i-1]],q2=ST.stazioni[t.fermate[i]];k+=km(p.lat,p.lon,q2.lat,q2.lon)}
+  if(cur&&cur.op===op&&op!=='randen')cur.km+=k;else{cur={op,km:k};parti.push(cur)}});
+ parti.forEach(p=>{p.y=TARIFFA[p.op](p.km);tot+=p.y});return{tot,parti}}
+function taxi(dir,kyoto,ora){const road=dir*1.35,base=kyoto?[.9,255]:[1,232];let y=500+Math.max(0,Math.ceil((road-base[0])*1000/base[1]))*100;const notte=ora&&(ora>='22:00'||ora<'05:00');if(notte)y=Math.round(y*1.2/10)*10;
+ const min=road<=5?road/18*60:5/18*60+(road-5)/35*60;return{y,min:Math.round(min+3),notte}}
+function legHTML(da,a){const r=percorso(da,a);if(!r)return'';const g=m=>`https://www.google.com/maps/dir/?api=1&origin=${q(da)}&destination=${q(a)}&travelmode=${m}`;
+ const P=V.viaggio.persone||6,kyoto=a.lat<35.3&&a.lng<136.5,dest=esc(a.luogo||a.titolo);
+ if(r.tipo==='lungo')return`<div class="leg"><span class="li">${ICO_TRENO}</span><span>Trasferimento lungo (${Math.round(r.km)} km): è il treno della giornata. <a href="${g('transit')}" target="_blank" rel="noopener">Orari su Google Maps</a></span></div>`;
+ const tr=r.tipo==='treno'?r:r.alt&&r.alt.tipo==='treno'?r.alt:null,pd=r.tipo==='piedi'?r:r.alt&&r.alt.tipo==='piedi'?r.alt:null,dir=km(da.lat,da.lng,a.lat,a.lng),tx=taxi(dir,kyoto,a.ora),nTaxi=Math.ceil(P/4);
+ const ct=tr?costoTreno(tr):null;
+ const opz=[];
+ if(pd)opz.push({k:'piedi',ico:ICO_PIEDI,nome:'A piedi',min:pd.tot,pp:0,txt:`${dir<1?Math.round(dir*1000)+' m':dir.toFixed(1)+' km'}`,url:g('walking')});
+ if(tr)opz.push({k:'treno',ico:ICO_TRENO,nome:'Treno e metro',min:tr.tot,pp:ct.tot,txt:`${tr.corse.length} ${tr.corse.length===1?'linea':'linee'}${tr.cambi?', '+tr.cambi+(tr.cambi===1?' cambio':' cambi'):''}`,url:g('transit')});
+ if(kyoto&&dir>1.2)opz.push({k:'bus',ico:ICO_BUS,nome:'Bus urbano',min:null,pp:230,txt:'tariffa unica, percorso su Google',url:g('transit')});
+ if(dir>.6)opz.push({k:'taxi',ico:ICO_TAXI,nome:`Taxi (${nTaxi} auto)`,min:tx.min,pp:Math.ceil(tx.y*nTaxi/P/10)*10,txt:`circa ¥${tx.y.toLocaleString('it-IT')} ad auto${tx.notte?', tariffa notturna':''}`,url:g('driving')});
+ const best=pd&&(!tr||pd.min<=15||pd.tot<=tr.tot+5)?'piedi':tr&&tr.tot<=Math.max(tx.min*2,40)?'treno':'taxi';
+ const sum=opz.find(o=>o.k===best)||opz[0];
+ const lin=tr?tr.corse.map(t=>{const L=ST.linee[t.l];return`<span class="lchip" style="--lc:${/^#[0-9a-fA-F]{6}$/.test(L.c)?L.c:'#6b7280'}">${esc(L.n.replace(/^Tokyo Metro |^Toei /,''))}</span>`}).join('<i>›</i>'):'';
+ const tab=`<table class="opt"><tbody>${opz.map(o=>`<tr class="${o.k===best?'best':''}"><td>${o.ico}</td><td><b>${o.nome}</b>${o.k===best?' <span class="consig">consigliato</span>':''}<br><small>${esc(o.txt)}</small></td><td class="r">${o.min!=null?'~'+o.min+' min':'—'}</td><td class="r">${o.pp?'~¥'+o.pp.toLocaleString('it-IT')+'<br><small>a testa</small>':'gratis'}</td><td><a href="${o.url}" target="_blank" rel="noopener" aria-label="${o.nome} su Google Maps">Maps</a></td></tr>`).join('')}</tbody></table>`;
+ let passi='';if(tr){const p=[`<li>A piedi <b>${tr.pa} min</b> fino alla stazione <b>${esc(nomeS(tr.s0))}</b>.</li>`];
+  tr.corse.forEach((t,k)=>{const L=ST.linee[t.l],c=/^#[0-9a-fA-F]{6}$/.test(L.c)?L.c:'#6b7280';if(k>0)p.push(`<li>Cambio a <b>${esc(nomeS(t.fermate[0]))}</b>: seguite i cartelli della <b>${esc(L.n)}</b>.</li>`);
+   p.push(`<li><span class="lchip" style="--lc:${c}">${esc(L.n)}</span>${t.verso?` direzione <b>${esc(t.verso)}</b>`:' (linea circolare: controllate il verso sui cartelli)'}: <b>${t.fermate.length-1} ${t.fermate.length===2?'fermata':'fermate'}</b>, circa ${t.min} min, scendete a <b>${esc(nomeS(t.ultima))}</b>.</li>`)});
+  p.push(`<li>A piedi <b>${tr.pb} min</b> fino a <b>${dest}</b>.</li>`);
+  passi=`<h5>Passaggi in treno e metro${ct.parti.length>1?` · ${ct.parti.map(x=>NOME_OP[x.op]+' ¥'+x.y).join(' + ')}`:''}</h5><ol>${p.join('')}</ol>`}
+ return`<details class="leg"><summary><span class="li">${sum.ico}</span><span><b>${sum.nome}${sum.min!=null?' · ~'+sum.min+' min':''}</b>${sum.k==='treno'?' · '+lin:''}${sum.pp?` · ~¥${sum.pp.toLocaleString('it-IT')} a testa`:''} <em>${opz.length>1?'confronta '+opz.length+' opzioni':''}</em></span></summary>
+ ${tab}${passi}<p class="nb">Tempi e prezzi sono stime: treni sui dati aperti di linee e stazioni, tariffe IC per distanza, taxi a tassametro (4 persone ad auto). Orari reali e ritardi su Google Maps.</p></details>`}
+const ICO_BUS='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="15" r=".5"/><circle cx="16" cy="15" r=".5"/></svg>';
+const ICO_TAXI='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM9 3h6v3H9z"/><circle cx="7.5" cy="16" r="1.5"/><circle cx="16.5" cy="16" r="1.5"/></svg>';
+const ICO_PIEDI='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13" cy="4" r="2"/><path d="m9 21 2-6 3 3v5M8 12l2-4 4 1 3 4M10 8l-2 5"/></svg>';
+function hotelPrima(i,ora){for(let k=i;k>=0;k--){const h=tappe(k).filter(e=>e.tipo==='hotel'&&e.lat!=null&&(k<i||(e.ora||'')<=(ora||'99'))).at(-1);if(h)return h}return null}
+function legsGiorno(i){const T=tappe(i),out={};let prev=null;const h=hotelPrima(i-1,'99');
+ T.forEach((e,k)=>{if(e.lat==null)return;const da=prev||(k===0||!T.slice(0,k).some(x=>x.lat!=null)?(h&&V.giorni[i].zona===V.giorni[i-1]?.zona?h:null):null);if(da&&km(da.lat,da.lng,e.lat,e.lng)>.08)out[e.id]=legHTML(da,e);prev=e});return out}
+
 /* ---------- dati: programma + proposte approvate ---------- */
 let PIANO=[];
 function prepara(){V.giorni.sort((a,b)=>a.data<b.data?-1:1);V.giorni.forEach((g,i)=>{g.i=i;g.eventi.forEach((e,k)=>{e.id=`e${i}-${k}`;e.d=i})})}
@@ -109,8 +183,9 @@ function vHome(){const v=V.viaggio,s=stato(),n=diff(v.inizio,v.fine)+1,tutte=V.g
  <h2 class="sec">Giorno per giorno</h2><div class="days">${V.giorni.map((g,i)=>{const np=propDi(g.data).filter(p=>!p.ok).length;return`<a class="dc ${s.fase==='durante'&&s.i===i?'today':''}" href="#g${i+1}" style="--c:${col(i)}">${ph(g.cover,300,'',g.scena,i+1,g.titolo).replace('</div>',`<span class="n">${i+1}</span></div>`)}<div><small>${esc(fmt(g.data,{weekday:'short',day:'numeric',month:'short'}))} · ${esc(g.citta||'')}</small><strong>${esc(g.titolo)}</strong><em>${tappe(i).length} tappe${np?` · <b class="np">${np} da votare</b>`:''}</em></div></a>`}).join('')}</div>
  <p class="foot">Foto da Wikipedia e Wikimedia Commons. Mappe © OpenStreetMap, OpenFreeMap, OpenMapTiles, Esri, GSI Japan, OpenTopoMap, CyclOSM.</p></div>`}
 function vGiorno(i){const g=V.giorni[i],now=adesso(V.viaggio.fuso),live=now.data===g.data,T=tappe(i),P=propDi(g.data).filter(p=>!p.ok);let next=false;
+ const LEGS=legsGiorno(i);
  const blocchi=FASCE.map(([k,nome])=>{const ts=T.filter(e=>fasciaDi(e.ora)===k),ps=P.filter(p=>(p.fascia||'mattina')===k||(!p.fascia&&k==='mattina'));
-  const stops=ts.map(e=>{let c='';if(live&&!next&&(e.fine&&/^\d\d:\d\d$/.test(e.fine)?e.fine:e.ora)>=now.ora){c='next';next=true}return stopCard(e,c)}).join('');
+  const stops=ts.map(e=>{let c='';if(live&&!next&&(e.fine&&/^\d\d:\d\d$/.test(e.fine)?e.fine:e.ora)>=now.ora){c='next';next=true}return(LEGS[e.id]||'')+stopCard(e,c)}).join('');
   return`<div class="slot">${nome}</div>${stops}${ps.length?`<div class="pgroup"><div class="plab">Proposte per ${nome.toLowerCase()} · votate e mettete nel programma</div>${ps.map(propCard).join('')}</div>`:''}<button class="add" data-nuova="${g.data}|${k}">+ Proponi per ${nome.toLowerCase()}</button>`}).join('');
  return`<div style="--c:${col(i)}"><div class="cover">${ph(g.cover,1200,'data-credit style="position:absolute;inset:0;height:auto"',g.scena,i+1,g.titolo)}<div class="sh"></div><div class="tx"><small>Giorno ${i+1} · ${esc(lungo(g.data))}</small><h1>${esc(g.titolo)}</h1></div></div>
  <nav class="daynav" aria-label="Giornate">${V.giorni.map((x,k)=>`<a href="#g${k+1}" style="--c:${col(k)}" ${k===i?'aria-current="page"':''}>${k+1} · ${esc(corto(x.data))}${propDi(x.data).some(p=>!p.ok)?' •':''}</a>`).join('')}</nav>
