@@ -1,0 +1,10 @@
+io.github.angeloberardi.biginjapan.app-browser-1.4.0-0 /home/runner/.gradle/caches/8.10.2/transforms/00725e06dde989953911813d6a05d5c8/transformed/browser-1.4.0/res
+io.github.angeloberardi.biginjapan.app-androidbrowserhelper-2.5.0-1 /home/runner/.gradle/caches/8.10.2/transforms/aa0b174938428ca39b67a2fa4cf5ec7b/transformed/androidbrowserhelper-2.5.0/res
+io.github.angeloberardi.biginjapan.app-core-1.1.0-2 /home/runner/.gradle/caches/8.10.2/transforms/f2af1babc5324978a854ab667c53c6a2/transformed/core-1.1.0/res
+io.github.angeloberardi.biginjapan.app-pngs-3 /home/runner/work/big-in-japan/big-in-japan/android/app/build/generated/res/pngs/release
+io.github.angeloberardi.biginjapan.app-resValues-4 /home/runner/work/big-in-japan/big-in-japan/android/app/build/generated/res/resValues/release
+io.github.angeloberardi.biginjapan.app-packageReleaseResources-5 /home/runner/work/big-in-japan/big-in-japan/android/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+io.github.angeloberardi.biginjapan.app-packageReleaseResources-6 /home/runner/work/big-in-japan/big-in-japan/android/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+io.github.angeloberardi.biginjapan.app-release-7 /home/runner/work/big-in-japan/big-in-japan/android/app/build/intermediates/merged_res/release/mergeReleaseResources
+io.github.angeloberardi.biginjapan.app-main-8 /home/runner/work/big-in-japan/big-in-japan/android/app/src/main/res
+io.github.angeloberardi.biginjapan.app-release-9 /home/runner/work/big-in-japan/big-in-japan/android/app/src/release/res
