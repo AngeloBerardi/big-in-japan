@@ -31,5 +31,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release view android >/dev/null 2>&1 || gh release create android --title "App Android" --notes "APK di Big in Japan: scaricalo dal telefono e installalo."
-          gh release upload android big-in-japan.apk --clobber
+          { gh release view android >/dev/null 2>&1 || gh release create android --title "App Android" --notes "APK di Big in Japan: scaricalo dal telefono e installalo."; gh release upload android big-in-japan.apk --clobber; } 2>&1 | tee release.log
+      - name: Log su ramo ci-log se qualcosa fallisce
+        if: failure()
+        run: |
+          mkdir -p /tmp/l && cp build.log release.log /tmp/l/ 2>/dev/null || true
+          ls -la android/app/build/outputs/apk/release/ > /tmp/l/apk.txt 2>&1 || true
+          git config user.email ci@example.com && git config user.name ci
+          git checkout --orphan ci-log && git rm -rqf . && cp /tmp/l/* . && git add -A && git commit -qm "log $GITHUB_RUN_NUMBER" && git push -f origin ci-log
