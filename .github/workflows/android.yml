@@ -20,7 +20,10 @@ jobs:
         with: { gradle-version: '8.10.2' }
       - name: Compila e firma
         run: |
-          gradle -p android assembleRelease --no-daemon
+          set -o pipefail
+          if ! gradle -p android assembleRelease --no-daemon --stacktrace 2>&1 | tee build.log; then
+            { echo '### Errore di compilazione'; echo '```'; grep -A25 -E 'What went wrong|FAILURE|error:' build.log | head -80; echo '```'; } >> "$GITHUB_STEP_SUMMARY"; exit 1
+          fi
           cp "$(ls android/app/build/outputs/apk/release/*.apk | head -1)" big-in-japan.apk
       - uses: actions/upload-artifact@v6
         with: { name: big-in-japan-apk, path: big-in-japan.apk }
