@@ -1,0 +1,45 @@
+// App Android di Big in Japan: una Trusted Web Activity (Chrome a tutto schermo) che apre il sito su GitHub Pages.
+// Niente codice nostro: tutto è configurato nel manifest. Firma: android/firma/big-in-japan.jks (vedi README).
+plugins { id 'com.android.application' }
+
+def sito = 'angeloberardi.github.io'
+def numero = (System.getenv('GITHUB_RUN_NUMBER') ?: '1') as int
+def ks = System.getenv('ANDROID_KEYSTORE_FILE') ?: file('../firma/big-in-japan.jks').path
+
+android {
+    namespace 'io.github.angeloberardi.biginjapan'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'io.github.angeloberardi.biginjapan'
+        minSdk 24 // Android 7+: basta la firma v2
+        targetSdk 34
+        versionCode numero
+        versionName "1.0.$numero"
+        manifestPlaceholders = [host: sito, url: "https://$sito/big-in-japan/?app=android"]
+        resValue 'string', 'asset_statements', "[{\\\"relation\\\":[\\\"delegate_permission/common.handle_all_urls\\\"],\\\"target\\\":{\\\"namespace\\\":\\\"web\\\",\\\"site\\\":\\\"https://$sito\\\"}}]"
+    }
+    signingConfigs {
+        if (ks) {
+            viaggio {
+                storeFile file(ks)
+                storePassword (System.getenv('ANDROID_KEYSTORE_PASSWORD') ?: 'biginjapan2027')
+                keyAlias 'viaggio'
+                keyPassword (System.getenv('ANDROID_KEYSTORE_PASSWORD') ?: 'biginjapan2027')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (ks) signingConfig signingConfigs.viaggio
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+}

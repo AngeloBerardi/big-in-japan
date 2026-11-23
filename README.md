@@ -8,3 +8,10 @@ Sito compagno del viaggio Tokyo, terme e Kyoto (26 dicembre 2026 – 9 gennaio 2
 - Proposte e pollici: Firebase Realtime Database, percorso `viaggi/<chiave>`; la chiave non è nel codice.
 
 Mappe © OpenStreetMap, CARTO, Esri, OpenRailwayMap. Foto da Wikipedia e Wikimedia Commons.
+
+## App Android
+
+`android/` è una Trusted Web Activity (Chrome a tutto schermo) che apre il sito. Il workflow `.github/workflows/android.yml` la compila a ogni modifica di `android/` e la pubblica nella release `android`:
+https://github.com/AngeloBerardi/big-in-japan/releases/download/android/big-in-japan.apk
+
+La chiave di firma è `android/firma/big-in-japan.jks` (password nel `build.gradle`): sta nel repository pubblico per semplicità, così chiunque potrebbe firmare un APK «compatibile». Per un'app tra amici va bene; per toglierla si spostano file e password nei segreti `ANDROID_KEYSTORE` e `ANDROID_KEYSTORE_PASSWORD`.
