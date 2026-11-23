@@ -1,4 +1,4 @@
-# App Android (cartella android/): una Trusted Web Activity che apre il sito. Compila l'APK sui runner di GitHub
+# App Android (cartella android/): un contenitore a tutto schermo (WebView) che apre il sito. Compila l'APK sui runner di GitHub
 # e lo mette nella release «android», con un link fisso:
 # https://github.com/AngeloBerardi/big-in-japan/releases/download/android/big-in-japan.apk
 name: App Android

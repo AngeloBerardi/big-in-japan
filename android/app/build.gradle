@@ -1,5 +1,5 @@
-// App Android di Big in Japan: una Trusted Web Activity (Chrome a tutto schermo) che apre il sito su GitHub Pages.
-// Niente codice nostro: tutto è configurato nel manifest. Firma: chiave passata dal workflow (segreto ANDROID_KEYSTORE o chiave generata e tenuta nella cache delle Actions).
+// App Android di Big in Japan: contenitore a tutto schermo (WebView) che apre il sito su GitHub Pages, senza barra dell'indirizzo.
+// Firma: chiave passata dal workflow (segreto ANDROID_KEYSTORE o chiave generata e tenuta nella cache delle Actions).
 plugins { id 'com.android.application' }
 
 def sito = 'angeloberardi.github.io'
@@ -16,7 +16,6 @@ android {
         versionCode numero
         versionName "1.0.$numero"
         manifestPlaceholders = [host: sito, url: "https://$sito/big-in-japan/?app=android"]
-        resValue 'string', 'asset_statements', "[{\\\"relation\\\":[\\\"delegate_permission/common.handle_all_urls\\\"],\\\"target\\\":{\\\"namespace\\\":\\\"web\\\",\\\"site\\\":\\\"https://$sito\\\"}}]"
     }
     signingConfigs {
         if (ks) {
@@ -40,6 +39,3 @@ android {
     }
 }
 
-dependencies {
-    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
-}
