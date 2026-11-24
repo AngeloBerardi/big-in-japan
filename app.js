@@ -451,8 +451,10 @@ function initTline(){const box=document.createElement('div');box.id='tline';box.
 const EMO={visita:'⛩️',esperienza:'✨',cibo:'🍜',shopping:'🛍️',evento:'🎆',notte:'🌙',gita:'🚆',partita:'⚽'};
 let IMK=[];
 function ideeMappa(){if(OPZ.idee===false)return[];const d=filter!=null&&!OPZ.tutto?V.giorni[filter].data:null;return IDEE.filter(x=>x.lat!=null&&(!d||x.giorni.includes(d)))}
-function disegnaIdee(){IMK.forEach(m=>m.remove());IMK=[];if(!map)return;
- ideeMappa().forEach(x=>{const el=document.createElement('button');el.className='ipin';el.style.setProperty('--k',CATC[x.cat]||'#555');el.setAttribute('aria-label',x.titolo);el.textContent=EMO[x.cat]||'•';
+function disegnaIdee(){if(!map)return;const L=ideeMappa(),chiave=L.map(x=>x.id).join();
+ if(chiave===disegnaIdee.k){IMK.forEach(m=>{const el=m.getPopup().getElement(),rb=el&&el.querySelector('.rbar');if(rb)rb.outerHTML=rbar(m._id)});return}
+ disegnaIdee.k=chiave;IMK.forEach(m=>m.remove());IMK=[];
+ L.forEach(x=>{const el=document.createElement('button');el.className='ipin';el.style.setProperty('--k',CATC[x.cat]||'#555');el.setAttribute('aria-label',x.titolo);el.textContent=EMO[x.cat]||'•';
   const pop=new maplibregl.Popup({offset:14,maxWidth:'300px'}).setHTML(`<div class="pop ipop" style="--k:${CATC[x.cat]}">${ph(x.wiki,560,'','',3,x.titolo)}<div class="bd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="imeta"><span>${esc(x.orari)}</span><span>${esc(x.prezzo)}</span></p><p>${esc(x.sintesi.slice(0,170))}${x.sintesi.length>170?'…':''}</p>${rbar(x.id)}<div class="acts"><button class="btn pri" data-idea="${esc(x.id)}">Scheda</button><a class="btn" href="${arrivo(x,ME)}" target="_blank" rel="noopener">Come arrivo</a></div></div></div>`);
   pop.on('open',()=>riempiFoto(pop.getElement()));
   const m=new maplibregl.Marker({element:el}).setLngLat([x.lng,x.lat]).setPopup(pop).addTo(map);m._id=x.id;IMK.push(m)})}
