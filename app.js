@@ -207,7 +207,7 @@ async function reagisci(b){if(!IO){accesso();return}const bar=b.closest('.rbar')
 const quando=t=>{const d=new Date(t);return d.toLocaleDateString('it-IT',{day:'numeric',month:'short'})+' '+d.toTimeString().slice(0,5)};
 function titoloDi(id){const x=IDX[id];if(x)return x.titolo;const p=Object.values(PROP).map(o=>o[id]).find(Boolean);if(p)return p.titolo;const e=PIANO.find(e=>rid(e)===id);return e?e.titolo:'Commenti'}
 function listaCom(id){const cs=Object.entries(CM[id]||{}).map(([k,c])=>({...c,k})).sort((a,b)=>a.t-b.t);
- return cs.length?cs.map(c=>`<div class="com" style="--p:${PCOL[c.autore]||'#666'}">${avatar(c.autore,26)}<div><small><b>${esc(c.autore)}</b> · ${esc(quando(c.t))}</small><p>${esc(c.testo)}</p>${FB&&c.uid===FB.uid?`<button class="lnk" data-delcom="${esc(id)}|${esc(c.k)}">Elimina</button>`:''}</div></div>`).join(''):'<p class="muted">Ancora nessun commento: scrivete il primo.</p>'}
+ return cs.length?cs.map(c=>`<div class="com" style="--p:${PCOL[c.autore]||'#666'}">${avatar(c.autore,26)}<div><small><b>${esc(c.autore)}</b> · ${esc(quando(c.t))}${c.mod?' · modificato':''}</small><p>${esc(c.testo)}</p>${FB&&c.uid===FB.uid?`<span class="comact"><button class="lnk" data-editcom="${esc(id)}|${esc(c.k)}">Modifica</button><button class="lnk" data-delcom="${esc(id)}|${esc(c.k)}">Elimina</button></span>`:''}</div></div>`).join(''):'<p class="muted">Ancora nessun commento: scrivete il primo.</p>'}
 function formCom(id){return IO?`<form class="cform" data-cform="${esc(id)}"><textarea name="testo" maxlength="500" rows="2" placeholder="Scrivi un commento come ${esc(IO)}…" required></textarea><button class="btn pri" type="submit">Invia</button></form>`:`<button class="btn" data-login>Scegli il tuo nome per commentare</button>`}
 function commenti(id,refresh){CMID=id;const s=$('#sheet'),box=s.querySelector('.sheet');
  if(refresh){const l=box.querySelector('.coml');if(l&&l.dataset.id===id){l.innerHTML=listaCom(id);const rb=box.querySelector(`.rbar[data-rid="${CSS.escape(id)}"]`);if(rb){const pe=Object.entries(PROP).map(([g,o])=>o[id]&&[g,o[id]]).find(Boolean);rb.outerHTML=pe?rbar(id,pe[1].voti,pe[0]+'|'+id):rbar(id,null,null)}}return}
@@ -526,7 +526,9 @@ $('#sheet').addEventListener('input',e=>{const f=e.target.form;if(!f)return;
  if(e.target.name==='link'){const c=coords(e.target.value);if(c){NUOVA.lat=c.lat;NUOVA.lng=c.lng;$('#posok').textContent='Posizione presa dal link'}}});
 $('#sheet').addEventListener('click',e=>{const sg=e.target.closest('[data-sg]');if(sg){const x=cercaLuoghi.r[+sg.dataset.sg],f=$('#pform');NUOVA.lat=x.lat;NUOVA.lng=x.lng;f.luogo.value=x.nome+(x.dove?', '+x.dove.split(',')[0]:'');if(!f.titolo.value)f.titolo.value=x.nome;$('#sugg').innerHTML='';$('#posok').textContent='Posizione: '+x.nome}
  if(e.target.closest('[data-chiudi]')||e.target.id==='sheet'){$('#sheet').classList.remove('on');CMID=null;aggiorna()}});
-$('#sheet').addEventListener('submit',async e=>{const cf=e.target.closest('[data-cform]');if(cf){e.preventDefault();const id=cf.dataset.cform,tx=cf.testo.value.trim();if(!tx||!IO)return;if(!FB){toast('Non collegato: riprova tra poco');return}
+$('#sheet').addEventListener('submit',async e=>{const ef=e.target.closest('[data-eform]');if(ef){e.preventDefault();const[id,k]=ef.dataset.eform.split('|'),tx=ef.testo.value.trim();if(!tx)return;if(!FB){toast('Non collegato: riprova tra poco');return}
+  const b=ef.querySelector('[type=submit]');b.disabled=true;try{await FB.Db.update(FB.ref(`commenti/${id}/${k}`),{testo:tx.slice(0,500),mod:Date.now()});commenti(id,true)}catch(err){toast('Modifica non salvata: '+(err.code||err));b.disabled=false}return}
+ const cf=e.target.closest('[data-cform]');if(cf){e.preventDefault();const id=cf.dataset.cform,tx=cf.testo.value.trim();if(!tx||!IO)return;if(!FB){toast('Non collegato: riprova tra poco');return}
   const b=cf.querySelector('button');b.disabled=true;try{await FB.Db.set(FB.Db.push(FB.ref('commenti/'+id)),{autore:IO,uid:FB.uid,t:Date.now(),testo:tx.slice(0,500)});cf.testo.value=''}catch(err){toast('Commento non salvato: '+(err.code||err))}b.disabled=false;return}});
 $('#sheet').addEventListener('submit',async e=>{const sf=e.target.closest('#sform');if(!sf)return;e.preventDefault();await salvaSpesa(sf)});
 $('#sheet').addEventListener('input',e=>{if(e.target.closest('#sform'))anteprima()});
@@ -535,7 +537,7 @@ $('#sheet').addEventListener('click',async e=>{const pb=e.target.closest('[data-
  if(e.target.closest('[data-spdel]')){const k=$('#sform').dataset.k;if(k&&confirm('Eliminare questa spesa per tutti?')){try{await salva('spese/'+k,null);$('#sheet').classList.remove('on');toast('Spesa eliminata')}catch(err){toast('Non eliminata')}}}});
 $('#sheet').addEventListener('submit',async e=>{const mf=e.target.closest('#mform');if(!mf)return;e.preventDefault();const o={ora:mf.ora.value};const k=mf.dataset.rid,e0=PIANO.concat(grezze()).find(x=>rid(x)===k);
  if(e0&&V.giorni[e0.orig??e0.d]&&mf.data.value!==V.giorni[e0.orig??e0.d].data)o.data=mf.data.value;else if(MOD[k]&&MOD[k].data)o.data=mf.data.value;$('#sheet').classList.remove('on');await salvaMod(k,o)});
-$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]')||e.target.closest('#mform')||e.target.closest('#sform'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
+$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]')||e.target.closest('[data-eform]')||e.target.closest('#mform')||e.target.closest('#sform'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
  for(const k of['luogo','nota','fascia']){const v=f[k].value.trim();if(v)o[k]=v.slice(0,k==='nota'?600:120)}
  const lk=f.link.value.trim();if(/^https:\/\//.test(lk))o.link=lk;if(NUOVA.lat!=null){o.lat=+NUOVA.lat.toFixed(6);o.lng=+NUOVA.lng.toFixed(6)}
  const b=f.querySelector('[type=submit]');b.disabled=true;
@@ -941,6 +943,10 @@ document.addEventListener('click',async e=>{const t=e.target;
  const ia=t.closest('[data-idea]');if(ia){const x=IDX[ia.dataset.idea];if(x)scheda(x);return}
  const pi=t.closest('[data-propidea]');if(pi){const x=IDX[pi.dataset.propidea],d=$('[data-ideagiorno]')?.value||x.giorni[0];if(x&&chiusoIl(x,d)){toast(`${corto(d)}: ${chiusoIl(x,d)}. Scegliete un altro giorno.`);return}if(x)proponiIdea(x,d);return}
  const im=t.closest('[data-ideamap]');if(im){mostraIdea(im.dataset.ideamap);return}
+ const ec=t.closest('[data-editcom]');if(ec){const[id,k]=ec.dataset.editcom.split('|'),c=(CM[id]||{})[k];if(!c)return;const box=ec.closest('.com>div');
+  box.innerHTML=`<small><b>${esc(c.autore)}</b> · modifica</small><form class="cform eform" data-eform="${esc(id)}|${esc(k)}"><textarea name="testo" maxlength="500" rows="3" required>${esc(c.testo)}</textarea><span class="comact"><button class="btn pri sm" type="submit">Salva</button><button class="btn sm" type="button" data-annullacom>Annulla</button></span></form>`;
+  const ta=box.querySelector('textarea');ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length);return}
+ if(t.closest('[data-annullacom]')){commenti(CMID,true);return}
  const dc=t.closest('[data-delcom]');if(dc){const[id,k]=dc.dataset.delcom.split('|');try{await salva(`commenti/${id}/${k}`,null)}catch(err){toast('Non eliminato')}return}
  if(t.closest('[data-login]')){$('#sheet').classList.remove('on');CMID=null;accesso();return}
  const fd=t.closest('[data-fujiday]');if(fd){filter=+fd.dataset.fujiday;location.hash='#mappa';setTimeout(()=>{chips();disegna(false);fujiScena(V.giorni[filter].data==='2027-01-08'?'ritorno':'andata')},450);return}
