@@ -291,7 +291,7 @@ textarea{min-height:70px;resize:vertical}
 .tticks{position:absolute;left:10px;right:10px;top:0;height:18px}
 .tticks span{position:absolute;transform:translateX(-50%);min-width:18px;height:18px;border-radius:9px;background:var(--c);color:#fff;font:700 10.5px/18px Inter,sans-serif;text-align:center;padding:0 4px;cursor:pointer;border:1.5px solid #fff}
 .tlab{font-size:13px;line-height:1.35;color:var(--muted);flex:1;min-width:0}
-.tdot{width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--c,#12a150);box-shadow:0 0 0 6px rgba(18,161,80,.25),0 2px 8px rgba(0,0,0,.35)}
+.tdot{width:16px;height:16px;border-radius:50%;background:#12a150;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);position:relative}.tdot::after{content:'🚶 ' attr(data-ora);position:absolute;left:50%;bottom:22px;transform:translateX(-50%);white-space:nowrap;background:#12a150;color:#fff;font:800 12px Inter,sans-serif;padding:3px 8px;border-radius:99px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
 /* programma modificabile */
 .stop .t .drag{display:block;margin:6px auto 0;border:0;background:var(--soft);border-radius:8px;width:30px;height:30px;color:var(--muted);font-size:14px;line-height:1;cursor:grab;touch-action:none;letter-spacing:-2px}
 #view.dragmode .stop .card .ph,#view.dragmode .stop .bd>p,#view.dragmode .stop .rbar,#view.dragmode .stop .acts,#view.dragmode .leg,#view.dragmode .alt,#view.dragmode .pgroup{display:none}

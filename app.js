@@ -644,7 +644,7 @@ async function rtVai(){if(rtVia||!navigator.onLine)return;rtVia=true;let nuovi=0
 /* ---------- 2. evidenzia l'edificio della tappa (solo mappe vettoriali con edifici 3D) ---------- */
 let HL=null;
 function strBuild(){return map.getStyle().layers.filter(l=>l['source-layer']==='building').map(l=>l.id)}
-function evidenzia(e){if(!map||!map.getSource('hl'))return;if(!e||e.lat==null){map.getSource('hl').setData({type:'FeatureCollection',features:[]});HL=null;return}HL=e;
+function evidenzia(e){if(!map||!map.getSource('hl'))return;e=null;/* edifici colorati tolti: il 3D resta quello della mappa */if(!e||e.lat==null){map.getSource('hl').setData({type:'FeatureCollection',features:[]});HL=null;return}HL=e;
  const go=()=>{if(HL!==e)return;const L=strBuild();if(!L.length)return;const pt=map.project([e.lng,e.lat]);let f=map.queryRenderedFeatures([[pt.x-6,pt.y-6],[pt.x+6,pt.y+6]],{layers:L});
   if(!f.length)f=map.queryRenderedFeatures([[pt.x-26,pt.y-26],[pt.x+26,pt.y+26]],{layers:L});const b=f.find(x=>/Polygon/.test(x.geometry.type));
   map.getSource('hl').setData({type:'FeatureCollection',features:b?[{type:'Feature',properties:{h:(b.properties.render_height||b.properties.height||12)+1.5,m:b.properties.render_min_height||0,c:col(e.d??0)},geometry:b.geometry}]:[]})};
@@ -751,8 +751,8 @@ function posTL(t,segui){if(!TL)return;const G=TL;let p=null,txt='',sub='';
  else{let e=G.seq[0];for(const x of G.seq){const ta=x.arrivo!=null?Math.min(x.arrivo,x.t??x.arrivo):x.t;if(ta!=null&&ta<=t)e=x}p=[e.lng,e.lat];txt=e.partenza?`Partenza da ${e.titolo}`:`${e.titolo}`;
   const nx=G.legs.find(l=>l.dep>t);sub=e.partenza?'':e.arrivo!=null&&e.t!=null&&t<e.t?`arrivati, la tappa inizia alle ${e.ora}`:nx?`fino alle ${hm(nx.dep)} circa, poi ${(nx.L&&nx.L.sum?nx.L.sum.nome:'spostamento').toLowerCase()}`:'ultima tappa del giorno';if(!e.partenza&&e.id&&selId!==e.id)seleziona(e.id,false)}
  const box=$('#mpanel');box.querySelector('.tora').textContent=hm(t);box.querySelector('.tnow').textContent=txt;box.querySelector('.tlab').textContent=sub;
- if(!tDot){const el=document.createElement('div');el.className='tdot';tDot=new maplibregl.Marker({element:el}).setLngLat(p).addTo(map)}else tDot.setLngLat(p);
- tDot.getElement().style.setProperty('--c',col(filter));const prev=TL.pos;TL.pos=p;
+ if(!tDot){const el=document.createElement('div');el.className='tdot';el.title='Dove siete a quest\'ora';tDot=new maplibregl.Marker({element:el}).setLngLat(p).addTo(map)}else tDot.setLngLat(p);
+ tDot.getElement().style.setProperty('--c',col(filter));tDot.getElement().dataset.ora=hm(t);const prev=TL.pos;TL.pos=p;
  const g=V.giorni[filter],ss=SOL.orari(g.data,p[1],p[0]);box.querySelector('.tsun').textContent=ss.alba?`☀ ${hm(ss.alba)} · ☾ ${hm(ss.tram)}`:'';if(tPlay)cielo(g.data,t,p[1],p[0]);else if(CIELO&&!FJ)cielo(null);
  const ferma=!l?G.seq.filter(x=>x.t!=null||x.partenza).reduce((a,x)=>{const ta=x.arrivo!=null?Math.min(x.arrivo,x.t??x.arrivo):x.t;return ta!=null&&ta<=t?x:a},G.seq[0]):null;
  if(ferma&&ferma.id&&TL.ferma!==ferma.id){TL.ferma=ferma.id;evidenzia(ferma);if(tPlay&&!ferma.partenza){TL.hold=16;setTimeout(()=>{if(tPlay)apriPin(ferma.id)},350)}}else if(!ferma&&TL.ferma){TL.ferma=null;if(tPlay)$$('.maplibregl-popup').forEach(x=>x.remove())}
