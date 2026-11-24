@@ -421,6 +421,8 @@ body.fujimode .mpanel,body.fujimode .mtop,body.fujimode .near,body.fujimode .lay
 .achiuso{background:var(--no-bg);color:var(--no);border-radius:10px;padding:8px 10px;font-size:13px;margin:6px 0}.averif{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:8px 10px;font-size:13px;margin:6px 0}
 .pform{display:grid;gap:8px;margin:8px 0 16px}.pform input,.pform textarea{font:inherit;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .posto .lrow{flex-wrap:wrap;gap:6px}.posto select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:10px;padding:6px}.posto small.neg{color:var(--no)}
+/* i marcatori della mappa restano posizionati da MapLibre: nessuna regola sopra può renderli relative */
+#map .maplibregl-marker{position:absolute}
 #bnav{display:none}
 .mob{display:none}
 @media(max-width:860px){
