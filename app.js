@@ -149,7 +149,7 @@ async function avviaFB(){if(FB)return;propStato='carica';
   const app=A.initializeApp(FCFG,'viaggio'),auth=Au.getAuth(app);await auth.authStateReady();if(!auth.currentUser)await Au.signInAnonymously(auth);
   const db=Db.getDatabase(app);FB={Db,db,uid:auth.currentUser.uid,ref:p=>Db.ref(db,`viaggi/${KEY}/${p}`)};
   Db.onValue(FB.ref('proposte'),s=>{PROP=s.val()||{};propStato='ok';aggiorna()},e=>{propStato='errore';propErr=String(e&&e.code||e);aggiorna()});
-  for(const[n,set]of[['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});aggiorna()},()=>{});
+  for(const[n,set]of[['spese',v=>SPE=v],['cassa/cambio',v=>{CAMBIO=v&&v.valore?v:null;if(CAMBIO)store.set('bij:cambio',CAMBIO)}],['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});aggiorna()},()=>{});
   Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
   Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
  }catch(e){propStato='errore';propErr=String(e&&e.code||e);aggiorna()}}
@@ -314,6 +314,76 @@ function diarioGiorno(g,i){const P=Object.entries(DIA).map(([k,v])=>({...v,k})).
  ${P.map(v=>{const e=v.rid&&PIANO.find(x=>rid(x)===v.rid);return`<article class="dpost" style="--p:${PCOL[v.autore]||'#666'}">${avatar(v.autore,28)}<div><small><b>${esc(v.autore)}</b> · ${esc(quando(v.t))}${e?` · ${esc(e.titolo)}`:''}</small><p>${esc(v.testo)}</p>${v.foto?(fotoDiretta(v.foto)?`<a href="${esc(v.foto)}" target="_blank" rel="noopener"><img class="dimg" src="${esc(v.foto)}" alt="Foto di ${esc(v.autore)}" loading="lazy"></a>`:`<a class="btn sm" href="${esc(v.foto)}" target="_blank" rel="noopener">Apri la foto</a>`):''}${FB&&v.uid===FB.uid?`<button class="lnk" data-ddel="${esc(v.k)}">Elimina</button>`:''}</div></article>`}).join('')}
  ${IO?`<form class="dform" data-dform="${g.data}"><textarea name="testo" maxlength="1000" rows="2" placeholder="Com'è andata oggi, ${esc(IO)}?" required></textarea><div class="row2b"><label>Tappa<select name="rid"><option value="">Tutta la giornata</option>${PIANO.filter(e=>e.d===i).map(e=>`<option value="${esc(rid(e))}">${esc(e.ora||'')} ${esc(e.titolo)}</option>`).join('')}</select></label><label>Link a una foto<input name="foto" type="url" placeholder="Condividi da Google Foto e incolla"></label></div><button class="btn pri" type="submit">Pubblica nel diario</button></form>`:'<button class="btn" data-login>Scegli il tuo nome per scrivere nel diario</button>'}</div>`}
 
+/* ---------- cassa comune (i conti sono in spese.js) ---------- */
+let SPE={},CAMBIO=null,ST_T=store.get('bij:sptab','spese'),VVIS=store.get('bij:vvis','EUR');
+const CATS=[['cibo','🍜','Cibo'],['trasporti','🚆','Trasporti'],['alloggio','🏨','Alloggio'],['attivita','🎟️','Attività'],['shopping','🛍️','Shopping'],['altro','•','Altro']];
+const catDi=k=>CATS.find(c=>c[0]===k)||CATS[5];
+const cambioOra=()=>CAMBIO&&CAMBIO.valore||store.get('bij:cambio',null)?.valore||160;
+const eur=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n);
+const yen=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'JPY',currencyDisplay:'narrowSymbol',maximumFractionDigits:0}).format(n);
+const vis=e=>VVIS==='EUR'?eur(e):yen(e*cambioOra());
+const doppio=e=>VVIS==='EUR'?`${eur(e)} <small>${yen(e*cambioOra())}</small>`:`${yen(e*cambioOra())} <small>${eur(e)}</small>`;
+const speseL=()=>Object.entries(SPE).map(([k,v])=>({...v,k})).sort((a,b)=>(b.data||'').localeCompare(a.data||'')||b.t-a.t);
+async function aggiornaCambio(forza){const c=CAMBIO||store.get('bij:cambio',null);if(!forza&&c&&Date.now()-c.t<864e5)return;
+ for(const u of['https://api.frankfurter.dev/v1/latest?base=EUR&symbols=JPY','https://api.frankfurter.app/latest?from=EUR&to=JPY']){try{const r=await fetch(u);if(!r.ok)continue;const j=await r.json(),v=j.rates&&j.rates.JPY;if(!v)continue;
+  const o={valore:Math.round(v*100)/100,t:Date.now(),fonte:'BCE '+(j.date||'')};store.set('bij:cambio',o);if(FB&&IO){o.autore=IO;salva('cassa/cambio',o).catch(()=>{})}else{CAMBIO=o}if(location.hash==='#spese')renderView();if(forza)toast(`Cambio aggiornato: 1 € = ¥${o.valore}`);return}catch(e){}}
+ if(forza)toast('Cambio non raggiungibile: potete scriverlo a mano')}
+function vSpese(){const P=V.viaggio.viaggiatori,L=speseL(),cb=cambioOra(),R=CASSA.saldi(L,P,cb),T=CASSA.pareggia(R.saldo),io=IO&&R.saldo[IO]!=null?R.saldo[IO]:null;
+ const tabs=`<div class="ptabs" role="tablist">${[['spese','Spese'],['saldi','Chi deve a chi'],['riepilogo','Riepilogo']].map(([k,n])=>`<button role="tab" aria-selected="${ST_T===k}" data-sptab="${k}">${n}${k==='saldi'&&T.length?` <small>${T.length}</small>`:''}</button>`).join('')}</div>`;
+ const testa=`<div class="cassa-top"><div><small>Speso dal gruppo</small><b>${doppio(R.totale)}</b></div>${io!=null?`<div class="${io>0.009?'pos':io<-0.009?'neg':''}"><small>${io>0.009?'Devi ricevere':io<-0.009?'Devi dare':'Sei in pari'}</small><b>${io>0.009||io<-0.009?doppio(Math.abs(io)):'—'}</b></div>`:''}</div>
+  <div class="cambio"><span>1 € = <b>¥${cb.toLocaleString('it-IT')}</b> <small>${esc((CAMBIO||store.get('bij:cambio',{})||{}).fonte||'valore indicativo')}</small></span><button class="lnk2" data-cambio="agg">Aggiorna</button><button class="lnk2" data-cambio="man">Scrivi</button><span class="vvis"><button aria-pressed="${VVIS==='EUR'}" data-vvis="EUR">€</button><button aria-pressed="${VVIS==='JPY'}" data-vvis="JPY">¥</button></span></div>
+  <button class="btn pri big" data-spesa="nuova">+ Aggiungi una spesa</button>`;
+ let corpo='';
+ if(ST_T==='spese'){const G={};L.forEach(s=>(G[s.data||'']=G[s.data||'']||[]).push(s));
+  corpo=L.length?Object.entries(G).map(([d,ss])=>`<h3 class="isec">${d?esc(fmt(d,{weekday:'short',day:'numeric',month:'short'})):'Senza data'}</h3>${ss.map(s=>{const e=CASSA.inEuro(s,cb),q=CASSA.quote(s),f=e/s.importo,mia=IO&&q[IO]!=null?q[IO]*f:0,c=catDi(s.cat);
+   return`<button class="spesa ${s.modo==='rimborso'?'rimb':''}" data-spesa="${esc(s.k)}"><span class="sic">${s.modo==='rimborso'?'↔':c[1]}</span><span class="stx"><b>${esc(s.titolo)}</b><small>${s.modo==='rimborso'?`${esc(s.paga)} ha dato a ${esc(Object.keys(s.per)[0])}`:`pagato da ${esc(s.paga)} · ${Object.keys(q).length===P.length?'tutti':Object.keys(q).map(esc).join(', ')}`}</small></span>
+    <span class="simp"><b>${s.valuta==='EUR'?eur(s.importo):yen(s.importo)}</b>${s.modo!=='rimborso'&&IO?(s.paga===IO?`<small class="pos">ricevi ${vis(e-mia)}</small>`:mia?`<small class="neg">la tua parte ${vis(mia)}</small>`:'<small>non ti riguarda</small>'):''}</span></button>`}).join('')}`).join(''):`<p class="muted">Nessuna spesa ancora. Segnate qui ogni conto pagato da uno per altri: la cassa calcola chi deve cosa, anche tra euro e yen.</p>`}
+ else if(ST_T==='saldi'){const mx=Math.max(1,...P.map(p=>Math.abs(R.saldo[p]||0)));
+  corpo=`<h3 class="isec">Il modo più veloce per pareggiare</h3>${T.length?`<ul class="lvlist">${T.map(t=>`<li class="lv trasf"><span>${avatar(t.da,26)} <b>${esc(t.da)}</b> dà a ${avatar(t.a,26)} <b>${esc(t.a)}</b></span><span class="tam">${doppio(t.eur)}</span>${IO?`<button class="btn sm" data-salda="${esc(t.da)}|${esc(t.a)}|${t.eur}">Fatto</button>`:''}</li>`).join('')}</ul><p class="muted" style="font-size:12.5px">${T.length} ${T.length===1?'trasferimento':'trasferimenti'} al posto di uno per ogni spesa. «Fatto» registra il rimborso e aggiorna i saldi.</p>`:'<p class="muted">Tutti in pari. 🎉</p>'}
+  <h3 class="isec">Saldi</h3><div class="saldi">${P.map(p=>{const v=R.saldo[p]||0;return`<div class="sal"><span>${avatar(p,24)} ${esc(p)}</span><span class="bar"><i class="${v>=0?'pos':'neg'}" style="width:${Math.abs(v)/mx*50}%;${v>=0?'left:50%':'right:50%'}"></i></span><b class="${v>0.009?'pos':v<-0.009?'neg':''}">${v>0.009?'+':''}${vis(v)}</b></div>`}).join('')}</div>
+  <p class="muted" style="font-size:12.5px">Positivo: deve ricevere. Ogni spesa in yen è convertita al cambio del giorno in cui è stata inserita.</p>`}
+ else{const mx=Math.max(1,...Object.values(R.cat));
+  corpo=`<h3 class="isec">Per categoria</h3><div class="ribar">${CATS.filter(c=>R.cat[c[0]]).map(c=>`<div><span>${c[1]} ${c[2]}</span><span class="bar"><i style="width:${R.cat[c[0]]/mx*100}%"></i></span><b>${vis(R.cat[c[0]])}</b></div>`).join('')||'<p class="muted">Ancora nulla.</p>'}</div>
+  <h3 class="isec">Chi ha pagato e quanto tocca a ciascuno</h3><div class="ribar">${P.map(p=>`<div><span>${avatar(p,20)} ${esc(p)}</span><span>pagato <b>${vis(R.pagato[p]||0)}</b></span><span>parte <b>${vis(R.quota[p]||0)}</b></span></div>`).join('')}</div>
+  <h3 class="isec">Per giorno</h3><div class="ribar">${Object.entries(R.giorno).sort().map(([d,v])=>`<div><span>${esc(corto(d))}</span><b>${vis(v)}</b></div>`).join('')||'<p class="muted">Ancora nulla.</p>'}</div>
+  <div class="acts" style="margin-top:12px"><button class="btn" data-csv>Scarica tutte le spese (CSV)</button></div>`}
+ return`<div class="pad"><h1 class="disp" style="font-size:30px;margin:4px 0 4px">Cassa comune</h1>${testa}${tabs}${corpo}</div>`}
+function formSpesa(k){if(!IO){accesso();return}CMID=null;const s0=k&&SPE[k]?{...SPE[k]}:null,P=V.viaggio.viaggiatori,oggi=adesso(V.viaggio.fuso).data,cb=cambioOra();
+ const s=s0||{titolo:'',importo:'',valuta:'JPY',paga:IO,per:Object.fromEntries(P.map(n=>[n,1])),modo:'uguale',data:oggi,cat:'cibo'};
+ const pren=V.giorni.flatMap(g=>g.eventi.filter(e=>e.fonte==='prenotato'&&e.costo).map(e=>({t:e.titolo,c:e.costo,v:e.valuta||'JPY',d:g.data,cat:e.tipo==='hotel'?'alloggio':['treno','volo','bus'].includes(e.tipo)?'trasporti':'attivita'})));
+ const sh=$('#sheet');sh.classList.add('on');
+ sh.querySelector('.sheet').innerHTML=`<form id="sform" data-k="${esc(k||'')}"><h2>${s0?'Modifica la spesa':'Nuova spesa'}</h2>
+ ${!s0&&pren.length?`<div class="pren"><small>Dalle prenotazioni:</small>${pren.map((p,i)=>`<button type="button" class="chipb" data-pren='${esc(JSON.stringify(p))}'>${esc(p.t.replace(/^Check-in /,''))}</button>`).join('')}</div>`:''}
+ <label>Cosa<input name="titolo" maxlength="120" required value="${esc(s.titolo)}" placeholder="Es. cena a Pontocho"></label>
+ <div class="row2b"><label>Importo<input name="importo" type="number" inputmode="decimal" min="0.01" step="0.01" required value="${esc(s.importo)}"></label>
+ <label>Valuta<span class="seg"><label><input type="radio" name="valuta" value="JPY" ${s.valuta==='JPY'?'checked':''}><span>¥</span></label><label><input type="radio" name="valuta" value="EUR" ${s.valuta==='EUR'?'checked':''}><span>€</span></label></span></label></div>
+ <div class="row2b"><label>Ha pagato<select name="paga">${P.map(n=>`<option ${n===s.paga?'selected':''}>${esc(n)}</option>`).join('')}</select></label><label>Giorno<input name="data" type="date" value="${esc(s.data||oggi)}"></label></div>
+ <div class="cats">${CATS.map(c=>`<label><input type="radio" name="cat" value="${c[0]}" ${c[0]===(s.cat||'altro')?'checked':''}><span>${c[1]} ${c[2]}</span></label>`).join('')}</div>
+ <fieldset class="divi"><legend>Come si divide</legend><span class="seg">${[['uguale','Uguali'],['importi','Importi'],['quote','Quote']].map(([m,n])=>`<label><input type="radio" name="modo" value="${m}" ${s.modo===m?'checked':''}><span>${n}</span></label>`).join('')}</span>
+ <div class="pers">${P.map(n=>{const on=s.per&&s.per[n]!=null&&(s.per[n]>0||s.modo==='uguale');return`<div class="per"><label><input type="checkbox" name="p_${n}" ${on?'checked':''}> ${avatar(n,22)} ${esc(n)}</label><input class="pv" name="v_${n}" type="number" inputmode="decimal" min="0" step="0.01" value="${on&&s.modo!=='uguale'?s.per[n]:''}" placeholder="${s.modo==='quote'?'1':'0'}"><span class="pq"></span></div>`}).join('')}</div>
+ <p class="sprev"></p></fieldset>
+ <label>Nota <small>(facoltativa)</small><input name="nota" maxlength="300" value="${esc(s.nota||'')}"></label>
+ <p class="muted" style="font-size:12.5px">Cambio usato: 1 € = ¥${s0&&s0.cambio||cb}. Resta fissato per questa spesa.</p>
+ <div class="acts"><button class="btn pri" type="submit">${s0?'Salva':'Aggiungi'}</button>${s0?'<button class="btn" type="button" data-spdel>Elimina</button>':''}<button class="btn" type="button" data-chiudi>Annulla</button></div></form>`;anteprima()}
+function leggiForm(f){const P=V.viaggio.viaggiatori,modo=f.modo.value,imp=+f.importo.value,per={};
+ P.forEach(n=>{if(f['p_'+n].checked){const v=+f['v_'+n].value;per[n]=modo==='uguale'?1:modo==='quote'?(v>0?v:1):(v>=0?v:0)}});return{modo,imp,per,valuta:f.valuta.value}}
+function anteprima(){const f=$('#sform');if(!f)return;const{modo,imp,per,valuta}=leggiForm(f),cb=+(f.dataset.k&&SPE[f.dataset.k]?.cambio)||cambioOra();
+ f.querySelectorAll('.pv').forEach(i=>{i.hidden=modo==='uguale';i.placeholder=modo==='quote'?'1':'0'});
+ const s={importo:imp||0,valuta,modo,per},q=CASSA.quote(s),fmtv=v=>valuta==='EUR'?eur(v):yen(v);
+ f.querySelectorAll('.per').forEach(r=>{const n=r.querySelector('[name^=p_]').name.slice(2);r.querySelector('.pq').textContent=q[n]&&imp?fmtv(q[n]):''});
+ let msg='';const n=Object.keys(per).length;if(!n)msg='Scegliete almeno una persona.';
+ else if(modo==='importi'){const tot=Object.values(per).reduce((a,b)=>a+b,0),d=Math.round((imp-tot)*100)/100;msg=Math.abs(d)<0.01?'Gli importi tornano.':`Mancano ${fmtv(d)} da assegnare.`}
+ else if(imp)msg=`${modo==='uguale'?`${fmtv(imp/n)} a testa`:'Diviso in proporzione alle quote'}${valuta==='JPY'?` · in totale ${eur(imp/cb)}`:` · in totale ${yen(imp*cb)}`}`;
+ f.querySelector('.sprev').textContent=msg}
+async function salvaSpesa(f){if(!IO||!FB)return;const{modo,imp,per,valuta}=leggiForm(f);if(!(imp>0)){toast('Scrivete l\'importo');return}if(!Object.keys(per).length){toast('Scegliete almeno una persona');return}
+ if(modo==='importi'){const tot=Object.values(per).reduce((a,b)=>a+b,0);if(Math.abs(tot-imp)>=0.01){toast('Gli importi delle persone non tornano con il totale');return}}
+ const k=f.dataset.k,old=k&&SPE[k],o={titolo:f.titolo.value.trim().slice(0,120),importo:Math.round(imp*100)/100,valuta,paga:f.paga.value,per,modo,data:f.data.value||adesso(V.viaggio.fuso).data,cat:f.cat.value,cambio:old&&old.cambio||cambioOra(),autore:IO,uid:old?old.uid:FB.uid,t:old?old.t:Date.now()};
+ const nota=f.nota.value.trim();if(nota)o.nota=nota.slice(0,300);
+ try{if(k)await salva('spese/'+k,o);else await FB.Db.set(FB.Db.push(FB.ref('spese')),o);$('#sheet').classList.remove('on');toast(k?'Spesa aggiornata':'Spesa aggiunta')}catch(err){toast('Non salvata: '+(err.code||err))}}
+function csvSpese(){const P=V.viaggio.viaggiatori,cb=cambioOra(),righe=[['Data','Cosa','Categoria','Importo','Valuta','Cambio','Euro','Pagato da',...P.map(p=>'Parte '+p+' (€)')]];
+ speseL().reverse().forEach(s=>{const e=CASSA.inEuro(s,cb),q=CASSA.quote(s),f=e/s.importo;righe.push([s.data||'',s.titolo,s.modo==='rimborso'?'rimborso':catDi(s.cat)[2],s.importo,s.valuta,s.cambio||cb,e.toFixed(2),s.paga,...P.map(p=>q[p]?(q[p]*f).toFixed(2):'')])});
+ const csv=righe.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(';')).join('\n'),a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='big-in-japan-spese.csv';a.click()}
+
 /* ---------- viste ---------- */
 function vHome(){const v=V.viaggio,s=stato(),n=diff(v.inizio,v.fine)+1,tutte=V.giorni.flatMap(g=>propDi(g.data)),aperte=tutte.filter(p=>!p.ok);
  const recenti=tutte.slice().sort((a,b)=>b.t-a.t).slice(0,4);
@@ -374,9 +444,14 @@ $('#sheet').addEventListener('click',e=>{const sg=e.target.closest('[data-sg]');
  if(e.target.closest('[data-chiudi]')||e.target.id==='sheet'){$('#sheet').classList.remove('on');CMID=null;aggiorna()}});
 $('#sheet').addEventListener('submit',async e=>{const cf=e.target.closest('[data-cform]');if(cf){e.preventDefault();const id=cf.dataset.cform,tx=cf.testo.value.trim();if(!tx||!IO)return;if(!FB){toast('Non collegato: riprova tra poco');return}
   const b=cf.querySelector('button');b.disabled=true;try{await FB.Db.set(FB.Db.push(FB.ref('commenti/'+id)),{autore:IO,uid:FB.uid,t:Date.now(),testo:tx.slice(0,500)});cf.testo.value=''}catch(err){toast('Commento non salvato: '+(err.code||err))}b.disabled=false;return}});
+$('#sheet').addEventListener('submit',async e=>{const sf=e.target.closest('#sform');if(!sf)return;e.preventDefault();await salvaSpesa(sf)});
+$('#sheet').addEventListener('input',e=>{if(e.target.closest('#sform'))anteprima()});
+$('#sheet').addEventListener('change',e=>{if(e.target.closest('#sform'))anteprima()});
+$('#sheet').addEventListener('click',async e=>{const pb=e.target.closest('[data-pren]');if(pb){const p=JSON.parse(pb.dataset.pren),f=$('#sform');f.titolo.value=p.t;f.importo.value=p.c;f.valuta.value=p.v;f.data.value=p.d;f.cat.value=p.cat;anteprima();return}
+ if(e.target.closest('[data-spdel]')){const k=$('#sform').dataset.k;if(k&&confirm('Eliminare questa spesa per tutti?')){try{await salva('spese/'+k,null);$('#sheet').classList.remove('on');toast('Spesa eliminata')}catch(err){toast('Non eliminata')}}}});
 $('#sheet').addEventListener('submit',async e=>{const mf=e.target.closest('#mform');if(!mf)return;e.preventDefault();const o={ora:mf.ora.value};const k=mf.dataset.rid,e0=PIANO.concat(grezze()).find(x=>rid(x)===k);
  if(e0&&V.giorni[e0.orig??e0.d]&&mf.data.value!==V.giorni[e0.orig??e0.d].data)o.data=mf.data.value;else if(MOD[k]&&MOD[k].data)o.data=mf.data.value;$('#sheet').classList.remove('on');await salvaMod(k,o)});
-$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]')||e.target.closest('#mform'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
+$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]')||e.target.closest('#mform')||e.target.closest('#sform'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
  for(const k of['luogo','nota','fascia']){const v=f[k].value.trim();if(v)o[k]=v.slice(0,k==='nota'?600:120)}
  const lk=f.link.value.trim();if(/^https:\/\//.test(lk))o.link=lk;if(NUOVA.lat!=null){o.lat=+NUOVA.lat.toFixed(6);o.lng=+NUOVA.lng.toFixed(6)}
  const b=f.querySelector('[type=submit]');b.disabled=true;
@@ -692,7 +767,7 @@ function chips(){$('#chips').innerHTML=`<button class="chip" data-f="" aria-pres
 $('#chips').addEventListener('click',e=>{const c=e.target.closest('[data-f]');if(!c)return;const f=c.dataset.f===''?null:+c.dataset.f;
  if(document.body.classList.contains('mapmode')){filter=f;selId=null;chips();disegna(true)}else location.hash=f==null?'#home':'#g'+(f+1)});
 function renderView(){const h=location.hash.slice(1)||'home',m=h.match(/^g(\d+)$/);let html;
- if(m){const i=Math.min(Math.max(+m[1]-1,0),V.giorni.length-1);filter=i;html=vGiorno(i)}else if(h==='info')html=vInfo();else if(h==='piano'){html=vPiano()}else{if(h!=='mappa')filter=null;html=vHome()}
+ if(m){const i=Math.min(Math.max(+m[1]-1,0),V.giorni.length-1);filter=i;html=vGiorno(i)}else if(h==='info')html=vInfo();else if(h==='spese'){html=vSpese();aggiornaCambio(false)}else if(h==='piano'){html=vPiano()}else{if(h!=='mappa')filter=null;html=vHome()}
  $('#view').innerHTML=html;riempiFoto($('#view'))}
 function route(){const h=location.hash.slice(1)||'home';document.body.classList.toggle('mapmode',h==='mappa');
  $$('.top a.tab').forEach(a=>a.toggleAttribute('aria-current',a.hash.slice(1)===(h.match(/^g\d+$/)?'home':h)));
@@ -704,6 +779,13 @@ document.addEventListener('click',async e=>{const t=e.target;
  const nu=t.closest('[data-nuova]');if(nu){const[d,f]=nu.dataset.nuova.split('|');apriForm(d||null,f||null);return}
  const qu=t.closest('[data-qui]');if(qu){const[la,ln]=qu.dataset.qui.split(',').map(Number);$$('.maplibregl-popup').forEach(p=>p.remove());apriForm(filter!=null?V.giorni[filter].data:null,null,{lat:la,lng:ln,nome:qu.dataset.nome||'',luogo:qu.dataset.nome||''});return}
  const rb=t.closest('.rbar [data-r]');if(rb){reagisci(rb);return}
+ const sp=t.closest('[data-spesa]');if(sp){formSpesa(sp.dataset.spesa==='nuova'?null:sp.dataset.spesa);return}
+ const stb=t.closest('[data-sptab]');if(stb){ST_T=stb.dataset.sptab;store.set('bij:sptab',ST_T);renderView();return}
+ const vv=t.closest('[data-vvis]');if(vv){VVIS=vv.dataset.vvis;store.set('bij:vvis',VVIS);renderView();return}
+ const cbt=t.closest('[data-cambio]');if(cbt){if(cbt.dataset.cambio==='agg')aggiornaCambio(true);else{const v=prompt('Quanti yen per 1 euro?',String(cambioOra()));const n=+String(v||'').replace(',','.');if(n>0&&n<1000){const o={valore:n,t:Date.now(),fonte:'scritto da '+(IO||'')};store.set('bij:cambio',o);if(FB&&IO)salva('cassa/cambio',{...o,autore:IO}).catch(()=>toast('Non salvato'));else{CAMBIO=o;renderView()}}}return}
+ const sd=t.closest('[data-salda]');if(sd){if(!IO||!FB){accesso();return}const[da,a,e]=sd.dataset.salda.split('|');if(!confirm(`${da} ha dato ${eur(+e)} a ${a}?`))return;
+  try{await FB.Db.set(FB.Db.push(FB.ref('spese')),{titolo:'Rimborso',importo:+e,valuta:'EUR',paga:da,per:{[a]:1},modo:'rimborso',data:adesso(V.viaggio.fuso).data,cat:'altro',cambio:cambioOra(),autore:IO,uid:FB.uid,t:Date.now()});toast('Rimborso registrato')}catch(err){toast('Non salvato: '+(err.code||err))}return}
+ if(t.closest('[data-csv]')){csvSpese();return}
  const pt=t.closest('[data-ptab]');if(pt){PT=pt.dataset.ptab;store.set('bij:ptab',PT);if(location.hash!=='#piano'){if(pt.tagName==='A')return;location.hash='#piano'}else{e.preventDefault();renderView()}return}
  const md=t.closest('[data-mod]');if(md){const x=PIANO.find(y=>y.id===md.dataset.mod);if(x)modifica(x);return}
  if(t.closest('[data-modreset]')){const f=$('#mform');$('#sheet').classList.remove('on');await salvaMod(f.dataset.rid,null);return}
