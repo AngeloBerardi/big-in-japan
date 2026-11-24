@@ -333,7 +333,7 @@ function vGiorno(i){const g=V.giorni[i],now=adesso(V.viaggio.fuso),live=now.data
  const mangiare=cibo.length?`<h2 class="sec" id="mangiare">Dove mangiare</h2><p class="muted" style="margin-top:-4px">Posti vicini alle tappe del giorno, con prezzi indicativi. Proponeteli per metterli nel programma.</p>${rigaIdee(pr,'Pranzo e spuntini')}${rigaIdee(ce,'Cena')}`:'';
  return`<div style="--c:${col(i)}"><div class="cover">${ph(g.cover,1200,'data-credit style="position:absolute;inset:0;height:auto"',g.scena,i+1,g.titolo)}<div class="sh"></div><div class="tx"><small>Giorno ${i+1} · ${esc(lungo(g.data))}</small><h1>${esc(g.titolo)}</h1></div></div>
  <nav class="daynav" aria-label="Giornate">${V.giorni.map((x,k)=>`<a href="#g${k+1}" style="--c:${col(k)}" ${k===i?'aria-current="page"':''}>${k+1} · ${esc(corto(x.data))}${propDi(x.data).some(p=>!p.ok)?' •':''}</a>`).join('')}</nav>
- <div class="pad"><p class="lead">${esc(g.riassunto||'')}</p>${(()=>{const n=ideeDi(g.data).length,c=ideeDi(g.data,null,true).length;return n?`<div class="daytools"><span>${n-c} alternative e ${c} posti dove mangiare per questo giorno</span><a href="#mappa" data-giornomappa="${i}">Percorso sulla mappa</a>${IO?`<button class="lnk2" data-ottimizza="${i}">Ordine con meno strada</button>`:''}<a href="#diario" data-goto="diario">Diario</a>${c?'<a href="#mangiare" data-goto="mangiare">Dove mangiare</a>':''}</div>`:''})()}${(g.avvisi||[]).map(a=>`<div class="alert"><b>Da sapere:</b> ${esc(a)}</div>`).join('')}
+ <div class="pad"><p class="lead">${esc(g.riassunto||'')}</p>${(()=>{const n=ideeDi(g.data).length,c=ideeDi(g.data,null,true).length;return n?`<div class="daytools"><span>${n-c} alternative e ${c} posti dove mangiare per questo giorno</span><a href="#mappa" data-giornomappa="${i}">Percorso sulla mappa</a>${IO?`<button class="lnk2" data-ottimizza="${i}">Ordine con meno strada</button>`:''}<a href="#diario" data-goto="diario">Diario</a>${['2027-01-03','2027-01-08'].includes(g.data)?`<button class="lnk2" data-fujiday="${i}">Il Fuji dal finestrino, in 3D</button>`:''}${c?'<a href="#mangiare" data-goto="mangiare">Dove mangiare</a>':''}</div>`:''})()}${(g.avvisi||[]).map(a=>`<div class="alert"><b>Da sapere:</b> ${esc(a)}</div>`).join('')}
  ${propStato==='errore'?`<div class="alert">Proposte non raggiungibili (${esc(propErr)}): si vede solo il programma.</div>`:''}
  ${blocchi}${(()=>{const N=nascoste(i);return N.length?`<details class="tolte"><summary>${N.length} ${N.length===1?'tappa tolta':'tappe tolte'} dal programma</summary>${N.map(e=>`<div class="tolta"><span><b>${esc(e.ora||'')}</b> ${esc(e.titolo)} <small>da ${esc(e.mod.autore||'')}</small></span><button class="btn sm" data-rimetti="${esc(rid(e))}">Rimetti</button></div>`).join('')}</details>`:''})()}${mangiare}${diarioGiorno(g,i)}${g.pernotto?`<div class="sleep">Si dorme a <b>${esc(g.pernotto)}</b></div>`:''}
  <div class="acts" style="margin-top:16px">${i>0?`<a class="btn" href="#g${i}">← Giorno ${i}</a>`:''}${i<V.giorni.length-1?`<a class="btn" href="#g${i+2}">Giorno ${i+2} →</a>`:''}<a class="btn" href="#piano">Vista d'insieme</a></div></div></div>`}
@@ -414,7 +414,7 @@ function initMap(){geo();map=new maplibregl.Map({container:'map',style:stileObj(
  ['ov-poi','ov-kb'].forEach(l=>{map.on('click',l,e=>{ovPopup(e.features[0])});map.on('mouseenter',l,()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave',l,()=>map.getCanvas().style.cursor='')});
  map.on('moveend',()=>{clearTimeout(ovT);ovT=setTimeout(ovAggiorna,700)});
  map.on('click',e=>{if(map.queryRenderedFeatures(e.point,{layers:['staz-pt','ov-poi','ov-kb'].filter(l=>map.getLayer(l))}).length)return;if(scegli){scegli=false;$('#mapwrap').classList.remove('picking');quiPopup(e.lngLat)}else{$('#lpanel').classList.remove('on');$('#blayers').classList.remove('on')}});
- pannello();initTline();disegna(true)}
+ pannello();initTline();disegna(true);if(TRE){$('#b3d').classList.add('on');map.once('load',()=>map.easeTo({pitch:60,bearing:-17,duration:0}))}}
 initDrag();
 let scegli=false;
 function quiPopup(ll){const g=filter??0;new maplibregl.Popup({offset:6,maxWidth:'280px'}).setLngLat(ll).setHTML(`<div class="bd"><b>Questo punto</b><p>${ll.lat.toFixed(5)}, ${ll.lng.toFixed(5)}</p>${vicinaTxt(ll)}<div class="acts"><button class="btn pri" data-qui="${ll.lat},${ll.lng}">Proponi qui</button><a class="btn" href="https://www.google.com/maps/search/?api=1&query=${ll.lat},${ll.lng}" target="_blank" rel="noopener">Google Maps</a></div></div>`).addTo(map)}
@@ -425,6 +425,14 @@ function livelli(){const vt=!!stileObj().v;
   if(!map.getLayer('linee'))map.addLayer({id:'linee',type:'line',source:'linee',layout:{'line-join':'round','line-cap':'round',visibility:OPZ.linee?'visible':'none'},paint:{'line-color':['get','c'],'line-width':['interpolate',['linear'],['zoom'],9,1.2,13,3,16,5],'line-opacity':.8}});
   if(!map.getLayer('staz-pt'))map.addLayer({id:'staz-pt',type:'circle',source:'staz',minzoom:12,layout:{visibility:OPZ.stazioni?'visible':'none'},paint:{'circle-radius':['interpolate',['linear'],['zoom'],12,2.5,16,6],'circle-color':'#fff','circle-stroke-color':'#15171c','circle-stroke-width':1.6}});
   if(!map.getLayer('staz-lb'))map.addLayer({id:'staz-lb',type:'symbol',source:'staz',minzoom:13.5,layout:{visibility:OPZ.stazioni?'visible':'none','text-field':['get','n'],'text-font':['Noto Sans Bold'],'text-size':12,'text-offset':[0,1.1],'text-anchor':'top','text-optional':true},paint:{'text-color':'#15171c','text-halo-color':'#fff','text-halo-width':1.6}})}
+ const primoTesto=(map.getStyle().layers.find(l=>l.type==='symbol')||{}).id;
+ if(!map.getSource('dem'))map.addSource('dem',DEM);
+ if(!map.getLayer('rilievo'))map.addLayer({id:'rilievo',type:'hillshade',source:'dem',layout:{visibility:TRE?'visible':'none'},paint:{'hillshade-exaggeration':.35,'hillshade-shadow-color':'#3d3a52'}},primoTesto);
+ if(!map.getSource('mondo'))map.addSource('mondo',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[[[-180,-85],[180,-85],[180,85],[-180,85],[-180,-85]]]}}});
+ if(!map.getLayer('notte'))map.addLayer({id:'notte',type:'fill',source:'mondo',paint:{'fill-color':'#0b1638','fill-opacity':0}},primoTesto);
+ if(!map.getSource('hl'))map.addSource('hl',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+ if(!map.getLayer('hl-3d'))map.addLayer({id:'hl-3d',type:'fill-extrusion',source:'hl',paint:{'fill-extrusion-color':['get','c'],'fill-extrusion-height':['get','h'],'fill-extrusion-base':['get','m'],'fill-extrusion-opacity':.88}},primoTesto);
+ terreno(TRE||!!FJ);if(CIELO)cielo(CIELO.data,CIELO.m,CIELO.lat,CIELO.lng);
  if(!map.getSource('rotta'))map.addSource('rotta',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
  if(!map.getLayer('rotta-alt'))map.addLayer({id:'rotta-alt',type:'line',source:'rotta',filter:['==',['get','best'],0],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#7c8494','line-width':3,'line-dasharray':[1.2,1.6],'line-opacity':.85}});
  if(!map.getLayer('rotta-case'))map.addLayer({id:'rotta-case',type:'line',source:'rotta',filter:['==',['get','best'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#fff','line-width':8,'line-opacity':.9}});
@@ -444,7 +452,7 @@ $('#lpanel').addEventListener('change',e=>{const k=e.target.dataset.opz;if(!k)re
  if(k==='stazioni')['staz-pt','staz-lb'].forEach(l=>map.getLayer(l)&&map.setLayoutProperty(l,'visibility',OPZ.stazioni?'visible':'none'));
  if(k==='latino')map.setStyle(stileObj().s,{diff:false});if(k==='tutto')disegna(true);if(k==='percorsi'){rotta();tline()}if(k==='idee')disegnaIdee();if(k==='konbini'||k==='poi'){ovDisegna();ovAggiorna()}});
 $('#blayers').addEventListener('click',()=>{$('#lpanel').classList.toggle('on');$('#blayers').classList.toggle('on')});
-$('#b3d').addEventListener('click',()=>{const p=map.getPitch()>10;map.easeTo({pitch:p?0:60,bearing:p?0:-17,duration:800});$('#b3d').classList.toggle('on',!p)});
+$('#b3d').addEventListener('click',()=>{TRE=!TRE;store.set('bij:3d',TRE);terreno(TRE);map.easeTo({pitch:TRE?60:0,bearing:TRE?-17:0,duration:800});$('#b3d').classList.toggle('on',TRE)});
 $('#bfit').addEventListener('click',()=>inquadra());
 $('#bqui').addEventListener('click',()=>{if(!IO){accesso();return}scegli=!scegli;$('#mapwrap').classList.toggle('picking',scegli);toast(scegli?'Tocca il punto della mappa da proporre':'Annullato')});
 
@@ -466,19 +474,99 @@ function inquadra(pts=evMappa().concat(propMappa())){if(!map||!pts.length)return
 function seleziona(id,vola=true){selId=id;MK.forEach(m=>{const p=m.getElement().querySelector('.pin');p&&p.classList.toggle('sel',m._id===id)});
  $$('.card.sel,.cc.sel').forEach(x=>x.classList.remove('sel'));$$(`[data-sel="${id}"]`).forEach(x=>x.classList.add('sel'));
  const cc=$(`.cc[data-sel="${id}"]`);if(cc&&!carScroll)cc.parentNode.scrollTo({left:cc.offsetLeft-16,behavior:'smooth'});
- const m=MK.find(x=>x._id===id);if(vola&&m)map.flyTo({center:m.getLngLat(),zoom:Math.max(map.getZoom(),15.5),duration:700})}
+ const m=MK.find(x=>x._id===id);if(vola&&m)map.flyTo({center:m.getLngLat(),zoom:Math.max(map.getZoom(),15.5),duration:700});const e=PIANO.find(x=>x.id===id);if(e&&vola)evidenzia(e)}
 const apriPin=id=>{const m=MK.find(x=>x._id===id);if(m&&!m.getPopup().isOpen())m.togglePopup()};
 let carScroll=false,carT;
 function carosello(evs,ps){const c=$('#carousel');c.innerHTML=evs.concat(ps).map(e=>`<div class="cc" data-sel="${esc(e.id)}" style="--c:${e.prop&&!e.ok?PCOL[e.autore]:col(e.d)}">${ph(e.wiki,240,'','',e.d+1,e.titolo)}<div><small>${e.prop&&!e.ok?'Proposta di '+esc(e.autore):(filter!=null&&!OPZ.tutto?e.n+' · ':'G'+(e.d+1)+' · ')+esc(e.ora||'')}</small><b>${esc(e.titolo)}</b><div class="acts"><a class="btn pri" href="${arrivo(e,ME)}" target="_blank" rel="noopener">Come arrivo</a><button class="btn" data-pop="${esc(e.id)}">Dettagli</button></div></div></div>`).join('');riempiFoto(c)}
 $('#carousel').addEventListener('scroll',()=>{carScroll=true;clearTimeout(carT);carT=setTimeout(()=>{const c=$('#carousel'),mid=c.scrollLeft+c.clientWidth/2;let best=null,bd=1e9;c.querySelectorAll('.cc').forEach(x=>{const d=Math.abs(x.offsetLeft+x.clientWidth/2-mid);if(d<bd){bd=d;best=x}});if(best)seleziona(best.dataset.sel,true);carScroll=false},160)});
+
+/* ---------- 1. percorsi veri a piedi e in auto (Valhalla su OpenStreetMap), salvati sul telefono ---------- */
+const VAL=['https://valhalla1.openstreetmap.de/route'];
+let RT=store.get('bij:rt',{}),rtCoda=[],rtVia=false,rtT=null;
+function dec6(s){const c=[];let i=0,lat=0,lng=0;while(i<s.length){let b,sh=0,r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lat+=r&1?~(r>>1):r>>1;sh=0;r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lng+=r&1?~(r>>1):r>>1;c.push([lng/1e6,lat/1e6])}return c}
+const rtKey=(a,b,m)=>m+':'+[a.lat,a.lng,b.lat,b.lng].map(x=>(+x).toFixed(4)).join(',');
+function vero(a,b,m){if(km(a.lat,a.lng,b.lat,b.lng)<.05)return null;const k=rtKey(a,b,m),v=RT[k];if(v){if(v==='x')return null;const[sh,t]=v.split('|');return{c:dec6(sh),min:Math.round(+t/60)}}
+ if(!rtCoda.some(q=>q.k===k)&&rtCoda.length<40)rtCoda.push({k,a,b,m});rtVai();return null}
+async function rtVai(){if(rtVia||!navigator.onLine)return;rtVia=true;let nuovi=0;
+ while(rtCoda.length){const q=rtCoda.shift();const body={locations:[{lat:q.a.lat,lon:q.a.lng},{lat:q.b.lat,lon:q.b.lng}],costing:q.m==='piedi'?'pedestrian':'auto',units:'kilometers'};
+  try{const r=await fetch(VAL[0]+'?json='+enc(JSON.stringify(body)));if(r.status===400){RT[q.k]='x';continue}if(!r.ok)throw r.status;const j=await r.json(),L=j.trip&&j.trip.legs&&j.trip.legs[0];
+   if(L){RT[q.k]=L.shape+'|'+Math.round(j.trip.summary.time);nuovi++}}catch(e){rtCoda.length=0;break}
+  await new Promise(r=>setTimeout(r,250))}
+ rtVia=false;if(nuovi){const ks=Object.keys(RT);if(ks.length>400)ks.slice(0,ks.length-400).forEach(k=>delete RT[k]);store.set('bij:rt',RT);clearTimeout(rtT);rtT=setTimeout(()=>{rotta();if(TL&&!tPlay)tline()},150)}}
+
+/* ---------- 2. evidenzia l'edificio della tappa (solo mappe vettoriali con edifici 3D) ---------- */
+let HL=null;
+function strBuild(){return map.getStyle().layers.filter(l=>l['source-layer']==='building').map(l=>l.id)}
+function evidenzia(e){if(!map||!map.getSource('hl'))return;if(!e||e.lat==null){map.getSource('hl').setData({type:'FeatureCollection',features:[]});HL=null;return}HL=e;
+ const go=()=>{if(HL!==e)return;const L=strBuild();if(!L.length)return;const pt=map.project([e.lng,e.lat]);let f=map.queryRenderedFeatures([[pt.x-6,pt.y-6],[pt.x+6,pt.y+6]],{layers:L});
+  if(!f.length)f=map.queryRenderedFeatures([[pt.x-26,pt.y-26],[pt.x+26,pt.y+26]],{layers:L});const b=f.find(x=>/Polygon/.test(x.geometry.type));
+  map.getSource('hl').setData({type:'FeatureCollection',features:b?[{type:'Feature',properties:{h:(b.properties.render_height||b.properties.height||12)+1.5,m:b.properties.render_min_height||0,c:col(e.d??0)},geometry:b.geometry}]:[]})};
+ if(map.loaded()&&!map.isMoving())go();map.once('idle',go)}
+
+/* ---------- 3. sole, cielo e notte all'ora dello slider ---------- */
+const SOL=(()=>{const rad=Math.PI/180,e=rad*23.4397;
+ const pos=(date,lat,lng)=>{const d=date.valueOf()/864e5-.5+2440588-2451545,M=rad*(357.5291+.98560028*d),C=rad*(1.9148*Math.sin(M)+.02*Math.sin(2*M)+.0003*Math.sin(3*M)),L=M+C+rad*102.9372+Math.PI;
+  const dec=Math.asin(Math.sin(e)*Math.sin(L)),ra=Math.atan2(Math.sin(L)*Math.cos(e),Math.cos(L)),H=rad*(280.16+360.9856235*d)-rad*-lng-ra,phi=rad*lat;
+  return{alt:Math.asin(Math.sin(phi)*Math.sin(dec)+Math.cos(phi)*Math.cos(dec)*Math.cos(H))/rad,az:(Math.atan2(Math.sin(H),Math.cos(H)*Math.sin(phi)-Math.tan(dec)*Math.cos(phi))/rad+180)%360}};
+ const quando=(data,m,lat,lng)=>new Date(`${data}T${hm(m)}:00+09:00`);
+ const orari=(data,lat,lng)=>{let alba=null,tram=null,prev=null;for(let m=240;m<=1260;m+=2){const a=pos(quando(data,m),lat,lng).alt;if(prev!=null){if(prev<-.833&&a>=-.833)alba=m;if(prev>=-.833&&a<-.833)tram=m}prev=a}return{alba,tram}};
+ return{pos,quando,orari}})();
+const mixc=(a,b,f)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)),x=p(a),y=p(b);return'#'+x.map((v,i)=>Math.round(v+(y[i]-v)*Math.max(0,Math.min(1,f))).toString(16).padStart(2,'0')).join('')};
+const FASI=[[-12,'#0a1330','#1d2550','#3a4a7a',.55],[-4,'#28366a','#c97a62','#ffb38a',.32],[2,'#6e8fc8','#ffc58f','#ffcf9e',.08],[12,'#8cc4f5','#e9f3fc','#fff5e6',0],[90,'#7fbdf3','#e6f2fc','#ffffff',0]];
+function luce(alt){let k=0;while(k<FASI.length-1&&alt>FASI[k+1][0])k++;const A=FASI[k],B=FASI[Math.min(k+1,FASI.length-1)],f=B===A?0:(alt-A[0])/(B[0]-A[0]);
+ return{sky:mixc(A[1],B[1],f),hor:mixc(A[2],B[2],f),luce:mixc(A[3],B[3],f),notte:A[4]+(B[4]-A[4])*Math.max(0,Math.min(1,f))}}
+let CIELO=null;
+function cielo(data,m,lat,lng){if(!map||!map.isStyleLoaded())return;if(data==null){CIELO=null;try{map.setSky({});map.setLight({anchor:'viewport',position:[1.15,210,30],color:'#ffffff',intensity:.5})}catch(e){}if(map.getLayer('notte'))map.setPaintProperty('notte','fill-opacity',0);return}
+ const s=SOL.pos(SOL.quando(data,m),lat,lng),c=luce(s.alt);CIELO={data,m,lat,lng,alt:s.alt};
+ try{map.setSky({'sky-color':c.sky,'horizon-color':c.hor,'fog-color':c.hor,'sky-horizon-blend':.6,'horizon-fog-blend':.5,'fog-ground-blend':.6,'atmosphere-blend':.8});
+  map.setLight({anchor:'map',position:[1.5,s.az,Math.max(5,Math.min(88,90-Math.max(s.alt,2)))],color:c.luce,intensity:s.alt>0?.55:.25})}catch(e){}
+ if(map.getLayer('notte'))map.setPaintProperty('notte','fill-opacity',c.notte)}
+
+/* ---------- 4. rilievo 3D e il Fuji dal finestrino ---------- */
+const DEM={type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],encoding:'terrarium',tileSize:256,maxzoom:14,attribution:'Rilievo © Mapzen, AWS Terrain Tiles'};
+let TRE=store.get('bij:3d',false);
+function terreno(on){if(!map||!map.getSource('dem'))return;try{map.setTerrain(on?{source:'dem',exaggeration:1.35}:null)}catch(e){}if(map.getLayer('rilievo'))map.setLayoutProperty('rilievo','visibility',on?'visible':'none')}
+const FUJI=[138.7274,35.3606];
+const TOKAIDO=[['Tokyo',139.7671,35.6812],['Shinagawa',139.7387,35.6285],['',139.66,35.56],['Shin-Yokohama',139.6176,35.5075],['',139.36,35.33],['Odawara',139.1554,35.2564],['Atami',139.0779,35.1037],['Mishima',138.9110,35.1263],['',138.80,35.135],['Shin-Fuji',138.6633,35.1424],['',138.53,35.07],['Shizuoka',138.3890,34.9716],['Kakegawa',138.0146,34.7693],['Hamamatsu',137.7350,34.7039],['Toyohashi',137.3817,34.7629],['',137.09,34.95],['Nagoya',136.8815,35.1709],['Gifu-Hashima',136.6857,35.3155],['Maibara',136.2900,35.3146],['',136.02,35.07],['Kyoto',135.7588,34.9858]];
+const brg=(a,b)=>{const r=Math.PI/180,y=Math.sin((b[0]-a[0])*r)*Math.cos(b[1]*r),x=Math.cos(a[1]*r)*Math.sin(b[1]*r)-Math.sin(a[1]*r)*Math.cos(b[1]*r)*Math.cos((b[0]-a[0])*r);return(Math.atan2(y,x)/r+360)%360};
+const angd=(a,b)=>((b-a+540)%360)-180;
+let FJ=null;
+function fujiScena(verso){if(!map)return;if(FJ){fujiStop();return}stopPlay();
+ const andata=verso!=='ritorno',P=andata?TOKAIDO:TOKAIDO.slice().reverse(),C=P.map(p=>[p[1],p[2]]),{s:tot,d}=lungh(C);
+ const g=V.giorni.find(g=>g.data===(andata?'2027-01-03':'2027-01-08')),sh=g&&g.eventi.find(e=>e.tipo==='treno'&&/Shinkansen/.test(e.titolo)),dep=minDi(sh?sh.ora:(andata?'10:30':'11:00')),durata=135,data=g?g.data:'2027-01-03';
+ const kFuji=P.findIndex(p=>p[0]==='Shin-Fuji'),dFuji=d[kFuji],lato=andata?'a destra (posti dal lato D-E)':'a sinistra (posti dal lato A)',tFuji=hm(dep+durata*dFuji/tot);
+ const hud=document.createElement('div');hud.id='fujihud';hud.innerHTML=`<div class="fh1"><b>Shinkansen ${andata?'Tokyo → Kyoto':'Kyoto → Tokyo'}</b><span class="fclock"></span></div><div class="fh2"></div><div class="fbar"><i></i></div><div class="acts"><button class="btn sm" data-fj="pausa">Pausa</button><button class="btn sm" data-fj="esci">Chiudi</button></div>`;
+ $('#mapwrap').appendChild(hud);document.body.classList.add('fujimode');
+ if(!TRE){terreno(true)}const el=document.createElement('div');el.className='treno';el.textContent='🚄';const mk=new maplibregl.Marker({element:el}).setLngLat(C[0]).addTo(map);
+ const fe=document.createElement('div');fe.className='fujilab';fe.innerHTML='<b>Monte Fuji</b><small>3.776 m</small>';const fm=new maplibregl.Marker({element:fe,anchor:'bottom'}).setLngLat(FUJI).addTo(map);
+ FJ={fm,mk,hud,P,C,tot,d,dep,durata,data,dFuji,lato,tFuji,f:0,pausa:false,last:0,brg:brg(C[0],C[1]),andata};
+ hud.addEventListener('click',e=>{const b=e.target.closest('[data-fj]');if(!b)return;if(b.dataset.fj==='esci')fujiStop();else{FJ.pausa=!FJ.pausa;b.textContent=FJ.pausa?'Riprendi':'Pausa'}});
+ map.jumpTo({center:C[0],zoom:12,pitch:70,bearing:FJ.brg});const DUR=matchMedia('(prefers-reduced-motion:reduce)').matches?90000:50000;
+ const passo=ts=>{if(!FJ)return;if(!FJ.last)FJ.last=ts;const dt=ts-FJ.last;if(dt<33){FJ.raf=requestAnimationFrame(passo);return}FJ.last=ts;
+  if(!FJ.pausa){const x=FJ.f*tot,vicino=Math.abs(x-dFuji)<45;FJ.f=Math.min(1,FJ.f+dt/DUR*(vicino?.45:1))}
+  const x=FJ.f*tot,p=lungoLinea(C,FJ.f),avanti=lungoLinea(C,Math.min(1,FJ.f+.004)),dir=brg(p,avanti),m=dep+durata*FJ.f,dfj=x-dFuji,vede=dfj>-75&&dfj<55;
+  const verso=vede?brg(p,FUJI):(dir+(andata?62:-62)+360)%360;FJ.brg=(FJ.brg+angd(FJ.brg,verso)*.06+360)%360;
+  mk.setLngLat(p);map.jumpTo({center:p,bearing:FJ.brg,pitch:vede?74:68,zoom:vede?11.2:12.2});
+  const k=FJ.d.findIndex(v=>v>x),prox=P.slice(Math.max(1,k)).find(q=>q[0]);
+  hud.querySelector('.fclock').textContent=hm(m);hud.querySelector('.fbar i').style.width=(FJ.f*100)+'%';
+  hud.querySelector('.fh2').innerHTML=vede?`<b class="fnow">Il Fuji è ${esc(lato)}</b><small>Verso le ${tFuji}, quando il treno attraversa il fiume Fuji vicino a Shin-Fuji. Orario indicativo.</small>`:`<span>Prossima: <b>${esc(prox?prox[0]:'arrivo')}</b></span><small>${dfj<0?`Il Fuji compare tra circa ${Math.max(1,Math.round(-dfj/tot*durata))} min, ${esc(lato)}`:'Il Fuji è alle spalle'}</small>`;
+  if(CIELO!==null||true)cielo(data,m,p[1],p[0]);
+  if(FJ.f>=1){hud.querySelector('.fh2').innerHTML=`<b>Arrivo a ${andata?'Kyoto':'Tokyo'} verso le ${hm(dep+durata)}</b><small>Il Fuji si vede ${esc(lato)} verso le ${tFuji}, se il cielo è limpido.</small>`;return}
+  FJ.raf=requestAnimationFrame(passo)};
+ FJ.raf=requestAnimationFrame(passo)}
+function fujiStop(){if(!FJ)return;cancelAnimationFrame(FJ.raf);FJ.mk.remove();FJ.fm.remove();FJ.hud.remove();FJ=null;document.body.classList.remove('fujimode');if(!TRE)terreno(false);cielo(null);map.easeTo({pitch:TRE?60:0,bearing:TRE?-17:0,duration:600});if(TL)tline()}
 
 /* ---------- percorsi del giorno sulla mappa: verde il consigliato, grigio le alternative ---------- */
 const VERDE='#12a150';
 function sequenza(i){const T=tappe(i).filter(e=>e.lat!=null&&/^\d\d:\d\d$/.test(e.ora||'')),h=hotelPrima(i-1,'99');
  const seq=(h&&V.giorni[i].zona===V.giorni[i-1]?.zona&&T.length&&km(h.lat,h.lng,T[0].lat,T[0].lng)>.08?[{...h,partenza:true}]:[]).concat(T);return seq}
 function geomLeg(da,a,L){const S=ST?ST.stazioni:[],dritta=[[da.lng,da.lat],[a.lng,a.lat]];let tg=null;
- if(L&&L.tr){tg=[[da.lng,da.lat]];L.tr.corse.forEach(t=>t.fermate.forEach(k=>{const p=[S[k].lon,S[k].lat],u=tg.at(-1);if(u[0]!==p[0]||u[1]!==p[1])tg.push(p)}));tg.push([a.lng,a.lat])}
- const best=!L||L.lungo?dritta:L.best==='treno'&&tg?tg:dritta,alt=!L||L.lungo?null:L.best==='treno'?dritta:tg;return{best,alt}}
+ if(L&&L.tr){const st=[];L.tr.corse.forEach(t=>t.fermate.forEach(k=>{const p=[S[k].lon,S[k].lat],u=st.at(-1);if(!u||u[0]!==p[0]||u[1]!==p[1])st.push(p)}));
+  if(st.length){const s0={lng:st[0][0],lat:st[0][1]},s1={lng:st.at(-1)[0],lat:st.at(-1)[1]},w1=vero(da,s0,'piedi'),w2=vero(s1,a,'piedi');tg=[...(w1?w1.c:[[da.lng,da.lat]]),...st,...(w2?w2.c:[[a.lng,a.lat]])]}}
+ const strada=m=>{const v=vero(da,a,m);return v?v.c:dritta};
+ if(!L||L.lungo)return{best:dritta,alt:null};const k=L.best;
+ const best=k==='treno'&&tg?tg:k==='piedi'?strada('piedi'):(k==='taxi'||k==='bus')?strada('auto'):dritta;
+ const alt=k==='treno'?(L.tx?strada('auto'):strada('piedi')):tg;return{best,alt}}
 function giornata(i){const seq=sequenza(i),legs=[],min=t=>{const[a,b]=t.split(':').map(Number);return a*60+b};
  seq.forEach((e,k)=>{e.t=e.partenza?null:min(e.ora)});
  for(let k=1;k<seq.length;k++){const A=seq[k-1],B=seq[k];if(km(A.lat,A.lng,B.lat,B.lng)<=.08)continue;const L=legInfo(A,B);const G=geomLeg(A,B,L);
@@ -491,7 +579,7 @@ function lungoLinea(c,f){const{s,d}=lungh(c),x=s*f;for(let k=1;k<c.length;k++)if
 const NOMEK={piedi:'a piedi',treno:'in treno e metro',taxi:'in taxi',bus:'in bus',lungo:'in treno'};
 function featLegs(){if(filter==null||OPZ.tutto||OPZ.percorsi===false)return[];const F=[];
  giornata(filter).legs.forEach(l=>{const L=l.L,lab=L&&!L.lungo?`${L.sum.nome}${L.min?' ~'+L.min+' min':''}${L.sum.pp?' · ¥'+L.sum.pp:''}`:'treno';
-  F.push({type:'Feature',properties:{best:1,lab,k:L?L.best:'piedi'},geometry:{type:'LineString',coordinates:l.G.best}});
+  const vp=L&&L.best==='piedi'?vero(l.A,l.B,'piedi'):null,lab2=vp?`a piedi ~${Math.max(1,vp.min)} min`:lab;F.push({type:'Feature',properties:{best:1,lab:lab2,k:L?L.best:'piedi'},geometry:{type:'LineString',coordinates:l.G.best}});
   if(l.G.alt)F.push({type:'Feature',properties:{best:0,lab:L.best==='treno'?'taxi o a piedi':'treno e metro',k:'alt'},geometry:{type:'LineString',coordinates:l.G.alt}})});return F}
 function rotta(){if(!map||!map.getSource('rotta'))return;map.getSource('rotta').setData({type:'FeatureCollection',features:featLegs()})}
 
@@ -499,11 +587,11 @@ function rotta(){if(!map||!map.getSource('rotta'))return;map.getSource('rotta').
 let TL=null,tDot=null,tPlay=null;
 const hm=m=>{m=((Math.round(m)%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
 function tline(){const box=$('#tline');if(!box)return;const on=document.body.classList.contains('mapmode')||innerWidth>860;
- if(!map||filter==null||OPZ.tutto||!on){box.classList.remove('on');if(tDot){tDot.remove();tDot=null}stopPlay();TL=null;return}
+ if(!map||filter==null||OPZ.tutto||!on){box.classList.remove('on');if(tDot){tDot.remove();tDot=null}stopPlay();TL=null;evidenzia(null);if(!FJ)cielo(null);return}
  const G=giornata(filter);if(G.seq.length<2){box.classList.remove('on');return}TL=G;box.classList.add('on');
  const sp=G.t1-G.t0||1,r=box.querySelector('input');r.min=G.t0;r.max=G.t1;r.step=5;if(!(+r.value>=G.t0&&+r.value<=G.t1))r.value=G.t0;
  box.querySelector('.tticks').innerHTML=G.seq.filter(e=>e.t!=null).map((e,k)=>`<span style="left:${(e.t-G.t0)/sp*100}%;--c:${e.partenza?'#15171c':col(e.d)}" title="${esc(e.ora+' '+e.titolo)}">${e.partenza?'H':e.n||k}</span>`).join('');
- box.querySelector('.tday').textContent=`Giorno ${filter+1} · ${corto(V.giorni[filter].data)}`;posTL(+r.value,false)}
+ box.querySelector('.tday').textContent=`Giorno ${filter+1} · ${corto(V.giorni[filter].data)}`;box.querySelector('.tfuji').hidden=!['2027-01-03','2027-01-08'].includes(V.giorni[filter].data);posTL(+r.value,false)}
 function posTL(t,segui){if(!TL)return;const G=TL;let p=null,txt='',sub='';
  const l=G.legs.find(l=>t>=l.dep&&t<l.arr);
  if(l){const f=(t-l.dep)/((l.arr-l.dep)||1),c=l.G.best;p=lungoLinea(c,f);const k=l.L?l.L.best:'piedi';
@@ -515,16 +603,22 @@ function posTL(t,segui){if(!TL)return;const G=TL;let p=null,txt='',sub='';
   const nx=G.legs.find(l=>l.dep>t);sub=e.partenza?'':e.arrivo!=null&&e.t!=null&&t<e.t?`arrivati, la tappa inizia alle ${e.ora}`:nx?`fino alle ${hm(nx.dep)} circa, poi ${(nx.L&&nx.L.sum?nx.L.sum.nome:'spostamento').toLowerCase()}`:'ultima tappa del giorno';if(!e.partenza&&e.id&&selId!==e.id)seleziona(e.id,false)}
  const box=$('#tline');box.querySelector('.tora').textContent=hm(t);box.querySelector('.tlab').innerHTML=`<b>${esc(txt)}</b><small>${esc(sub)}</small>`;
  if(!tDot){const el=document.createElement('div');el.className='tdot';tDot=new maplibregl.Marker({element:el}).setLngLat(p).addTo(map)}else tDot.setLngLat(p);
- tDot.getElement().style.setProperty('--c',col(filter));TL.pos=p;if(segui)map.easeTo({center:p,duration:300,zoom:Math.max(map.getZoom(),14)})}
+ tDot.getElement().style.setProperty('--c',col(filter));const prev=TL.pos;TL.pos=p;
+ const g=V.giorni[filter],ss=SOL.orari(g.data,p[1],p[0]);box.querySelector('.tsun').textContent=ss.alba?`☀ ${hm(ss.alba)} · ☾ ${hm(ss.tram)}`:'';cielo(g.data,t,p[1],p[0]);
+ const ferma=!l?G.seq.filter(x=>x.t!=null||x.partenza).reduce((a,x)=>{const ta=x.arrivo!=null?Math.min(x.arrivo,x.t??x.arrivo):x.t;return ta!=null&&ta<=t?x:a},G.seq[0]):null;
+ if(ferma&&ferma.id&&TL.ferma!==ferma.id){TL.ferma=ferma.id;evidenzia(ferma);if(tPlay&&!ferma.partenza){TL.hold=16;setTimeout(()=>{if(tPlay)apriPin(ferma.id)},350)}}else if(!ferma&&TL.ferma){TL.ferma=null;if(tPlay)$$('.maplibregl-popup').forEach(x=>x.remove())}
+ if(segui){const mov=prev&&km(prev[1],prev[0],p[1],p[0])>.005;if(mov)TL.brg=(TL.brg??map.getBearing())+angd(TL.brg??map.getBearing(),brg(prev,p))*.35;
+  const z=l?(l.L&&l.L.best==='treno'?14.2:16.2):16.6;map.easeTo({center:p,duration:tPlay?260:500,zoom:z,pitch:62,bearing:TL.brg??map.getBearing()})}}
 function stopPlay(){if(tPlay){clearInterval(tPlay);tPlay=null;const b=$('#tline .tplay');if(b){b.classList.remove('on');b.setAttribute('aria-label','Riproduci la giornata')}}}
 function initTline(){const box=document.createElement('div');box.id='tline';box.className='tline';
- box.innerHTML=`<div class="trow"><button class="tplay" aria-label="Riproduci la giornata"><svg viewBox="0 0 24 24" width="18" height="18"><path class="pl" d="M7 4v16l13-8z" fill="currentColor"/><path class="pa" d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg></button><div class="tinfo"><span class="tday"></span><span class="tora"></span></div><button class="tkb" aria-label="Konbini vicini a questo punto">Konbini qui</button><button class="tx" aria-label="Nascondi">×</button></div>
+ box.innerHTML=`<div class="trow"><button class="tplay" aria-label="Riproduci la giornata"><svg viewBox="0 0 24 24" width="18" height="18"><path class="pl" d="M7 4v16l13-8z" fill="currentColor"/><path class="pa" d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></svg></button><div class="tinfo"><span class="tday"></span><span class="tora"></span><span class="tsun"></span></div><button class="tfuji" hidden>Il Fuji dal treno</button><button class="tkb" aria-label="Konbini vicini a questo punto">Konbini qui</button><button class="tx" aria-label="Nascondi">×</button></div>
  <div class="ttrack"><div class="tticks"></div><input type="range" aria-label="Ora della giornata"></div><div class="tlab"></div>`;
  $('#mapwrap').appendChild(box);const r=box.querySelector('input');
  r.addEventListener('input',()=>{stopPlay();posTL(+r.value,false)});
  box.querySelector('.tplay').addEventListener('click',()=>{if(tPlay){stopPlay();return}if(+r.value>=+r.max)r.value=r.min;const b=box.querySelector('.tplay');b.classList.add('on');b.setAttribute('aria-label','Pausa');
-  tPlay=setInterval(()=>{const v=Math.min(+r.max,+r.value+5);r.value=v;posTL(v,true);if(v>=+r.max)stopPlay()},matchMedia('(prefers-reduced-motion:reduce)').matches?400:90)});
+  tPlay=setInterval(()=>{if(TL&&TL.hold>0){TL.hold--;return}const v=Math.min(+r.max,+r.value+5);r.value=v;posTL(v,true);if(v>=+r.max)stopPlay()},matchMedia('(prefers-reduced-motion:reduce)').matches?400:90)});
  box.querySelector('.tticks').addEventListener('click',e=>{const s=e.target.closest('span');if(!s)return;const G=TL,k=[...s.parentNode.children].indexOf(s),x=G.seq.filter(e=>e.t!=null)[k];if(x){r.value=x.t;posTL(x.t,true)}});
+ box.querySelector('.tfuji').addEventListener('click',()=>fujiScena(V.giorni[filter].data==='2027-01-08'?'ritorno':'andata'));
  box.querySelector('.tkb').addEventListener('click',()=>{if(TL&&TL.pos)konbiniVicini({lng:TL.pos[0],lat:TL.pos[1]})});
  box.querySelector('.tx').addEventListener('click',()=>{box.classList.add('min')});
  box.addEventListener('click',e=>{if(box.classList.contains('min')&&!e.target.closest('.tx')){box.classList.remove('min')}})}
@@ -629,6 +723,7 @@ document.addEventListener('click',async e=>{const t=e.target;
  const im=t.closest('[data-ideamap]');if(im){mostraIdea(im.dataset.ideamap);return}
  const dc=t.closest('[data-delcom]');if(dc){const[id,k]=dc.dataset.delcom.split('|');try{await salva(`commenti/${id}/${k}`,null)}catch(err){toast('Non eliminato')}return}
  if(t.closest('[data-login]')){$('#sheet').classList.remove('on');CMID=null;accesso();return}
+ const fd=t.closest('[data-fujiday]');if(fd){filter=+fd.dataset.fujiday;location.hash='#mappa';setTimeout(()=>{chips();disegna(false);fujiScena(V.giorni[filter].data==='2027-01-08'?'ritorno':'andata')},450);return}
  const gm=t.closest('[data-giornomappa]');if(gm){e.preventDefault();filter=+gm.dataset.giornomappa;location.hash='#mappa';setTimeout(()=>{chips();disegna(true);tline()},120);return}
  const l=t.closest('[data-like]');if(l){if(!IO){accesso();return}const[g,id]=l.dataset.like.split('|'),on=!!(PROP[g]?.[id]?.voti?.[IO]);try{await salva(`proposte/${g}/${id}/voti/${IO}`,on?null:true)}catch(err){toast('Voto non salvato: '+(err.code||err))}return}
  const ok=t.closest('[data-ok]');if(ok){const[g,id,v]=ok.dataset.ok.split('|');const ora=$(`[data-ora="${id}"]`)?.value;try{if(v==='1'&&ora)await salva(`proposte/${g}/${id}/ora`,ora);await salva(`proposte/${g}/${id}/ok`,v==='1');toast(v==='1'?'Messa nel programma':'Tolta dal programma')}catch(err){toast('Non salvato: '+(err.code||err))}return}
