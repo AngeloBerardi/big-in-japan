@@ -578,11 +578,17 @@ function initMap(){geo();map=new maplibregl.Map({container:'map',style:stileObj(
  ['ov-poi','ov-kb'].forEach(l=>{map.on('click',l,e=>{ovPopup(e.features[0])});map.on('mouseenter',l,()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave',l,()=>map.getCanvas().style.cursor='')});
  map.on('moveend',()=>{clearTimeout(ovT);ovT=setTimeout(ovAggiorna,700)});
  map.on('click',e=>{if(map.queryRenderedFeatures(e.point,{layers:['staz-pt','ov-poi','ov-kb','rotta-hit'].filter(l=>map.getLayer(l))}).length)return;setAlt(-1);if(scegli){scegli=false;$('#mapwrap').classList.remove('picking');quiPopup(e.lngLat)}else{$('#lpanel').classList.remove('on');$('#blayers').classList.remove('on')}});
- pannello();initTline();setModo(MODO,true);disegna(true);if(TRE){$('#b3d').classList.add('on');map.once('load',()=>map.easeTo({pitch:60,bearing:-17,duration:0}))}}
+ pannello();initTline();setModo(MODO,true);disegna(true);if(TRE){$('#b3d').classList.add('on');map.once('load',()=>map.easeTo({pitch:50,bearing:-17,duration:0}))}}
 initDrag();
 let scegli=false;
 function quiPopup(ll){const g=filter??0;new maplibregl.Popup({offset:6,maxWidth:'280px'}).setLngLat(ll).setHTML(`<div class="bd"><b>Questo punto</b><p>${ll.lat.toFixed(5)}, ${ll.lng.toFixed(5)}</p>${vicinaTxt(ll)}<div class="acts"><button class="btn pri" data-qui="${ll.lat},${ll.lng}">Proponi qui</button><a class="btn" href="https://www.google.com/maps/search/?api=1&query=${ll.lat},${ll.lng}" target="_blank" rel="noopener">Google Maps</a></div></div>`).addTo(map)}
 const vicinaTxt=ll=>{const v=vicina(ll.lat,ll.lng);return v?`<div class="sta">${ICO_TRENO}<span><b>${nomeSt(v.s)}</b> · ${piedi(v.d)} min a piedi</span></div>`:''};
+/* edifici 3D: se lo stile vettoriale non li ha già, li aggiungiamo noi; visibili solo in Vista 3D */
+function edifici3d(){if(!map||!stileObj().v)return;const L=map.getStyle().layers,src=Object.keys(map.getStyle().sources).find(k=>map.getStyle().sources[k].type==='vector');if(!src)return;
+ const suoi=L.filter(l=>l.type==='fill-extrusion'&&l['source-layer']==='building').map(l=>l.id);
+ if(!suoi.length&&!map.getLayer('edifici-3d')){const scuro=/dark|fiord/.test(stile);map.addLayer({id:'edifici-3d',type:'fill-extrusion',source:src,'source-layer':'building',minzoom:14,
+  paint:{'fill-extrusion-color':scuro?'#3a3d47':'#e4dfd6','fill-extrusion-height':['coalesce',['get','render_height'],['get','height'],10],'fill-extrusion-base':['coalesce',['get','render_min_height'],['get','min_height'],0],'fill-extrusion-opacity':.85}},(L.find(l=>l.type==='symbol')||{}).id)}
+ if(map.getLayer('edifici-3d'))map.setLayoutProperty('edifici-3d','visibility',TRE?'visible':'none')}
 function livelli(){const vt=!!stileObj().v;
  if(vt)map.getStyle().layers.forEach(l=>{if(l['source-layer']==='poi')try{map.setLayerZoomRange(l.id,Math.max(l.minzoom||0,16.5),24)}catch(e){}});
  if(vt&&OPZ.latino)map.getStyle().layers.forEach(l=>{if(l.type==='symbol'&&l.layout&&l.layout['text-field'])try{map.setLayoutProperty(l.id,'text-field',['coalesce',['get','name:it'],['get','name:latin'],['get','name_en'],['get','name']])}catch(e){}});
@@ -592,12 +598,12 @@ function livelli(){const vt=!!stileObj().v;
   if(!map.getLayer('staz-lb'))map.addLayer({id:'staz-lb',type:'symbol',source:'staz',minzoom:MODO==='esplora'?13.5:15,layout:{visibility:OPZ.stazioni?'visible':'none','text-field':['get','n'],'text-font':['Noto Sans Bold'],'text-size':12,'text-offset':[0,1.1],'text-anchor':'top','text-optional':true},paint:{'text-color':'#15171c','text-halo-color':'#fff','text-halo-width':1.6}})}
  const primoTesto=(map.getStyle().layers.find(l=>l.type==='symbol')||{}).id;
  if(!map.getSource('dem'))map.addSource('dem',DEM);
- if(!map.getLayer('rilievo'))map.addLayer({id:'rilievo',type:'hillshade',source:'dem',layout:{visibility:TRE?'visible':'none'},paint:{'hillshade-exaggeration':.35,'hillshade-shadow-color':'#3d3a52'}},primoTesto);
+ if(!map.getLayer('rilievo'))map.addLayer({id:'rilievo',type:'hillshade',source:'dem',layout:{visibility:'none'},paint:{'hillshade-exaggeration':.35,'hillshade-shadow-color':'#3d3a52'}},primoTesto);
  if(!map.getSource('mondo'))map.addSource('mondo',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[[[-180,-85],[180,-85],[180,85],[-180,85],[-180,-85]]]}}});
  if(!map.getLayer('notte'))map.addLayer({id:'notte',type:'fill',source:'mondo',paint:{'fill-color':'#0b1638','fill-opacity':0}},primoTesto);
  if(!map.getSource('hl'))map.addSource('hl',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
  if(!map.getLayer('hl-3d'))map.addLayer({id:'hl-3d',type:'fill-extrusion',source:'hl',paint:{'fill-extrusion-color':['get','c'],'fill-extrusion-height':['get','h'],'fill-extrusion-base':['get','m'],'fill-extrusion-opacity':.88}},primoTesto);
- terreno(TRE||!!FJ);if(CIELO)cielo(CIELO.data,CIELO.m,CIELO.lat,CIELO.lng);
+ terreno(!!FJ);try{edifici3d()}catch(e){}if(CIELO)cielo(CIELO.data,CIELO.m,CIELO.lat,CIELO.lng);
  if(!map.getSource('rotta'))map.addSource('rotta',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
  if(!map.getLayer('rotta-alt'))map.addLayer({id:'rotta-alt',type:'line',source:'rotta',filter:fAlt(),layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#7c8494','line-width':3,'line-dasharray':[1.2,1.6],'line-opacity':.85}});
  if(!map.getLayer('rotta-case'))map.addLayer({id:'rotta-case',type:'line',source:'rotta',filter:['==',['get','best'],1],layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#fff','line-width':8,'line-opacity':.9}});
@@ -643,7 +649,7 @@ $('#lpanel').addEventListener('change',e=>{const k=e.target.dataset.opz;if(!k)re
  if(k==='stazioni')['staz-pt','staz-lb'].forEach(l=>map.getLayer(l)&&map.setLayoutProperty(l,'visibility',OPZ.stazioni?'visible':'none'));
  if(k==='latino')map.setStyle(stileObj().s,{diff:false});if(k==='tutto')disegna(true);if(k==='percorsi'){rotta();tline()}if(k==='idee')disegnaIdee();if(k==='konbini'||k==='poi'){ovDisegna();ovAggiorna()}});
 $('#blayers').addEventListener('click',()=>{const on=$('#lpanel').classList.toggle('on');$('#blayers').classList.toggle('on',on);$('#blayers').setAttribute('aria-expanded',String(on))});
-$('#b3d').addEventListener('click',()=>{TRE=!TRE;store.set('bij:3d',TRE);terreno(TRE);map.easeTo({pitch:TRE?60:0,bearing:TRE?-17:0,duration:800});$('#b3d').classList.toggle('on',TRE)});
+$('#b3d').addEventListener('click',()=>{TRE=!TRE;store.set('bij:3d',TRE);try{edifici3d()}catch(e){}map.easeTo({pitch:TRE?50:0,bearing:TRE?-17:0,...(TRE&&map.getZoom()<15.5?{zoom:15.5}:{}),duration:900});if(TRE&&!stileObj().v)toast('Gli edifici 3D si vedono con le mappe Mappa, Colorata, Chiara, Notte e Fiordo');$('#b3d').classList.toggle('on',TRE)});
 $('#bfit').addEventListener('click',()=>inquadra());
 $('#bqui').addEventListener('click',()=>{if(!IO){accesso();return}scegli=!scegli;$('#mapwrap').classList.toggle('picking',scegli);toast(scegli?'Tocca il punto della mappa da proporre':'Annullato');$('#lpanel').classList.remove('on');$('#blayers').classList.remove('on')});
 
@@ -731,7 +737,7 @@ function fujiScena(verso){if(!map)return;if(FJ){fujiStop();return}stopPlay();
  const kFuji=P.findIndex(p=>p[0]==='Shin-Fuji'),dFuji=d[kFuji],lato=andata?'a destra (posti dal lato D-E)':'a sinistra (posti dal lato A)',tFuji=hm(dep+durata*dFuji/tot);
  const hud=document.createElement('div');hud.id='fujihud';hud.innerHTML=`<div class="fh1"><b>Shinkansen ${andata?'Tokyo → Kyoto':'Kyoto → Tokyo'}</b><span class="fclock"></span></div><div class="fh2"></div><div class="fbar"><i></i></div><div class="acts"><button class="btn sm" data-fj="pausa">Pausa</button><button class="btn sm" data-fj="esci">Chiudi</button></div>`;
  $('#mapwrap').appendChild(hud);document.body.classList.add('fujimode');
- if(!TRE){terreno(true)}const el=document.createElement('div');el.className='treno';el.innerHTML=ico('treno',18);const mk=new maplibregl.Marker({element:el}).setLngLat(C[0]).addTo(map);
+ terreno(true);const el=document.createElement('div');el.className='treno';el.innerHTML=ico('treno',18);const mk=new maplibregl.Marker({element:el}).setLngLat(C[0]).addTo(map);
  const fe=document.createElement('div');fe.className='fujilab';fe.innerHTML='<b>Monte Fuji</b><small>3.776 m</small>';const fm=new maplibregl.Marker({element:fe,anchor:'bottom'}).setLngLat(FUJI).addTo(map);
  FJ={fm,mk,hud,P,C,tot,d,dep,durata,data,dFuji,lato,tFuji,f:0,pausa:false,last:0,brg:brg(C[0],C[1]),andata};
  hud.addEventListener('click',e=>{const b=e.target.closest('[data-fj]');if(!b)return;if(b.dataset.fj==='esci')fujiStop();else{FJ.pausa=!FJ.pausa;b.textContent=FJ.pausa?'Riprendi':'Pausa'}});
@@ -748,7 +754,7 @@ function fujiScena(verso){if(!map)return;if(FJ){fujiStop();return}stopPlay();
   if(FJ.f>=1){hud.querySelector('.fh2').innerHTML=`<b>Arrivo a ${andata?'Kyoto':'Tokyo'} verso le ${hm(dep+durata)}</b><small>Il Fuji si vede ${esc(lato)} verso le ${tFuji}, se il cielo è limpido.</small>`;return}
   FJ.raf=requestAnimationFrame(passo)};
  FJ.raf=requestAnimationFrame(passo)}
-function fujiStop(){if(!FJ)return;cancelAnimationFrame(FJ.raf);FJ.mk.remove();FJ.fm.remove();FJ.hud.remove();FJ=null;document.body.classList.remove('fujimode');if(!TRE)terreno(false);cielo(null);map.easeTo({pitch:TRE?60:0,bearing:TRE?-17:0,duration:600});if(TL)tline()}
+function fujiStop(){if(!FJ)return;cancelAnimationFrame(FJ.raf);FJ.mk.remove();FJ.fm.remove();FJ.hud.remove();FJ=null;document.body.classList.remove('fujimode');terreno(false);cielo(null);map.easeTo({pitch:TRE?50:0,bearing:TRE?-17:0,duration:600});if(TL)tline()}
 
 /* ---------- percorsi del giorno sulla mappa: verde il consigliato, grigio le alternative ---------- */
 const VERDE='#12a150';
