@@ -150,13 +150,13 @@ async function avviaFB(){if(FB)return;propStato='carica';
  try{const B=`https://www.gstatic.com/firebasejs/${FBV}/`;const[A,Au,Db]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-database.js')]);
   const app=A.initializeApp(FCFG,'viaggio'),auth=Au.getAuth(app);await auth.authStateReady();if(!auth.currentUser)await Au.signInAnonymously(auth);
   const db=Db.getDatabase(app);FB={Db,db,uid:auth.currentUser.uid,ref:p=>Db.ref(db,`viaggi/${KEY}/${p}`)};
-  Db.onValue(FB.ref('proposte'),s=>{PROP=s.val()||{};propStato='ok';aggiorna()},e=>{propStato='errore';propErr=String(e&&e.code||e);aggiorna()});
-  for(const[n,set]of[['spese',v=>SPE=v],['cassa/cambio',v=>{CAMBIO=v&&v.valore?v:null;if(CAMBIO)store.set('bij:cambio',CAMBIO)}],['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});aggiorna()},()=>{});
-  Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
-  Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
+  Db.onValue(FB.ref('proposte'),s=>{PROP=s.val()||{};propStato='ok';NLOAD.proposte=1;aggiorna()},e=>{propStato='errore';propErr=String(e&&e.code||e);aggiorna()});
+  for(const[n,set]of[['spese',v=>SPE=v],['cassa/cambio',v=>{CAMBIO=v&&v.valore?v:null;if(CAMBIO)store.set('bij:cambio',CAMBIO)}],['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});NLOAD[n]=1;aggiorna()},()=>{});
+  Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};NLOAD.reazioni=1;notifCheck();aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
+  Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};NLOAD.commenti=1;notifCheck();aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
  }catch(e){propStato='errore';propErr=String(e&&e.code||e);aggiorna()}}
 const salva=(p,v)=>FB?FB.Db.set(FB.ref(p),v):Promise.reject({code:'non collegato'});
-function aggiorna(){ricalcola();const a=document.activeElement;const typing=a&&a.closest&&a.closest('#view form, #view input, #view textarea');
+function aggiorna(){ricalcola();notifCheck();const a=document.activeElement;const typing=a&&a.closest&&a.closest('#view form, #view input, #view textarea');
  if(!typing&&!$('#sheet').classList.contains('on')){const y=$('#side').scrollTop;renderView();$('#side').scrollTop=y}if(map)disegna(false)}
 
 /* ---------- accesso ---------- */
@@ -164,7 +164,7 @@ function accesso(){const o=$('#login');o.classList.add('on');
  o.querySelector('.sheet').innerHTML=`<h2>Chi sei?</h2><p class="lead">Scegli il tuo nome: proposte, pollici e approvazioni avranno la tua firma.</p><div class="who">${PERSONE.map(n=>`<button data-io="${n}" aria-pressed="${IO===n}">${avatar(n,46)}<b>${n}</b></button>`).join('')}</div><button class="btn" data-chiudi>Solo guardare</button>`}
 $('#login').addEventListener('click',e=>{const b=e.target.closest('[data-io]');if(b){IO=b.dataset.io;store.set('bij:nome',IO);$('#login').classList.remove('on');utente();aggiorna();toast('Ciao '+IO);return}
  if(e.target.closest('[data-chiudi]')||e.target.id==='login')$('#login').classList.remove('on')});
-function utente(){$('#me').innerHTML=IO?`${avatar(IO,24)}<span>${esc(IO)}</span>`:'Chi sei?'}
+function utente(){$('#me').innerHTML=IO?`${avatar(IO,24)}<span>${esc(IO)}</span>`:'Chi sei?';if(V){nBadge();sincroAndroid();pianificaPromemoria()}}
 $('#me').addEventListener('click',accesso);
 
 /* ---------- schede (HTML) ---------- */
@@ -933,7 +933,7 @@ function renderView(){const h=location.hash.slice(1)||'home',m=h.match(/^g(\d+)$
 /* pollici e commenti: si aggiornano al loro posto, senza ridisegnare e riordinare la pagina */
 function aggiornaRbar(){document.querySelectorAll('.rbar[data-rid]').forEach(b=>{const id=b.dataset.rid,leg=b.dataset.leg;let legacy=null;if(leg){const j=leg.indexOf('|');legacy=PROP[leg.slice(0,j)]?.[leg.slice(j+1)]?.voti||null}
  const t=document.createElement('div');t.innerHTML=rbar(id,legacy,leg||null);const n=t.firstElementChild;if(n&&n.outerHTML!==b.outerHTML)b.replaceWith(n)})}
-function route(){const h=location.hash.slice(1)||'home';document.body.classList.toggle('mapmode',h==='mappa');
+function route(){daNotifica();const h=location.hash.slice(1)||'home';document.body.classList.toggle('mapmode',h==='mappa');
  $$('.top a.tab').forEach(a=>a.toggleAttribute('aria-current',a.hash.slice(1)===(h.match(/^g\d+$/)?'home':h)));
  $$('#bnav a').forEach(a=>a.toggleAttribute('aria-current',a.hash.slice(1)===(h.match(/^g\d+$/)?'home':h)));
  if(h==='mappa'){chips();if(map){map.resize();disegna(!route.fit);route.fit=true}return}
@@ -1015,7 +1015,110 @@ addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sheet').classList.remove
 
 Promise.all([fetch('data/viaggio.json',{cache:'no-cache'}).then(r=>r.json()),fetch('data/stazioni.json').then(r=>r.json()).catch(()=>null),fetch('data/idee.json',{cache:'no-cache'}).then(r=>r.json()).catch(()=>({idee:[]}))]).then(([v,s,id])=>{V=v;ST=s;IDEE=id.idee||[];IDEE.forEach(x=>IDX[x.id]=x);prepara();ricalcola();document.title=V.viaggio.titolo;utente();
  try{initMap()}catch(e){$('#map').innerHTML='<p style="padding:20px">La mappa non si è avviata su questo browser.</p>'}
- if(!location.hash){const st=stato();if(st.fase==='durante'&&st.i>=0)history.replaceState(null,'','#g'+(st.i+1))}route();avviaFB();if(!IO)setTimeout(accesso,700)})
+ if(!location.hash){const st=stato();if(st.fase==='durante'&&st.i>=0)history.replaceState(null,'','#g'+(st.i+1))}route();avviaFB();nBadge();sincroAndroid();pianificaPromemoria();if(!IO)setTimeout(accesso,700)})
  .catch(()=>{$('#view').innerHTML='<div class="pad">Il programma non si è caricato. Controllate la connessione e ricaricate.</div>'});
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+/* ---------- notifiche: attività del gruppo, promemoria del programma, impostazioni ----------
+   Nessun dato nuovo nel database: le novità si ricavano da ciò che arriva (proposte, commenti, voti, programma, spese, diario)
+   e ogni telefono ricorda in localStorage cosa ha già visto. Sul telefono: Notification API nel browser, ponte BIJAndroid nell'app. */
+const NPREF0={proposte:true,commenti:'tutti',voti:true,programma:true,spese:true,diario:true,promemoria:15,mattino:true,silenzio:true};
+const npref=()=>({...NPREF0,...store.get('bij:npref',{})});
+const NCAT={proposte:['Proposte','stella'],commenti:['Commenti','fumetto'],voti:['Mi piace','su'],programma:['Programma','calendario'],spese:['Spese','borsa'],diario:['Diario','foto'],promemoria:['Promemoria','orologio']};
+IP.fumetto='<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/>';IP.orologio='<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>';
+IP.campana='<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/>';IP.ingranaggio='<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 0 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3.2 14H3a2 2 0 0 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.2V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0 1.2 2.9H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>';
+const NLOAD={};const ANDR=()=>typeof BIJAndroid!=='undefined'?BIJAndroid:null;
+const NPRONTA={proposte:['proposte'],programma:['proposte','modifiche'],commenti:['commenti','proposte'],voti:['reazioni','proposte','commenti'],spese:['spese'],diario:['diario']};
+function vaiDi(id){const x=IDX[id];if(x)return'i/'+x.id;for(const[g,o]of Object.entries(PROP))if(o&&o[id])return`p/${g}/${id}`;const e=grezze().find(e=>rid(e)===id);return e?'g'+(e.d+1):'home'}
+function fatti(){if(!IO)return[];const out=[],mie=new Set(),dis=new Set(),gi=g=>V.giorni.findIndex(x=>x.data===g);
+ for(const[g,o]of Object.entries(PROP))for(const[id,p]of Object.entries(o||{}))if(p&&p.autore===IO)mie.add(id);
+ for(const[id,o]of Object.entries(CM))for(const c of Object.values(o||{}))if(c&&c.autore===IO)dis.add(id);
+ for(const[g,o]of Object.entries(PROP))for(const[id,p]of Object.entries(o||{})){if(!p)continue;const d=gi(g);
+  if(p.autore!==IO)out.push({k:'p:'+id,cat:'proposte',t:p.t,chi:p.autore,txt:`${p.autore} ha proposto «${p.titolo}»`,sub:`Giorno ${d+1}, ${corto(g)}`,go:`p/${g}/${id}`});
+  if(p.ok)out.push({k:'ok:'+id,cat:'programma',chi:p.autore,txt:`«${p.titolo}» è nel programma`,sub:`Giorno ${d+1}${p.ora?' alle '+p.ora:''}`,go:'g'+(d+1)});
+  for(const n of Object.keys(p.voti||{}))if(n!==IO&&mie.has(id))out.push({k:`v:${id}:${n}`,cat:'voti',chi:n,txt:`A ${n} piace «${p.titolo}»`,sub:'La tua proposta',go:`p/${g}/${id}`})}
+ for(const[id,o]of Object.entries(CM))for(const[k,c]of Object.entries(o||{}))if(c&&c.autore!==IO)out.push({k:`c:${id}:${k}`,cat:'commenti',t:c.t,chi:c.autore,mio:mie.has(id)||dis.has(id),txt:`${c.autore} ha commentato «${titoloDi(id)}»`,sub:String(c.testo||'').slice(0,100),go:vaiDi(id)});
+ for(const[id,o]of Object.entries(RZ))if(mie.has(id))for(const[n,v]of Object.entries(o||{}))if(n!==IO&&v===1)out.push({k:`v:${id}:${n}`,cat:'voti',chi:n,txt:`A ${n} piace «${titoloDi(id)}»`,sub:'La tua proposta',go:vaiDi(id)});
+ const G=grezze();for(const[k,m]of Object.entries(MOD))if(m&&m.autore&&m.autore!==IO){const e=G.find(e=>rid(e)===k),d=e?e.d:-1;
+  out.push({k:`m:${k}:${m.t}`,cat:'programma',t:m.t,chi:m.autore,txt:`${m.autore} ha ${m.nascosto?'tolto':'cambiato'} «${e?e.titolo:'una tappa'}»`,sub:m.nascosto?'Tolta dal programma':`${m.data?corto(m.data)+' ':''}${m.ora?'alle '+m.ora:''}`.trim(),go:d>=0?'g'+(d+1):'home'})}
+ for(const[k,s]of Object.entries(SPE))if(s&&s.autore!==IO){const q=CASSA.quote(s)[IO];if(!(q>0)&&s.paga!==IO)continue;const v=x=>s.valuta==='EUR'?eur(x):yen(x);
+  out.push({k:`s:${k}:${s.importo}:${s.valuta}:${q||0}`,cat:'spese',t:s.t,chi:s.autore,txt:`${s.autore} ha ${s.modo==='rimborso'?'registrato un rimborso':'aggiunto «'+s.titolo+'»'}`,sub:q>0?`La tua parte: ${v(q)}`:`Pagato da te: ${v(s.importo)}`,go:'spese'})}
+ for(const[k,d]of Object.entries(DIA))if(d&&d.autore!==IO){const i=gi(d.data);out.push({k:'d:'+k,cat:'diario',t:d.t,chi:d.autore,txt:`${d.autore} ha scritto nel diario`,sub:String(d.testo||'').slice(0,100),go:i>=0?'g'+(i+1):'home'})}
+ return out}
+function vuole(f,P=npref()){return f.cat==='commenti'?P.commenti==='tutti'||(P.commenti==='miei'&&f.mio):f.cat==='promemoria'?true:!!P[f.cat]}
+const notte=()=>{const h=new Date().getHours();return h>=23||h<8};
+let NT=0;function notifCheck(){clearTimeout(NT);NT=setTimeout(notifCheck0,700)}
+function notifCheck0(){if(!IO||!V)return;const N=store.get('bij:notif',{known:{},feed:[],letto:0,seed:{}}),P=npref(),nuovi=[],pronta=c=>(NPRONTA[c]||[]).every(n=>NLOAD[n]);
+ if(N.io!==IO){N.known={};N.feed=[];N.seed={};N.io=IO}
+ for(const f of fatti()){if(!pronta(f.cat)||N.known[f.k])continue;N.known[f.k]=Date.now();
+  if(!N.seed[f.cat]){if(f.t&&Date.now()-f.t<5*864e5)N.feed.push({...f,letto:1})}else{const x={...f,t:f.t||Date.now()};N.feed.push(x);if(vuole(x,P))nuovi.push(x)}}
+ for(const c of Object.keys(NPRONTA))if(pronta(c))N.seed[c]=1;
+ N.feed.sort((a,b)=>b.t-a.t);N.feed=N.feed.slice(0,150);store.set('bij:notif',N);nBadge();
+ if(nuovi.length){const zitto=P.silenzio&&notte();
+  if(document.hidden&&!zitto)nuovi.slice(0,4).forEach(f=>sistema(f.txt,f.sub||'',f.go,f.k));
+  else if(!document.hidden)toast(nuovi.length===1?nuovi[0].txt:`${nuovi.length} novità: apri la campanella`);
+  const a=ANDR();if(a)try{a.visto(Math.max(...nuovi.map(f=>f.t)))}catch(e){}}
+ if($('#sheet.on .nsheet'))apriNotifiche(true)}
+function nonLette(){const N=store.get('bij:notif',null),P=npref();return N?N.feed.filter(f=>!f.letto&&f.t>(N.letto||0)&&vuole(f,P)).length:0}
+function nBadge(){const n=nonLette(),b=$('#bell');if(!b)return;const s=b.querySelector('.nbad');s.hidden=!n;s.textContent=n>9?'9+':n;b.setAttribute('aria-label',n?`Notifiche, ${n} da leggere`:'Notifiche')}
+/* notifiche di sistema: app Android con il ponte, altrimenti il service worker del browser */
+function sisStato(){const a=ANDR();if(a)try{return a.stato()}catch(e){return'default'}return'Notification'in window?Notification.permission:'nd'}
+async function sisAttiva(){const a=ANDR();if(a){try{a.permesso()}catch(e){}setTimeout(()=>{sincroAndroid();apriNotifiche(true,'imp')},2500);return}
+ if(!('Notification'in window)){toast('Questo browser non mostra notifiche');return}const r=await Notification.requestPermission();if(r==='granted'){sistema('Notifiche attive','Ti avviso qui delle novità del viaggio','home','prova')}apriNotifiche(true,'imp')}
+function sistema(t,b,go,tag){const a=ANDR();if(a){try{a.notifica(t,b,go||'home')}catch(e){}return}
+ if(!('Notification'in window)||Notification.permission!=='granted')return;const o={body:b,tag:tag||go,icon:'icon.svg',badge:'icon.svg',data:{url:location.pathname+'#n='+encodeURIComponent(go||'home')}};
+ (navigator.serviceWorker?navigator.serviceWorker.ready.then(r=>r.showNotification(t,o)):Promise.reject()).catch(()=>{try{new Notification(t,o)}catch(e){}})}
+/* promemoria del programma: ore locali della giornata (fuso del giorno) */
+function tsDi(data,ora,tz){const[y,mo,d]=data.split('-').map(Number),[h,mi]=ora.split(':').map(Number),w=Date.UTC(y,mo-1,d,h,mi);let t=w;
+ for(let k=0;k<2;k++){const p=new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(t)),g=x=>+p.find(z=>z.type===x).value;t-=Date.UTC(g('year'),g('month')-1,g('day'),g('hour'),g('minute'))-w}return t}
+function promemoria(){const P=npref(),now=Date.now(),out=[];if(!V)return out;
+ V.giorni.forEach((g,i)=>{const tz=g.fuso||V.viaggio.fuso,T=tappe(i).filter(e=>e.ora&&/^\d\d:\d\d$/.test(e.ora)&&e.tipo!=='nota');
+  if(P.mattino&&T.length){const t=tsDi(g.data,'08:00',tz),p=T.find(e=>e.ora>='08:00')||T[0];out.push({id:'m-'+g.data,t,titolo:`Giorno ${i+1}: ${g.titolo}`,testo:`${T.length} ${T.length===1?'tappa':'tappe'}, si comincia alle ${p.ora} con ${p.titolo}`,go:'g'+(i+1)})}
+  if(P.promemoria>0)T.forEach(e=>{const t=tsDi(g.data,e.ora,tz)-P.promemoria*6e4,v=e.lat!=null?vicina(e.lat,e.lng):null;
+   out.push({id:'r-'+rid(e),t,titolo:`Tra ${P.promemoria} min: ${e.titolo}`,testo:[`Alle ${e.ora}`,e.luogo,v?'Stazione '+nomeSt(v.s):''].filter(Boolean).join(' · '),go:'g'+(i+1)})})});
+ return out.filter(x=>x.t>now).sort((a,b)=>a.t-b.t)}
+let PRT=0;function pianificaPromemoria(){clearTimeout(PRT);const L=promemoria(),a=ANDR();
+ if(a){try{a.programma(JSON.stringify(L.slice(0,60)))}catch(e){}return}
+ const x=L[0];if(!x||x.t-Date.now()>6*36e5)return;PRT=setTimeout(()=>{sistema(x.titolo,x.testo,x.go,x.id);if(!document.hidden)toast(x.titolo);pianificaPromemoria()},Math.max(0,x.t-Date.now()))}
+function sincroAndroid(){const a=ANDR();if(!a||!IO)return;try{a.config(JSON.stringify({nome:IO,key:KEY,apiKey:FCFG.apiKey,db:FCFG.databaseURL,pref:npref()}))}catch(e){}pianificaPromemoria()}
+/* centro notifiche e impostazioni */
+function apriNotifiche(refresh,tab){const s=$('#sheet'),box=s.querySelector('.sheet'),cur=box.querySelector('.nsheet');if(refresh&&!cur)return;
+ tab=tab||(cur&&cur.dataset.tab)||'att';CMID=null;s.classList.add('on');const N=store.get('bij:notif',{feed:[],letto:0}),P=npref(),st=sisStato();
+ const F=N.feed.filter(f=>vuole(f,P)),oggi=new Date().toDateString(),fr=(a,b)=>a.filter(f=>(new Date(f.t).toDateString()===oggi)===b);
+ const voce=f=>`<button class="nv${!f.letto&&f.t>(N.letto||0)?' nuova':''}" data-ngo="${esc(f.go)}">${f.chi?avatar(f.chi,32):`<span class="nic">${ico(NCAT[f.cat][1],18)}</span>`}<span><b>${esc(f.txt)}</b>${f.sub?`<small>${esc(f.sub)}</small>`:''}<em>${ico(NCAT[f.cat][1],12)} ${esc(NCAT[f.cat][0])} · ${esc(quando(f.t))}</em></span></button>`;
+ const sez=(lab,l)=>l.length?`<h3 class="isec">${lab}</h3><div class="nlist">${l.map(voce).join('')}</div>`:'';
+ const sw=(k,lab,sub)=>`<label class="nsw"><span><b>${lab}</b>${sub?`<small>${sub}</small>`:''}</span><input type="checkbox" data-npref="${k}" ${P[k]?'checked':''}></label>`;
+ const sel=(k,lab,opz,sub)=>`<label class="nsw"><span><b>${lab}</b>${sub?`<small>${sub}</small>`:''}</span><select data-npref="${k}">${opz.map(([v,t])=>`<option value="${v}" ${String(P[k])===String(v)?'selected':''}>${t}</option>`).join('')}</select></label>`;
+ const stato=ANDR()?{granted:'Attive in questa app, anche ad app chiusa (controllo ogni 15 minuti circa).',denied:'Bloccate: attivale da Impostazioni di Android → App → Big in Japan → Notifiche.'}[st]||'Non ancora attive.'
+  :{granted:'Attive in questo browser, quando il sito è aperto o in una scheda in secondo piano.',denied:'Bloccate dal browser: riattivale dalle impostazioni del sito (lucchetto vicino all\'indirizzo).',nd:'Questo browser non mostra notifiche: usa l\'app Android.'}[st]||'Non ancora attive.';
+ box.innerHTML=`<div class="nsheet" data-tab="${tab}"><div class="nhead"><h2>Notifiche</h2><div class="seg"><button data-ntab="att" aria-pressed="${tab==='att'}">Attività</button><button data-ntab="imp" aria-pressed="${tab==='imp'}">${ico('ingranaggio',14)} Impostazioni</button></div></div>
+ ${!IO?`<p class="muted">Scegli prima chi sei, così so quali novità riguardano te.</p><div class="acts"><button class="btn pri" data-chiudi data-accedi>Chi sei?</button></div>`:tab==='att'?
+ `${st!=='granted'&&st!=='nd'?`<div class="nbanner"><span>${ico('campana',18)}</span><span><b>Avvisi sul telefono</b><small>Ricevi le novità e i promemoria anche quando il sito non è aperto davanti a te.</small></span><button class="btn pri sm" data-nattiva>Attiva</button></div>`:''}
+  ${F.length?sez('Oggi',fr(F,true))+sez('Prima',fr(F,false)):`<p class="muted nvuoto">Ancora nessuna novità. Qui compaiono proposte, commenti, voti alle tue proposte, cambi al programma, spese che ti riguardano e pagine del diario.</p>`}
+  <div class="acts">${nonLette()?`<button class="btn" data-nletto>Segna tutte come lette</button>`:''}<button class="btn" data-chiudi>Chiudi</button></div>`:
+ `<div class="nstato"><b>Sul telefono</b><small>${esc(stato)}</small>${st!=='granted'&&st!=='denied'&&st!=='nd'?`<button class="btn pri sm" data-nattiva>Attiva le notifiche</button>`:''}${st==='granted'?`<button class="btn sm" data-nprova>Manda una prova</button>`:''}</div>
+  <h3 class="isec">Attività del gruppo</h3><div class="nset">${sw('proposte','Nuove proposte')}${sel('commenti','Commenti',[['tutti','Tutti'],['miei','Solo dove ci sei tu'],['no','Nessuno']],'«Dove ci sei tu»: sulle tue proposte e nelle discussioni in cui hai scritto')}
+  ${sw('voti','Mi piace alle tue proposte')}${sw('programma','Cambi al programma','Proposte messe nel programma, tappe spostate o tolte')}${sw('spese','Spese che ti riguardano','Quando qualcuno aggiunge una spesa con la tua parte')}${sw('diario','Nuove pagine del diario')}</div>
+  <h3 class="isec">Promemoria del programma</h3><div class="nset">${sel('promemoria','Prima di ogni tappa',[[0,'Mai'],[10,'10 minuti prima'],[15,'15 minuti prima'],[30,'30 minuti prima'],[60,'Un\'ora prima']])}${sw('mattino','Riepilogo della giornata','Alle 8 del mattino, ora locale')}</div>
+  <h3 class="isec">Silenzio</h3><div class="nset">${sw('silenzio','Di notte, dalle 23 alle 8','Le novità del gruppo restano qui senza suonare; i promemoria arrivano comunque')}</div>
+  <p class="muted nnota">${ANDR()?'Le impostazioni valgono per questo telefono.':'Le impostazioni valgono per questo browser. Con l\'app Android gli avvisi arrivano anche ad app chiusa.'}</p>
+  <div class="acts"><button class="btn" data-chiudi>Chiudi</button></div>`}</div>`;
+ if(!refresh){box.scrollTop=0;if(IO&&tab==='att'){const M=store.get('bij:notif',null);if(M){M.letto=Date.now();store.set('bij:notif',M);nBadge()}}}}
+function segnaLette(){const N=store.get('bij:notif',null);if(!N)return;N.letto=Date.now();N.feed.forEach(f=>f.letto=1);store.set('bij:notif',N);nBadge()}
+function vaiA(go){if(!go)return;const m=go.match(/^p\/([^/]+)\/(.+)$/),i=go.match(/^i\/(.+)$/);
+ if(m){apriProp(m[1],m[2]);return}if(i){const x=IDX[i[1]];if(x)scheda(x);return}$('#sheet').classList.remove('on');location.hash='#'+go}
+document.addEventListener('click',e=>{const t=e.target;
+ if(t.closest('#bell')){apriNotifiche(false,'att');return}
+ if(t.closest('[data-accedi]')){accesso();return}
+ const tb=t.closest('[data-ntab]');if(tb){apriNotifiche(true,tb.dataset.ntab);return}
+ const g=t.closest('[data-ngo]');if(g){const N=store.get('bij:notif',null);if(N){N.feed.forEach(f=>{if(f.go===g.dataset.ngo)f.letto=1});store.set('bij:notif',N);nBadge()}vaiA(g.dataset.ngo);return}
+ if(t.closest('[data-nletto]')){segnaLette();apriNotifiche(true);return}
+ if(t.closest('[data-nattiva]')){sisAttiva();return}
+ if(t.closest('[data-nprova]')){sistema('Prova da Big in Japan','Le notifiche funzionano','home','prova');return}});
+document.addEventListener('change',e=>{const k=e.target.dataset&&e.target.dataset.npref;if(!k)return;const P=store.get('bij:npref',{});
+ P[k]=e.target.type==='checkbox'?e.target.checked:(k==='promemoria'?+e.target.value:e.target.value);store.set('bij:npref',P);nBadge();sincroAndroid();pianificaPromemoria()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){notifCheck();pianificaPromemoria()}});
+/* l'app Android apre il sito con #n=<destinazione> quando si tocca una notifica */
+function daNotifica(){const m=location.hash.match(/^#n=(.+)$/);if(!m)return false;const go=decodeURIComponent(m[1]);history.replaceState(null,'',location.pathname+location.search+'#home');
+ const prova=(k=0)=>{if(/^p\//.test(go)&&propStato!=='ok'&&k<20){setTimeout(()=>prova(k+1),500);return}vaiA(go)};prova();return true}
+
 }
