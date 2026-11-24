@@ -35,11 +35,13 @@ const fasciaDi=o=>!o?'':o<'12:00'?'mattina':o<'18:00'?'pomeriggio':'sera';
 
 /* ---------- foto (Wikipedia) ---------- */
 const WK={};
-function foto(t){if(!t)return Promise.resolve(null);if(WK[t])return WK[t];const c=store.get('wk2:'+t,undefined);if(c!==undefined)return WK[t]=Promise.resolve(c);
- return WK[t]=fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(t.replace(/ /g,'_'))).then(r=>r.ok?r.json():null).then(j=>{const v=j&&j.thumbnail?{src:j.thumbnail.source,url:j.content_urls?.desktop?.page||''}:null;store.set('wk2:'+t,v);return v}).catch(()=>null)}
+const cercaFoto=q=>fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrlimit=5&prop=pageimages|info&inprop=url&piprop=thumbnail&pithumbsize=640&gsrsearch='+encodeURIComponent(q)).then(r=>r.ok?r.json():null).then(j=>{const P=j&&j.query?Object.values(j.query.pages).sort((a,b)=>a.index-b.index).find(p=>p.thumbnail):null;return P?{src:P.thumbnail.source,url:P.fullurl||''}:null}).catch(()=>null);
+function foto(t,alt){if(!t&&!alt)return Promise.resolve(null);const key=t||'?'+alt;if(WK[key])return WK[key];const c=store.get('wk3:'+key,undefined);if(c!==undefined&&(c||Date.now()-(store.get('wk3t:'+key,0))<6048e5))return WK[key]=Promise.resolve(c);
+ const sum=t?fetch('https://en.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(t.replace(/ /g,'_'))).then(r=>r.ok?r.json():null).then(j=>j&&j.thumbnail?{src:j.thumbnail.source,url:j.content_urls?.desktop?.page||''}:null).catch(()=>null):Promise.resolve(null);
+ return WK[key]=sum.then(v=>v||(t?cercaFoto(t.replace(/_/g,' ')):null)).then(v=>v||(alt?cercaFoto(alt+' Japan'):null)).then(v=>{if(v!==null||navigator.onLine){store.set('wk3:'+key,v);if(!v)store.set('wk3t:'+key,Date.now())}return v})}
 const big=(src,w)=>src.replace(/\/(\d+)px-/,`/${w}px-`);
 function riempiFoto(root=document){if(!root)return;root.querySelectorAll('[data-wiki]:not([data-done])').forEach(el=>{el.dataset.done=1;const w=+el.dataset.w||400;
- foto(el.dataset.wiki).then(v=>{if(!v){if(el.dataset.scene&&window.scena)el.innerHTML=scena(el.dataset.scene,+el.dataset.seed||3);return}
+ foto(el.dataset.wiki,el.dataset.alt).then(v=>{if(!v){if(el.dataset.scene&&window.scena)el.innerHTML=scena(el.dataset.scene,+el.dataset.seed||3);else el.classList.add('noimg');return}
   const img=new Image();img.alt=el.dataset.alt||'';img.loading='lazy';img.decoding='async';img.src=big(v.src,w);img.onerror=()=>{img.onerror=null;img.src=v.src};el.prepend(img);
   if(el.dataset.credit!==undefined&&v.url){const a=document.createElement('a');a.className='credit';a.href=v.url;a.target='_blank';a.rel='noopener';a.textContent='Foto: Wikipedia';el.appendChild(a)}})})}
 const ph=(t,w,extra='',scene='',seed=3,alt='')=>`<div class="ph" data-wiki="${esc(t||'')}" data-w="${w}" data-scene="${esc(scene)}" data-seed="${seed}" data-alt="${esc(alt)}" ${extra}></div>`;
@@ -150,8 +152,8 @@ async function avviaFB(){if(FB)return;propStato='carica';
   const db=Db.getDatabase(app);FB={Db,db,uid:auth.currentUser.uid,ref:p=>Db.ref(db,`viaggi/${KEY}/${p}`)};
   Db.onValue(FB.ref('proposte'),s=>{PROP=s.val()||{};propStato='ok';aggiorna()},e=>{propStato='errore';propErr=String(e&&e.code||e);aggiorna()});
   for(const[n,set]of[['spese',v=>SPE=v],['cassa/cambio',v=>{CAMBIO=v&&v.valore?v:null;if(CAMBIO)store.set('bij:cambio',CAMBIO)}],['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});aggiorna()},()=>{});
-  Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
-  Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
+  Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
+  Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};aggiornaRbar();if(CMID)commenti(CMID,true)},()=>{});
  }catch(e){propStato='errore';propErr=String(e&&e.code||e);aggiorna()}}
 const salva=(p,v)=>FB?FB.Db.set(FB.ref(p),v):Promise.reject({code:'non collegato'});
 function aggiorna(){ricalcola();const a=document.activeElement;const typing=a&&a.closest&&a.closest('#view form, #view input, #view textarea');
@@ -846,7 +848,13 @@ $('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-dn]');i
 $('#chips').addEventListener('change',e=>{if(e.target.id!=='dsel')return;vaiGiorno(e.target.value===''?null:+e.target.value)});
 function renderView(){const h=location.hash.slice(1)||'home',m=h.match(/^g(\d+)$/);let html;
  if(m){const i=Math.min(Math.max(+m[1]-1,0),V.giorni.length-1);filter=i;html=vGiorno(i)}else if(h==='info')html=vInfo();else if(h==='spese'){html=vSpese();aggiornaCambio(false)}else if(h==='piano'){html=vPiano()}else{if(h!=='mappa')filter=null;html=vHome()}
- $('#view').innerHTML=html;riempiFoto($('#view'))}
+ const SQ='#view .ascroll,#view .ptabs,#view .daynav,#view .cats',side=$('#side'),keep=renderView.h===h?{y:side.scrollTop,x:$$(SQ).map(e=>e.scrollLeft),d:$$('#view details').map(d=>d.open)}:null;
+ $('#view').innerHTML=html;riempiFoto($('#view'));
+ if(keep){$$(SQ).forEach((e,i)=>{if(keep.x[i])e.scrollLeft=keep.x[i]});$$('#view details').forEach((d,i)=>{if(keep.d[i]!=null)d.open=keep.d[i]});side.scrollTop=keep.y}
+ renderView.h=h}
+/* pollici e commenti: si aggiornano al loro posto, senza ridisegnare e riordinare la pagina */
+function aggiornaRbar(){document.querySelectorAll('.rbar[data-rid]').forEach(b=>{const id=b.dataset.rid,leg=b.dataset.leg;let legacy=null;if(leg){const j=leg.indexOf('|');legacy=PROP[leg.slice(0,j)]?.[leg.slice(j+1)]?.voti||null}
+ const t=document.createElement('div');t.innerHTML=rbar(id,legacy,leg||null);const n=t.firstElementChild;if(n&&n.outerHTML!==b.outerHTML)b.replaceWith(n)})}
 function route(){const h=location.hash.slice(1)||'home';document.body.classList.toggle('mapmode',h==='mappa');
  $$('.top a.tab').forEach(a=>a.toggleAttribute('aria-current',a.hash.slice(1)===(h.match(/^g\d+$/)?'home':h)));
  $$('#bnav a').forEach(a=>a.toggleAttribute('aria-current',a.hash.slice(1)===(h.match(/^g\d+$/)?'home':h)));
