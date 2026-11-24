@@ -919,7 +919,7 @@ $('#view').addEventListener('change',async e=>{const i=e.target;
  if(i.dataset.lfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}try{await salva(`liste/${i.dataset.lfatto}/fatto`,i.checked)}catch(err){toast('Non salvato')}return}
  if(i.dataset.sfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}const k=i.dataset.sfatto;try{await salva('spunte/'+k,{...(SPU[k]||{}),fatto:i.checked,autore:IO,t:Date.now()})}catch(err){toast('Non salvato')}return}
  if(!i.dataset.k)return;const ck=store.get('bij:'+i.dataset.k,{});ck[i.dataset.i]=i.checked;store.set('bij:'+i.dataset.k,ck)});
-if(location.hostname==='localhost')window.T={get map(){return map},get ALT(){return ALT},get PS(){return PS},get CIELO(){return CIELO},get filter(){return filter},seleziona,tappe};
+if(location.hostname==='localhost')window.T={get map(){return map},get ALT(){return ALT},get PS(){return PS},get CIELO(){return CIELO},get filter(){return filter},seleziona,tappe,aggiorna,aggiornaRbar};
 addEventListener('hashchange',route);addEventListener('resize',()=>map&&map.resize());
 addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sheet').classList.remove('on');CMID=null;$('#login').classList.remove('on')}});
 
