@@ -23,7 +23,10 @@
    "q": "Tokyo Metropolitan Government Building observatory",
    "sito": "https://www.yokoso.metro.tokyo.lg.jp/en/tenbou/",
    "fonti": "Go Tokyo, Time Out Tokyo",
-   "alt": "Alternativa gratuita a Shibuya Sky"
+   "alt": "Alternativa gratuita a Shibuya Sky",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-thermae",
@@ -68,7 +71,12 @@
    "wiki": "Tsukemen",
    "q": "Fuunji tsukemen Shinjuku",
    "fonti": "Tabelog, Time Out Tokyo",
-   "top": true
+   "top": true,
+   "chiuso": {
+    "dow": [
+     0
+    ]
+   }
   },
   {
    "id": "tk-tsunahachi",
@@ -156,7 +164,15 @@
    "sito": "https://www.shibuya-scramble-square.com/sky/",
    "fonti": "Go Tokyo, Tokyo Cheapo, sito ufficiale",
    "top": true,
-   "prenota": "https://www.shibuya-scramble-square.com/sky/ticket/"
+   "prenota": "https://www.shibuya-scramble-square.com/sky/ticket/",
+   "chiuso": {
+    "date": [
+     [
+      "2027-01-01",
+      "2027-01-01"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-shimokita",
@@ -494,7 +510,15 @@
    "consiglio": "Prenotare. È il pasto da ricordare della settimana a Tokyo.",
    "wiki": "Sukiyaki",
    "q": "Asakusa Imahan sukiyaki",
-   "fonti": "Culture Trip, Fun Japan"
+   "fonti": "Culture Trip, Fun Japan",
+   "chiuso": {
+    "date": [
+     [
+      "2026-12-31",
+      "2026-12-31"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-kagetsudo",
@@ -615,7 +639,10 @@
    "sintesi": "Locale del 1884 in una casa di legno: soba fatti a mano, freddi con salsa o caldi in brodo. A pochi minuti dal santuario di Kanda.",
    "wiki": "Soba",
    "q": "Kanda Matsuya soba",
-   "fonti": "Time Out Tokyo, Tabelog"
+   "fonti": "Time Out Tokyo, Tabelog",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-jangara",
@@ -700,7 +727,15 @@
    "wiki": "Tsukiji fish market",
    "q": "Tsukiji outer market food",
    "fonti": "Tourism Attractions, Japan Guide",
-   "top": true
+   "top": true,
+   "chiuso": {
+    "date": [
+     [
+      "2027-01-01",
+      "2027-01-04"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-kappabashi",
@@ -720,7 +755,10 @@
    "sintesi": "La strada dei fornitori di ristoranti: coltelli giapponesi, ciotole, i finti piatti di plastica delle vetrine.",
    "wiki": "Kappabashi-dori",
    "q": "Kappabashi knife shopping",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-zojoji",
@@ -822,7 +860,15 @@
    "wiki": "Tokyo National Museum",
    "q": "Tokyo National Museum",
    "sito": "https://www.tnm.jp/",
-   "fonti": "Todolist Japan"
+   "fonti": "Todolist Japan",
+   "chiuso": {
+    "date": [
+     [
+      "2026-12-26",
+      "2026-12-31"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-kanda-hatsumode",
@@ -863,7 +909,10 @@
    "sintesi": "Otto botteghe di ramen famose sotto la stazione: tsukemen, miso, shoyu. Una delle soluzioni sicure nei giorni di festa.",
    "wiki": "Ramen",
    "q": "Tokyo Ramen Street",
-   "fonti": "Go Tokyo"
+   "fonti": "Go Tokyo",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-sanga",
@@ -1275,7 +1324,10 @@
    "consiglio": "Il 5 è riaperto: buono la mattina prima del check-in al Mystays.",
    "wiki": "Nijō Castle",
    "q": "Nijo Castle nightingale floor",
-   "fonti": "Japan Guide, Dangerous Business"
+   "fonti": "Japan Guide, Dangerous Business",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "ky-fushimi-sake",
@@ -1803,7 +1855,15 @@
    "consiglio": "Verso la chiusura molti piatti pronti sono scontati.",
    "wiki": "Isetan",
    "q": "Isetan Shinjuku depachika food hall",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "chiuso": {
+    "date": [
+     [
+      "2027-01-01",
+      "2027-01-01"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-udonshin",
@@ -1951,7 +2011,15 @@
    "q": "Shinjuku Gyoen winter",
    "sito": "https://fng.or.jp/shinjuku/en/",
    "fonti": "Go Tokyo",
-   "alt": "Alternativa a Ikebukuro, a 10 minuti dall'hotel"
+   "alt": "Alternativa a Ikebukuro, a 10 minuti dall'hotel",
+   "chiuso": {
+    "date": [
+     [
+      "2026-12-29",
+      "2027-01-03"
+     ]
+    ]
+   }
   },
   {
    "id": "tk-yoyogi",
@@ -2413,7 +2481,10 @@
    "sintesi": "Locale storico di soba in un giardino, dove la padrona annuncia gli ordini cantilenando. A due passi da Kanda Matsuya.",
    "wiki": "Soba",
    "q": "Kanda Yabu Soba",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-isegen",
@@ -2433,7 +2504,10 @@
    "sintesi": "Casa di legno del 1830 che serve solo ankō nabe, la pentola di rana pescatrice, e solo nei mesi freddi. Si mangia sul tatami.",
    "wiki": "Monkfish",
    "q": "Isegen anko nabe Kanda",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "tk-laqua",
@@ -2507,7 +2581,13 @@
    "sito": "https://www.ghibli-museum.jp/en/",
    "fonti": "Ghibli Museum, Tofugu, Japan Travel",
    "top": true,
-   "prenota": "https://www.ghibli-museum.jp/en/tickets/"
+   "prenota": "https://www.ghibli-museum.jp/en/tickets/",
+   "chiuso": {
+    "dow": [
+     2
+    ],
+    "verifica": 1
+   }
   },
   {
    "id": "tk-borderless",
@@ -2763,7 +2843,10 @@
    "wiki": "Cup Noodles",
    "q": "Cup Noodles Museum Yokohama",
    "fonti": "Time Out Tokyo",
-   "alt": "Dentro la gita a Yokohama"
+   "alt": "Dentro la gita a Yokohama",
+   "chiuso": {
+    "verifica": 1
+   }
   },
   {
    "id": "ky-karuta",
@@ -2885,7 +2968,12 @@
    "sintesi": "Spaghetti trasparenti di amido di kudzu da intingere nello sciroppo di zucchero nero: un dolce che esiste solo a Kyoto.",
    "wiki": "Wagashi",
    "q": "Kagizen Yoshifusa kuzukiri",
-   "fonti": "Michelin, Inside Kyoto"
+   "fonti": "Michelin, Inside Kyoto",
+   "chiuso": {
+    "dow": [
+     1
+    ]
+   }
   },
   {
    "id": "ky-station-view",
@@ -2988,7 +3076,12 @@
    "wiki": "Kyoto Railway Museum",
    "q": "Kyoto Railway Museum",
    "sito": "https://www.kyotorailwaymuseum.jp/en/",
-   "fonti": "Kyoto City Official Travel Guide"
+   "fonti": "Kyoto City Official Travel Guide",
+   "chiuso": {
+    "dow": [
+     3
+    ]
+   }
   },
   {
    "id": "ky-honganji",
@@ -3392,7 +3485,18 @@
    "sintesi": "La residenza degli imperatori fino al 1868: padiglioni di legno, cortili di ghiaia bianca, un parco immenso intorno.",
    "wiki": "Kyoto Imperial Palace",
    "q": "Kyoto Imperial Palace",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "chiuso": {
+    "dow": [
+     1
+    ],
+    "date": [
+     [
+      "2026-12-28",
+      "2027-01-04"
+     ]
+    ]
+   }
   },
   {
    "id": "ky-nintendo",
@@ -3416,7 +3520,18 @@
    "sito": "https://museum.nintendo.com/en/",
    "fonti": "Nintendo, Japan Guide",
    "top": true,
-   "prenota": "https://museum-tickets.nintendo.com/en"
+   "prenota": "https://museum-tickets.nintendo.com/en",
+   "chiuso": {
+    "dow": [
+     2
+    ],
+    "date": [
+     [
+      "2026-12-30",
+      "2027-01-03"
+     ]
+    ]
+   }
   },
   {
    "id": "nr-naramachi",

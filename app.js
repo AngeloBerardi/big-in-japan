@@ -174,11 +174,19 @@ function _likers(p){const chi=Object.keys(p.voti||{});return chi.length?`<div cl
 function stopCard(e,cls=''){const g=V.giorni[e.d],vv=visti(e),io=IO&&vv.includes(IO);
  return`<div class="stop ${cls} ${vv.length?'fatta':''}" id="s-${e.id}" data-rid="${esc(rid(e))}" data-day="${e.d}" data-ora="${esc(e.ora||'')}"><div class="t">${esc(e.ora||'')}${e.fine?`<small>${esc(e.fine)}</small>`:''}${IO?`<button class="drag" aria-label="Trascina per cambiare ordine" title="Trascina">⋮⋮</button>`:''}${e.mod&&!e.mod.nascosto?`<small class="modt" title="Spostata da ${esc(e.mod.autore||'')}">spostata</small>`:''}</div>
  <div class="card ${selId===e.id?'sel':''}" data-sel="${e.id}" style="--c:${col(e.d)}">${e.wiki?ph(e.wiki,640,'','',e.d+1,e.titolo):''}<div class="bd">${tagRow(e)}
- <h4>${esc(e.titolo)}</h4>${(b=>b?`<a class="bgl" href="#piano" data-ptab="prenotare">${bollino(b)}</a>`:'')(bigliettoDi(rid(e)))}${e.luogo&&e.luogo!==e.titolo?`<p class="pl">${esc(e.luogo)}</p>`:''}${e.prop?`<p class="by">${avatar(e.autore,20)} proposta di ${esc(e.autore)}</p>`:''}${e.note||e.nota?`<p>${esc(e.note||e.nota)}</p>`:''}${staTxt(e)}${rbar(rid(e),e.prop?e.voti:null,e.prop?`${e.data}|${e.id}`:null)}
+ <h4>${esc(e.titolo)}</h4>${e.idea&&IDX[e.idea]?avvisoApertura(IDX[e.idea],g.data):''}${(b=>b?`<a class="bgl" href="#piano" data-ptab="prenotare">${bollino(b)}</a>`:'')(bigliettoDi(rid(e)))}${e.luogo&&e.luogo!==e.titolo?`<p class="pl">${esc(e.luogo)}</p>`:''}${e.prop?`<p class="by">${avatar(e.autore,20)} proposta di ${esc(e.autore)}</p>`:''}${e.note||e.nota?`<p>${esc(e.note||e.nota)}</p>`:''}${staTxt(e)}${rbar(rid(e),e.prop?e.voti:null,e.prop?`${e.data}|${e.id}`:null)}
  <div class="acts"><a class="btn pri" href="${arrivo(e,ME)}" target="_blank" rel="noopener">Come arrivo</a><a class="btn" href="${gmap(e)}" target="_blank" rel="noopener">Google Maps</a>${e.sito?`<a class="btn" href="${esc(e.sito)}" target="_blank" rel="noopener">Sito</a>`:''}${e.idea&&IDX[e.idea]?`<button class="btn" data-idea="${esc(e.idea)}">Scheda</button>`:''}${e.lat!=null?`<button class="btn" data-showmap="${e.id}">Mappa</button>`:''}${IO?`<button class="btn" data-mod="${esc(e.id)}">Sposta</button>`:''}<button class="btn vis ${io?'on':''}" data-vis="${esc(rid(e))}" aria-pressed="${!!io}">${io?'✓ Ci sono stato':'Ci sono stato'}</button>${vv.length?`<span class="chi">${vv.map(n=>avatar(n,18)).join('')}</span>`:''}</div></div></div></div>`}
+/* aperto quel giorno? */
+const GSET=['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+const dowDi=d=>new Date(d+'T12:00:00Z').getUTCDay();
+function chiusoIl(x,d){const c=x&&x.chiuso;if(!c||!d)return null;const w=dowDi(d);if((c.dow||[]).includes(w))return`chiuso ${w===0?"la":"il"} ${GSET[w]}`;
+ for(const[a,b]of c.date||[])if(d>=a&&d<=b)return a===b?`chiuso il ${corto(a)}`:`chiuso dal ${corto(a)} al ${corto(b)}`;return null}
+const daVerificare=(x,d)=>!!(x&&x.chiuso&&x.chiuso.verifica&&d>='2026-12-29'&&d<='2027-01-04');
+function avvisoApertura(x,d){const c=chiusoIl(x,d);if(c){const alt=x.giorni.filter(g=>g!==d&&!chiusoIl(x,g));return`<div class="achiuso"><b>Attenzione: ${esc(fmt(d,{weekday:'long',day:'numeric',month:'short'}))} è ${esc(c)}.</b>${alt.length?` Va bene ${alt.slice(0,3).map(g=>esc(corto(g))).join(', ')}.`:''}</div>`}
+ return daVerificare(x,d)?`<div class="averif">Orari di fine anno da verificare sul sito prima di andarci.</div>`:''}
 function propCard(p){const mia=FB&&p.uid===FB.uid,f=(FASCE.find(x=>x[0]===p.fascia)||FASCE[0]),x=p.idea&&IDX[p.idea];
  return`<div class="prop" id="p-${esc(p.id)}" style="--p:${PCOL[p.autore]||'#666'}">${x?ph(x.wiki,600,'class="pimg"','',3,x.titolo):''}<div class="ph-row">${avatar(p.autore,30)}<div><small>Proposta di ${esc(p.autore)}</small><b>${esc(p.titolo)}</b>${p.luogo?`<small>${esc(p.luogo)}</small>`:''}</div></div>
- ${x?`<p class="imeta"><span>${esc(x.orari)}</span><span>${esc(x.prezzo)}</span></p>`:''}${p.nota?`<p>${esc(p.nota)}</p>`:''}${p.lat!=null?staTxt(p):''}${rbar(p.id,p.voti,`${p.data}|${p.id}`)}
+ ${x?`<p class="imeta"><span>${esc(x.orari)}</span><span>${esc(x.prezzo)}</span></p>${avvisoApertura(x,p.data)}`:''}${p.nota?`<p>${esc(p.nota)}</p>`:''}${p.lat!=null?staTxt(p):''}${rbar(p.id,p.voti,`${p.data}|${p.id}`)}
  <div class="acts">${x?`<button class="btn" data-idea="${esc(x.id)}">Scheda</button>`:''}<a class="btn" href="${esc(gmap(p))}" target="_blank" rel="noopener">Google Maps</a>${p.lat!=null?`<button class="btn" data-showmap="${esc(p.id)}">Mappa</button>`:''}
  ${IO?`<span class="okrow"><input type="time" value="${esc(p.ora||f[2])}" aria-label="Orario" data-ora="${esc(p.id)}"><button class="btn ok" data-ok="${esc(p.data)}|${esc(p.id)}|1">Metti nel programma</button></span>`:''}${mia?`<button class="btn" data-del="${esc(p.data)}|${esc(p.id)}">Elimina</button>`:''}</div></div>`}
 
@@ -213,25 +221,25 @@ const PASTO={pranzo:'Pranzo',cena:'Cena',spuntino:'Spuntino'};
 const enc=encodeURIComponent;
 const scoreIdea=x=>{const r=reaz(x.id);return r.su.length-r.giu.length};
 function ideeDi(data,fascia,cibo){const gia=new Set(Object.values(PROP[data]||{}).map(p=>p.idea).filter(Boolean));
- return IDEE.filter(x=>x.giorni.includes(data)&&!gia.has(x.id)&&(fascia==null||x.fascia===fascia)&&(cibo==null||(x.cat==='cibo')===cibo)).sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0))}
+ return IDEE.filter(x=>x.giorni.includes(data)&&!chiusoIl(x,data)&&!gia.has(x.id)&&(fascia==null||x.fascia===fascia)&&(cibo==null||(x.cat==='cibo')===cibo)).sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0))}
 const ilink=x=>({maps:`https://www.google.com/maps/search/?api=1&query=${enc(x.q+(x.lat!=null?'':''))}`,yt:`https://www.youtube.com/results?search_query=${enc(x.q+' #shorts')}`,tt:`https://www.tiktok.com/search?q=${enc(x.q)}`,
  gyg:`https://www.getyourguide.com/s/?q=${enc(x.q)}`,via:`https://www.viator.com/searchResults/all?text=${enc(x.q)}`,ta:`https://www.tripadvisor.com/Search?q=${enc(x.q)}`});
 const badge=x=>`<span class="ibadge" style="--k:${CATC[x.cat]||'#555'}">${esc(CAT[x.cat]||x.cat)}${x.pasto?' · '+esc(PASTO[x.pasto]||x.pasto):''}</span>${x.top?'<span class="itop">Consigliata</span>':''}${x.prenota?'<span class="ipren">Da prenotare</span>':''}`;
 const desDi=id=>Object.entries(LST).find(([k,v])=>v.lista==='desideri'&&v.idea===id);
-const giorniIdea=x=>{const G=V.giorni.map((g,i)=>[g,i]).filter(([g])=>x.giorni.includes(g.data));return G.length?`<p class="igg">${G.length>4?`${G.length} giorni a ${esc(V.giorni[G[0][1]].citta||'')}: `:''}${G.slice(0,4).map(([g,i])=>`<a href="#g${i+1}" style="--c:${col(i)}">G${i+1} · ${esc(corto(g.data))}</a>`).join('')}${G.length>4?'…':''}</p>`:''};
+const giorniIdea=x=>{const G=V.giorni.map((g,i)=>[g,i]).filter(([g])=>x.giorni.includes(g.data)&&!chiusoIl(x,g.data));return G.length?`<p class="igg">${G.length>4?`${G.length} giorni a ${esc(V.giorni[G[0][1]].citta||'')}: `:''}${G.slice(0,4).map(([g,i])=>`<a href="#g${i+1}" style="--c:${col(i)}">G${i+1} · ${esc(corto(g.data))}</a>`).join('')}${G.length>4?'…':''}</p>`:''};
 function ideaMini(x){return`<article class="icard" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,420,'','',3,x.titolo)}<div class="ibd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="iz">${esc(x.zona)}</p>${giorniIdea(x)}${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}
  <p class="imeta"><span>${esc(x.prezzo)}</span>${x.durata?`<span>${esc(x.durata)}</span>`:''}</p><p class="isin">${esc(x.sintesi)}</p>${rbar(x.id)}<div class="acts"><button class="btn pri" data-idea="${esc(x.id)}">Apri la scheda</button>${x.lat!=null?`<button class="btn" data-ideamap="${esc(x.id)}">Mappa</button>`:''}</div></div></article>`}
 function rigaIdee(lista,lab,extra=''){return lista.length?`<div class="alt"><div class="alab">${lab} <small>${lista.length}</small>${extra}</div><div class="ascroll">${lista.map(ideaMini).join('')}</div></div>`:''}
-function scheda(x,dataSel){CMID=x.id;const s=$('#sheet');s.classList.add('on');const L=ilink(x),g0=dataSel||(filter!=null&&x.giorni.includes(V.giorni[filter].data)?V.giorni[filter].data:x.giorni[0]);
+function scheda(x,dataSel){CMID=x.id;const s=$('#sheet');s.classList.add('on');const L=ilink(x);let g0=dataSel||(filter!=null&&x.giorni.includes(V.giorni[filter].data)?V.giorni[filter].data:x.giorni[0]);if(!dataSel&&chiusoIl(x,g0))g0=x.giorni.find(d=>!chiusoIl(x,d))||g0;
  const gia=x.giorni.map(d=>Object.values(PROP[d]||{}).find(p=>p.idea===x.id)&&d).filter(Boolean);
  const v=x.lat!=null?vicina(x.lat,x.lng):null;
  s.querySelector('.sheet').innerHTML=`<div class="isheet" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,900,'data-credit','',3,x.titolo)}<div>${badge(x)}</div><h2>${esc(x.titolo)}</h2><p class="iz">${esc(x.zona)}${v?` · stazione ${nomeSt(v.s)}, ${v.d<.15?'lì davanti':piedi(v.d)+' min a piedi'}`:''}</p>
- <dl class="igrid"><div><dt>Orari</dt><dd>${esc(x.orari)}</dd></div><div><dt>Prezzo</dt><dd>${esc(x.prezzo)}</dd></div>${x.durata?`<div><dt>Durata</dt><dd>${esc(x.durata)}</dd></div>`:''}<div><dt>Giorni adatti</dt><dd>${x.giorni.map(d=>esc(corto(d))).join(', ')}</dd></div></dl>
+ <dl class="igrid"><div><dt>Orari</dt><dd>${esc(x.orari)}</dd></div><div><dt>Prezzo</dt><dd>${esc(x.prezzo)}</dd></div>${x.durata?`<div><dt>Durata</dt><dd>${esc(x.durata)}</dd></div>`:''}<div><dt>Giorni adatti</dt><dd>${x.giorni.map(d=>chiusoIl(x,d)?`<s title="${esc(chiusoIl(x,d))}">${esc(corto(d))}</s>`:esc(corto(d))).join(', ')}</dd></div></dl>
  ${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}<p>${esc(x.sintesi)}</p>${x.consiglio?`<div class="itip"><b>Consiglio:</b> ${esc(x.consiglio)}</div>`:''}${x.prenota?`<a class="btn pri ipbtn" href="${esc(x.prenota)}" target="_blank" rel="noopener">Prenota sul sito ufficiale</a>`:''}
  <div class="ilinks"><a href="${L.maps}" target="_blank" rel="noopener">Google Maps</a>${x.sito?`<a href="${esc(x.sito)}" target="_blank" rel="noopener">Sito</a>`:''}<a href="${L.yt}" target="_blank" rel="noopener">Video brevi</a><a href="${L.tt}" target="_blank" rel="noopener">TikTok</a><a href="${L.ta}" target="_blank" rel="noopener">Recensioni</a>${x.cat!=='cibo'?`<a href="${L.gyg}" target="_blank" rel="noopener">GetYourGuide</a><a href="${L.via}" target="_blank" rel="noopener">Viator</a>`:''}${x.lat!=null?`<a href="${arrivo(x,ME)}" target="_blank" rel="noopener">Come arrivo</a>`:''}</div>
  ${x.fonti?`<p class="ifonti">Fonti: ${esc(x.fonti)}. Prezzi e orari indicativi, verificati a novembre 2026.</p>`:''}
  ${rbar(x.id)}
- <div class="iprop">${gia.length?`<p>Già proposta per ${gia.map(d=>esc(corto(d))).join(', ')}: votatela nella giornata.</p>`:''}${IO?`<label>Proponi per<select data-ideagiorno>${x.giorni.map(d=>{const i=V.giorni.findIndex(g=>g.data===d);return`<option value="${d}" ${d===g0?'selected':''}>${i+1} · ${esc(corto(d))}</option>`}).join('')}</select></label><button class="btn pri" data-propidea="${esc(x.id)}">Proponi nel programma</button>${desDi(x.id)?'<span class="muted">Già nei desideri</span>':`<button class="btn" data-desidea="${esc(x.id)}">Salva nei desideri</button>`}`:''}</div>
+ <div class="iprop">${gia.length?`<p>Già proposta per ${gia.map(d=>esc(corto(d))).join(', ')}: votatela nella giornata.</p>`:''}${IO?`<label>Proponi per<select data-ideagiorno>${x.giorni.map(d=>{const i=V.giorni.findIndex(g=>g.data===d);const c=chiusoIl(x,d);return`<option value="${d}" ${d===g0?'selected':''}>${i+1} · ${esc(corto(d))}${c?' · '+esc(c):''}</option>`}).join('')}</select></label><div class="iavv" data-iavv="${esc(x.id)}">${avvisoApertura(x,g0)}</div><button class="btn pri" data-propidea="${esc(x.id)}">Proponi nel programma</button>${desDi(x.id)?'<span class="muted">Già nei desideri</span>':`<button class="btn" data-desidea="${esc(x.id)}">Salva nei desideri</button>`}`:''}</div>
  <h3 class="isec">Commenti</h3><div class="coml" data-id="${esc(x.id)}">${listaCom(x.id)}</div>${formCom(x.id)}
  <div class="acts"><button class="btn" data-chiudi>Chiudi</button></div></div>`;riempiFoto(s)}
 async function proponiIdea(x,data){if(!IO){accesso();return}if(!FB){toast('Proposte non collegate: riprova tra poco');return}
@@ -287,7 +295,7 @@ function ottimizza(i){const T=tappe(i),lib=T.filter(e=>e.lat!=null&&!FISSO(e));i
 
 /* ---------- liste condivise ---------- */
 let PT=store.get('bij:ptab','tabellone');
-const LISTE=[['tabellone','Tabellone'],['idee','Suggerimenti'],['desideri','Desideri'],['prenotare','Biglietti'],['prima','Prima di partire'],['valigia','Valigia']];
+const LISTE=[['tabellone','Tabellone'],['idee','Suggerimenti'],['posti','Posti segnalati'],['desideri','Desideri'],['prenotare','Biglietti'],['prima','Prima di partire'],['valigia','Valigia']];
 const voci=l=>Object.entries(LST).filter(([k,v])=>v.lista===l).map(([k,v])=>({...v,k})).sort((a,b)=>(a.fatto?1:0)-(b.fatto?1:0)||(a.t-b.t));
 const chiSel=(k,chi)=>`<select class="chi-sel" data-chi="${esc(k)}" aria-label="Chi se ne occupa"><option value="">Chi?</option>${V.viaggio.viaggiatori.map(n=>`<option ${n===chi?'selected':''}>${esc(n)}</option>`).join('')}</select>`;
 function rigaCheck({k,testo,nota,link,fatto,chi,autore,man,extra=''}){return`<li class="lv ${fatto?'ok':''}"><label class="lchk"><input type="checkbox" data-${man?'lfatto':'sfatto'}="${esc(k)}" ${fatto?'checked':''}><span><b>${esc(testo)}</b>${nota?`<small>${esc(nota)}</small>`:''}</span></label>
@@ -326,6 +334,25 @@ function vBiglietti(){const B=biglietti(),M=voci('prenotare'),solo=store.get('bi
  <h3 class="sec">Aggiunti a mano</h3><ul class="lvlist">${M.map(v=>rigaCheck({...v,man:true})).join('')}</ul>${formLista('prenotare','Altra cosa da prenotare')}
  ${F.length?`<details class="tolte" open><summary>${F.length} già prenotati o pagati</summary><ul class="lvlist">${F.map(rigaBiglietto).join('')}</ul></details>`:''}
  ${N.length?`<details class="tolte"><summary>${N.length} segnati "non serve"</summary><ul class="lvlist">${N.map(rigaBiglietto).join('')}</ul></details>`:''}`}
+/* posti segnalati: ristoranti e locali senza giorno; l'app dice quando ci stanno bene */
+function giorniVicini(v){if(v.lat==null)return[];return V.giorni.map((g,i)=>{if(g.zona==='Roma')return null;const T=tappe(i).filter(e=>e.lat!=null);if(!T.length)return null;
+ const d=Math.min(...T.map(e=>km(v.lat,v.lng,e.lat,e.lng)));return{i,g,d}}).filter(x=>x&&x.d<=2.5).sort((a,b)=>a.d-b.d)}
+const distTxt=d=>d<1?Math.round(d*10)*100+' m':d.toFixed(1).replace('.',',')+' km';
+function vPosti(){const L=voci('posti');
+ return`<p class="lead">Ristoranti e locali consigliati da amici, video o recensioni, senza ancora un giorno. Incollate il link e due righe: l'app trova il posto e vi dice in quali giornate siete lì vicino. Da qui si propone con un tocco.</p>
+ ${IO?`<form class="pform" data-pform><input name="testo" maxlength="160" placeholder="Nome del posto (es. Uobei Shibuya)" required><input name="dove" maxlength="80" placeholder="Zona o città (es. Shibuya, Tokyo)"><input name="link" type="url" placeholder="Link Google Maps, Instagram o TikTok (facoltativo)"><textarea name="nota" maxlength="600" rows="2" placeholder="Perché: cosa si mangia, quanto si spende, chi lo consiglia"></textarea><button class="btn pri" type="submit">Segnala il posto</button></form>`:'<button class="btn" data-login>Scegli il tuo nome per segnalare un posto</button>'}
+ <ul class="lvlist">${L.map(v=>{const G=giorniVicini(v),best=G[0]?G[0].g.data:V.giorni[1].data;
+  return`<li class="lv posto ${v.fatto?'ok':''}"><div class="bgh"><b>${esc(v.testo)}</b><span class="lby">${avatar(v.autore,18)} ${esc(v.autore)}</span></div>${v.nota?`<small>${esc(v.nota)}</small>`:''}
+  ${v.lat==null?`<small class="neg">Posizione non trovata: <button class="lnk" data-pfix="${esc(v.k)}">cerca con un altro nome</button></small>`:G.length?`<div class="igg">${G.slice(0,4).map(x=>`<a href="#g${x.i+1}" style="--c:${col(x.i)}">G${x.i+1} · ${esc(corto(x.g.data))} · ${distTxt(x.d)}</a>`).join('')}</div>`:'<small>Lontano dalle tappe in programma: va messo in una giornata apposta.</small>'}
+  ${v.fatto?'<small>✓ Già proposto</small>':''}
+  <div class="lrow">${v.link?`<a class="btn sm" href="${esc(v.link)}" target="_blank" rel="noopener">Apri il link</a>`:''}${v.lat!=null?`<a class="btn sm" href="https://www.google.com/maps/search/?api=1&query=${v.lat},${v.lng}" target="_blank" rel="noopener">Mappa</a>`:''}
+  ${IO?`<select data-pgiorno="${esc(v.k)}" aria-label="Giorno">${V.giorni.map((g,i)=>g.zona==='Roma'?'':`<option value="${g.data}" ${g.data===best?'selected':''}>G${i+1} · ${esc(corto(g.data))}</option>`).join('')}</select><select data-pfascia="${esc(v.k)}" aria-label="Momento">${FASCE.map(([k,n])=>`<option value="${k}" ${k==='sera'?'selected':''}>${n}</option>`).join('')}</select><button class="btn sm pri" data-pprop="${esc(v.k)}">Proponi</button>`:''}
+  ${FB&&v.uid===FB.uid?`<button class="lnk" data-ldel="${esc(v.k)}">Togli</button>`:''}</div></li>`}).join('')||'<li class="muted">Ancora nessun posto: segnalate il primo.</li>'}</ul>`}
+function coordDaLink(l){const m=(l||'').match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||(l||'').match(/[?&](?:q|query|ll)=(-?\d+\.\d+),(-?\d+\.\d+)/);return m?{lat:+m[1],lng:+m[2]}:null}
+async function trovaPosto(q){try{const r=await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=5&lat=35.68&lon=139.76`);const j=await r.json();const f=j.features.find(f=>(f.properties.country||'').match(/Japan|日本|Giappone/))||null;return f?{lat:f.geometry.coordinates[1],lng:f.geometry.coordinates[0]}:null}catch(e){return null}}
+async function proponiPosto(k,data,fascia){const v=LST[k];if(!v||!IO||!FB)return;const o={autore:IO,uid:FB.uid,t:Date.now(),titolo:v.testo.slice(0,120),luogo:v.testo.slice(0,120),nota:((v.nota||'')+` (segnalato da ${v.autore})`).slice(0,600),fascia};
+ if(v.link)o.link=v.link;if(v.lat!=null){o.lat=v.lat;o.lng=v.lng}
+ try{await FB.Db.set(FB.Db.push(FB.ref('proposte/'+data)),o);await salva(`liste/${k}/fatto`,true);toast('Proposta pubblicata per il '+corto(data))}catch(err){toast('Non salvata: '+(err.code||err))}}
 let IF=store.get('bij:if',{cat:'',g:'',n:24});
 function vCatalogo(){const L=IDEE.filter(x=>(!IF.cat||x.cat===IF.cat)&&(IF.g===''||x.giorni.includes(V.giorni[+IF.g]?.data))).sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0));
  const cats=[...new Set(IDEE.map(x=>x.cat))];
@@ -335,6 +362,7 @@ function vCatalogo(){const L=IDEE.filter(x=>(!IF.cat||x.cat===IF.cat)&&(IF.g==='
  <p class="muted">${L.length} ${L.length===1?'suggerimento':'suggerimenti'}</p><div class="igrid">${L.slice(0,IF.n).map(ideaMini).join('')}</div>${L.length>IF.n?`<button class="btn big" data-ifpiu>Mostra altri ${Math.min(24,L.length-IF.n)}</button>`:''}`}
 function vListe(){const tabs=`<div class="ptabs" role="tablist">${LISTE.map(([k,n])=>`<button role="tab" aria-selected="${PT===k}" data-ptab="${k}">${n}${k==='desideri'&&voci('desideri').length?` <small>${voci('desideri').length}</small>`:''}${k==='prenotare'?(n=>n?` <small class="bgn">${n}</small>`:'')(biglietti().filter(o=>o.stato==='fare'&&o.fonte==='programma').length):''}</button>`).join('')}</div>`;
  if(PT==='idee')return tabs+vCatalogo();
+ if(PT==='posti')return tabs+vPosti();
  if(PT==='desideri'){const L=voci('desideri');return tabs+`<p class="lead">Cose da fare "prima o poi", senza ancora un giorno. Votatele e, quando c'è posto, mettetele in una giornata.</p>${formLista('desideri','Es. vedere una partita di baseball, provare il fugu…')}
   <ul class="lvlist">${L.length?L.map(v=>{const x=v.idea&&IDX[v.idea];return`<li class="lv des ${v.fatto?'ok':''}" style="--p:${PCOL[v.autore]||'#666'}">${x?ph(x.wiki,300,'class="lph"','',3,x.titolo):''}<div class="ldes"><b>${esc(v.testo)}</b>${v.nota?`<small>${esc(v.nota)}</small>`:''}<span class="lby">${avatar(v.autore,18)} ${esc(v.autore)}${v.fatto?' · già messo in un giorno':''}</span>${rbar(v.k)}
    <div class="acts">${x?`<button class="btn sm" data-idea="${esc(x.id)}">Scheda</button>`:''}${v.link?`<a class="btn sm" href="${esc(v.link)}" target="_blank" rel="noopener">Link</a>`:''}<button class="btn sm pri" data-lgiorno="${esc(v.k)}">Mettilo in un giorno</button><button class="lnk" data-ldel="${esc(v.k)}">Togli</button></div></div></li>`}).join(''):'<li class="muted">Ancora vuota. Dalle schede dei suggerimenti c\'è il tasto «Salva nei desideri».</li>'}</ul>`}
@@ -485,7 +513,7 @@ $('#sheet').addEventListener('submit',async e=>{const cf=e.target.closest('[data
   const b=cf.querySelector('button');b.disabled=true;try{await FB.Db.set(FB.Db.push(FB.ref('commenti/'+id)),{autore:IO,uid:FB.uid,t:Date.now(),testo:tx.slice(0,500)});cf.testo.value=''}catch(err){toast('Commento non salvato: '+(err.code||err))}b.disabled=false;return}});
 $('#sheet').addEventListener('submit',async e=>{const sf=e.target.closest('#sform');if(!sf)return;e.preventDefault();await salvaSpesa(sf)});
 $('#sheet').addEventListener('input',e=>{if(e.target.closest('#sform'))anteprima()});
-$('#sheet').addEventListener('change',e=>{if(e.target.closest('#sform'))anteprima()});
+$('#sheet').addEventListener('change',e=>{if(e.target.matches('[data-ideagiorno]')){const b=$('[data-iavv]');if(b)b.innerHTML=avvisoApertura(IDX[b.dataset.iavv],e.target.value)}if(e.target.closest('#sform'))anteprima()});
 $('#sheet').addEventListener('click',async e=>{const pb=e.target.closest('[data-pren]');if(pb){const p=JSON.parse(pb.dataset.pren),f=$('#sform');f.titolo.value=p.t;f.importo.value=p.c;f.valuta.value=p.v;f.data.value=p.d;f.cat.value=p.cat;anteprima();return}
  if(e.target.closest('[data-spdel]')){const k=$('#sform').dataset.k;if(k&&confirm('Eliminare questa spesa per tutti?')){try{await salva('spese/'+k,null);$('#sheet').classList.remove('on');toast('Spesa eliminata')}catch(err){toast('Non eliminata')}}}});
 $('#sheet').addEventListener('submit',async e=>{const mf=e.target.closest('#mform');if(!mf)return;e.preventDefault();const o={ora:mf.ora.value};const k=mf.dataset.rid,e0=PIANO.concat(grezze()).find(x=>rid(x)===k);
@@ -772,7 +800,7 @@ function initTline(){const box=$('#mpanel'),r=box.querySelector('input');panelSt
 /* ---------- suggerimenti sulla mappa ---------- */
 const EMO={visita:'⛩️',esperienza:'✨',cibo:'🍜',shopping:'🛍️',evento:'🎆',notte:'🌙',gita:'🚆',partita:'⚽'};
 let IMK=[];
-function ideeMappa(){if(OPZ.idee===false)return[];const d=filter!=null&&!OPZ.tutto?V.giorni[filter].data:null;return IDEE.filter(x=>x.lat!=null&&(!d||x.giorni.includes(d)))}
+function ideeMappa(){if(OPZ.idee===false)return[];const d=filter!=null&&!OPZ.tutto?V.giorni[filter].data:null;return IDEE.filter(x=>x.lat!=null&&(!d||x.giorni.includes(d)&&!chiusoIl(x,d)))}
 function disegnaIdee(){if(!map)return;const L=ideeMappa(),z=map.getZoom(),es=MODO==='esplora',grp=es&&z<14.5,chiave=L.map(x=>x.id).join()+'|'+MODO+'|'+(grp?Math.floor(z*2):'n');
  if(chiave===disegnaIdee.k){IMK.forEach(m=>{const p=m.getPopup&&m.getPopup(),el=p&&p.getElement(),rb=el&&el.querySelector('.rbar');if(rb)rb.outerHTML=rbar(m._id)});return}
  disegnaIdee.k=chiave;IMK.forEach(m=>m.remove());IMK=[];$('#mapwrap').classList.toggle('zlo',z<15);
@@ -875,6 +903,8 @@ document.addEventListener('click',async e=>{const t=e.target;
  const bs=t.closest('[data-bst]');if(bs){if(!IO){accesso();return}const j=bs.dataset.bst.lastIndexOf('|'),k=bs.dataset.bst.slice(0,j),st=bs.dataset.bst.slice(j+1);
   try{await salva('spunte/'+k,{...(SPU[k]||{}),stato:st,fatto:st==='fatto'||st==='pagato',chi:(SPU[k]||{}).chi||(st!=='no'?IO:''),autore:IO,t:Date.now()});
    if(st==='pagato'&&!(SPU[k]||{}).spesa){const o=biglietti().find(x=>x.k===k);formSpesa(null);setTimeout(()=>{const f=$('#sform');if(!f||!o)return;f.titolo.value=o.testo;if(o.data)f.data.value=o.data;if(f.cat)f.cat.value=/cena|pranzo|ristor/i.test(o.testo)?'cibo':'attivita';anteprima();toast('Inserite l\'importo pagato e chi ha pagato')},60)}}catch(err){toast('Non salvato: '+(err.code||err))}return}
+ const ppr=t.closest('[data-pprop]');if(ppr){const k=ppr.dataset.pprop,d=$(`[data-pgiorno="${k}"]`).value,fa=$(`[data-pfascia="${k}"]`).value;proponiPosto(k,d,fa);return}
+ const pf=t.closest('[data-pfix]');if(pf){const k=pf.dataset.pfix,q=prompt('Nome del posto e zona, come su Google Maps',LST[k]?.testo||'');if(!q)return;const c=await trovaPosto(q);if(!c){toast('Non trovato: provate con la zona, es. "Uobei Shibuya"');return}try{await salva(`liste/${k}/lat`,c.lat);await salva(`liste/${k}/lng`,c.lng);toast('Posizione trovata')}catch(err){toast('Non salvato')}return}
  const ic=t.closest('[data-ifcat]');if(ic){IF.cat=ic.dataset.ifcat;IF.n=24;store.set('bij:if',IF);renderView();return}
  if(t.closest('[data-ifpiu]')){IF.n+=24;store.set('bij:if',IF);const y=$('#side').scrollTop;renderView();$('#side').scrollTop=y;return}
  const pt=t.closest('[data-ptab]');if(pt){PT=pt.dataset.ptab;store.set('bij:ptab',PT);if(location.hash!=='#piano'){if(pt.tagName==='A')return;location.hash='#piano'}else{e.preventDefault();renderView()}return}
@@ -892,7 +922,7 @@ document.addEventListener('click',async e=>{const t=e.target;
  const lg=t.closest('[data-lgiorno]');if(lg){const v=LST[lg.dataset.lgiorno];if(!v)return;if(v.idea&&IDX[v.idea]){scheda(IDX[v.idea]);return}apriForm(null,'mattina',v.lat!=null?{lat:v.lat,lng:v.lng}:null);setTimeout(()=>{const f=$('#pform');if(f){f.titolo&&(f.titolo.value=v.testo);if(f.nota&&v.nota)f.nota.value=v.nota;if(f.link&&v.link)f.link.value=v.link;f.dataset.lst=lg.dataset.lgiorno}},50);return}
  const cm=t.closest('[data-cm]');if(cm){const id=cm.dataset.cm;if(IDX[id])scheda(IDX[id]);else commenti(id);return}
  const ia=t.closest('[data-idea]');if(ia){const x=IDX[ia.dataset.idea];if(x)scheda(x);return}
- const pi=t.closest('[data-propidea]');if(pi){const x=IDX[pi.dataset.propidea],d=$('[data-ideagiorno]')?.value||x.giorni[0];if(x)proponiIdea(x,d);return}
+ const pi=t.closest('[data-propidea]');if(pi){const x=IDX[pi.dataset.propidea],d=$('[data-ideagiorno]')?.value||x.giorni[0];if(x&&chiusoIl(x,d)){toast(`${corto(d)}: ${chiusoIl(x,d)}. Scegliete un altro giorno.`);return}if(x)proponiIdea(x,d);return}
  const im=t.closest('[data-ideamap]');if(im){mostraIdea(im.dataset.ideamap);return}
  const dc=t.closest('[data-delcom]');if(dc){const[id,k]=dc.dataset.delcom.split('|');try{await salva(`commenti/${id}/${k}`,null)}catch(err){toast('Non eliminato')}return}
  if(t.closest('[data-login]')){$('#sheet').classList.remove('on');CMID=null;accesso();return}
@@ -907,6 +937,11 @@ document.addEventListener('click',async e=>{const t=e.target;
  const c=t.closest('#view .card[data-sel]');if(c&&!t.closest('a,button')&&innerWidth>860){seleziona(c.dataset.sel);setTimeout(()=>apriPin(c.dataset.sel),750)}
  if(t.closest('.maplibregl-popup a[href^="#g"]'))$$('.maplibregl-popup').forEach(p=>p.remove())});
 $('#view').addEventListener('submit',async e=>{const f=e.target;
+ if(f.dataset.pform!=null){e.preventDefault();if(!IO||!FB)return;const b=f.querySelector('button');b.disabled=true;const testo=f.testo.value.trim().slice(0,160),link=f.link.value.trim();
+  if(link&&!/^https:\/\//.test(link)){toast('Il link deve iniziare con https://');b.disabled=false;return}
+  const o={lista:'posti',testo,autore:IO,uid:FB.uid,t:Date.now(),fatto:false};if(f.nota.value.trim())o.nota=f.nota.value.trim().slice(0,600);if(link)o.link=link.slice(0,600);
+  const c=coordDaLink(link)||await trovaPosto(testo+' '+(f.dove.value.trim()||'Japan'))||await trovaPosto(testo);if(c){o.lat=c.lat;o.lng=c.lng}
+  try{await FB.Db.set(FB.Db.push(FB.ref('liste')),o);toast(c?'Posto segnalato':'Segnalato, ma la posizione non si trova: provate un altro nome')}catch(err){toast('Non salvato: '+(err.code||err))}b.disabled=false;return}
  if(f.dataset.lform){e.preventDefault();if(!IO||!FB)return;const o={lista:f.dataset.lform,testo:f.testo.value.trim().slice(0,160),autore:IO,uid:FB.uid,t:Date.now(),fatto:false};const l=f.link.value.trim();if(l){if(!/^https:\/\//.test(l)){toast('Il link deve iniziare con https://');return}o.link=l.slice(0,600)}
   try{await FB.Db.set(FB.Db.push(FB.ref('liste')),o);f.reset()}catch(err){toast('Non salvato: '+(err.code||err))}return}
  if(f.dataset.dform){e.preventDefault();if(!IO||!FB)return;const o={autore:IO,uid:FB.uid,t:Date.now(),data:f.dataset.dform,testo:f.testo.value.trim().slice(0,1000)};const ft=f.foto.value.trim();if(ft){if(!/^https:\/\//.test(ft)){toast('Il link della foto deve iniziare con https://');return}o.foto=ft.slice(0,600)}if(f.rid.value)o.rid=f.rid.value;
