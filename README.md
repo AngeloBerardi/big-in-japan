@@ -15,3 +15,5 @@ Mappe © OpenStreetMap, CARTO, Esri, OpenRailwayMap. Foto da Wikipedia e Wikimed
 https://github.com/AngeloBerardi/big-in-japan/releases/download/android/big-in-japan.apk
 
 La chiave di firma non è nel repository: il workflow usa i segreti `ANDROID_KEYSTORE` (file .jks in base64) e `ANDROID_KEYSTORE_PASSWORD` se ci sono; altrimenti genera una chiave e la tiene nella cache privata delle Actions. Se la cache scade (7 giorni senza compilazioni) la chiave cambia e l'app va reinstallata: per evitarlo, mettete una chiave nei segreti.
+
+Design rifinito con il metodo [unslop](https://github.com/heydamir/unslop) di Damir Sokolovsky (CC BY 4.0).
