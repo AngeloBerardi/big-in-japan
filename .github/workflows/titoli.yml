@@ -1,0 +1,11 @@
+name: Prova titoli
+on:
+  workflow_dispatch:
+    inputs:
+      t: { required: true }
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: IFS='|' read -ra A <<< "${{ inputs.t }}"; node tools/prova-titoli.mjs "${A[@]}"
