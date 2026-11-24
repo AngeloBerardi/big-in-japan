@@ -216,9 +216,10 @@ const ilink=x=>({maps:`https://www.google.com/maps/search/?api=1&query=${enc(x.q
  gyg:`https://www.getyourguide.com/s/?q=${enc(x.q)}`,via:`https://www.viator.com/searchResults/all?text=${enc(x.q)}`,ta:`https://www.tripadvisor.com/Search?q=${enc(x.q)}`});
 const badge=x=>`<span class="ibadge" style="--k:${CATC[x.cat]||'#555'}">${esc(CAT[x.cat]||x.cat)}${x.pasto?' · '+esc(PASTO[x.pasto]||x.pasto):''}</span>${x.top?'<span class="itop">Consigliata</span>':''}${x.prenota?'<span class="ipren">Da prenotare</span>':''}`;
 const desDi=id=>Object.entries(LST).find(([k,v])=>v.lista==='desideri'&&v.idea===id);
-function ideaMini(x){return`<article class="icard" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,420,'','',3,x.titolo)}<div class="ibd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="iz">${esc(x.zona)}</p>${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}
+const giorniIdea=x=>{const G=V.giorni.map((g,i)=>[g,i]).filter(([g])=>x.giorni.includes(g.data));return G.length?`<p class="igg">${G.length>4?`${G.length} giorni a ${esc(V.giorni[G[0][1]].citta||'')}: `:''}${G.slice(0,4).map(([g,i])=>`<a href="#g${i+1}" style="--c:${col(i)}">G${i+1} · ${esc(corto(g.data))}</a>`).join('')}${G.length>4?'…':''}</p>`:''};
+function ideaMini(x){return`<article class="icard" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,420,'','',3,x.titolo)}<div class="ibd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="iz">${esc(x.zona)}</p>${giorniIdea(x)}${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}
  <p class="imeta"><span>${esc(x.prezzo)}</span>${x.durata?`<span>${esc(x.durata)}</span>`:''}</p><p class="isin">${esc(x.sintesi)}</p>${rbar(x.id)}<div class="acts"><button class="btn pri" data-idea="${esc(x.id)}">Apri la scheda</button>${x.lat!=null?`<button class="btn" data-ideamap="${esc(x.id)}">Mappa</button>`:''}</div></div></article>`}
-function rigaIdee(lista,lab){return lista.length?`<div class="alt"><div class="alab">${lab} <small>${lista.length}</small></div><div class="ascroll">${lista.map(ideaMini).join('')}</div></div>`:''}
+function rigaIdee(lista,lab,extra=''){return lista.length?`<div class="alt"><div class="alab">${lab} <small>${lista.length}</small>${extra}</div><div class="ascroll">${lista.map(ideaMini).join('')}</div></div>`:''}
 function scheda(x,dataSel){CMID=x.id;const s=$('#sheet');s.classList.add('on');const L=ilink(x),g0=dataSel||(filter!=null&&x.giorni.includes(V.giorni[filter].data)?V.giorni[filter].data:x.giorni[0]);
  const gia=x.giorni.map(d=>Object.values(PROP[d]||{}).find(p=>p.idea===x.id)&&d).filter(Boolean);
  const v=x.lat!=null?vicina(x.lat,x.lng):null;
@@ -284,7 +285,7 @@ function ottimizza(i){const T=tappe(i),lib=T.filter(e=>e.lat!=null&&!FISSO(e));i
 
 /* ---------- liste condivise ---------- */
 let PT=store.get('bij:ptab','tabellone');
-const LISTE=[['tabellone','Tabellone'],['desideri','Desideri'],['prenotare','Da prenotare'],['prima','Prima di partire'],['valigia','Valigia']];
+const LISTE=[['tabellone','Tabellone'],['idee','Suggerimenti'],['desideri','Desideri'],['prenotare','Da prenotare'],['prima','Prima di partire'],['valigia','Valigia']];
 const voci=l=>Object.entries(LST).filter(([k,v])=>v.lista===l).map(([k,v])=>({...v,k})).sort((a,b)=>(a.fatto?1:0)-(b.fatto?1:0)||(a.t-b.t));
 const chiSel=(k,chi)=>`<select class="chi-sel" data-chi="${esc(k)}" aria-label="Chi se ne occupa"><option value="">Chi?</option>${V.viaggio.viaggiatori.map(n=>`<option ${n===chi?'selected':''}>${esc(n)}</option>`).join('')}</select>`;
 function rigaCheck({k,testo,nota,link,fatto,chi,autore,man,extra=''}){return`<li class="lv ${fatto?'ok':''}"><label class="lchk"><input type="checkbox" data-${man?'lfatto':'sfatto'}="${esc(k)}" ${fatto?'checked':''}><span><b>${esc(testo)}</b>${nota?`<small>${esc(nota)}</small>`:''}</span></label>
@@ -295,7 +296,15 @@ function daPrenotare(){const out=[],visti=new Set();
  V.giorni.forEach((g,i)=>Object.entries(PROP[g.data]||{}).forEach(([id,p])=>{const x=p.idea&&IDX[p.idea];if(x&&x.prenota&&!visti.has(x.id+g.data)){visti.add(x.id+g.data);out.push({k:'pp-'+id,testo:`${x.titolo} · ${corto(g.data)}`,nota:(p.ok?'Nel programma':'Proposta da '+p.autore)+'. '+(x.consiglio||''),link:x.prenota})}}));
  Object.entries(LST).filter(([k,v])=>v.lista==='desideri'&&v.idea&&IDX[v.idea]?.prenota).forEach(([k,v])=>{const x=IDX[v.idea];out.push({k:'pd-'+k,testo:x.titolo,nota:'Nei desideri di '+v.autore,link:x.prenota})});
  return out.map(o=>({...o,fatto:!!SPU[o.k]?.fatto,chi:SPU[o.k]?.chi||''}))}
+let IF=store.get('bij:if',{cat:'',g:'',n:24});
+function vCatalogo(){const L=IDEE.filter(x=>(!IF.cat||x.cat===IF.cat)&&(IF.g===''||x.giorni.includes(V.giorni[+IF.g]?.data))).sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0));
+ const cats=[...new Set(IDEE.map(x=>x.cat))];
+ return`<p class="lead">Tutti i ${IDEE.length} suggerimenti presi da guide, recensioni e tour, ognuno con la sua scheda. Sotto ogni scheda trovate i giorni in cui ci sta bene: toccate il giorno per vederlo nel programma, o aprite la scheda per proporlo al gruppo.</p>
+ <div class="ifilt"><select data-if="g" aria-label="Giorno"><option value="">Tutti i giorni</option>${V.giorni.map((g,i)=>`<option value="${i}" ${String(IF.g)===String(i)?'selected':''}>G${i+1} · ${esc(corto(g.data))} · ${esc(g.citta||'')}</option>`).join('')}</select></div>
+ <div class="cats" role="group" aria-label="Tipo">${[['','Tutti'],...cats.map(c=>[c,CAT[c]||c])].map(([k,n])=>`<button class="chipc" data-ifcat="${k}" aria-pressed="${IF.cat===k}">${esc(n)}</button>`).join('')}</div>
+ <p class="muted">${L.length} ${L.length===1?'suggerimento':'suggerimenti'}</p><div class="igrid">${L.slice(0,IF.n).map(ideaMini).join('')}</div>${L.length>IF.n?`<button class="btn big" data-ifpiu>Mostra altri ${Math.min(24,L.length-IF.n)}</button>`:''}`}
 function vListe(){const tabs=`<div class="ptabs" role="tablist">${LISTE.map(([k,n])=>`<button role="tab" aria-selected="${PT===k}" data-ptab="${k}">${n}${k==='desideri'&&voci('desideri').length?` <small>${voci('desideri').length}</small>`:''}</button>`).join('')}</div>`;
+ if(PT==='idee')return tabs+vCatalogo();
  if(PT==='desideri'){const L=voci('desideri');return tabs+`<p class="lead">Cose da fare "prima o poi", senza ancora un giorno. Votatele e, quando c'è posto, mettetele in una giornata.</p>${formLista('desideri','Es. vedere una partita di baseball, provare il fugu…')}
   <ul class="lvlist">${L.length?L.map(v=>{const x=v.idea&&IDX[v.idea];return`<li class="lv des ${v.fatto?'ok':''}" style="--p:${PCOL[v.autore]||'#666'}">${x?ph(x.wiki,300,'class="lph"','',3,x.titolo):''}<div class="ldes"><b>${esc(v.testo)}</b>${v.nota?`<small>${esc(v.nota)}</small>`:''}<span class="lby">${avatar(v.autore,18)} ${esc(v.autore)}${v.fatto?' · già messo in un giorno':''}</span>${rbar(v.k)}
    <div class="acts">${x?`<button class="btn sm" data-idea="${esc(x.id)}">Scheda</button>`:''}${v.link?`<a class="btn sm" href="${esc(v.link)}" target="_blank" rel="noopener">Link</a>`:''}<button class="btn sm pri" data-lgiorno="${esc(v.k)}">Mettilo in un giorno</button><button class="lnk" data-ldel="${esc(v.k)}">Togli</button></div></div></li>`}).join(''):'<li class="muted">Ancora vuota. Dalle schede dei suggerimenti c\'è il tasto «Salva nei desideri».</li>'}</ul>`}
@@ -353,7 +362,7 @@ function formSpesa(k){if(!IO){accesso();return}CMID=null;const s0=k&&SPE[k]?{...
  const pren=V.giorni.flatMap(g=>g.eventi.filter(e=>e.fonte==='prenotato'&&e.costo).map(e=>({t:e.titolo,c:e.costo,v:e.valuta||'JPY',d:g.data,cat:e.tipo==='hotel'?'alloggio':['treno','volo','bus'].includes(e.tipo)?'trasporti':'attivita'})));
  const sh=$('#sheet');sh.classList.add('on');
  sh.querySelector('.sheet').innerHTML=`<form id="sform" data-k="${esc(k||'')}"><h2>${s0?'Modifica la spesa':'Nuova spesa'}</h2>
- ${!s0&&pren.length?`<div class="pren"><small>Dalle prenotazioni:</small>${pren.map((p,i)=>`<button type="button" class="chipb" data-pren='${esc(JSON.stringify(p))}'>${esc(p.t.replace(/^Check-in /,''))}</button>`).join('')}</div>`:''}
+
  <label>Cosa<input name="titolo" maxlength="120" required value="${esc(s.titolo)}" placeholder="Es. cena a Pontocho"></label>
  <div class="row2b"><label>Importo<input name="importo" type="number" inputmode="decimal" min="0.01" step="0.01" required value="${esc(s.importo)}"></label>
  <label>Valuta<span class="seg"><label><input type="radio" name="valuta" value="JPY" ${s.valuta==='JPY'?'checked':''}><span>¥</span></label><label><input type="radio" name="valuta" value="EUR" ${s.valuta==='EUR'?'checked':''}><span>€</span></label></span></label></div>
@@ -388,10 +397,11 @@ function csvSpese(){const P=V.viaggio.viaggiatori,cb=cambioOra(),righe=[['Data',
 function vHome(){const v=V.viaggio,s=stato(),n=diff(v.inizio,v.fine)+1,tutte=V.giorni.flatMap(g=>propDi(g.data)),aperte=tutte.filter(p=>!p.ok);
  const recenti=tutte.slice().sort((a,b)=>b.t-a.t).slice(0,4);
  return`<div class="hero">${ph(v.hero,1200,'data-credit style="position:absolute;inset:0;height:auto"','hero',3,'Monte Fuji')}<div class="sh"></div><div class="tx"><h1>${esc(v.titolo)}</h1><p>${esc(v.sottotitolo)}</p><span class="pill">${esc(s.txt)}</span></div></div>
- <div class="pad"><div class="stats"><div><b>${n}</b><span>giorni, ${corto(v.inizio)} – ${corto(v.fine)}</span></div><div><b>${PIANO.length}</b><span>tappe in programma</span></div><div><b>${aperte.length}</b><span>proposte da votare</span></div><div><b>${IDEE.length}</b><span>suggerimenti con schede</span></div></div>
+ <div class="pad"><div class="stats"><a href="#g1"><b>${n}</b><span>giorni, ${corto(v.inizio)} – ${corto(v.fine)}</span></a><a href="#piano" data-ptab="tabellone"><b>${PIANO.length}</b><span>tappe in programma</span></a><a href="#piano" data-ptab="tabellone"><b>${aperte.length}</b><span>proposte da votare</span></a><a href="#piano" data-ptab="idee"><b>${IDEE.length}</b><span>suggerimenti con schede</span></a></div>
  ${apkBox()}<div class="acts" style="margin-bottom:6px">${s.fase==='durante'&&s.i>=0?`<a class="btn pri" href="#g${s.i+1}">Vai a oggi</a>`:''}<a class="btn pri" href="#piano">Pianifica insieme</a><button class="btn" data-nuova="">+ Proponi qualcosa</button></div>
  ${recenti.length?`<h2 class="sec">Ultime proposte</h2>${recenti.map(p=>`<a class="mini" href="#g${p.d+1}" style="--p:${PCOL[p.autore]}">${avatar(p.autore,28)}<span><b>${esc(p.titolo)}</b><small>${esc(p.autore)} · giorno ${p.d+1}, ${esc(corto(p.data))}${p.ok?' · nel programma':''}</small></span><em>${p.nv} ♥</em></a>`).join('')}`:''}
- ${(()=>{const top=IDEE.slice().sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0)).slice(0,8);return rigaIdee(top,IDEE.some(x=>reaz(x.id).su.length)?'I suggerimenti più votati':'Da non perdere, secondo guide e recensioni')})()}
+ ${(()=>{const oggi=s.fase==='durante'&&s.i>=0?V.giorni[s.i].data:null,base=oggi?IDEE.filter(x=>x.giorni.includes(oggi)):IDEE,top=base.slice().sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0)).slice(0,8);
+  return`<h2 class="sec">Suggerimenti</h2><p class="muted" style="margin-top:-4px">${oggi?'Le 8 idee migliori per oggi.':'Le 8 migliori tra le '+IDEE.length+' raccolte da guide e recensioni; sotto ognuna, i giorni in cui ci sta.'} <a href="#piano" data-ptab="idee">Vedi tutti i ${IDEE.length} →</a></p>`+rigaIdee(top,oggi?'Per oggi':IDEE.some(x=>reaz(x.id).su.length)?'I più votati':'I più consigliati')})()}
  <h2 class="sec">Giorno per giorno</h2><div class="days">${V.giorni.map((g,i)=>{const np=propDi(g.data).filter(p=>!p.ok).length;return`<a class="dc ${s.fase==='durante'&&s.i===i?'today':''}" href="#g${i+1}" style="--c:${col(i)}">${ph(g.cover,300,'',g.scena,i+1,g.titolo).replace('</div>',`<span class="n">${i+1}</span></div>`)}<div><small>${esc(fmt(g.data,{weekday:'short',day:'numeric',month:'short'}))} · ${esc(g.citta||'')}</small><strong>${esc(g.titolo)}</strong><em>${tappe(i).length} tappe${np?` · <b class="np">${np} da votare</b>`:''}</em></div></a>`}).join('')}</div>
  <p class="foot">Foto da Wikipedia e Wikimedia Commons. Mappe © OpenStreetMap, OpenFreeMap, OpenMapTiles, Esri, GSI Japan, OpenTopoMap, CyclOSM.</p></div>`}
 function vGiorno(i){const g=V.giorni[i],now=adesso(V.viaggio.fuso),live=now.data===g.data,T=tappe(i),P=propDi(g.data).filter(p=>!p.ok);let next=false;
@@ -571,6 +581,7 @@ function disegna(fit){if(!map)return;MK.forEach(m=>m.remove());MK=[];const giorn
  evs.forEach(e=>{const el=pinEl(e,giorno?e.n:e.d+1,(e.tipo==='hotel'?'hotel ':'')+(e.fonte==='gruppo'?'grp ':'')+(e.id===selId?'sel':''));
   const pop=new maplibregl.Popup({offset:30,maxWidth:'290px'}).setHTML(popHTML(e));pop.on('open',()=>{riempiFoto(pop.getElement());seleziona(e.id,false)});
   const m=new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat([e.lng,e.lat]).setPopup(pop).addTo(map);m._id=e.id;MK.push(m)});
+ if(giorno){const h=sequenza(filter)[0];if(h&&h.partenza){const el=pinEl({...h,partenza:true},'H','hotel');el.setAttribute('aria-label','Partenza: '+h.titolo);const m=new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat([h.lng,h.lat]).setPopup(new maplibregl.Popup({offset:30,maxWidth:'260px'}).setHTML(`<div class="bd"><small>Si parte da</small><b style="display:block">${esc(h.titolo)}</b></div>`)).addTo(map);m._id='h-'+h.id;MK.push(m)}}
  ps.forEach(p=>{const el=pinEl(p,p.nv||'?','prop');const pop=new maplibregl.Popup({offset:22,maxWidth:'300px'}).setHTML(`<div class="pop"><div class="bd">${propCard(p)}</div></div>`);
   const m=new maplibregl.Marker({element:el,anchor:'bottom'}).setLngLat([p.lng,p.lat]).setPopup(pop).addTo(map);m._id=p.id;MK.push(m)});
  rotta();disegnaIdee();carosello(evs,ps);tline();if(fit)inquadra(evs.concat(ps))}
@@ -591,7 +602,8 @@ const VAL=['https://valhalla1.openstreetmap.de/route'];
 let RT=store.get('bij:rt',{}),rtCoda=[],rtVia=false,rtT=null;
 function dec6(s){const c=[];let i=0,lat=0,lng=0;while(i<s.length){let b,sh=0,r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lat+=r&1?~(r>>1):r>>1;sh=0;r=0;do{b=s.charCodeAt(i++)-63;r|=(b&31)<<sh;sh+=5}while(b>=32);lng+=r&1?~(r>>1):r>>1;c.push([lng/1e6,lat/1e6])}return c}
 const rtKey=(a,b,m)=>m+':'+[a.lat,a.lng,b.lat,b.lng].map(x=>(+x).toFixed(4)).join(',');
-function vero(a,b,m){if(km(a.lat,a.lng,b.lat,b.lng)<.05)return null;const k=rtKey(a,b,m),v=RT[k];if(v){if(v==='x')return null;const[sh,t]=v.split('|');return{c:dec6(sh),min:Math.round(+t/60)}}
+function vero(a,b,m){if(km(a.lat,a.lng,b.lat,b.lng)<.05)return null;const k=rtKey(a,b,m),v=RT[k];if(v){if(v==='x')return null;const j=v.lastIndexOf('|'),c=dec6(v.slice(0,j)),d=km(a.lat,a.lng,b.lat,b.lng),lim=Math.max(3,d*2.5);
+  if(!c.length||c.some(p=>km(p[1],p[0],a.lat,a.lng)>lim&&km(p[1],p[0],b.lat,b.lng)>lim)){RT[k]='x';return null}return{c,min:Math.round(+v.slice(j+1)/60)}}
  if(!rtCoda.some(q=>q.k===k)&&rtCoda.length<40)rtCoda.push({k,a,b,m});rtVai();return null}
 async function rtVai(){if(rtVia||!navigator.onLine)return;rtVia=true;let nuovi=0;
  while(rtCoda.length){const q=rtCoda.shift();const body={locations:[{lat:q.a.lat,lon:q.a.lng},{lat:q.b.lat,lon:q.b.lng}],costing:q.m==='piedi'?'pedestrian':'auto',units:'kilometers'};
@@ -825,6 +837,8 @@ document.addEventListener('click',async e=>{const t=e.target;
  const sd=t.closest('[data-salda]');if(sd){if(!IO||!FB){accesso();return}const[da,a,e]=sd.dataset.salda.split('|');if(!confirm(`${da} ha dato ${eur(+e)} a ${a}?`))return;
   try{await FB.Db.set(FB.Db.push(FB.ref('spese')),{titolo:'Rimborso',importo:+e,valuta:'EUR',paga:da,per:{[a]:1},modo:'rimborso',data:adesso(V.viaggio.fuso).data,cat:'altro',cambio:cambioOra(),autore:IO,uid:FB.uid,t:Date.now()});toast('Rimborso registrato')}catch(err){toast('Non salvato: '+(err.code||err))}return}
  if(t.closest('[data-csv]')){csvSpese();return}
+ const ic=t.closest('[data-ifcat]');if(ic){IF.cat=ic.dataset.ifcat;IF.n=24;store.set('bij:if',IF);renderView();return}
+ if(t.closest('[data-ifpiu]')){IF.n+=24;store.set('bij:if',IF);const y=$('#side').scrollTop;renderView();$('#side').scrollTop=y;return}
  const pt=t.closest('[data-ptab]');if(pt){PT=pt.dataset.ptab;store.set('bij:ptab',PT);if(location.hash!=='#piano'){if(pt.tagName==='A')return;location.hash='#piano'}else{e.preventDefault();renderView()}return}
  const md=t.closest('[data-mod]');if(md){const x=PIANO.find(y=>y.id===md.dataset.mod);if(x)modifica(x);return}
  if(t.closest('[data-modreset]')){const f=$('#mform');$('#sheet').classList.remove('on');await salvaMod(f.dataset.rid,null);return}
@@ -860,6 +874,7 @@ $('#view').addEventListener('submit',async e=>{const f=e.target;
  if(f.dataset.dform){e.preventDefault();if(!IO||!FB)return;const o={autore:IO,uid:FB.uid,t:Date.now(),data:f.dataset.dform,testo:f.testo.value.trim().slice(0,1000)};const ft=f.foto.value.trim();if(ft){if(!/^https:\/\//.test(ft)){toast('Il link della foto deve iniziare con https://');return}o.foto=ft.slice(0,600)}if(f.rid.value)o.rid=f.rid.value;
   try{await FB.Db.set(FB.Db.push(FB.ref('diario')),o);f.reset();toast('Pubblicato nel diario')}catch(err){toast('Non pubblicato: '+(err.code||err))}return}});
 $('#view').addEventListener('change',async e=>{const i=e.target;
+ if(i.dataset.if==='g'){IF.g=i.value;IF.n=24;store.set('bij:if',IF);renderView();return}
  if(i.dataset.chi!=null){if(!IO){accesso();return}const[tp,k]=[i.dataset.chi.slice(0,1),i.dataset.chi.slice(2)];try{if(tp==='L')await salva(`liste/${k}/chi`,i.value);else await salva('spunte/'+k,{...(SPU[k]||{}),chi:i.value,autore:IO,t:Date.now()})}catch(err){toast('Non salvato')}return}
  if(i.dataset.lfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}try{await salva(`liste/${i.dataset.lfatto}/fatto`,i.checked)}catch(err){toast('Non salvato')}return}
  if(i.dataset.sfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}const k=i.dataset.sfatto;try{await salva('spunte/'+k,{...(SPU[k]||{}),fatto:i.checked,autore:IO,t:Date.now()})}catch(err){toast('Non salvato')}return}
