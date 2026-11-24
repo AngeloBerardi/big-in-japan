@@ -143,7 +143,7 @@
    "scena": "shibuya",
    "titolo": "Ikebukuro e Shibuya",
    "citta": "Ikebukuro · Shibuya",
-   "riassunto": "La mattina a Ikebukuro tra Sunshine City e le vie dei negozi, il pomeriggio a Shibuya con l'incrocio più famoso del mondo al tramonto.",
+   "riassunto": "La mattina a Ikebukuro tra Sunshine City e le vie dei negozi, il pomeriggio tra Harajuku e Shibuya: il tramonto è verso le 16:35, l'incrocio più famoso del mondo si vede poi con le luci della sera.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
     "Ultimo giorno sicuro per prelevare contanti: dal 29 dicembre molte banche e gli sportelli delle poste chiudono fino a inizio gennaio. Gli ATM dei konbini restano la riserva."
@@ -207,10 +207,10 @@
      "ora": "17:30",
      "tipo": "visita",
      "fonte": "piano",
-     "titolo": "Shibuya Crossing al tramonto",
+     "titolo": "Shibuya Crossing con le luci della sera",
      "luogo": "Shibuya Crossing",
      "wiki": "Shibuya Crossing",
-     "note": "Per vederlo dall'alto: le vetrate dei piani alti intorno all'incrocio o Shibuya Sky (biglietti online).",
+     "note": "A fine dicembre il sole tramonta verso le 16:35: alle 17:30 l'incrocio è già illuminato. Per vederlo dall'alto c'è Shibuya Sky (tra le alternative, da prenotare).",
      "lat": 35.659482,
      "lng": 139.7005596
     }
@@ -348,19 +348,24 @@
    "scena": "capodanno",
    "titolo": "Ultimo dell'anno a Shinjuku o Shibuya",
    "citta": "Shinjuku · Shibuya",
-   "riassunto": "Mattina libera per riposare o recuperare quello che è rimasto indietro. La sera cena prenotata e notte di Capodanno tra Shinjuku e Shibuya.",
+   "riassunto": "La mattina al mercato di Tsukiji nel giorno della spesa di Capodanno, la sera cena con la soba di fine anno e mezzanotte al Meiji Jingu per la prima preghiera dell'anno.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
-    "Da fare: prenotare la cena del 31 per 6 persone, molti ristoranti chiudono o hanno menu speciali.",
-    "I principali treni urbani viaggiano tutta la notte tra il 31 e il 1°. Al Santuario Meiji la folla è massima tra le 22 e le 3."
+    "Da fare: prenotare la cena del 31 per 6 persone, molti ristoranti chiudono presto o hanno menu speciali.",
+    "Il countdown in strada a Shibuya è annullato per il sesto anno; quello ufficiale di Tokyo quest'anno è a Odaiba, con fuochi e droni.",
+    "Di notte tra il 31 e il 1° viaggiano solo alcune linee JR, tra cui la Yamanote: metro e linee Toei no. Al Meiji Jingu la folla è massima tra mezzanotte e le 3."
    ],
    "eventi": [
     {
-     "ora": "10:00",
-     "tipo": "nota",
+     "ora": "09:00",
+     "tipo": "pasto",
      "fonte": "proposta",
-     "titolo": "Mattina libera",
-     "note": "Spazio per le vostre proposte: shopping, un quartiere rimasto fuori, riposo."
+     "titolo": "Mercato esterno di Tsukiji",
+     "note": "Il 31 è il giorno della spesa di Capodanno: banchi pieni, assaggi di tonno, ricci e tamagoyaki. Chiude dal 1° al 4 gennaio. Se preferite altro, trovate le alternative qui sotto.",
+     "luogo": "Tsukiji",
+     "wiki": "Tsukiji fish market",
+     "lat": 35.6654,
+     "lng": 139.7707
     },
     {
      "ora": "19:30",
@@ -373,13 +378,13 @@
     {
      "ora": "23:00",
      "tipo": "evento",
-     "fonte": "piano",
-     "titolo": "Notte di Capodanno a Shinjuku o Shibuya",
-     "luogo": "Shibuya",
-     "wiki": "Japanese New Year",
-     "note": "In alternativa le campane di mezzanotte in un tempio, o la preghiera di mezzanotte al Santuario Meiji.",
-     "lat": 35.659482,
-     "lng": 139.7005596
+     "fonte": "proposta",
+     "titolo": "Mezzanotte al Meiji Jingu",
+     "luogo": "Meiji Jingu",
+     "wiki": "Meiji Shrine",
+     "note": "Il countdown in strada a Shibuya è annullato per il sesto anno e quello ufficiale si è spostato a Odaiba. Al Meiji Jingu si fa la prima preghiera dell'anno a mezzanotte: c'è folla fino alle 3. Si torna con la JR Yamanote, che corre tutta la notte (Harajuku–Shinjuku, 2 fermate); metro e linee Toei di notte no.",
+     "lat": 35.6764,
+     "lng": 139.6993
     }
    ],
    "cover": "Japanese New Year"
@@ -390,7 +395,7 @@
    "scena": "palazzo",
    "titolo": "Capodanno: Ginza e Palazzo imperiale",
    "citta": "Ginza · Marunouchi",
-   "riassunto": "Primo giorno dell'anno: Ginza la mattina e il Palazzo imperiale con il ponte Nijubashi nel pomeriggio.",
+   "riassunto": "Primo giorno dell'anno, con calma dopo la notte: il Palazzo imperiale con il ponte Nijubashi, la stazione di Tokyo e Ginza pedonale nel pomeriggio. Il Museo nazionale di Ueno è tra i pochi aperti.",
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
     "Il 1° gennaio quasi tutti i grandi magazzini di Ginza sono chiusi: si passeggia, ma per gli acquisti è meglio l'8 gennaio.",
@@ -398,19 +403,7 @@
    ],
    "eventi": [
     {
-     "ora": "10:30",
-     "tipo": "attivita",
-     "fonte": "piano",
-     "titolo": "Ginza a Capodanno",
-     "fine": "13:00",
-     "luogo": "Ginza",
-     "wiki": "Ginza",
-     "note": "Chuo-dori chiusa alle auto nei giorni di festa; caffè e konbini aperti.",
-     "lat": 35.6717279,
-     "lng": 139.7644425
-    },
-    {
-     "ora": "14:00",
+     "ora": "11:00",
      "tipo": "visita",
      "fonte": "piano",
      "titolo": "Palazzo imperiale e ponte Nijubashi",
@@ -422,15 +415,27 @@
      "lng": 139.7532
     },
     {
-     "ora": "16:30",
+     "ora": "13:00",
      "tipo": "visita",
      "fonte": "proposta",
      "titolo": "Stazione di Tokyo e Marunouchi",
      "luogo": "Stazione di Tokyo",
      "wiki": "Tokyo Station",
-     "note": "La facciata in mattoni rossi illuminata; sotto la via del ramen.",
+     "note": "La facciata in mattoni rossi e, sotto, Tokyo Ramen Street per pranzo: una delle soluzioni sicure nei giorni di festa.",
      "lat": 35.6812996,
      "lng": 139.7670658
+    },
+    {
+     "ora": "15:30",
+     "tipo": "attivita",
+     "fonte": "piano",
+     "titolo": "Ginza a Capodanno",
+     "fine": "13:00",
+     "luogo": "Ginza",
+     "wiki": "Ginza",
+     "note": "Chuo-dori è pedonale nei giorni di festa, ma il 1° gennaio i grandi magazzini sono chiusi (riaprono il 2 o il 3). Caffè, catene e konbini aperti.",
+     "lat": 35.6717279,
+     "lng": 139.7644425
     }
    ],
    "cover": "Tokyo Imperial Palace"
@@ -445,7 +450,8 @@
    "pernotto": "Shinjuku Washington Hotel Annex",
    "avvisi": [
     "Il 2 gennaio i treni sono pieni per il rientro dalle feste: partire presto.",
-    "Idee a un'ora o due da Tokyo: Kamakura (il Grande Buddha e i templi sul mare), Hakone o il lago Kawaguchi (vista sul Fuji e terme), Nikko (santuari nel bosco), Yokohama (Chinatown e porto)."
+    "Hakone è sconsigliato: il 2 e il 3 gennaio c'è la staffetta universitaria Hakone Ekiden, con strade chiuse e bus fermi.",
+    "La notte tra il 2 e il 3, alle 2:00, c'è Roma-Frosinone: il bar è nel programma del 3 gennaio."
    ],
    "eventi": [
     {
@@ -453,7 +459,7 @@
      "tipo": "trasferimento",
      "fonte": "piano",
      "titolo": "Partenza per la gita",
-     "note": "Meta da decidere con le proposte del gruppo."
+     "note": "Da decidere con i pollici sulle alternative: saluto dell'imperatore la mattina e Yokohama il pomeriggio, oppure Kamakura o il lago Kawaguchi con il Fuji. Hakone è sconsigliato: il 2 e 3 gennaio c'è la staffetta Hakone Ekiden."
     }
    ],
    "cover": "Kamakura"
@@ -467,9 +473,23 @@
    "riassunto": "Shinkansen con il Fuji dal finestrino, hotel davanti alla stazione e il pomeriggio a Higashiyama: Kiyomizu-dera, le vie lastricate e Gion la sera.",
    "pernotto": "Hotel New Hankyu Kyoto (3 – 4 gen)",
    "avvisi": [
+    "Notte: Roma-Frosinone alle 2:00 da Sports Bar Fiori a Shinjuku, poi qualche ora di sonno prima del check-out.",
     "Shinkansen già pagati: 6 biglietti con posto al finestrino lato Fuji. Il 3 gennaio è il giorno di punta del rientro dalle feste: arrivare in stazione con anticipo."
    ],
    "eventi": [
+    {
+     "ora": "01:45",
+     "tipo": "evento",
+     "fonte": "proposta",
+     "titolo": "Roma-Frosinone in diretta (ore 2:00)",
+     "fine": "04:00",
+     "luogo": "Sports Bar Fiori, Shinjuku",
+     "wiki": "Association football",
+     "lat": 35.693,
+     "lng": 139.7095,
+     "note": "Sabato 2 gennaio alle 18:00 in Italia sono le 2:00 di domenica a Tokyo. Fiori è un bar dedicato al calcio, a 10 minuti di taxi dall'hotel, aperto di notte per le partite europee: scrivere prima per prenotare 6 posti e chiedere se trasmettono la Roma. Piano B: 99 Sports Bar a Roppongi, aperto fino alle 5.",
+     "sito": "https://www.timeout.com/tokyo/bars-and-pubs/fiori"
+    },
     {
      "ora": "09:30",
      "tipo": "hotel",
@@ -573,7 +593,7 @@
      "tipo": "treno",
      "fonte": "proposta",
      "titolo": "Treno da Kyoto alle terme",
-     "note": "Dipende dalla località scelta.",
+     "note": "Consigliata Kinosaki: espresso Kinosaki diretto da Kyoto, circa 2 h 20, tutto a posti riservati. Alternative: Arima (1 h 30) o Kurama (30 min). Dettagli nelle alternative.",
      "wiki": "Onsen"
     },
     {
@@ -668,7 +688,7 @@
    "scena": "fushimi",
    "titolo": "I mille portali di Fushimi Inari",
    "citta": "Kyoto",
-   "riassunto": "La mattina presto tra i torii arancioni di Fushimi Inari fino al belvedere sulla città. Il pomeriggio è libero per le vostre proposte, ad esempio Arashiyama o il Padiglione d'oro.",
+   "riassunto": "La mattina presto tra i torii arancioni di Fushimi Inari, poi il Padiglione d'oro e, nel pomeriggio, Arashiyama con il bosco di bambù fino al tramonto.",
    "pernotto": "Hotel Mystays Kyoto Shijo",
    "eventi": [
     {
@@ -691,7 +711,29 @@
      "lng": 135.7727
     },
     {
-     "ora": "14:00",
+     "ora": "11:30",
+     "tipo": "visita",
+     "fonte": "proposta",
+     "titolo": "Kinkaku-ji, il Padiglione d'oro",
+     "luogo": "Kinkaku-ji",
+     "wiki": "Kinkaku-ji",
+     "note": "Spostato prima di Arashiyama: chiude verso le 17 ed è a nord, quindi conviene dopo Fushimi Inari e prima del bambù. A 20 minuti a piedi c'è il giardino di pietre di Ryōan-ji.",
+     "lat": 35.0394,
+     "lng": 135.7292
+    },
+    {
+     "ora": "13:00",
+     "tipo": "pasto",
+     "fonte": "proposta",
+     "titolo": "Pranzo ad Arashiyama: yudōfu",
+     "luogo": "Arashiyama",
+     "wiki": "Yudōfu",
+     "lat": 35.014,
+     "lng": 135.6754,
+     "note": "Il tofu caldo in pentola, specialità buddista di Kyoto. In alternativa soba e udon lungo la via principale."
+    },
+    {
+     "ora": "14:15",
      "tipo": "visita",
      "fonte": "proposta",
      "titolo": "Arashiyama: bambù e ponte Togetsukyo",
@@ -699,21 +741,14 @@
      "luogo": "Arashiyama",
      "wiki": "Arashiyama",
      "lat": 35.017,
-     "lng": 135.6713
-    },
-    {
-     "ora": "16:30",
-     "tipo": "visita",
-     "fonte": "proposta",
-     "titolo": "Kinkaku-ji, il Padiglione d'oro",
-     "luogo": "Kinkaku-ji",
-     "wiki": "Kinkaku-ji",
-     "note": "Chiude verso le 17: in alternativa ad Arashiyama.",
-     "lat": 35.0394,
-     "lng": 135.7292
+     "lng": 135.6713,
+     "note": "Bambù, ponte Togetsukyō e giardino di Tenryū-ji fino al tramonto (16:50). Il treno panoramico di Sagano a gennaio non circola."
     }
    ],
-   "cover": "Fushimi Inari-taisha"
+   "cover": "Fushimi Inari-taisha",
+   "avvisi": [
+    "La notte tra il 5 e il 6, alle 2:30, c'è Venezia-Roma: chi la guarda farà fatica con la sveglia per Fushimi Inari."
+   ]
   },
   {
    "data": "2027-01-07",
@@ -721,7 +756,7 @@
    "scena": "nara",
    "titolo": "Nara?",
    "citta": "Nara · Kyoto",
-   "riassunto": "Dal vostro piano, con il punto di domanda: la gita a Nara con il Grande Buddha e i cervi. Se non vi convince, proponete un'alternativa.",
+   "riassunto": "Dal vostro piano, con il punto di domanda: la gita a Nara con il Grande Buddha e i cervi, poi la sera a Gion e cena a Kawaramachi. In alternativa Uji e il tè matcha, o la sera a Ōsaka.",
    "pernotto": "Hotel Mystays Kyoto Shijo",
    "eventi": [
     {
@@ -774,25 +809,25 @@
     {
      "ora": "17:30",
      "fine": "19:00",
-     "tipo": "pasto",
+     "tipo": "visita",
      "fonte": "proposta",
-     "titolo": "Mercato Nishiki",
-     "luogo": "Mercato Nishiki",
-     "lat": 35.005,
-     "lng": 135.7649,
-     "note": "Molti banchi chiudono verso le 18: assaggi prima di cena.",
-     "wiki": "Nishiki Market"
+     "titolo": "Gion Shirakawa e Hanamikōji la sera",
+     "luogo": "Gion",
+     "lat": 35.0055,
+     "lng": 135.7745,
+     "note": "Il 5 c'è già il mercato Nishiki: questa sera il canale con i salici e la via delle geishe illuminati.",
+     "wiki": "Gion"
     },
     {
      "ora": "19:30",
      "tipo": "pasto",
      "fonte": "proposta",
-     "titolo": "Cena a Pontocho",
-     "luogo": "Pontocho",
-     "lat": 35.0045,
-     "lng": 135.7708,
-     "note": "Il vicolo stretto lungo il fiume Kamo.",
-     "wiki": "Pontochō"
+     "titolo": "Cena a Kawaramachi",
+     "luogo": "Kawaramachi",
+     "lat": 35.004,
+     "lng": 135.7695,
+     "note": "Pontocho è già il 5: stasera gyoza, tonkatsu o yakiniku tra Kawaramachi e Kiyamachi. Le scelte sono tra le alternative.",
+     "wiki": "Gyoza"
     }
    ],
    "cover": "Tōdai-ji"
