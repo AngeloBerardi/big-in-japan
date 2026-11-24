@@ -1145,47 +1145,75 @@
    "id": "navetta4",
    "testo": "Navetta del ryokan · 4 gennaio",
    "nota": "Dalla stazione JR di Kameoka alle 14:55, 15:55, 16:55 o 17:55. Solo su prenotazione.",
-   "link": "tel:+81771220394"
+   "link": "tel:+81771220394",
+   "data": "2027-01-04",
+   "tappa": "Navetta del ryokan",
+   "entro": "2026-12-20",
+   "prezzo": "gratuita"
   },
   {
    "id": "navetta5",
    "testo": "Navetta del ryokan · 5 gennaio",
    "nota": "Verso la stazione di Kameoka alle 9:00, 10:00 o 11:00.",
-   "link": "tel:+81771220394"
+   "link": "tel:+81771220394",
+   "data": "2027-01-05",
+   "tappa": "navetta per Kameoka",
+   "entro": "2026-12-20",
+   "prezzo": "gratuita"
   },
   {
    "id": "cenaryokan",
    "testo": "Cena al ryokan · 4 gennaio",
    "nota": "Nella conferma Booking c'è solo la colazione: chiedere al ryokan.",
-   "link": "tel:+81771220394"
+   "link": "tel:+81771220394",
+   "data": "2027-01-04",
+   "tappa": "Cena al ryokan",
+   "entro": "2026-12-15",
+   "prezzo": "da chiedere al ryokan"
   },
   {
    "id": "hozu",
    "testo": "Battello sul fiume Hozu · 5 gennaio",
    "nota": "Partenze 10:00, 11:30, 13:00, 14:30; la stagione invernale riparte proprio il 5.",
-   "link": "https://www.hozugawakudari.jp/en/"
+   "link": "https://www.hozugawakudari.jp/en/",
+   "data": "2027-01-05",
+   "tappa": "Battello sul fiume Hozu",
+   "entro": "2026-12-20",
+   "prezzo": "circa ¥6.000 a testa"
   },
   {
    "id": "fiori",
    "testo": "Sports Bar Fiori per Roma-Frosinone · notte del 3 gennaio",
    "nota": "Scrivere per prenotare 6 posti e chiedere se trasmettono la partita.",
-   "link": "https://www.timeout.com/tokyo/bars-and-pubs/fiori"
+   "link": "https://www.timeout.com/tokyo/bars-and-pubs/fiori",
+   "data": "2027-01-03",
+   "tappa": "Roma-Frosinone",
+   "entro": "2026-12-20",
+   "prezzo": "consumazione"
   },
   {
    "id": "cena31",
    "testo": "Cena di fine anno · 31 dicembre",
-   "nota": "Per 6 persone: molti ristoranti chiudono presto o hanno menu speciali."
+   "nota": "Per 6 persone: molti ristoranti chiudono presto o hanno menu speciali.",
+   "data": "2026-12-31",
+   "tappa": "Cena di fine anno",
+   "entro": "2026-12-05",
+   "prezzo": "menu speciali di fine anno"
   },
   {
    "id": "cenaaddio",
    "testo": "Cena d'addio a Ginza · 8 gennaio",
-   "nota": "Sushi o wagyu: a Ginza conviene prenotare."
+   "nota": "Sushi o wagyu: a Ginza conviene prenotare.",
+   "data": "2027-01-08",
+   "tappa": "Cena d'addio",
+   "entro": "2026-12-15"
   },
   {
    "id": "skytree",
    "testo": "Biglietti Skytree",
    "nota": "Facoltativo: alternativa a Shibuya Sky.",
-   "link": "https://www.tokyo-skytree.jp/en/ticket/"
+   "link": "https://www.tokyo-skytree.jp/en/ticket/",
+   "prezzo": "¥2.100–3.500 online"
   }
  ]
 }
