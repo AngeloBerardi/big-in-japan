@@ -18,8 +18,9 @@
    "Luca",
    "Dario"
   ],
-  "notaCosti": "Hotel: importo della camera dalle conferme (in yen). Shinkansen: 12 biglietti già pagati, in euro. Voli e terme non ancora inseriti.",
-  "hero": "Mount Fuji"
+  "notaCosti": "Hotel e ryokan: importo dalle conferme. Shinkansen: 12 biglietti già pagati, in euro. Tutti e 6 hanno il posto letto in ogni notte.",
+  "hero": "Mount Fuji",
+  "album": "https://photos.app.goo.gl/5SGX9ayqCedVrBGc8"
  },
  "giorni": [
   {
@@ -53,7 +54,8 @@
      "wiki": "Leonardo da Vinci–Fiumicino Airport"
     }
    ],
-   "cover": "Leonardo da Vinci–Fiumicino Airport"
+   "cover": "Leonardo da Vinci–Fiumicino Airport",
+   "avvisi": []
   },
   {
    "data": "2026-12-27",
@@ -63,9 +65,7 @@
    "citta": "Shinjuku",
    "riassunto": "Atterraggio a fine mattinata, bus fino a Shinjuku e una prima sera leggera tra i vicoli, a dieci minuti a piedi dall'hotel.",
    "pernotto": "Shinjuku Washington Hotel Annex (27 dic – 3 gen)",
-   "avvisi": [
-    "Il gruppo è di 6: la prenotazione di Shinjuku è per 2 adulti, Kyoto e Ginza per 3. Verificate che tutte le camere siano coperte."
-   ],
+   "avvisi": [],
    "eventi": [
     {
      "ora": "11:20",
@@ -340,7 +340,8 @@
      "lng": 139.7745
     }
    ],
-   "cover": "Akihabara"
+   "cover": "Akihabara",
+   "avvisi": []
   },
   {
    "data": "2026-12-31",
@@ -568,13 +569,15 @@
    "data": "2027-01-04",
    "zona": "Terme",
    "scena": "onsen",
-   "titolo": "Verso le terme",
-   "citta": "Onsen da scegliere",
-   "riassunto": "Mattina di viaggio da Kyoto, pomeriggio e sera in un ryokan: bagni caldi, yukata e cena kaiseki.",
-   "pernotto": "Ryokan alle terme, da definire",
+   "titolo": "Notte al ryokan",
+   "citta": "Yunohana Onsen, Kameoka",
+   "riassunto": "Check-out a Kyoto, mattina libera e nel primo pomeriggio 30 minuti di treno fino a Kameoka. Al ryokan Sumiya Kihoan: suite con bagno termale privato all'aperto, yukata e cena tranquilla.",
+   "pernotto": "Ryokan Sumiya Kihoan, Yunohana Onsen (4 – 5 gen)",
    "avvisi": [
-    "Località e ryokan non sono ancora decisi: appena li scegliete inserisco treni e orari.",
-    "Nei bagni comuni si entra senza costume, dopo essersi lavati alle docce. Chi ha tatuaggi verifichi le regole del ryokan."
+    "La navetta gratuita del ryokan dalla stazione JR di Kameoka va prenotata: corse alle 14:55, 15:55, 16:55 e 17:55. Telefono +81 771 22 0394.",
+    "Nella conferma Booking è inclusa solo la colazione: chiedete al ryokan se volete cenare lì.",
+    "Le valigie grandi sono scomode in navetta e sul battello del 5: si possono spedire dall'Hotel New Hankyu all'Hotel Mystays con il servizio bagagli (takkyubin) che fanno quasi tutti gli hotel.",
+    "Nei bagni comuni si entra senza costume, dopo essersi lavati alle docce. La suite ha il suo bagno all'aperto."
    ],
    "eventi": [
     {
@@ -589,27 +592,51 @@
      "wiki": "Kyoto Tower"
     },
     {
-     "ora": "10:30",
+     "ora": "14:15",
      "tipo": "treno",
      "fonte": "proposta",
-     "titolo": "Treno da Kyoto alle terme",
-     "note": "Consigliata Kinosaki: espresso Kinosaki diretto da Kyoto, circa 2 h 20, tutto a posti riservati. Alternative: Arima (1 h 30) o Kurama (30 min). Dettagli nelle alternative.",
-     "wiki": "Onsen"
+     "titolo": "JR Sagano da Kyoto a Kameoka",
+     "luogo": "Stazione JR di Kameoka",
+     "lat": 35.01336,
+     "lng": 135.57345,
+     "wiki": "Kameoka Station",
+     "note": "Treni locali e rapidi ogni 10-15 minuti, circa 25 minuti, circa ¥420 a testa con la Suica. Il treno passa da Saga-Arashiyama: se volete, fermatevi lì prima."
     },
     {
-     "ora": "15:00",
-     "tipo": "hotel",
+     "ora": "14:55",
+     "tipo": "trasferimento",
      "fonte": "proposta",
-     "titolo": "Check-in al ryokan",
-     "note": "Nome, indirizzo e conferma da inserire.",
-     "wiki": "Ryokan (Japanese inn)"
+     "titolo": "Navetta del ryokan",
+     "luogo": "Stazione JR di Kameoka",
+     "lat": 35.01336,
+     "lng": 135.57345,
+     "wiki": "Kameoka, Kyoto",
+     "note": "Gratuita, solo su prenotazione (anche alle 15:55, 16:55, 17:55). Circa 15 minuti. Telefono +81 771 22 0394."
+    },
+    {
+     "ora": "15:15",
+     "tipo": "hotel",
+     "fonte": "prenotato",
+     "titolo": "Check-in Ryokan Sumiya Kihoan",
+     "luogo": "Ryokan Sumiya Kihoan",
+     "indirizzo": "25 Miyanooku Hiedanocho Kakihana, Kameoka, Kyoto",
+     "lat": 35.02185,
+     "lng": 135.50593,
+     "costo": 854,
+     "valuta": "EUR",
+     "wiki": "Ryokan (Japanese inn)",
+     "note": "Japanese-Style Suite Honami con bagno termale all'aperto e pediluvio, 4 adulti, colazione inclusa. Check-in 15:00–19:00, check-out entro le 11:00. Cancellazione gratuita fino al 27 dicembre. Tel. +81 771 22 0394. Il ryokan più antico di Yunohana, con il cancello col tetto di paglia: qui hanno dormito anche John Lennon e Yoko Ono. Il bagno all'aperto delle donne è scavato in un ciliegio di mille anni; c'è una biblioteca con il camino e un wine bar."
     },
     {
      "ora": "18:30",
      "tipo": "pasto",
      "fonte": "proposta",
-     "titolo": "Cena kaiseki al ryokan",
-     "wiki": "Kaiseki"
+     "titolo": "Cena al ryokan",
+     "luogo": "Ryokan Sumiya Kihoan",
+     "lat": 35.02185,
+     "lng": 135.50593,
+     "wiki": "Kaiseki",
+     "note": "Non è nella conferma Booking: va chiesta al ryokan, che ha un ristorante con cucina stagionale. Intorno ci sono pochi locali, a 10 minuti di taxi."
     }
    ],
    "cover": "Onsen"
@@ -620,19 +647,35 @@
    "scena": "gion",
    "titolo": "Ritorno a Kyoto e sumo la sera",
    "citta": "Kyoto est",
-   "riassunto": "Bagno del mattino e rientro a Kyoto. Pomeriggio al mercato Nishiki vicino all'hotel, cena a Pontocho e alle 21 lo spettacolo di sumo, a pochi minuti a piedi.",
+   "riassunto": "Bagno del mattino al ryokan e, se vi va, due ore di battello sul fiume Hozu fino ad Arashiyama. Poi il rientro a Kyoto, il mercato Nishiki vicino all'hotel, cena a Pontocho e alle 21 lo spettacolo di sumo.",
    "pernotto": "Hotel Mystays Kyoto Shijo (5 – 8 gen)",
    "eventi": [
     {
      "ora": "10:00",
-     "tipo": "treno",
+     "tipo": "trasferimento",
      "fonte": "proposta",
-     "titolo": "Dalle terme a Kyoto",
-     "note": "Dopo colazione e check-out dal ryokan.",
-     "wiki": "Onsen"
+     "titolo": "Check-out e navetta per Kameoka",
+     "note": "Colazione inclusa, check-out entro le 11:00. Navetta del ryokan verso la stazione JR di Kameoka alle 9:00, 10:00 o 11:00, da prenotare.",
+     "wiki": "Onsen",
+     "luogo": "Ryokan Sumiya Kihoan",
+     "lat": 35.02185,
+     "lng": 135.50593
     },
     {
-     "ora": "14:00",
+     "ora": "11:30",
+     "tipo": "attivita",
+     "fonte": "proposta",
+     "titolo": "Battello sul fiume Hozu fino ad Arashiyama",
+     "fine": "13:30",
+     "luogo": "Imbarco Hozugawa Kudari, Kameoka",
+     "lat": 35.0189,
+     "lng": 135.5867,
+     "wiki": "Hozu River",
+     "sito": "https://www.hozugawakudari.jp/en/",
+     "note": "La stagione invernale riparte proprio il 5 gennaio: partenze alle 10:00, 11:30, 13:00 e 14:30, barche coperte con il tatami riscaldato. Circa 2 ore e 16 km tra le gole, si sbarca ad Arashiyama vicino al ponte Togetsukyo. L'imbarco è a 10 minuti a piedi dalla stazione di Kameoka. Se lo fate, Arashiyama si può vedere già oggi e il pomeriggio del 6 resta libero."
+    },
+    {
+     "ora": "15:00",
      "tipo": "hotel",
      "fonte": "prenotato",
      "titolo": "Check-in Hotel Mystays Kyoto Shijo",
@@ -645,7 +688,7 @@
      "wiki": "Shijō Street"
     },
     {
-     "ora": "15:30",
+     "ora": "16:00",
      "tipo": "pasto",
      "fonte": "proposta",
      "titolo": "Mercato Nishiki",
@@ -680,7 +723,8 @@
      "link": "https://www.google.com/maps/search/?api=1&query=359%20Shimizuch%C5%8D%2C%20Nakagyo%20Ward%2C%20Kyoto%20604-0911"
     }
    ],
-   "cover": "Sumo"
+   "cover": "Sumo",
+   "avvisi": []
   },
   {
    "data": "2027-01-06",
@@ -830,7 +874,8 @@
      "wiki": "Gyoza"
     }
    ],
-   "cover": "Tōdai-ji"
+   "cover": "Tōdai-ji",
+   "avvisi": []
   },
   {
    "data": "2027-01-08",
@@ -900,7 +945,8 @@
      "wiki": "Sushi"
     }
    ],
-   "cover": "Ginza"
+   "cover": "Ginza",
+   "avvisi": []
   },
   {
    "data": "2027-01-09",
@@ -945,7 +991,8 @@
      "wiki": "Haneda Airport"
     }
    ],
-   "cover": "Haneda Airport"
+   "cover": "Haneda Airport",
+   "avvisi": []
   }
  ],
  "extra": [
@@ -965,10 +1012,8 @@
  "prepartenza": [
   "Check-in online ITA Airways 24 ore prima del volo",
   "Registrarsi su Visit Japan Web per il QR di immigrazione e dogana",
-  "Scegliere località e ryokan per la notte alle terme del 4 gennaio",
-  "Verificare le camere per tutti e 6 a Shinjuku, Kyoto e Ginza",
+  "Prenotare la navetta del ryokan per il 4 (dalla stazione di Kameoka) e il 5 gennaio (verso la stazione): +81 771 22 0394",
   "Controllare come si ritirano o attivano i biglietti dello shinkansen di Japan Experience",
-  "Comprare i biglietti online per lo Skytree",
   "eSIM o pocket wifi",
   "Suica nel portafoglio del telefono",
   "Assicurazione sanitaria di viaggio: in Giappone le cure per i turisti si pagano",
@@ -1094,5 +1139,53 @@
  },
  "spese": [],
  "pianifica": "https://claude.ai/artifact/YH69huEV2jzNDAcFtFTpNx",
- "mymap": "https://www.google.com/maps/d/viewer?mid=1JBl4-cqViaHFd6xth5HuyIUkMDIZCPk"
+ "mymap": "https://www.google.com/maps/d/viewer?mid=1JBl4-cqViaHFd6xth5HuyIUkMDIZCPk",
+ "daPrenotare": [
+  {
+   "id": "navetta4",
+   "testo": "Navetta del ryokan · 4 gennaio",
+   "nota": "Dalla stazione JR di Kameoka alle 14:55, 15:55, 16:55 o 17:55. Solo su prenotazione.",
+   "link": "tel:+81771220394"
+  },
+  {
+   "id": "navetta5",
+   "testo": "Navetta del ryokan · 5 gennaio",
+   "nota": "Verso la stazione di Kameoka alle 9:00, 10:00 o 11:00.",
+   "link": "tel:+81771220394"
+  },
+  {
+   "id": "cenaryokan",
+   "testo": "Cena al ryokan · 4 gennaio",
+   "nota": "Nella conferma Booking c'è solo la colazione: chiedere al ryokan.",
+   "link": "tel:+81771220394"
+  },
+  {
+   "id": "hozu",
+   "testo": "Battello sul fiume Hozu · 5 gennaio",
+   "nota": "Partenze 10:00, 11:30, 13:00, 14:30; la stagione invernale riparte proprio il 5.",
+   "link": "https://www.hozugawakudari.jp/en/"
+  },
+  {
+   "id": "fiori",
+   "testo": "Sports Bar Fiori per Roma-Frosinone · notte del 3 gennaio",
+   "nota": "Scrivere per prenotare 6 posti e chiedere se trasmettono la partita.",
+   "link": "https://www.timeout.com/tokyo/bars-and-pubs/fiori"
+  },
+  {
+   "id": "cena31",
+   "testo": "Cena di fine anno · 31 dicembre",
+   "nota": "Per 6 persone: molti ristoranti chiudono presto o hanno menu speciali."
+  },
+  {
+   "id": "cenaaddio",
+   "testo": "Cena d'addio a Ginza · 8 gennaio",
+   "nota": "Sushi o wagyu: a Ginza conviene prenotare."
+  },
+  {
+   "id": "skytree",
+   "testo": "Biglietti Skytree",
+   "nota": "Facoltativo: alternativa a Shibuya Sky.",
+   "link": "https://www.tokyo-skytree.jp/en/ticket/"
+  }
+ ]
 }

@@ -22,7 +22,8 @@
    "wiki": "Tokyo Metropolitan Government Building",
    "q": "Tokyo Metropolitan Government Building observatory",
    "sito": "https://www.yokoso.metro.tokyo.lg.jp/en/tenbou/",
-   "fonti": "Go Tokyo, Time Out Tokyo"
+   "fonti": "Go Tokyo, Time Out Tokyo",
+   "alt": "Alternativa gratuita a Shibuya Sky"
   },
   {
    "id": "tk-thermae",
@@ -43,7 +44,8 @@
    "wiki": "Onsen",
    "q": "Thermae-yu Shinjuku",
    "sito": "https://www.thermae-yu.jp/",
-   "fonti": "Tokyo Cheapo, Time Out Tokyo"
+   "fonti": "Tokyo Cheapo, Time Out Tokyo",
+   "prenota": "https://www.thermae-yu.jp/"
   },
   {
    "id": "tk-fuunji",
@@ -153,7 +155,8 @@
    "q": "Shibuya Sky sunset",
    "sito": "https://www.shibuya-scramble-square.com/sky/",
    "fonti": "Go Tokyo, Tokyo Cheapo, sito ufficiale",
-   "top": true
+   "top": true,
+   "prenota": "https://www.shibuya-scramble-square.com/sky/ticket/"
   },
   {
    "id": "tk-shimokita",
@@ -173,7 +176,8 @@
    "consiglio": "Alternativa a Ikebukuro se l'acquario e i centri commerciali non convincono tutti.",
    "wiki": "Shimokitazawa",
    "q": "Shimokitazawa vintage",
-   "fonti": "Time Out Tokyo, Lonely Planet"
+   "fonti": "Time Out Tokyo, Lonely Planet",
+   "alt": "Alternativa a Ikebukuro e Sunshine City"
   },
   {
    "id": "tk-omotesando",
@@ -381,7 +385,9 @@
    "wiki": "Tokyo Skytree",
    "q": "Tokyo Skytree view",
    "sito": "https://www.tokyo-skytree.jp/en/",
-   "fonti": "Go Tokyo"
+   "fonti": "Go Tokyo",
+   "prenota": "https://www.tokyo-skytree.jp/en/ticket/",
+   "alt": "Alternativa a Shibuya Sky"
   },
   {
    "id": "tk-teamlab",
@@ -403,7 +409,9 @@
    "q": "teamLab Planets Tokyo",
    "sito": "https://www.teamlab.art/e/planets/",
    "fonti": "teamLab, Japan Travel Kit",
-   "top": true
+   "top": true,
+   "prenota": "https://www.teamlab.art/e/planets/",
+   "alt": "Alternativa serale a Odaiba"
   },
   {
    "id": "tk-gundam",
@@ -648,7 +656,8 @@
    "consiglio": "Il \"Yuyake dandan\" in cima alla scalinata è il punto del tramonto.",
    "wiki": "Yanaka, Tokyo",
    "q": "Yanaka Ginza Tokyo",
-   "fonti": "Lonely Planet, Time Out Tokyo"
+   "fonti": "Lonely Planet, Time Out Tokyo",
+   "alt": "Alternativa al parco di Ueno"
   },
   {
    "id": "tk-ameyoko-food",
@@ -832,7 +841,8 @@
    "sintesi": "Al Meiji Jingu il 1° gennaio si fanno ore di fila; qui l'atmosfera di festa c'è lo stesso: bancarelle, amuleti, il sakè dolce amazake.",
    "wiki": "Kanda Shrine",
    "q": "Kanda Myojin hatsumode",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "alt": "Alternativa al Meiji Jingu affollato"
   },
   {
    "id": "tk-ramen-street",
@@ -1305,7 +1315,8 @@
    "consiglio": "Entrare dal tempio ed uscire nel bosco evita metà della folla.",
    "wiki": "Tenryū-ji",
    "q": "Tenryuji garden Arashiyama",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "alt": "Dentro la tappa di Arashiyama"
   },
   {
    "id": "ky-okochi",
@@ -1363,7 +1374,8 @@
    "sintesi": "Quindici pietre su ghiaia bianca: il giardino zen più famoso del mondo, a 20 minuti a piedi dal Padiglione d'oro.",
    "wiki": "Ryōan-ji",
    "q": "Ryoanji rock garden",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "alt": "Vicino al Kinkaku-ji"
   },
   {
    "id": "ky-yudofu",
@@ -1424,67 +1436,6 @@
    "wiki": "Fushimi Inari-taisha",
    "q": "Fushimi Inari night walk",
    "fonti": "Viator, Trip.com"
-  },
-  {
-   "id": "ky-kinosaki",
-   "giorni": [
-    "2027-01-04"
-   ],
-   "fascia": "mattina",
-   "cat": "gita",
-   "titolo": "Terme di Kinosaki: sette bagni pubblici",
-   "zona": "Kinosaki Onsen",
-   "lat": 35.6263,
-   "lng": 134.807,
-   "orari": "Treno espresso Kinosaki da Kyoto, circa 2 h 20",
-   "prezzo": "Treno circa ¥5.500–6.000 a tratta; ryokan circa ¥25.000–45.000 a testa con cena",
-   "durata": "Notte",
-   "sintesi": "Il paese termale più classico: si gira in yukata e zoccoli lungo il canale con i salici, passando da un bagno all'altro. Il pass per i sette bagni è gratis per gli ospiti dei ryokan.",
-   "consiglio": "È la scelta che consigliamo per il 4 gennaio. Prenotare presto: il treno è tutto a posti riservati.",
-   "wiki": "Kinosaki, Hyōgo",
-   "q": "Kinosaki onsen yukata",
-   "sito": "https://visitkinosaki.com/",
-   "fonti": "Ekitan, Lonely Planet",
-   "top": true
-  },
-  {
-   "id": "ky-arima",
-   "giorni": [
-    "2027-01-04"
-   ],
-   "fascia": "mattina",
-   "cat": "gita",
-   "titolo": "Terme di Arima",
-   "zona": "Arima Onsen",
-   "lat": 34.7972,
-   "lng": 135.2479,
-   "orari": "Circa 1 h 15 – 1 h 30 da Kyoto",
-   "prezzo": "Bagni pubblici circa ¥650–800; ryokan circa ¥25.000+ a testa",
-   "durata": "Notte o giornata",
-   "sintesi": "Le terme più antiche del Giappone dietro Kōbe: acqua \"d'oro\" color ruggine e acqua \"d'argento\". Più vicine di Kinosaki.",
-   "consiglio": "Combinabile con una cena di manzo di Kōbe.",
-   "wiki": "Arima Onsen",
-   "q": "Arima onsen kinsen",
-   "fonti": "Japan Guide"
-  },
-  {
-   "id": "ky-kurama",
-   "giorni": [
-    "2027-01-04"
-   ],
-   "fascia": "pomeriggio",
-   "cat": "gita",
-   "titolo": "Kurama, terme nella foresta",
-   "zona": "Kurama",
-   "lat": 35.1175,
-   "lng": 135.7728,
-   "orari": "Treno Eizan da Demachiyanagi, circa 30 min",
-   "prezzo": "Bagno all'aperto circa ¥1.000–2.500",
-   "durata": "Mezza giornata",
-   "sintesi": "Tempio di montagna tra i cedri e una vasca all'aperto sotto la neve, senza cambiare albergo. Piano B se il ryokan lontano non si trova.",
-   "wiki": "Kurama-dera",
-   "q": "Kurama onsen snow",
-   "fonti": "Inside Kyoto"
   },
   {
    "id": "nr-nakatanidou",
@@ -1748,6 +1699,2025 @@
    "q": "Kabukiza single act ticket",
    "sito": "https://www.kabuki-za.co.jp/",
    "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-nagi",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-31"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Ramen Nagi al Golden Gai",
+   "zona": "Golden Gai",
+   "lat": 35.694,
+   "lng": 139.7046,
+   "orari": "Fino a notte fonda",
+   "prezzo": "Circa ¥1.000–1.400",
+   "durata": "30 min",
+   "sintesi": "Al secondo piano di una baracca del Golden Gai, un ramen al brodo di sardine secche fortissimo e amatissimo. Si sale per una scala ripidissima.",
+   "consiglio": "Otto posti al bancone: per 6 ci si alterna.",
+   "wiki": "Ramen",
+   "q": "Ramen Nagi Golden Gai",
+   "fonti": "Tabelog, Time Out Tokyo",
+   "alt": "Prima del drink al Golden Gai"
+  },
+  {
+   "id": "tk-kabuki-yokocho",
+   "giorni": [
+    "2026-12-27"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Shinjuku Kabukichō Yokochō",
+   "zona": "Kabukichō",
+   "lat": 35.6956,
+   "lng": 139.7006,
+   "orari": "Fino a tarda notte",
+   "prezzo": "Circa ¥2.000–3.500",
+   "durata": "1 h 30",
+   "sintesi": "Al secondo piano della Kabukichō Tower, una sala con banchi di cucina di tutto il Giappone e luci al neon da festival. Ideale per 6 persone che vogliono cose diverse.",
+   "wiki": "Izakaya",
+   "q": "Kabukicho Yokocho Tokyu Kabukicho Tower",
+   "fonti": "Time Out Tokyo",
+   "alt": "Alternativa a Omoide Yokocho se è troppo pieno"
+  },
+  {
+   "id": "tk-gatto3d",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-28"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "Il gatto gigante in 3D di Shinjuku",
+   "zona": "Shinjuku est",
+   "lat": 35.6918,
+   "lng": 139.7036,
+   "orari": "Più volte all'ora fino a sera",
+   "prezzo": "Gratis",
+   "durata": "10 min",
+   "sintesi": "Sul maxischermo curvo davanti alla stazione un gatto calico enorme si stiracchia e \"esce\" dallo schermo. Due passi dall'uscita est.",
+   "wiki": "Shinjuku",
+   "q": "Shinjuku 3D cat billboard",
+   "fonti": "Time Out Tokyo, Go Tokyo"
+  },
+  {
+   "id": "tk-godzilla",
+   "giorni": [
+    "2026-12-27"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "La testa di Godzilla di Kabukichō",
+   "zona": "Kabukichō",
+   "lat": 35.6951,
+   "lng": 139.702,
+   "orari": "Sempre visibile, ruggito la sera",
+   "prezzo": "Gratis (o caffè sulla terrazza dell'hotel)",
+   "durata": "10 min",
+   "sintesi": "Sul tetto dell'Hotel Gracery spunta la testa a grandezza naturale. Dalla strada la foto è d'obbligo.",
+   "wiki": "Godzilla",
+   "q": "Godzilla head Shinjuku Hotel Gracery",
+   "fonti": "Go Tokyo"
+  },
+  {
+   "id": "tk-isetan",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-28"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Il piano dei cibi di Isetan",
+   "zona": "Shinjuku 3-chome",
+   "lat": 35.6918,
+   "lng": 139.7045,
+   "orari": "10:00–20:00 (chiuso 1° gennaio)",
+   "prezzo": "Assaggi da ¥300 a ¥3.000",
+   "durata": "45 min",
+   "sintesi": "Il \"depachika\" più bello di Tokyo: dolci perfetti, bentō, frutta da regalo, sakè. Per uno spuntino d'arrivo o un picnic in camera.",
+   "consiglio": "Verso la chiusura molti piatti pronti sono scontati.",
+   "wiki": "Depachika",
+   "q": "Isetan Shinjuku depachika food hall",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-udonshin",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-31"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Udon Shin, la fila più famosa di Shinjuku",
+   "zona": "Yoyogi",
+   "lat": 35.6845,
+   "lng": 139.6995,
+   "orari": "11:00–23:00 circa, con biglietto di attesa",
+   "prezzo": "Circa ¥1.300–2.200",
+   "durata": "30 min più l'attesa",
+   "sintesi": "Udon tirati a mano, celebri quelli con burro, pepe e uovo crudo. Da qualche tempo si prende un numero e si torna quando chiamano.",
+   "consiglio": "Prendere il numero presto e intanto girare Shinjuku: l'attesa può superare un'ora.",
+   "wiki": "Udon",
+   "q": "Udon Shin Shinjuku",
+   "fonti": "Time Out Tokyo, Tabelog, Michelin"
+  },
+  {
+   "id": "tk-ichiran",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-31",
+    "2027-01-01"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Ichiran: ramen nel box, aperto 24 ore",
+   "zona": "Shinjuku est",
+   "lat": 35.6914,
+   "lng": 139.7016,
+   "orari": "24 ore, anche a Capodanno",
+   "prezzo": "Circa ¥1.100–1.600",
+   "durata": "30 min",
+   "sintesi": "Ognuno nel suo cubicolo di legno, ordinazione su un foglietto: tonkotsu cremoso e piccante a piacere. Il salvagente delle notti di festa.",
+   "wiki": "Ramen",
+   "q": "Ichiran Shinjuku",
+   "fonti": "Tripadvisor"
+  },
+  {
+   "id": "tk-karaoke",
+   "giorni": [
+    "2026-12-27",
+    "2026-12-28",
+    "2027-01-02",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "notte",
+   "titolo": "Karaoke in una stanza privata",
+   "zona": "Shibuya",
+   "lat": 35.6604,
+   "lng": 139.699,
+   "orari": "Aperti fino all'alba",
+   "prezzo": "Circa ¥800–2.000 a testa all'ora, bevande a parte o a volontà",
+   "durata": "1–2 h",
+   "sintesi": "Stanza tutta per voi con migliaia di canzoni, anche italiane. Il Karaoke-kan di Shibuya è quello di Lost in Translation.",
+   "consiglio": "Nelle grandi catene si prenota online o si entra senza.",
+   "wiki": "Karaoke box",
+   "q": "Karaoke Kan Shibuya",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-gashapon",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Gashapon Department Store, 3.000 macchinette",
+   "zona": "Ikebukuro",
+   "lat": 35.729,
+   "lng": 139.719,
+   "orari": "10:00–21:00",
+   "prezzo": "Da ¥300 a ¥800 a capsula",
+   "durata": "45 min",
+   "sintesi": "Dentro Sunshine City, il negozio con il record di distributori di capsule: personaggi, miniature di cibo, oggetti assurdi.",
+   "wiki": "Gashapon",
+   "q": "Gashapon Department Store Ikebukuro",
+   "fonti": "Go Tokyo",
+   "alt": "Dentro Sunshine City"
+  },
+  {
+   "id": "tk-nakano",
+   "giorni": [
+    "2026-12-28",
+    "2026-12-30"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Nakano Broadway, il paradiso dei collezionisti",
+   "zona": "Nakano",
+   "lat": 35.7086,
+   "lng": 139.6659,
+   "orari": "Negozi 12:00–20:00 circa",
+   "prezzo": "Gratis da girare",
+   "durata": "2 h",
+   "sintesi": "Quattro piani di negozietti di manga, action figure d'epoca, orologi e videogiochi: molto meno turistico di Akihabara. A 5 minuti da Shinjuku.",
+   "wiki": "Nakano Broadway",
+   "q": "Nakano Broadway",
+   "fonti": "Time Out Tokyo, Lonely Planet",
+   "alt": "Alternativa a Sunshine City o ad Akihabara"
+  },
+  {
+   "id": "tk-animate",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Animate Ikebukuro",
+   "zona": "Ikebukuro",
+   "lat": 35.7303,
+   "lng": 139.7166,
+   "orari": "11:00–21:00",
+   "prezzo": "Gratis da girare",
+   "durata": "45 min",
+   "sintesi": "Il più grande negozio di anime e manga del mondo, a due passi da Sunshine City.",
+   "wiki": "Ikebukuro",
+   "q": "Animate Ikebukuro flagship",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-gyoen",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Giardino Shinjuku Gyoen",
+   "zona": "Shinjuku",
+   "lat": 35.6852,
+   "lng": 139.7101,
+   "orari": "9:00–16:00, chiuso dal 29 dicembre al 3 gennaio",
+   "prezzo": "¥500",
+   "durata": "1 h 30",
+   "sintesi": "Tre giardini in uno, giapponese, inglese e francese, con i grattacieli sullo sfondo. Il 28 è l'ultimo giorno aperto dell'anno.",
+   "wiki": "Shinjuku Gyoen",
+   "q": "Shinjuku Gyoen winter",
+   "sito": "https://fng.or.jp/shinjuku/en/",
+   "fonti": "Go Tokyo",
+   "alt": "Alternativa a Ikebukuro, a 10 minuti dall'hotel"
+  },
+  {
+   "id": "tk-yoyogi",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Parco di Yoyogi",
+   "zona": "Harajuku",
+   "lat": 35.6717,
+   "lng": 139.6949,
+   "orari": "Sempre aperto",
+   "prezzo": "Gratis",
+   "durata": "45 min",
+   "sintesi": "Accanto al Meiji Jingu, il parco dove la domenica si ritrovano ballerini rockabilly e musicisti. Bello anche d'inverno con la luce bassa.",
+   "wiki": "Yoyogi Park",
+   "q": "Yoyogi park Harajuku",
+   "fonti": "Lonely Planet",
+   "alt": "Insieme o al posto del Meiji Jingu"
+  },
+  {
+   "id": "tk-crepes",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Crêpe di Takeshita-dori",
+   "zona": "Harajuku",
+   "lat": 35.6713,
+   "lng": 139.7046,
+   "orari": "10:00–20:00",
+   "prezzo": "Circa ¥600–900",
+   "durata": "15 min",
+   "sintesi": "Crêpe arrotolate piene di panna, frutta e gelato: il dolce simbolo di Harajuku dagli anni Settanta. Marion e Angels Heart sono le storiche.",
+   "wiki": "Crêpe",
+   "q": "Harajuku crepe Marion",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-purikura",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Foto purikura tutti insieme",
+   "zona": "Harajuku",
+   "lat": 35.6706,
+   "lng": 139.705,
+   "orari": "10:00–22:00",
+   "prezzo": "Circa ¥500–700 a cabina",
+   "durata": "20 min",
+   "sintesi": "Le cabine fototessera giapponesi che ingrandiscono gli occhi e aggiungono decorazioni: una foto ricordo in 6, un po' ridicola, garantita.",
+   "wiki": "Purikura",
+   "q": "purikura Harajuku",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-hikarie",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "L'incrocio di Shibuya dall'alto, gratis",
+   "zona": "Shibuya",
+   "lat": 35.659,
+   "lng": 139.7036,
+   "orari": "Fino alle 23 circa",
+   "prezzo": "Gratis",
+   "durata": "15 min",
+   "sintesi": "Dall'11° piano di Shibuya Hikarie e dal ponte della stazione si vede il formicaio dell'incrocio senza pagare la terrazza panoramica.",
+   "wiki": "Shibuya Crossing",
+   "q": "Shibuya crossing view Hikarie",
+   "fonti": "Tokyo Cheapo",
+   "alt": "Alternativa gratuita a Shibuya Sky"
+  },
+  {
+   "id": "tk-maisen",
+   "giorni": [
+    "2026-12-28",
+    "2027-01-01"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Tonkatsu Maisen in un ex bagno pubblico",
+   "zona": "Omotesandō",
+   "lat": 35.6683,
+   "lng": 139.7101,
+   "orari": "11:00–21:00",
+   "prezzo": "Circa ¥1.800–3.500",
+   "durata": "1 h",
+   "sintesi": "Cotolette di maiale tenerissime servite nella sala alta di un vecchio sentō. Un classico di Omotesandō da oltre 50 anni.",
+   "wiki": "Tonkatsu",
+   "q": "Tonkatsu Maisen Aoyama",
+   "fonti": "Time Out Tokyo, Tabelog"
+  },
+  {
+   "id": "tk-ebisu",
+   "giorni": [
+    "2026-12-28"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Ebisu Yokochō, a una fermata da Shibuya",
+   "zona": "Ebisu",
+   "lat": 35.6475,
+   "lng": 139.7101,
+   "orari": "Dalle 17 a tarda notte",
+   "prezzo": "Circa ¥2.500–4.000",
+   "durata": "1 h 30",
+   "sintesi": "Un vicolo coperto di minuscoli banchi dove si mangia gomito a gomito con i tokyoti: spiedini, oden, sashimi. A una fermata da Shibuya.",
+   "wiki": "Izakaya",
+   "q": "Ebisu Yokocho",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-donki",
+   "giorni": [
+    "2026-12-28",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "shopping",
+   "titolo": "Mega Don Quijote, il bazar aperto 24 ore",
+   "zona": "Shibuya",
+   "lat": 35.6603,
+   "lng": 139.6985,
+   "orari": "24 ore",
+   "prezzo": "Prezzi bassi, esenzione tasse sopra ¥5.000",
+   "durata": "1 h",
+   "sintesi": "Sette piani di tutto: Kit Kat ai gusti impossibili, cosmetici, costumi, elettronica. Il posto per i regali dell'ultimo minuto.",
+   "consiglio": "Portare il passaporto per l'esenzione dalle tasse.",
+   "wiki": "Don Quijote (store)",
+   "q": "Mega Don Quijote Shibuya",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-asakusa-view",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Terrazza gratis davanti al Kaminarimon",
+   "zona": "Asakusa",
+   "lat": 35.7105,
+   "lng": 139.7967,
+   "orari": "9:00–22:00",
+   "prezzo": "Gratis",
+   "durata": "15 min",
+   "sintesi": "L'8° piano del centro turistico di Asakusa, firmato da Kengo Kuma: da qui si vede tutta Nakamise fino al tempio e lo Skytree.",
+   "wiki": "Asakusa",
+   "q": "Asakusa Culture Tourist Information Center rooftop",
+   "fonti": "Go Tokyo, Tokyo Cheapo"
+  },
+  {
+   "id": "tk-sushi-class",
+   "giorni": [
+    "2026-12-29",
+    "2026-12-30"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Corso di sushi ad Asakusa",
+   "zona": "Asakusa",
+   "lat": 35.712,
+   "lng": 139.796,
+   "orari": "Più turni al giorno, circa 1 h 30",
+   "prezzo": "Da circa ¥4.000 a testa",
+   "durata": "1 h 30",
+   "sintesi": "Si imparano nigiri e rotoli con istruttori che parlano inglese, poi si mangia quello che si è fatto. È tra i corsi più recensiti del Giappone.",
+   "consiglio": "Per 6 meglio prenotare per tempo: si può aggiungere la degustazione di sakè.",
+   "wiki": "Sushi",
+   "q": "sushi making class Asakusa",
+   "fonti": "Klook, Headout",
+   "prenota": "https://www.klook.com/activity/81812-sushi-nigiri-experience-asakusa"
+  },
+  {
+   "id": "tk-kura",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Kura Sushi di Asakusa",
+   "zona": "Asakusa",
+   "lat": 35.711,
+   "lng": 139.795,
+   "orari": "11:00–23:00",
+   "prezzo": "Circa ¥1.200–2.500",
+   "durata": "1 h",
+   "sintesi": "Il ristorante di sushi sul nastro più grande della catena, arredato come un villaggio Edo, con il gioco a premi ogni cinque piatti.",
+   "wiki": "Conveyor belt sushi",
+   "q": "Kura Sushi Asakusa global flagship",
+   "fonti": "Tokyo Cheapo"
+  },
+  {
+   "id": "tk-ninja",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Lezione da ninja ad Asakusa",
+   "zona": "Asakusa",
+   "lat": 35.7135,
+   "lng": 139.793,
+   "orari": "Turni di circa 1 h",
+   "prezzo": "Circa ¥5.000–9.000 a testa",
+   "durata": "1 h",
+   "sintesi": "Costume, lancio di shuriken e passi silenziosi con un istruttore: un'ora leggera e da ridere in 6.",
+   "wiki": "Ninja",
+   "q": "ninja experience Asakusa Tokyo",
+   "fonti": "GetYourGuide, Viator, Klook"
+  },
+  {
+   "id": "tk-taiko",
+   "giorni": [
+    "2026-12-29",
+    "2026-12-30"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Tamburi taiko per un'ora",
+   "zona": "Asakusa",
+   "lat": 35.7128,
+   "lng": 139.7925,
+   "orari": "Su prenotazione",
+   "prezzo": "Circa ¥4.000–6.000 a testa",
+   "durata": "1 h",
+   "sintesi": "Si suonano i grandi tamburi giapponesi in gruppo con un maestro. Faticoso e liberatorio, adatto a chi non ha mai suonato.",
+   "wiki": "Taiko",
+   "q": "taiko drumming experience Tokyo",
+   "fonti": "GetYourGuide, Viator, Klook"
+  },
+  {
+   "id": "tk-chanko",
+   "giorni": [
+    "2026-12-29",
+    "2026-12-30"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Chanko nabe, la cena dei lottatori a Ryōgoku",
+   "zona": "Ryōgoku",
+   "lat": 35.6955,
+   "lng": 139.793,
+   "orari": "Cena dalle 17",
+   "prezzo": "Circa ¥3.500–6.000",
+   "durata": "1 h 30",
+   "sintesi": "Nel quartiere del sumo, la pentola sostanziosa con cui ingrassano i lottatori. Chanko Kawasaki è la più antica, dal 1937.",
+   "consiglio": "Perfetta come antipasto del sumo che vedrete a Kyoto. Prenotare per 6.",
+   "wiki": "Chankonabe",
+   "q": "chanko nabe Ryogoku Kawasaki",
+   "fonti": "Time Out Tokyo, Tabelog"
+  },
+  {
+   "id": "tk-ryogoku",
+   "giorni": [
+    "2026-12-29",
+    "2026-12-30"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Ryōgoku, il quartiere del sumo",
+   "zona": "Ryōgoku",
+   "lat": 35.6969,
+   "lng": 139.7934,
+   "orari": "Museo del sumo 10:00–16:30 nei giorni feriali",
+   "prezzo": "Gratis",
+   "durata": "1 h",
+   "sintesi": "L'arena Kokugikan, il piccolo museo del sumo e le statue dei campioni lungo la via: a una fermata da Asakusa.",
+   "consiglio": "A fine anno il museo può essere chiuso: verificare.",
+   "wiki": "Ryōgoku Kokugikan",
+   "q": "Ryogoku Kokugikan sumo museum",
+   "fonti": "Go Tokyo"
+  },
+  {
+   "id": "tk-sumo-asa",
+   "giorni": [
+    "2026-12-28",
+    "2026-12-29",
+    "2026-12-30"
+   ],
+   "fascia": "mattina",
+   "cat": "esperienza",
+   "titolo": "Allenamento del mattino in una scuderia di sumo",
+   "zona": "Ryōgoku",
+   "lat": 35.696,
+   "lng": 139.795,
+   "orari": "Dalle 7:30 circa, su prenotazione",
+   "prezzo": "Circa ¥10.000–15.000 a testa con guida",
+   "durata": "2 h",
+   "sintesi": "Una guida vi porta a vedere in silenzio il vero allenamento dei lottatori, a pochi metri dal ring. Diverso dallo spettacolo del 5 gennaio.",
+   "consiglio": "Gli allenamenti si fermano nei giorni di Capodanno: chiedere le date al tour.",
+   "wiki": "Sumo",
+   "q": "sumo morning practice tour Tokyo",
+   "fonti": "GetYourGuide, Viator, Klook"
+  },
+  {
+   "id": "tk-rainbow",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Il Rainbow Bridge a piedi",
+   "zona": "Shibaura – Odaiba",
+   "lat": 35.6363,
+   "lng": 139.7633,
+   "orari": "D'inverno 10:00–18:00, ultimo ingresso 17:30",
+   "prezzo": "Gratis",
+   "durata": "40 min",
+   "sintesi": "Una passerella pedonale sotto la strada, con la baia e la Tokyo Tower di fianco. Al tramonto la luce è bellissima.",
+   "wiki": "Rainbow Bridge (Tokyo)",
+   "q": "Rainbow Bridge walk promenade",
+   "fonti": "Go Tokyo",
+   "alt": "Alternativa al battello per Odaiba"
+  },
+  {
+   "id": "tk-senkyaku",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Toyosu Senkyaku Banrai, il mercato in stile Edo",
+   "zona": "Toyosu",
+   "lat": 35.6452,
+   "lng": 139.7849,
+   "orari": "Ristoranti fino a sera; terme 24 ore",
+   "prezzo": "Pasto circa ¥1.500–4.000",
+   "durata": "1 h 30",
+   "sintesi": "Accanto al mercato del pesce di Toyosu: vie in stile Edo con sushi, grigliate di pesce e un'area terme con vista sulla baia. Comodo prima o dopo teamLab Planets.",
+   "wiki": "Toyosu Market",
+   "q": "Toyosu Senkyaku Banrai",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-joypolis",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Tokyo Joypolis, sala giochi gigante",
+   "zona": "Odaiba",
+   "lat": 35.6287,
+   "lng": 139.7759,
+   "orari": "11:00–19:00 circa",
+   "prezzo": "Pass circa ¥5.000",
+   "durata": "2–3 h",
+   "sintesi": "Parco divertimenti al coperto di Sega con simulatori, realtà virtuale e montagne russe interne. Ottimo se piove.",
+   "wiki": "Tokyo Joypolis",
+   "q": "Tokyo Joypolis",
+   "fonti": "Go Tokyo",
+   "alt": "Alternativa a Odaiba con la pioggia"
+  },
+  {
+   "id": "tk-smallworlds",
+   "giorni": [
+    "2026-12-29"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Small Worlds, Tokyo in miniatura",
+   "zona": "Ariake",
+   "lat": 35.6346,
+   "lng": 139.7928,
+   "orari": "10:00–18:00",
+   "prezzo": "Circa ¥2.700",
+   "durata": "1 h 30",
+   "sintesi": "Plastici dettagliatissimi di città, spazioporti e scene anime, con luci giorno-notte. Vicino a Odaiba.",
+   "wiki": "Model railway",
+   "q": "Small Worlds Tokyo",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-arcade",
+   "giorni": [
+    "2026-12-30"
+   ],
+   "fascia": "sera",
+   "cat": "notte",
+   "titolo": "Sale giochi di Akihabara",
+   "zona": "Akihabara",
+   "lat": 35.7005,
+   "lng": 139.7712,
+   "orari": "Fino alle 23–24",
+   "prezzo": "¥100–500 a partita",
+   "durata": "1 h",
+   "sintesi": "Piani interi di macchine per pupazzi, giochi musicali e picchiaduro tra veri campioni. GiGO e Taito Station sono le più grandi.",
+   "wiki": "Amusement arcade",
+   "q": "Akihabara arcade GiGO",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-maidcafe",
+   "giorni": [
+    "2026-12-30"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Un caffè delle cameriere ad Akihabara",
+   "zona": "Akihabara",
+   "lat": 35.6999,
+   "lng": 139.7712,
+   "orari": "11:00–22:00",
+   "prezzo": "Circa ¥2.500–3.500 con coperto e una consumazione",
+   "durata": "1 h",
+   "sintesi": "Cameriere in costume, canzoncine e disegni con il ketchup sull'omurice: kitsch puro, da fare una volta. @home café è il più famoso.",
+   "wiki": "Maid café",
+   "q": "maid cafe Akihabara home cafe",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-radiokaikan",
+   "giorni": [
+    "2026-12-30"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Radio Kaikan e Mandarake",
+   "zona": "Akihabara",
+   "lat": 35.6981,
+   "lng": 139.7712,
+   "orari": "11:00–20:00",
+   "prezzo": "Gratis da girare",
+   "durata": "1 h",
+   "sintesi": "Dieci piani di figure, carte da collezione e modellini davanti alla stazione; poco più in là gli otto piani neri di Mandarake.",
+   "wiki": "Akihabara",
+   "q": "Akihabara Radio Kaikan",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-yabu",
+   "giorni": [
+    "2026-12-30"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Soba da Kanda Yabu",
+   "zona": "Kanda",
+   "lat": 35.6964,
+   "lng": 139.7692,
+   "orari": "11:30–20:00 (verificare la chiusura di fine anno)",
+   "prezzo": "Circa ¥1.200–2.500",
+   "durata": "45 min",
+   "sintesi": "Locale storico di soba in un giardino, dove la padrona annuncia gli ordini cantilenando. A due passi da Kanda Matsuya.",
+   "wiki": "Soba",
+   "q": "Kanda Yabu Soba",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-isegen",
+   "giorni": [
+    "2026-12-30"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Pentola di rana pescatrice da Isegen",
+   "zona": "Kanda",
+   "lat": 35.6962,
+   "lng": 139.7697,
+   "orari": "Solo d'inverno, 11:30–22:00 (verificare fine anno)",
+   "prezzo": "Circa ¥4.500–6.000",
+   "durata": "1 h 30",
+   "sintesi": "Casa di legno del 1830 che serve solo ankō nabe, la pentola di rana pescatrice, e solo nei mesi freddi. Si mangia sul tatami.",
+   "wiki": "Monkfish",
+   "q": "Isegen anko nabe Kanda",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-laqua",
+   "giorni": [
+    "2026-12-30",
+    "2027-01-01"
+   ],
+   "fascia": "sera",
+   "cat": "esperienza",
+   "titolo": "Spa LaQua a Tokyo Dome City",
+   "zona": "Kōrakuen",
+   "lat": 35.7066,
+   "lng": 139.753,
+   "orari": "11:00 – 9:00 del giorno dopo",
+   "prezzo": "Circa ¥3.500–4.500",
+   "durata": "2 h",
+   "sintesi": "Terme con acqua vera pompata da 1.700 m, vasche all'aperto e saune, accanto alle montagne russe illuminate di Tokyo Dome City.",
+   "consiglio": "Niente tatuaggi.",
+   "wiki": "Onsen",
+   "q": "Spa LaQua Tokyo Dome",
+   "fonti": "Time Out Tokyo",
+   "alt": "Alternativa a Thermae-yu"
+  },
+  {
+   "id": "tk-pokecafe",
+   "giorni": [
+    "2026-12-28",
+    "2026-12-29",
+    "2026-12-30",
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Pokémon Café di Nihonbashi",
+   "zona": "Nihonbashi",
+   "lat": 35.6814,
+   "lng": 139.774,
+   "orari": "Su prenotazione, circa 10:00–21:30",
+   "prezzo": "Circa ¥2.000–3.500 a testa",
+   "durata": "1 h 30",
+   "sintesi": "Piatti a forma di Pikachu e dei suoi amici, con un ballo di Pikachu in sala. Attaccato al Pokémon Center più grande di Tokyo.",
+   "consiglio": "Si prenota solo sul sito ufficiale e i posti spariscono in un minuto: controllare nelle notizie quando aprono le date di dicembre e gennaio.",
+   "wiki": "Pokémon",
+   "q": "Pokemon Cafe Tokyo Nihonbashi",
+   "sito": "https://www.pokemon-cafe.jp/en/",
+   "fonti": "Pokémon Cafe, Tokyo Cheapo",
+   "prenota": "https://reserve.pokemon-cafe.jp/"
+  },
+  {
+   "id": "tk-ghibli",
+   "giorni": [
+    "2026-12-28",
+    "2026-12-29",
+    "2026-12-30",
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Museo Ghibli di Mitaka",
+   "zona": "Mitaka",
+   "lat": 35.6962,
+   "lng": 139.5704,
+   "orari": "10:00–18:00, chiuso il martedì e nei giorni di Capodanno",
+   "prezzo": "¥1.000",
+   "durata": "2–3 h",
+   "sintesi": "Il museo disegnato da Miyazaki: il Gattobus da toccare, il robot di Laputa sul tetto, un cortometraggio inedito. A 20 minuti da Shinjuku.",
+   "consiglio": "Solo biglietti a orario comprati prima. Quelli di gennaio escono il 10 dicembre alle 10 ora giapponese (le 2 di notte in Italia) e finiscono subito: l'8 gennaio pomeriggio è il giorno più realistico.",
+   "wiki": "Ghibli Museum",
+   "q": "Ghibli Museum Mitaka",
+   "sito": "https://www.ghibli-museum.jp/en/",
+   "fonti": "Ghibli Museum, Tofugu, Japan Travel",
+   "top": true,
+   "prenota": "https://www.ghibli-museum.jp/en/tickets/"
+  },
+  {
+   "id": "tk-borderless",
+   "giorni": [
+    "2026-12-31",
+    "2027-01-01",
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "teamLab Borderless ad Azabudai Hills",
+   "zona": "Azabudai",
+   "lat": 35.6604,
+   "lng": 139.7404,
+   "orari": "Di solito 10:00–21:00, ultimo ingresso un'ora prima",
+   "prezzo": "Da circa ¥3.400–3.800, prezzo variabile",
+   "durata": "2–3 h",
+   "sintesi": "Il \"museo senza mappa\": stanze di luci che si muovono e si mescolano tra loro, si cammina con le scarpe. Diverso da Planets, si possono fare entrambi.",
+   "consiglio": "Biglietti a orario sul sito ufficiale.",
+   "wiki": "TeamLab Borderless",
+   "q": "teamLab Borderless Azabudai Hills",
+   "sito": "https://www.teamlab.art/e/borderless-azabudai/",
+   "fonti": "teamLab, Go Tokyo, Japan Travel Kit",
+   "prenota": "https://www.teamlab.art/e/borderless-azabudai/"
+  },
+  {
+   "id": "tk-tokyotower",
+   "giorni": [
+    "2026-12-31",
+    "2027-01-01",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "Tokyo Tower la sera",
+   "zona": "Shiba",
+   "lat": 35.6586,
+   "lng": 139.7454,
+   "orari": "9:00–23:00",
+   "prezzo": "Ponte principale circa ¥1.200–1.500",
+   "durata": "1 h",
+   "sintesi": "La torre rossa e bianca vista da sotto, poi su a 150 metri: il panorama sulle luci della città è più vicino e più \"vero\" di quello dei grattacieli.",
+   "consiglio": "Il 31 si combina con le campane di Zōjō-ji.",
+   "wiki": "Tokyo Tower",
+   "q": "Tokyo Tower night",
+   "sito": "https://www.tokyotower.co.jp/en/",
+   "fonti": "Go Tokyo",
+   "prenota": "https://www.tokyotower.co.jp/en/ticket/"
+  },
+  {
+   "id": "tk-cityview",
+   "giorni": [
+    "2026-12-31",
+    "2027-01-01",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "Tokyo City View a Roppongi Hills",
+   "zona": "Roppongi",
+   "lat": 35.6604,
+   "lng": 139.7292,
+   "orari": "10:00–22:00 circa",
+   "prezzo": "Circa ¥2.000–2.500",
+   "durata": "1 h",
+   "sintesi": "Vetrate a 250 metri con la Tokyo Tower davanti: la foto notturna più bella di Tokyo. Spesso c'è anche una mostra del Mori Art Museum.",
+   "wiki": "Roppongi Hills",
+   "q": "Tokyo City View Roppongi Hills night",
+   "sito": "https://tcv.roppongihills.com/en/",
+   "fonti": "Go Tokyo, Time Out Tokyo",
+   "alt": "Alternativa a Shibuya Sky",
+   "prenota": "https://tcv.roppongihills.com/en/"
+  },
+  {
+   "id": "tk-mopa",
+   "giorni": [
+    "2026-12-31",
+    "2027-01-01"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Shabu-shabu a volontà per la cena del 31",
+   "zona": "Shinjuku",
+   "lat": 35.693,
+   "lng": 139.702,
+   "orari": "Catene aperte anche nei giorni di festa",
+   "prezzo": "Circa ¥3.500–5.500 a testa, 90–120 min",
+   "durata": "2 h",
+   "sintesi": "Pentola calda al tavolo con manzo e maiale a volontà: le catene come Mo-Mo-Paradise e Onyasai prendono prenotazioni per 6 e restano aperte a Capodanno.",
+   "consiglio": "Prenotare online qualche giorno prima.",
+   "wiki": "Shabu-shabu",
+   "q": "Mo-Mo-Paradise Shinjuku shabu shabu",
+   "fonti": "Tabelog, Time Out Tokyo",
+   "alt": "Per la «Cena di fine anno»"
+  },
+  {
+   "id": "tk-hilton",
+   "giorni": [
+    "2026-12-31"
+   ],
+   "fascia": "sera",
+   "cat": "notte",
+   "titolo": "Festa di Capodanno all'Hilton Tokyo",
+   "zona": "Nishi-Shinjuku",
+   "lat": 35.693,
+   "lng": 139.692,
+   "orari": "31 dicembre sera",
+   "prezzo": "Biglietti sul sito dell'hotel",
+   "durata": "Serata",
+   "sintesi": "Festa con countdown a 5 minuti a piedi dal vostro hotel: niente problemi di treni al ritorno.",
+   "wiki": "Hilton Tokyo",
+   "q": "Hilton Tokyo countdown party",
+   "fonti": "Metropolis Japan",
+   "alt": "Alternativa al Meiji Jingu a mezzanotte"
+  },
+  {
+   "id": "tk-tsukiji-tour",
+   "giorni": [
+    "2026-12-31"
+   ],
+   "fascia": "mattina",
+   "cat": "esperienza",
+   "titolo": "Tsukiji con una guida gastronomica",
+   "zona": "Tsukiji",
+   "lat": 35.6654,
+   "lng": 139.7707,
+   "orari": "Di solito alle 9, circa 3 h",
+   "prezzo": "Circa ¥12.000–15.000 a testa con gli assaggi",
+   "durata": "3 h",
+   "sintesi": "Una guida vi fa assaggiare i banchi migliori e spiega cosa state mangiando: il modo più facile di non perdersi nel giorno più caotico dell'anno.",
+   "wiki": "Tsukiji fish market",
+   "q": "Tsukiji food tour",
+   "fonti": "Magical Trip, GetYourGuide, Viator, Klook",
+   "alt": "Dentro la tappa al mercato di Tsukiji"
+  },
+  {
+   "id": "tk-shibamata",
+   "giorni": [
+    "2027-01-01"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Shibamata, il Capodanno di una volta",
+   "zona": "Shibamata",
+   "lat": 35.7585,
+   "lng": 139.878,
+   "orari": "Tempio sempre aperto, negozi dalle 9",
+   "prezzo": "Gratis",
+   "durata": "2 h",
+   "sintesi": "Una via di bottegai di dolci di riso porta al tempio Taishakuten, con le pareti di legno intagliate. A Capodanno è in festa ma non soffocante come il centro.",
+   "wiki": "Shibamata",
+   "q": "Shibamata Taishakuten New Year",
+   "fonti": "Lonely Planet, Time Out Tokyo"
+  },
+  {
+   "id": "tk-fukubukuro",
+   "giorni": [
+    "2027-01-02",
+    "2027-01-01"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Fukubukuro, le buste a sorpresa",
+   "zona": "Ginza",
+   "lat": 35.6714,
+   "lng": 139.7656,
+   "orari": "Dal 2 gennaio, all'apertura dei grandi magazzini",
+   "prezzo": "Buste da ¥3.000 a ¥30.000",
+   "durata": "1–2 h",
+   "sintesi": "Per Capodanno i negozi vendono buste chiuse con merce che vale molto più del prezzo. File all'alba davanti a Mitsukoshi e ai negozi di elettronica.",
+   "wiki": "Fukubukuro",
+   "q": "fukubukuro Tokyo lucky bag",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "tk-ekiden",
+   "giorni": [
+    "2027-01-02"
+   ],
+   "fascia": "mattina",
+   "cat": "evento",
+   "titolo": "La partenza della Hakone Ekiden",
+   "zona": "Ōtemachi",
+   "lat": 35.6866,
+   "lng": 139.7647,
+   "orari": "2 gennaio, partenza alle 8:00",
+   "prezzo": "Gratis",
+   "durata": "45 min",
+   "sintesi": "La staffetta universitaria più seguita del Giappone parte davanti al giornale Yomiuri: bande, tifosi e fazzoletti colorati. È a 10 minuti a piedi dal palazzo imperiale.",
+   "consiglio": "Si abbina bene al saluto dell'imperatore.",
+   "wiki": "Hakone Ekiden",
+   "q": "Hakone Ekiden start Otemachi",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "tk-disneysea",
+   "giorni": [
+    "2027-01-02",
+    "2026-12-30"
+   ],
+   "fascia": "mattina",
+   "cat": "gita",
+   "titolo": "Una giornata a Tokyo DisneySea",
+   "zona": "Maihama",
+   "lat": 35.6267,
+   "lng": 139.8851,
+   "orari": "9:00–21:00 circa",
+   "prezzo": "Circa ¥7.900–10.900 a testa, variabile per data",
+   "durata": "Giornata",
+   "sintesi": "Il parco Disney più amato al mondo, con il porto veneziano, il vulcano e l'area di Frozen. A 25 minuti da Tokyo.",
+   "consiglio": "Solo biglietti datati, comprati online.",
+   "wiki": "Tokyo DisneySea",
+   "q": "Tokyo DisneySea",
+   "sito": "https://www.tokyodisneyresort.jp/en/",
+   "fonti": "Tripadvisor",
+   "prenota": "https://www.tokyodisneyresort.jp/en/ticket/"
+  },
+  {
+   "id": "tk-takao",
+   "giorni": [
+    "2027-01-02"
+   ],
+   "fascia": "mattina",
+   "cat": "gita",
+   "titolo": "Escursione sul monte Takao",
+   "zona": "Takao",
+   "lat": 35.6251,
+   "lng": 139.2435,
+   "orari": "Treno Keiō da Shinjuku circa 50 min",
+   "prezzo": "Treno circa ¥400 a tratta, funivia ¥500",
+   "durata": "Mezza giornata",
+   "sintesi": "Sentieri nel bosco, un tempio con i diavoli dal naso lungo e, nelle giornate limpide d'inverno, il Fuji dalla cima. La gita più vicina e meno cara.",
+   "wiki": "Mount Takao",
+   "q": "Mount Takao hike winter Fuji view",
+   "fonti": "Time Out Tokyo, Lonely Planet"
+  },
+  {
+   "id": "tk-cupnoodles",
+   "giorni": [
+    "2027-01-02"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Museo dei noodle istantanei a Yokohama",
+   "zona": "Minato Mirai",
+   "lat": 35.4553,
+   "lng": 139.6382,
+   "orari": "10:00–18:00 (verificare apertura il 2 gennaio)",
+   "prezzo": "Ingresso circa ¥500 + ¥500 la vostra tazza",
+   "durata": "1 h 30",
+   "sintesi": "Si disegna la propria tazza, si scelgono brodo e ingredienti e la macchina la sigilla: il souvenir più divertente.",
+   "wiki": "Cup Noodles Museum",
+   "q": "Cup Noodles Museum Yokohama",
+   "fonti": "Time Out Tokyo",
+   "alt": "Dentro la gita a Yokohama"
+  },
+  {
+   "id": "ky-karuta",
+   "giorni": [
+    "2027-01-03"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "evento",
+   "titolo": "Karuta Hajime al santuario Yasaka",
+   "zona": "Gion",
+   "lat": 35.0036,
+   "lng": 135.7785,
+   "orari": "Ogni anno il 3 gennaio verso le 13",
+   "prezzo": "Gratis",
+   "durata": "45 min",
+   "sintesi": "Donne in kimono di corte giocano alla prima partita dell'anno di karuta, un antico gioco di carte con le poesie. Rituale, lento, bellissimo da vedere.",
+   "wiki": "Yasaka Shrine",
+   "q": "Karuta Hajime Yasaka shrine January 3",
+   "fonti": "Kyoto City Official Travel Guide"
+  },
+  {
+   "id": "ky-kenninji",
+   "giorni": [
+    "2027-01-03"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Kennin-ji e i due draghi",
+   "zona": "Gion",
+   "lat": 35.0006,
+   "lng": 135.7737,
+   "orari": "10:00–16:30",
+   "prezzo": "Circa ¥800",
+   "durata": "45 min",
+   "sintesi": "Il tempio zen più antico di Kyoto, con due draghi enormi dipinti sul soffitto e i paraventi del dio del vento e del tuono. In centro a Gion, poco affollato.",
+   "wiki": "Kennin-ji",
+   "q": "Kenninji twin dragons",
+   "fonti": "Japan Guide",
+   "alt": "Alternativa a Kiyomizu-dera"
+  },
+  {
+   "id": "ky-chionin",
+   "giorni": [
+    "2027-01-03"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Chion-in e la porta gigante",
+   "zona": "Higashiyama",
+   "lat": 35.0055,
+   "lng": 135.7832,
+   "orari": "9:00–16:00",
+   "prezzo": "Porta gratis, giardini circa ¥500",
+   "durata": "45 min",
+   "sintesi": "La porta di legno più grande del Giappone e una campana da 70 tonnellate. Tra Yasaka e il santuario Heian, si fa senza deviare.",
+   "wiki": "Chion-in",
+   "q": "Chion-in Sanmon gate",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-arabica-hg",
+   "giorni": [
+    "2027-01-03"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "% Arabica sotto la pagoda",
+   "zona": "Higashiyama",
+   "lat": 34.9985,
+   "lng": 135.7802,
+   "orari": "9:00–18:00",
+   "prezzo": "Circa ¥600",
+   "durata": "20 min",
+   "sintesi": "Il caffè latte più fotografato di Kyoto, servito in una casa di legno lungo la salita. Fila breve, da asporto.",
+   "wiki": "Coffee",
+   "q": "Arabica Kyoto Higashiyama",
+   "fonti": "Time Out"
+  },
+  {
+   "id": "ky-tsujiri",
+   "giorni": [
+    "2027-01-03",
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Parfait al matcha da Saryo Tsujiri",
+   "zona": "Gion",
+   "lat": 35.0037,
+   "lng": 135.7748,
+   "orari": "10:30–19:00",
+   "prezzo": "Circa ¥1.300–1.800",
+   "durata": "45 min",
+   "sintesi": "Bicchieri alti di gelato al tè verde, gelatine, castagne e dango. La casa del tè di Uji dal 1860, sulla via principale di Gion.",
+   "consiglio": "Coda nel pomeriggio, si mette il nome e si gira.",
+   "wiki": "Matcha",
+   "q": "Saryo Tsujiri Gion matcha parfait",
+   "fonti": "Tripadvisor, Inside Kyoto"
+  },
+  {
+   "id": "ky-kagizen",
+   "giorni": [
+    "2027-01-03",
+    "2027-01-05"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Kuzukiri da Kagizen Yoshifusa",
+   "zona": "Gion",
+   "lat": 35.0036,
+   "lng": 135.776,
+   "orari": "9:30–18:00, chiuso il lunedì",
+   "prezzo": "Circa ¥1.200–1.600",
+   "durata": "30 min",
+   "sintesi": "Spaghetti trasparenti di amido di kudzu da intingere nello sciroppo di zucchero nero: un dolce che esiste solo a Kyoto.",
+   "wiki": "Wagashi",
+   "q": "Kagizen Yoshifusa kuzukiri",
+   "fonti": "Michelin, Inside Kyoto"
+  },
+  {
+   "id": "ky-station-view",
+   "giorni": [
+    "2027-01-03",
+    "2027-01-04",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "La stazione di Kyoto e lo Skywalk",
+   "zona": "Stazione di Kyoto",
+   "lat": 34.9858,
+   "lng": 135.7588,
+   "orari": "Fino alle 23",
+   "prezzo": "Gratis",
+   "durata": "30 min",
+   "sintesi": "La grande scalinata illuminata a led e il corridoio sospeso al 10° piano, con vista sulla Kyoto Tower. Sopra il vostro primo hotel.",
+   "wiki": "Kyoto Station",
+   "q": "Kyoto Station Skywalk Daikaidan",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-katsugyu",
+   "giorni": [
+    "2027-01-03",
+    "2027-01-04",
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Gyukatsu Kyoto Katsugyu",
+   "zona": "Stazione di Kyoto",
+   "lat": 34.9858,
+   "lng": 135.7587,
+   "orari": "11:00–22:00",
+   "prezzo": "Circa ¥1.600–2.800",
+   "durata": "45 min",
+   "sintesi": "Cotoletta di manzo da finire sulla pietra calda, versione Kyoto con salsa allo yuzu e brodo dashi. Sotto la stazione, comodo con le valigie.",
+   "wiki": "Tonkatsu",
+   "q": "Kyoto Katsugyu gyukatsu Kyoto station",
+   "fonti": "Tabelog"
+  },
+  {
+   "id": "ky-toji",
+   "giorni": [
+    "2027-01-04"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Tō-ji, la pagoda più alta del Giappone",
+   "zona": "Minami",
+   "lat": 34.9806,
+   "lng": 135.7478,
+   "orari": "8:00–17:00",
+   "prezzo": "Circa ¥500–800",
+   "durata": "1 h",
+   "sintesi": "La pagoda di legno a cinque piani simbolo di Kyoto e una sala di statue buddiste da togliere il fiato. A 15 minuti a piedi dalla stazione.",
+   "consiglio": "Con le valigie: armadietti in stazione, o in taxi.",
+   "wiki": "Tō-ji",
+   "q": "Toji pagoda Kyoto",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-sanjusangendo",
+   "giorni": [
+    "2027-01-04",
+    "2027-01-07"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Sanjūsangen-dō, le mille statue",
+   "zona": "Higashiyama sud",
+   "lat": 34.9879,
+   "lng": 135.7718,
+   "orari": "9:00–16:00",
+   "prezzo": "Circa ¥600",
+   "durata": "45 min",
+   "sintesi": "Una sala di legno lunga 120 metri con 1.001 statue dorate della dea della misericordia, tutte diverse. Uno dei luoghi più impressionanti di Kyoto.",
+   "wiki": "Sanjūsangen-dō",
+   "q": "Sanjusangendo 1001 statues",
+   "fonti": "Japan Guide, Lonely Planet"
+  },
+  {
+   "id": "ky-railway",
+   "giorni": [
+    "2027-01-04"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Museo ferroviario di Kyoto",
+   "zona": "Umekōji",
+   "lat": 34.9871,
+   "lng": 135.7424,
+   "orari": "10:00–17:00, chiuso il mercoledì",
+   "prezzo": "Circa ¥1.500",
+   "durata": "2 h",
+   "sintesi": "Cinquantaquattro treni veri, dalle locomotive a vapore al primo shinkansen, e un giro su un treno a vapore. A 20 minuti a piedi dalla stazione.",
+   "wiki": "Kyoto Railway Museum",
+   "q": "Kyoto Railway Museum",
+   "sito": "https://www.kyotorailwaymuseum.jp/en/",
+   "fonti": "Kyoto City Official Travel Guide"
+  },
+  {
+   "id": "ky-honganji",
+   "giorni": [
+    "2027-01-04",
+    "2027-01-08"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Higashi Hongan-ji",
+   "zona": "Stazione di Kyoto",
+   "lat": 34.9911,
+   "lng": 135.7584,
+   "orari": "5:50–16:30",
+   "prezzo": "Gratis",
+   "durata": "30 min",
+   "sintesi": "Una delle sale di legno più grandi del mondo, a cinque minuti dalla stazione. Ideale se avanza mezz'ora prima del treno.",
+   "wiki": "Higashi Hongan-ji",
+   "q": "Higashi Honganji Kyoto",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-saga-sosta",
+   "giorni": [
+    "2027-01-04"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Sosta a Saga-Arashiyama verso il ryokan",
+   "zona": "Arashiyama",
+   "lat": 35.0179,
+   "lng": 135.681,
+   "orari": "Sul treno per Kameoka",
+   "prezzo": "Armadietti in stazione circa ¥700",
+   "durata": "1–2 h",
+   "sintesi": "Il treno per Kameoka ferma a Saga-Arashiyama: si lasciano le valigie in stazione e si fa un giro tra bambù e ponte prima di proseguire.",
+   "consiglio": "Così Arashiyama si toglie dal 6, che resta più tranquillo.",
+   "wiki": "Arashiyama",
+   "q": "Saga Arashiyama station lockers",
+   "fonti": "Japan Guide",
+   "alt": "Spostamento di Arashiyama dal 6 gennaio"
+  },
+  {
+   "id": "ky-arashi-5",
+   "giorni": [
+    "2027-01-05"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Arashiyama subito dopo il battello",
+   "zona": "Arashiyama",
+   "lat": 35.0094,
+   "lng": 135.6778,
+   "orari": "Il battello arriva verso le 13:30",
+   "prezzo": "Gratis",
+   "durata": "1 h 30",
+   "sintesi": "Si sbarca a monte del ponte Togetsukyo: pranzo, bambù e Tenryū-ji prima di prendere il treno per Kyoto. Il 6 pomeriggio resta libero per altro.",
+   "wiki": "Arashiyama",
+   "q": "Arashiyama bamboo grove",
+   "fonti": "Japan Guide",
+   "alt": "Spostamento di Arashiyama dal 6 gennaio"
+  },
+  {
+   "id": "ky-nishiki-tour",
+   "giorni": [
+    "2027-01-05"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Nishiki con una guida gastronomica",
+   "zona": "Nishiki",
+   "lat": 35.005,
+   "lng": 135.7649,
+   "orari": "Di solito nel pomeriggio, circa 3 h",
+   "prezzo": "Circa ¥10.000–15.000 a testa",
+   "durata": "3 h",
+   "sintesi": "Una guida vi fa assaggiare tamagoyaki, sottaceti, tofu, sakè e pesce alla griglia raccontando la cucina di Kyoto. Si finisce spesso a cena in un izakaya.",
+   "wiki": "Nishiki Market",
+   "q": "Nishiki market food tour Kyoto",
+   "fonti": "Arigato Japan, Magical Trip, GetYourGuide, Viator, Klook",
+   "alt": "Dentro la tappa al mercato Nishiki"
+  },
+  {
+   "id": "ky-inoichi",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Ramen al dashi da Menya Inoichi",
+   "zona": "Shijō Teramachi",
+   "lat": 35.0025,
+   "lng": 135.7672,
+   "orari": "11:00–15:00, 17:30–21:00 circa",
+   "prezzo": "Circa ¥1.000–1.500",
+   "durata": "30 min più la coda",
+   "sintesi": "Bib Gourmand Michelin: un ramen chiaro e profumato di alga kombu e pesce secco, l'opposto del tonkotsu. A 10 minuti dall'hotel Mystays.",
+   "consiglio": "Locale minuscolo: coda o numero da prenotare all'ingresso.",
+   "wiki": "Ramen",
+   "q": "Menya Inoichi Kyoto",
+   "fonti": "Guida Michelin",
+   "top": true
+  },
+  {
+   "id": "ky-wagyu",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Wagyu alla griglia a Kiyamachi",
+   "zona": "Kiyamachi",
+   "lat": 35.006,
+   "lng": 135.7705,
+   "orari": "Dalle 17",
+   "prezzo": "Circa ¥5.000–12.000",
+   "durata": "1 h 30",
+   "sintesi": "Lungo il canale di Kiyamachi ci sono yakiniku di manzo di Kyoto e di Ōmi da cuocere al tavolo. Per 6 è la cena più conviviale prima del sumo.",
+   "consiglio": "Prenotare online per le 18:30 se c'è il sumo alle 21.",
+   "wiki": "Wagyu",
+   "q": "Kyoto wagyu yakiniku Kiyamachi",
+   "fonti": "Tabelog, Inside Kyoto",
+   "alt": "Alternativa a Pontocho"
+  },
+  {
+   "id": "ky-obanzai",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Obanzai, la cucina di casa di Kyoto",
+   "zona": "Pontocho",
+   "lat": 35.0045,
+   "lng": 135.7708,
+   "orari": "Dalle 17",
+   "prezzo": "Circa ¥3.000–5.000",
+   "durata": "1 h 30",
+   "sintesi": "Piccoli piatti di verdure, tofu e pesce esposti sul bancone come in una cucina di famiglia. Più semplice e meno caro del kaiseki.",
+   "wiki": "Obanzai",
+   "q": "obanzai Kyoto Pontocho",
+   "fonti": "Inside Kyoto",
+   "alt": "Dentro la cena a Pontocho"
+  },
+  {
+   "id": "ky-arcades",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "shopping",
+   "titolo": "Gallerie di Teramachi e Shinkyōgoku",
+   "zona": "Kawaramachi",
+   "lat": 35.006,
+   "lng": 135.768,
+   "orari": "10:00–21:00",
+   "prezzo": "Gratis da girare",
+   "durata": "1 h",
+   "sintesi": "Due vie coperte parallele a Nishiki: souvenir, gioielli a forma di sushi, piccoli templi tra un negozio e l'altro. Vicine al sumo.",
+   "wiki": "Teramachi Street",
+   "q": "Shinkyogoku Teramachi arcade Kyoto",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-geisha",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "esperienza",
+   "titolo": "Spettacolo con una maiko e cerimonia del tè",
+   "zona": "Gion",
+   "lat": 35.0025,
+   "lng": 135.7745,
+   "orari": "Serate a orari fissi, circa 1 h 30",
+   "prezzo": "Da circa ¥13.000 a testa",
+   "durata": "1 h 30",
+   "sintesi": "Danza, domande e foto con una vera maiko o geiko, in piccolo gruppo: l'unico modo semplice per conoscerne una senza un'introduzione.",
+   "wiki": "Maiko",
+   "q": "maiko geisha show tea ceremony Kyoto",
+   "sito": "https://mai-ko.com/",
+   "fonti": "Maikoya, GetYourGuide, Viator, Klook",
+   "prenota": "https://mai-ko.com/"
+  },
+  {
+   "id": "ky-tofukuji",
+   "giorni": [
+    "2027-01-06"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Tōfuku-ji e i giardini a scacchiera",
+   "zona": "Fushimi",
+   "lat": 34.9767,
+   "lng": 135.7739,
+   "orari": "9:00–16:00",
+   "prezzo": "Circa ¥600",
+   "durata": "1 h",
+   "sintesi": "A una fermata da Fushimi Inari: un grande tempio zen con giardini di pietra moderni e un ponte di legno sulla valle.",
+   "wiki": "Tōfuku-ji",
+   "q": "Tofukuji garden",
+   "fonti": "Japan Guide",
+   "alt": "Dopo Fushimi Inari"
+  },
+  {
+   "id": "ky-ginkakuji",
+   "giorni": [
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Ginkaku-ji e il sentiero del filosofo",
+   "zona": "Higashiyama nord",
+   "lat": 35.027,
+   "lng": 135.7982,
+   "orari": "9:00–16:30",
+   "prezzo": "Circa ¥500",
+   "durata": "2 h",
+   "sintesi": "Il Padiglione d'argento con il giardino di sabbia rastrellata, poi due chilometri a piedi lungo il canale fino al Nanzen-ji.",
+   "wiki": "Ginkaku-ji",
+   "q": "Ginkakuji Philosopher path",
+   "fonti": "Japan Guide",
+   "alt": "Alternativa al Kinkaku-ji"
+  },
+  {
+   "id": "ky-eigamura",
+   "giorni": [
+    "2027-01-06"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Kyoto Studio Park: ninja e samurai sul set",
+   "zona": "Uzumasa",
+   "lat": 35.0167,
+   "lng": 135.7097,
+   "orari": "10:00–16:00 circa d'inverno",
+   "prezzo": "Circa ¥2.400–3.000",
+   "durata": "2–3 h",
+   "sintesi": "Il parco a tema negli studi dove si girano i film in costume: vie di Edo, spettacoli di ninja, labirinti, travestimenti da samurai. Tra Kinkaku-ji e Arashiyama.",
+   "consiglio": "È stato rinnovato nel 2026 con il nome Uzumasa Kyoto Village: verificare prezzi e orari.",
+   "wiki": "Toei Kyoto Studio Park",
+   "q": "Toei Kyoto Studio Park ninja show",
+   "sito": "https://en.eigamura.com/",
+   "fonti": "Kyoto City Official Travel Guide, Pelago",
+   "alt": "Alternativa ad Arashiyama",
+   "prenota": "https://en.eigamura.com/hours-tickets/"
+  },
+  {
+   "id": "ky-kimonoforest",
+   "giorni": [
+    "2027-01-06"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "La foresta di kimono di Arashiyama",
+   "zona": "Arashiyama",
+   "lat": 35.0155,
+   "lng": 135.678,
+   "orari": "Illuminata fino a sera",
+   "prezzo": "Gratis",
+   "durata": "15 min",
+   "sintesi": "Seicento colonne rivestite di tessuti kimono lungo i binari del tram Randen, illuminate al tramonto. Con il pediluvio termale in stazione.",
+   "wiki": "Arashiyama",
+   "q": "Arashiyama Kimono Forest Randen",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-otagi",
+   "giorni": [
+    "2027-01-06"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Otagi Nenbutsu-ji, 1.200 statue sorridenti",
+   "zona": "Saga-Toriimoto",
+   "lat": 35.03,
+   "lng": 135.667,
+   "orari": "8:00–16:30",
+   "prezzo": "Circa ¥500",
+   "durata": "45 min",
+   "sintesi": "Statue di pietra coperte di muschio, ognuna con un'espressione diversa: chi ride, chi beve, chi suona. In fondo alla via di Saga-Toriimoto, quasi senza turisti.",
+   "consiglio": "Si arriva in taxi dal ponte Togetsukyo, 10 minuti.",
+   "wiki": "Otagi Nenbutsu-ji",
+   "q": "Otagi Nenbutsuji rakan statues",
+   "fonti": "Japan Guide, Inside Kyoto"
+  },
+  {
+   "id": "ky-yoshimura",
+   "giorni": [
+    "2027-01-06"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "pranzo",
+   "titolo": "Soba con vista sul ponte Togetsukyo",
+   "zona": "Arashiyama",
+   "lat": 35.0135,
+   "lng": 135.6779,
+   "orari": "11:00–17:00",
+   "prezzo": "Circa ¥1.500–2.500",
+   "durata": "45 min",
+   "sintesi": "Soba fatti in casa al primo piano di un ristorante con le vetrate sul fiume e sul ponte: alternativa più semplice al yudōfu.",
+   "wiki": "Soba",
+   "q": "Arashiyama Yoshimura soba",
+   "fonti": "Tripadvisor",
+   "alt": "Alternativa al pranzo con yudōfu"
+  },
+  {
+   "id": "ky-tea-camellia",
+   "giorni": [
+    "2027-01-03",
+    "2027-01-05",
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Cerimonia del tè in una casa di Ninenzaka",
+   "zona": "Higashiyama",
+   "lat": 34.9983,
+   "lng": 135.7802,
+   "orari": "Più turni al giorno, 45 min",
+   "prezzo": "Circa ¥4.500–6.000 a testa",
+   "durata": "45 min",
+   "sintesi": "In una casa machiya, una maestra spiega e prepara il matcha, poi lo fate voi. Camellia è tra le più recensite di Kyoto e ha turni privati per gruppi.",
+   "wiki": "Japanese tea ceremony",
+   "q": "Camellia tea ceremony Kyoto",
+   "fonti": "Headout, Expedia, Klook"
+  },
+  {
+   "id": "ky-kimono-tea",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "esperienza",
+   "titolo": "Kimono e tè da Maikoya",
+   "zona": "Gion",
+   "lat": 35.003,
+   "lng": 135.7735,
+   "orari": "Più turni al giorno",
+   "prezzo": "Da circa ¥6.300 a testa",
+   "durata": "1 h 30",
+   "sintesi": "Vestizione in kimono inclusa, cerimonia del tè e poi in giro per Gion vestiti così. Anche per uomini.",
+   "wiki": "Kimono",
+   "q": "Maikoya kimono tea ceremony Kyoto",
+   "sito": "https://mai-ko.com/",
+   "fonti": "Maikoya, Expedia",
+   "prenota": "https://mai-ko.com/"
+  },
+  {
+   "id": "ky-samurai",
+   "giorni": [
+    "2027-01-05",
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "esperienza",
+   "titolo": "Museo dei samurai e lezione di spada",
+   "zona": "Nishiki",
+   "lat": 35.0059,
+   "lng": 135.764,
+   "orari": "Visite guidate tutto il giorno",
+   "prezzo": "Visita da circa ¥2.700, lezione di spada di più",
+   "durata": "1–2 h",
+   "sintesi": "Armature vere, spade e strumenti dei ninja con una guida in inglese, e la possibilità di provare la katana. A 5 minuti da Nishiki.",
+   "consiglio": "Posizione sulla mappa indicativa: vedere l'indirizzo sul sito.",
+   "wiki": "Samurai",
+   "q": "Samurai Ninja Museum Kyoto",
+   "sito": "https://mai-ko.com/",
+   "fonti": "Maikoya",
+   "prenota": "https://mai-ko.com/"
+  },
+  {
+   "id": "ky-imperial",
+   "giorni": [
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Palazzo imperiale di Kyoto",
+   "zona": "Kamigyō",
+   "lat": 35.0254,
+   "lng": 135.7621,
+   "orari": "9:00–16:00, chiuso il lunedì e fino al 4 gennaio",
+   "prezzo": "Gratis",
+   "durata": "1 h",
+   "sintesi": "La residenza degli imperatori fino al 1868: padiglioni di legno, cortili di ghiaia bianca, un parco immenso intorno.",
+   "wiki": "Kyoto Imperial Palace",
+   "q": "Kyoto Imperial Palace",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "ky-nintendo",
+   "giorni": [
+    "2027-01-06",
+    "2027-01-07"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Nintendo Museum di Uji",
+   "zona": "Uji",
+   "lat": 34.9087,
+   "lng": 135.79,
+   "orari": "10:00–18:00, chiuso il martedì e dal 30 dicembre al 3 gennaio",
+   "prezzo": "¥3.300",
+   "durata": "2–3 h",
+   "sintesi": "Nella vecchia fabbrica di carte da gioco della Nintendo: tutta la storia, dai fiori di hanafuda allo Switch, con giochi interattivi giganti.",
+   "consiglio": "Biglietti solo sul sito ufficiale, con estrazione tre mesi prima: quella di gennaio si è chiusa in ottobre. Dopo l'estrazione a volte restano posti in vendita: controllare. Serve un account Nintendo.",
+   "wiki": "Nintendo",
+   "q": "Nintendo Museum Uji",
+   "sito": "https://museum.nintendo.com/en/",
+   "fonti": "Nintendo, Japan Guide",
+   "top": true,
+   "prenota": "https://museum-tickets.nintendo.com/en"
+  },
+  {
+   "id": "nr-naramachi",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Naramachi, la vecchia Nara",
+   "zona": "Naramachi",
+   "lat": 34.678,
+   "lng": 135.83,
+   "orari": "Negozi 10:00–17:00",
+   "prezzo": "Gratis",
+   "durata": "1 h",
+   "sintesi": "Vicoli di case di mercanti con le scimmiette rosse appese alle porte, botteghe di sakè e caffè. A 10 minuti dal parco.",
+   "wiki": "Naramachi",
+   "q": "Naramachi Nara",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "nr-museo",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Museo nazionale di Nara",
+   "zona": "Nara Park",
+   "lat": 34.6833,
+   "lng": 135.8378,
+   "orari": "9:30–17:00",
+   "prezzo": "Circa ¥700",
+   "durata": "1 h",
+   "sintesi": "La più bella collezione di statue buddiste del Giappone, nel parco dei cervi. Riscalda dopo una mattina all'aperto.",
+   "wiki": "Nara National Museum",
+   "q": "Nara National Museum",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "os-usj",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "mattina",
+   "cat": "gita",
+   "titolo": "Universal Studios Japan e il mondo di Mario",
+   "zona": "Ōsaka",
+   "lat": 34.6654,
+   "lng": 135.4323,
+   "orari": "9:00–20:00 circa",
+   "prezzo": "Circa ¥8.600–10.900 a testa, variabile; Express Pass a parte",
+   "durata": "Giornata",
+   "sintesi": "Il parco con Super Nintendo World, Harry Potter e le montagne russe migliori del Giappone. A 45 minuti da Kyoto.",
+   "consiglio": "Per entrare nell'area di Mario serve un ingresso a orario: con alcuni Express Pass o dall'app il giorno stesso. Fino all'11 gennaio c'è la festa per i 5 anni dell'area.",
+   "wiki": "Universal Studios Japan",
+   "q": "Super Nintendo World Osaka",
+   "sito": "https://www.usj.co.jp/web/en/us",
+   "fonti": "Universal Studios Japan",
+   "alt": "Alternativa alla gita a Nara",
+   "prenota": "https://www.usj.co.jp/web/en/us/tickets"
+  },
+  {
+   "id": "os-kuromon",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Mercato Kuromon di Ōsaka",
+   "zona": "Namba",
+   "lat": 34.6655,
+   "lng": 135.5065,
+   "orari": "9:00–18:00",
+   "prezzo": "Assaggi da ¥500 a ¥3.000",
+   "durata": "1 h",
+   "sintesi": "La \"cucina di Ōsaka\": ricci di mare, granchio, wagyu alla piastra e frutta enorme. Si mangia lungo la via coperta.",
+   "wiki": "Kuromon Market",
+   "q": "Kuromon market Osaka",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "os-shinsekai",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Kushikatsu a Shinsekai",
+   "zona": "Shinsekai",
+   "lat": 34.6525,
+   "lng": 135.5063,
+   "orari": "Fino alle 22–23",
+   "prezzo": "Circa ¥2.000–3.500",
+   "durata": "1 h",
+   "sintesi": "Spiedini fritti da intingere una sola volta nella salsa comune, sotto la torre Tsūtenkaku e le insegne retrò. Il quartiere più popolare di Ōsaka.",
+   "consiglio": "Vietato intingere due volte!",
+   "wiki": "Kushikatsu",
+   "q": "Shinsekai kushikatsu Daruma",
+   "fonti": "Time Out"
+  },
+  {
+   "id": "os-umeda",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "sera",
+   "cat": "visita",
+   "titolo": "Umeda Sky Building al tramonto",
+   "zona": "Umeda",
+   "lat": 34.7053,
+   "lng": 135.4906,
+   "orari": "9:30–22:30",
+   "prezzo": "Circa ¥2.000",
+   "durata": "45 min",
+   "sintesi": "Il \"giardino sospeso\" all'aperto tra due torri a 173 metri, con scale mobili nel vuoto. Davanti alla stazione da cui si torna a Kyoto.",
+   "wiki": "Umeda Sky Building",
+   "q": "Umeda Sky Building floating garden",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "os-castello",
+   "giorni": [
+    "2027-01-07"
+   ],
+   "fascia": "mattina",
+   "cat": "visita",
+   "titolo": "Castello di Ōsaka",
+   "zona": "Ōsaka",
+   "lat": 34.6873,
+   "lng": 135.5262,
+   "orari": "9:00–17:00",
+   "prezzo": "Circa ¥600",
+   "durata": "1 h 30",
+   "sintesi": "Il castello bianco e oro con i fossati enormi: dentro un museo, fuori un parco che si gira a piedi.",
+   "wiki": "Osaka Castle",
+   "q": "Osaka castle",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "gz-lion",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Birreria Ginza Lion del 1934",
+   "zona": "Ginza 7-chome",
+   "lat": 35.6693,
+   "lng": 139.7631,
+   "orari": "11:30–22:00",
+   "prezzo": "Circa ¥3.000–5.000",
+   "durata": "2 h",
+   "sintesi": "La birreria più antica del Giappone, con mosaici art déco e tavoloni: salsicce, karaage e birra alla spina. Perfetta per l'ultima sera in 6.",
+   "consiglio": "Prende prenotazioni di gruppo.",
+   "wiki": "Beer hall",
+   "q": "Ginza Lion beer hall 7-chome",
+   "fonti": "Time Out Tokyo",
+   "alt": "Per la cena d'addio"
+  },
+  {
+   "id": "gz-teppan",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Teppanyaki di wagyu a Ginza",
+   "zona": "Ginza",
+   "lat": 35.6705,
+   "lng": 139.764,
+   "orari": "Dalle 17:30",
+   "prezzo": "Circa ¥15.000–30.000 a testa",
+   "durata": "2 h",
+   "sintesi": "Lo chef cuoce il manzo di Kōbe o di Matsusaka sulla piastra davanti a voi. La cena da ricordare, se volete spendere.",
+   "consiglio": "Prenotare con molto anticipo per 6.",
+   "wiki": "Teppanyaki",
+   "q": "Ginza wagyu teppanyaki Kobe beef",
+   "fonti": "Tabelog, Michelin",
+   "alt": "Per la cena d'addio"
+  },
+  {
+   "id": "gz-zanmai",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "sera",
+   "cat": "cibo",
+   "pasto": "cena",
+   "titolo": "Sushi Zanmai, sushi a tutte le ore",
+   "zona": "Tsukiji",
+   "lat": 35.6655,
+   "lng": 139.7705,
+   "orari": "24 ore",
+   "prezzo": "Circa ¥2.500–4.500",
+   "durata": "1 h",
+   "sintesi": "La catena del \"re del tonno\", aperta sempre: un sushi buono e senza prenotazione a 10 minuti a piedi dall'hotel.",
+   "wiki": "Sushi",
+   "q": "Sushi Zanmai Tsukiji",
+   "fonti": "Tripadvisor"
+  },
+  {
+   "id": "gz-hamarikyu",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "visita",
+   "titolo": "Giardino Hama-rikyū e tè nella casa sull'acqua",
+   "zona": "Shiodome",
+   "lat": 35.66,
+   "lng": 139.7633,
+   "orari": "9:00–17:00",
+   "prezzo": "¥300 più circa ¥500–1.000 per matcha e dolce",
+   "durata": "1 h",
+   "sintesi": "Un giardino degli shōgun circondato dai grattacieli, con una casa da tè su un laghetto di acqua di mare. A 10 minuti da Ginza.",
+   "wiki": "Hama-rikyū Gardens",
+   "q": "Hamarikyu garden tea house",
+   "fonti": "Go Tokyo"
+  },
+  {
+   "id": "gz-uniqlo",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "shopping",
+   "titolo": "Uniqlo e Muji, i negozi bandiera",
+   "zona": "Ginza",
+   "lat": 35.6716,
+   "lng": 139.765,
+   "orari": "11:00–21:00",
+   "prezzo": "Prezzi giapponesi, esenzione tasse col passaporto",
+   "durata": "1 h",
+   "sintesi": "Dodici piani di Uniqlo e, poco più in là, il Muji più grande del mondo con hotel e ristorante. Per gli acquisti dell'ultimo giorno.",
+   "wiki": "Uniqlo",
+   "q": "Uniqlo Ginza flagship",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "gz-mitsukoshi",
+   "giorni": [
+    "2027-01-08"
+   ],
+   "fascia": "pomeriggio",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Il piano dei cibi di Mitsukoshi Ginza",
+   "zona": "Ginza",
+   "lat": 35.6714,
+   "lng": 139.7656,
+   "orari": "10:00–20:00",
+   "prezzo": "Assaggi da ¥300 a ¥3.000",
+   "durata": "45 min",
+   "sintesi": "Dolci giapponesi da portare a casa, bentō per la cena in camera, frutta da gioielleria. I regali commestibili del ritorno.",
+   "wiki": "Mitsukoshi",
+   "q": "Ginza Mitsukoshi depachika",
+   "fonti": "Time Out Tokyo"
+  },
+  {
+   "id": "gz-colazione",
+   "giorni": [
+    "2027-01-09"
+   ],
+   "fascia": "mattina",
+   "cat": "cibo",
+   "pasto": "spuntino",
+   "titolo": "Ultima colazione a Tsukiji",
+   "zona": "Tsukiji",
+   "lat": 35.6654,
+   "lng": 139.7707,
+   "orari": "Banchi dalle 7",
+   "prezzo": "Circa ¥1.000–3.000",
+   "durata": "1 h",
+   "sintesi": "Ciotola di riso con pesce crudo o tamagoyaki caldo, a 10 minuti a piedi dall'hotel: c'è tempo prima del check-out delle 9:30.",
+   "wiki": "Tsukiji fish market",
+   "q": "Tsukiji breakfast kaisendon",
+   "fonti": "Japan Guide"
+  },
+  {
+   "id": "gz-haneda",
+   "giorni": [
+    "2027-01-09"
+   ],
+   "fascia": "mattina",
+   "cat": "shopping",
+   "titolo": "Edo Market Place nel Terminal 3 di Haneda",
+   "zona": "Aeroporto di Haneda",
+   "lat": 35.5497,
+   "lng": 139.784,
+   "orari": "Dalle prime ore",
+   "prezzo": "Prezzi come in città",
+   "durata": "1 h",
+   "sintesi": "Al quarto e quinto piano del terminal internazionale, una via in stile Edo con ristoranti di sushi, ramen e negozi di souvenir. Ultimo ramen prima del volo.",
+   "wiki": "Haneda Airport",
+   "q": "Haneda Terminal 3 Edo Market Place",
+   "fonti": "Haneda Airport"
   }
  ]
 }

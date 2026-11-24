@@ -1,5 +1,5 @@
 // Big in Japan: app shell e dati disponibili anche senza rete; foto e mappe salvate man mano che si vedono.
-const V='bij-v4',SHELL=['./','index.html','app.js','scene.js','manifest.json','icon.svg','vendor/maplibre/maplibre-gl.js','vendor/maplibre/maplibre-gl.css','data/viaggio.json','data/stazioni.json','data/idee.json'];
+const V='bij-v5',SHELL=['./','index.html','app.js','scene.js','manifest.json','icon.svg','vendor/maplibre/maplibre-gl.js','vendor/maplibre/maplibre-gl.css','data/viaggio.json','data/stazioni.json','data/idee.json'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>!x.startsWith(V)).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET')return;

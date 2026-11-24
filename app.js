@@ -137,11 +137,10 @@ function legsGiorno(i){const T=tappe(i),out={};let prev=null;const h=hotelPrima(
 
 /* ---------- dati: programma + proposte approvate ---------- */
 let PIANO=[];
-function prepara(){V.giorni.sort((a,b)=>a.data<b.data?-1:1);V.giorni.forEach((g,i)=>{g.i=i;g.eventi.forEach((e,k)=>{e.id=`e${i}-${k}`;e.d=i})})}
+function prepara(){V.giorni.sort((a,b)=>a.data<b.data?-1:1);V.giorni.forEach((g,i)=>{g.i=i;g.eventi.forEach((e,k)=>{e.id=`e${i}-${k}`;e.d=i;e.rid0=`ev-${g.data.replace(/-/g,'')}-${(e.ora||'0000').replace(':','')}-${slug(e.titolo)}`})})}
 function propDi(data){return Object.entries(PROP[data]||{}).map(([id,p])=>{const r=reaz(id,p.voti),x=p.idea&&IDX[p.idea];return{...p,id,data,d:V.giorni.findIndex(g=>g.data===data),nv:r.su.length,ng:r.giu.length,prop:true,wiki:x?x.wiki:p.wiki}}).sort((a,b)=>(b.nv-b.ng)-(a.nv-a.ng)||a.t-b.t)}
-function tappe(i){const g=V.giorni[i],ok=propDi(g.data).filter(p=>p.ok).map(p=>({...p,ora:p.ora||(FASCE.find(f=>f[0]===p.fascia)||FASCE[0])[2],fonte:'gruppo',tipo:'attivita',id:p.id}));
- const t=[...g.eventi,...ok].sort((a,b)=>(a.ora||'').localeCompare(b.ora||''));let n=0;t.forEach(e=>{e.n=e.lat!=null?++n:0});return t}
-function ricalcola(){PIANO=V.giorni.flatMap((g,i)=>tappe(i))}
+function tappe(i){const t=(tappe.G||grezze()).filter(e=>e.d===i&&!e.nascosto).sort((a,b)=>(a.ora||'').localeCompare(b.ora||''));let n=0;t.forEach(e=>{e.n=e.lat!=null?++n:0});return t}
+function ricalcola(){tappe.G=grezze();PIANO=V.giorni.flatMap((g,i)=>tappe(i));tappe.G=null}
 const trova=id=>PIANO.find(e=>e.id===id)||Object.values(PROP).flatMap(o=>Object.entries(o)).map(([k,p])=>({...p,id:k})).find(p=>p.id===id);
 
 /* ---------- Firebase: proposte e pollici ---------- */
@@ -150,6 +149,7 @@ async function avviaFB(){if(FB)return;propStato='carica';
   const app=A.initializeApp(FCFG,'viaggio'),auth=Au.getAuth(app);await auth.authStateReady();if(!auth.currentUser)await Au.signInAnonymously(auth);
   const db=Db.getDatabase(app);FB={Db,db,uid:auth.currentUser.uid,ref:p=>Db.ref(db,`viaggi/${KEY}/${p}`)};
   Db.onValue(FB.ref('proposte'),s=>{PROP=s.val()||{};propStato='ok';aggiorna()},e=>{propStato='errore';propErr=String(e&&e.code||e);aggiorna()});
+  for(const[n,set]of[['modifiche',v=>MOD=v],['liste',v=>LST=v],['spunte',v=>SPU=v],['visti',v=>VIS=v],['diario',v=>DIA=v]])Db.onValue(FB.ref(n),s=>{set(s.val()||{});aggiorna()},()=>{});
   Db.onValue(FB.ref('reazioni'),s=>{RZ=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
   Db.onValue(FB.ref('commenti'),s=>{CM=s.val()||{};aggiorna();if(CMID)commenti(CMID,true)},()=>{});
  }catch(e){propStato='errore';propErr=String(e&&e.code||e);aggiorna()}}
@@ -169,11 +169,11 @@ $('#me').addEventListener('click',accesso);
 function tagRow(e){return`<div class="tags">${e.n?`<span class="num" style="--c:${col(e.d)}">${e.n}</span>`:''}${e.tipo&&!e.prop?`<span class="tg">${esc(TIPI[e.tipo]||e.tipo)}</span>`:''}${e.fonte?`<span class="tg ${esc(e.fonte)}">${esc(FONTI[e.fonte]||e.fonte)}</span>`:''}${e.costo?`<span class="tg">${soldi(e.costo,e.valuta||'JPY')}</span>`:e.costoPersona?`<span class="tg">${soldi(e.costoPersona)} a testa</span>`:''}</div>`}
 function _likeBtn(p){const io=IO&&p.voti&&p.voti[IO];return`<button class="btn like ${io?'on':''}" data-like="${esc(p.data)}|${esc(p.id)}" aria-pressed="${!!io}" aria-label="Mi piace"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10v11H3V10h4Zm0 0 4-8a3 3 0 0 1 3 3v4h5.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.1 21H7"/></svg>${p.nv||0}</button>`}
 function _likers(p){const chi=Object.keys(p.voti||{});return chi.length?`<div class="likers">${chi.map(n=>avatar(n,20)).join('')}<span>piace a ${chi.map(esc).join(', ')}</span></div>`:''}
-function stopCard(e,cls=''){const g=V.giorni[e.d];
- return`<div class="stop ${cls}" id="s-${e.id}"><div class="t">${esc(e.ora||'')}${e.fine?`<small>${esc(e.fine)}</small>`:''}</div>
+function stopCard(e,cls=''){const g=V.giorni[e.d],vv=visti(e),io=IO&&vv.includes(IO);
+ return`<div class="stop ${cls} ${vv.length?'fatta':''}" id="s-${e.id}" data-rid="${esc(rid(e))}" data-day="${e.d}" data-ora="${esc(e.ora||'')}"><div class="t">${esc(e.ora||'')}${e.fine?`<small>${esc(e.fine)}</small>`:''}${IO?`<button class="drag" aria-label="Trascina per cambiare ordine" title="Trascina">⋮⋮</button>`:''}${e.mod&&!e.mod.nascosto?`<small class="modt" title="Spostata da ${esc(e.mod.autore||'')}">spostata</small>`:''}</div>
  <div class="card ${selId===e.id?'sel':''}" data-sel="${e.id}" style="--c:${col(e.d)}">${e.wiki?ph(e.wiki,640,'','',e.d+1,e.titolo):''}<div class="bd">${tagRow(e)}
  <h4>${esc(e.titolo)}</h4>${e.luogo&&e.luogo!==e.titolo?`<p class="pl">${esc(e.luogo)}</p>`:''}${e.prop?`<p class="by">${avatar(e.autore,20)} proposta di ${esc(e.autore)}</p>`:''}${e.note||e.nota?`<p>${esc(e.note||e.nota)}</p>`:''}${staTxt(e)}${rbar(rid(e),e.prop?e.voti:null,e.prop?`${e.data}|${e.id}`:null)}
- <div class="acts"><a class="btn pri" href="${arrivo(e,ME)}" target="_blank" rel="noopener">Come arrivo</a><a class="btn" href="${gmap(e)}" target="_blank" rel="noopener">Google Maps</a>${e.sito?`<a class="btn" href="${esc(e.sito)}" target="_blank" rel="noopener">Sito</a>`:''}${e.idea&&IDX[e.idea]?`<button class="btn" data-idea="${esc(e.idea)}">Scheda</button>`:''}${e.lat!=null?`<button class="btn" data-showmap="${e.id}">Mappa</button>`:''}${e.prop&&IO?`<button class="btn" data-ok="${esc(e.data)}|${esc(e.id)}|0">Togli dal programma</button>`:''}</div></div></div></div>`}
+ <div class="acts"><a class="btn pri" href="${arrivo(e,ME)}" target="_blank" rel="noopener">Come arrivo</a><a class="btn" href="${gmap(e)}" target="_blank" rel="noopener">Google Maps</a>${e.sito?`<a class="btn" href="${esc(e.sito)}" target="_blank" rel="noopener">Sito</a>`:''}${e.idea&&IDX[e.idea]?`<button class="btn" data-idea="${esc(e.idea)}">Scheda</button>`:''}${e.lat!=null?`<button class="btn" data-showmap="${e.id}">Mappa</button>`:''}${IO?`<button class="btn" data-mod="${esc(e.id)}">Sposta</button>`:''}<button class="btn vis ${io?'on':''}" data-vis="${esc(rid(e))}" aria-pressed="${!!io}">${io?'✓ Ci sono stato':'Ci sono stato'}</button>${vv.length?`<span class="chi">${vv.map(n=>avatar(n,18)).join('')}</span>`:''}</div></div></div></div>`}
 function propCard(p){const mia=FB&&p.uid===FB.uid,f=(FASCE.find(x=>x[0]===p.fascia)||FASCE[0]),x=p.idea&&IDX[p.idea];
  return`<div class="prop" id="p-${esc(p.id)}" style="--p:${PCOL[p.autore]||'#666'}">${x?ph(x.wiki,600,'class="pimg"','',3,x.titolo):''}<div class="ph-row">${avatar(p.autore,30)}<div><small>Proposta di ${esc(p.autore)}</small><b>${esc(p.titolo)}</b>${p.luogo?`<small>${esc(p.luogo)}</small>`:''}</div></div>
  ${x?`<p class="imeta"><span>${esc(x.orari)}</span><span>${esc(x.prezzo)}</span></p>`:''}${p.nota?`<p>${esc(p.nota)}</p>`:''}${p.lat!=null?staTxt(p):''}${rbar(p.id,p.voti,`${p.data}|${p.id}`)}
@@ -185,7 +185,7 @@ const ICO_SU='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke
 const ICO_GIU=ICO_SU.replace('<svg ','<svg style="transform:rotate(180deg)" ');
 const ICO_CM='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/></svg>';
 const slug=t=>(t||'').normalize('NFD').replace(/[^A-Za-z0-9]+/g,'').slice(0,14).toLowerCase();
-const rid=e=>e.prop?e.id:`ev-${V.giorni[e.d].data.replace(/-/g,'')}-${(e.ora||'0000').replace(':','')}-${slug(e.titolo)}`;
+const rid=e=>e.prop?e.id:e.rid0||`ev-${V.giorni[e.d].data.replace(/-/g,'')}-${(e.ora||'0000').replace(':','')}-${slug(e.titolo)}`;
 function reaz(id,legacy){const r={};if(legacy)for(const n of Object.keys(legacy))r[n]=1;Object.assign(r,RZ[id]||{});const su=[],giu=[];for(const[n,v]of Object.entries(r)){if(v===1)su.push(n);else if(v===-1)giu.push(n)}return{su,giu,mio:IO?r[IO]||0:0}}
 const ncom=id=>Object.keys(CM[id]||{}).length;
 function rbar(id,legacy,leg){const r=reaz(id,legacy),nc=ncom(id);
@@ -214,8 +214,9 @@ function ideeDi(data,fascia,cibo){const gia=new Set(Object.values(PROP[data]||{}
  return IDEE.filter(x=>x.giorni.includes(data)&&!gia.has(x.id)&&(fascia==null||x.fascia===fascia)&&(cibo==null||(x.cat==='cibo')===cibo)).sort((a,b)=>scoreIdea(b)-scoreIdea(a)||(b.top?1:0)-(a.top?1:0))}
 const ilink=x=>({maps:`https://www.google.com/maps/search/?api=1&query=${enc(x.q+(x.lat!=null?'':''))}`,yt:`https://www.youtube.com/results?search_query=${enc(x.q+' #shorts')}`,tt:`https://www.tiktok.com/search?q=${enc(x.q)}`,
  gyg:`https://www.getyourguide.com/s/?q=${enc(x.q)}`,via:`https://www.viator.com/searchResults/all?text=${enc(x.q)}`,ta:`https://www.tripadvisor.com/Search?q=${enc(x.q)}`});
-const badge=x=>`<span class="ibadge" style="--k:${CATC[x.cat]||'#555'}">${esc(CAT[x.cat]||x.cat)}${x.pasto?' · '+esc(PASTO[x.pasto]||x.pasto):''}</span>${x.top?'<span class="itop">Consigliata</span>':''}`;
-function ideaMini(x){return`<article class="icard" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,420,'','',3,x.titolo)}<div class="ibd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="iz">${esc(x.zona)}</p>
+const badge=x=>`<span class="ibadge" style="--k:${CATC[x.cat]||'#555'}">${esc(CAT[x.cat]||x.cat)}${x.pasto?' · '+esc(PASTO[x.pasto]||x.pasto):''}</span>${x.top?'<span class="itop">Consigliata</span>':''}${x.prenota?'<span class="ipren">Da prenotare</span>':''}`;
+const desDi=id=>Object.entries(LST).find(([k,v])=>v.lista==='desideri'&&v.idea===id);
+function ideaMini(x){return`<article class="icard" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,420,'','',3,x.titolo)}<div class="ibd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="iz">${esc(x.zona)}</p>${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}
  <p class="imeta"><span>${esc(x.prezzo)}</span>${x.durata?`<span>${esc(x.durata)}</span>`:''}</p><p class="isin">${esc(x.sintesi)}</p>${rbar(x.id)}<div class="acts"><button class="btn pri" data-idea="${esc(x.id)}">Apri la scheda</button>${x.lat!=null?`<button class="btn" data-ideamap="${esc(x.id)}">Mappa</button>`:''}</div></div></article>`}
 function rigaIdee(lista,lab){return lista.length?`<div class="alt"><div class="alab">${lab} <small>${lista.length}</small></div><div class="ascroll">${lista.map(ideaMini).join('')}</div></div>`:''}
 function scheda(x,dataSel){CMID=x.id;const s=$('#sheet');s.classList.add('on');const L=ilink(x),g0=dataSel||(filter!=null&&x.giorni.includes(V.giorni[filter].data)?V.giorni[filter].data:x.giorni[0]);
@@ -223,17 +224,95 @@ function scheda(x,dataSel){CMID=x.id;const s=$('#sheet');s.classList.add('on');c
  const v=x.lat!=null?vicina(x.lat,x.lng):null;
  s.querySelector('.sheet').innerHTML=`<div class="isheet" style="--k:${CATC[x.cat]||'#555'}">${ph(x.wiki,900,'data-credit','',3,x.titolo)}<div>${badge(x)}</div><h2>${esc(x.titolo)}</h2><p class="iz">${esc(x.zona)}${v?` · stazione ${nomeSt(v.s)}, ${v.d<.15?'lì davanti':piedi(v.d)+' min a piedi'}`:''}</p>
  <dl class="igrid"><div><dt>Orari</dt><dd>${esc(x.orari)}</dd></div><div><dt>Prezzo</dt><dd>${esc(x.prezzo)}</dd></div>${x.durata?`<div><dt>Durata</dt><dd>${esc(x.durata)}</dd></div>`:''}<div><dt>Giorni adatti</dt><dd>${x.giorni.map(d=>esc(corto(d))).join(', ')}</dd></div></dl>
- <p>${esc(x.sintesi)}</p>${x.consiglio?`<div class="itip"><b>Consiglio:</b> ${esc(x.consiglio)}</div>`:''}
+ ${x.alt?`<p class="ialt">${esc(x.alt)}</p>`:''}<p>${esc(x.sintesi)}</p>${x.consiglio?`<div class="itip"><b>Consiglio:</b> ${esc(x.consiglio)}</div>`:''}${x.prenota?`<a class="btn pri ipbtn" href="${esc(x.prenota)}" target="_blank" rel="noopener">Prenota sul sito ufficiale</a>`:''}
  <div class="ilinks"><a href="${L.maps}" target="_blank" rel="noopener">Google Maps</a>${x.sito?`<a href="${esc(x.sito)}" target="_blank" rel="noopener">Sito</a>`:''}<a href="${L.yt}" target="_blank" rel="noopener">Video brevi</a><a href="${L.tt}" target="_blank" rel="noopener">TikTok</a><a href="${L.ta}" target="_blank" rel="noopener">Recensioni</a>${x.cat!=='cibo'?`<a href="${L.gyg}" target="_blank" rel="noopener">GetYourGuide</a><a href="${L.via}" target="_blank" rel="noopener">Viator</a>`:''}${x.lat!=null?`<a href="${arrivo(x,ME)}" target="_blank" rel="noopener">Come arrivo</a>`:''}</div>
  ${x.fonti?`<p class="ifonti">Fonti: ${esc(x.fonti)}. Prezzi e orari indicativi, verificati a novembre 2026.</p>`:''}
  ${rbar(x.id)}
- <div class="iprop">${gia.length?`<p>Già proposta per ${gia.map(d=>esc(corto(d))).join(', ')}: votatela nella giornata.</p>`:''}${IO?`<label>Proponi per<select data-ideagiorno>${x.giorni.map(d=>{const i=V.giorni.findIndex(g=>g.data===d);return`<option value="${d}" ${d===g0?'selected':''}>${i+1} · ${esc(corto(d))}</option>`}).join('')}</select></label><button class="btn pri" data-propidea="${esc(x.id)}">Proponi nel programma</button>`:''}</div>
+ <div class="iprop">${gia.length?`<p>Già proposta per ${gia.map(d=>esc(corto(d))).join(', ')}: votatela nella giornata.</p>`:''}${IO?`<label>Proponi per<select data-ideagiorno>${x.giorni.map(d=>{const i=V.giorni.findIndex(g=>g.data===d);return`<option value="${d}" ${d===g0?'selected':''}>${i+1} · ${esc(corto(d))}</option>`}).join('')}</select></label><button class="btn pri" data-propidea="${esc(x.id)}">Proponi nel programma</button>${desDi(x.id)?'<span class="muted">Già nei desideri</span>':`<button class="btn" data-desidea="${esc(x.id)}">Salva nei desideri</button>`}`:''}</div>
  <h3 class="isec">Commenti</h3><div class="coml" data-id="${esc(x.id)}">${listaCom(x.id)}</div>${formCom(x.id)}
  <div class="acts"><button class="btn" data-chiudi>Chiudi</button></div></div>`;riempiFoto(s)}
 async function proponiIdea(x,data){if(!IO){accesso();return}if(!FB){toast('Proposte non collegate: riprova tra poco');return}
  const o={autore:IO,uid:FB.uid,t:Date.now(),titolo:x.titolo.slice(0,120),luogo:x.zona.slice(0,120),nota:(x.sintesi+(x.prezzo?' Prezzo: '+x.prezzo+'.':'')).slice(0,600),fascia:x.fascia,idea:x.id,link:ilink(x).maps};
  if(x.lat!=null){o.lat=x.lat;o.lng=x.lng}
- try{await FB.Db.set(FB.Db.push(FB.ref('proposte/'+data)),o);toast('Proposta pubblicata: ora si vota');$('#sheet').classList.remove('on');CMID=null}catch(err){toast('Non salvata: '+(err.code||err))}}
+ try{await FB.Db.set(FB.Db.push(FB.ref('proposte/'+data)),o);const dz=desDi(x.id);if(dz)salva(`liste/${dz[0]}/fatto`,true).catch(()=>{});toast('Proposta pubblicata: ora si vota');$('#sheet').classList.remove('on');CMID=null}catch(err){toast('Non salvata: '+(err.code||err))}}
+
+/* ---------- programma modificabile: sposta, togli, trascina, ottimizza ---------- */
+let MOD={},LST={},SPU={},VIS={},DIA={};
+const minDi=o=>{const[a,b]=(o||'00:00').split(':').map(Number);return a*60+b};
+const oraDi=m=>{m=Math.max(0,Math.min(23*60+55,Math.round(m/5)*5));return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+const FISSO=e=>e.fonte==='prenotato'||['volo','treno','hotel','bus','trasferimento'].includes(e.tipo);
+function conMod(e,j){const m=MOD[rid(e)];if(!m)return{...e,d:j};const d=m.data?V.giorni.findIndex(g=>g.data===m.data):-1;return{...e,ora:m.ora||e.ora,d:d>=0?d:j,orig:j,mod:m,nascosto:!!m.nascosto}}
+function grezze(){return V.giorni.flatMap((g,j)=>[...g.eventi.map(e=>conMod(e,j)),...propDi(g.data).filter(p=>p.ok).map(p=>conMod({...p,ora:p.ora||(FASCE.find(f=>f[0]===p.fascia)||FASCE[0])[2],fonte:'gruppo',tipo:'attivita',id:p.id},j))])}
+function nascoste(i){return grezze().filter(e=>e.nascosto&&e.orig===i)}
+function modifica(e){if(!IO){accesso();return}CMID=null;const s=$('#sheet');s.classList.add('on');const k=rid(e);
+ s.querySelector('.sheet').innerHTML=`<form id="mform" data-rid="${esc(k)}" data-ora0="${esc(e.ora||'')}"><h2>Sposta o togli</h2><p class="lead">${esc(e.titolo)}</p>
+ <div class="row2b"><label>Giorno<select name="data">${V.giorni.map((g,i)=>`<option value="${g.data}" ${i===e.d?'selected':''}>${i+1} · ${esc(corto(g.data))} · ${esc(g.titolo)}</option>`).join('')}</select></label>
+ <label>Ora<input type="time" name="ora" value="${esc(e.ora||'')}" step="300" required></label></div>
+ ${FISSO(e)?'<p class="itip">È una prenotazione o uno spostamento già fissato: cambiate l\'orario solo se è cambiato davvero.</p>':''}
+ <div class="acts"><button class="btn pri" type="submit">Salva per tutti</button>${e.mod?'<button class="btn" type="button" data-modreset>Torna come prima</button>':''}<button class="btn" type="button" data-modtogli>Togli dal programma</button><button class="btn" type="button" data-chiudi>Annulla</button></div>
+ <p class="muted" style="font-size:12.5px">La modifica vale per tutti i viaggiatori. Le tappe tolte restano in fondo alla giornata e si rimettono con un tocco.</p></form>`}
+async function salvaMod(k,o){try{await salva('modifiche/'+k,o?{...o,autore:IO,t:Date.now()}:null);toast(o?(o.nascosto?'Tappa tolta dal programma':'Programma aggiornato'):'Tappa rimessa come prima')}catch(err){toast('Non salvato: '+(err.code||err))}}
+/* trascinamento dentro la giornata: si prende la maniglia e si lascia tra due tappe */
+let DR=null;
+function initDrag(){const v=$('#view');
+ v.addEventListener('pointerdown',e=>{const h=e.target.closest('.drag');if(!h||!IO)return;const card=h.closest('.stop');if(!card)return;e.preventDefault();
+  const list=[...v.querySelectorAll('.stop[data-rid]')].filter(c=>c.dataset.day===card.dataset.day);const t0=card.getBoundingClientRect().top;v.classList.add('dragmode');const t1=card.getBoundingClientRect().top;$('#side').scrollTop+=t1-t0;window.scrollBy(0,t1-t0);
+  DR={card,list,y0:card.getBoundingClientRect().top+15,pid:e.pointerId};card.classList.add('dragging');h.setPointerCapture(e.pointerId);
+  DR.auto=setInterval(()=>{if(!DR||DR.y==null)return;const g=DR.y<90?-12:DR.y>innerHeight-110?12:0;if(g){$('#side').scrollBy(0,g);window.scrollBy(0,g)}},30)});
+ v.addEventListener('pointermove',e=>{if(!DR)return;DR.y=e.clientY;const dy=e.clientY-DR.card.getBoundingClientRect().top+(parseFloat((DR.card.style.transform.match(/-?[\d.]+/)||[0])[0])||0)-15;DR.card.style.transform=`translateY(${dy}px)`;const y=e.clientY;
+  DR.list.forEach(c=>c.classList.remove('drop-before','drop-after'));const altri=DR.list.filter(c=>c!==DR.card);let dopo=null;
+  for(const c of altri){const r=c.getBoundingClientRect();if(y<r.top+r.height/2){dopo=c;break}}DR.target=dopo;if(dopo)dopo.classList.add('drop-before');else if(altri.length)altri.at(-1).classList.add('drop-after')});
+ const fine=async()=>{if(!DR)return;const{card,list,target}=DR;clearInterval(DR.auto);DR=null;v.classList.remove('dragmode');card.style.transform='';card.classList.remove('dragging');list.forEach(c=>c.classList.remove('drop-before','drop-after'));
+  const altri=list.filter(c=>c!==card),idx=target?altri.indexOf(target):altri.length,prima=altri[idx-1],dopo=altri[idx];
+  const vecchio=list.indexOf(card),nuovo=target?list.indexOf(target)-(list.indexOf(target)>vecchio?1:0):list.length-1;if(nuovo===vecchio)return;
+  const a=prima?minDi(prima.dataset.ora):null,b=dopo?minDi(dopo.dataset.ora):null;let m=a!=null&&b!=null?(a+b)/2:a!=null?a+60:b-60;
+  if(a!=null&&b!=null&&b-a<10)m=a+5;const ora=oraDi(m);await salvaMod(card.dataset.rid,{ora})};
+ v.addEventListener('pointerup',fine);v.addEventListener('pointercancel',fine)}
+/* ordine con meno strada: permuta le tappe libere e rimette gli orari nello stesso ordine */
+function ottimizza(i){const T=tappe(i),lib=T.filter(e=>e.lat!=null&&!FISSO(e));if(lib.length<3){toast('Servono almeno 3 tappe libere con la posizione');return}
+ const idx0=T.indexOf(lib[0]),idxN=T.indexOf(lib.at(-1));let start=null;for(let k=idx0-1;k>=0;k--)if(T[k].lat!=null){start=T[k];break}
+ if(!start){const h=hotelPrima(i-1,'99');if(h)start=h}let end=null;for(let k=idxN+1;k<T.length;k++)if(T[k].lat!=null){end=T[k];break}
+ const D=(a,b)=>km(a.lat,a.lng,b.lat,b.lng),costo=o=>{let s=0,p=start;o.forEach(e=>{if(p)s+=D(p,e);p=e});if(end)s+=D(p,end);return s};
+ let best=lib.slice(),bc=costo(best);const c0=bc;
+ if(lib.length<=8){const perm=(arr,l=0)=>{if(l===arr.length){const c=costo(arr);if(c<bc-1e-9){bc=c;best=arr.slice()}return}for(let k=l;k<arr.length;k++){[arr[l],arr[k]]=[arr[k],arr[l]];perm(arr,l+1);[arr[l],arr[k]]=[arr[k],arr[l]]}};perm(lib.slice())}
+ if(bc>=c0-.05){toast('L\'ordine attuale è già quello con meno strada');return}
+ const ore=lib.map(e=>e.ora).sort(),nuovo=best.map((e,k)=>({e,ora:ore[k]}));CMID=null;const s=$('#sheet');s.classList.add('on');
+ s.querySelector('.sheet').innerHTML=`<h2>Ordine con meno strada</h2><p class="lead">Giorno ${i+1}: ${c0.toFixed(1)} km in linea d'aria tra le tappe libere, con questo ordine ${bc.toFixed(1)} km. Gli orari restano gli stessi, cambia chi va prima.</p>
+ <ol class="olist">${nuovo.map(x=>`<li><b>${esc(x.ora)}</b> ${esc(x.e.titolo)}${x.e.ora!==x.ora?` <small>(era alle ${esc(x.e.ora)})</small>`:''}</li>`).join('')}</ol>
+ <p class="muted" style="font-size:12.5px">Prenotazioni, treni e alberghi non si muovono. Controllate gli orari di apertura prima di applicare.</p>
+ <div class="acts"><button class="btn pri" data-ottapplica="${i}">Applica per tutti</button><button class="btn" data-chiudi>Annulla</button></div>`;ottimizza.nuovo=nuovo}
+
+/* ---------- liste condivise ---------- */
+let PT=store.get('bij:ptab','tabellone');
+const LISTE=[['tabellone','Tabellone'],['desideri','Desideri'],['prenotare','Da prenotare'],['prima','Prima di partire'],['valigia','Valigia']];
+const voci=l=>Object.entries(LST).filter(([k,v])=>v.lista===l).map(([k,v])=>({...v,k})).sort((a,b)=>(a.fatto?1:0)-(b.fatto?1:0)||(a.t-b.t));
+const chiSel=(k,chi)=>`<select class="chi-sel" data-chi="${esc(k)}" aria-label="Chi se ne occupa"><option value="">Chi?</option>${V.viaggio.viaggiatori.map(n=>`<option ${n===chi?'selected':''}>${esc(n)}</option>`).join('')}</select>`;
+function rigaCheck({k,testo,nota,link,fatto,chi,autore,man,extra=''}){return`<li class="lv ${fatto?'ok':''}"><label class="lchk"><input type="checkbox" data-${man?'lfatto':'sfatto'}="${esc(k)}" ${fatto?'checked':''}><span><b>${esc(testo)}</b>${nota?`<small>${esc(nota)}</small>`:''}</span></label>
+ <div class="lrow">${chiSel((man?'L|':'S|')+k,chi)}${link?`<a class="btn sm pri" href="${esc(link)}" target="_blank" rel="noopener">${/^tel:/.test(link)?'Chiama':'Prenota sul sito'}</a>`:''}${extra}${man&&autore?`<span class="lby">${avatar(autore,18)}</span><button class="lnk" data-ldel="${esc(k)}">Togli</button>`:''}</div></li>`}
+function formLista(l,ph){return IO?`<form class="lform" data-lform="${l}"><input name="testo" maxlength="160" placeholder="${esc(ph)}" required><input name="link" type="url" placeholder="Link (facoltativo)"><button class="btn pri" type="submit">Aggiungi</button></form>`:'<button class="btn" data-login>Scegli il tuo nome per aggiungere</button>'}
+function daPrenotare(){const out=[],visti=new Set();
+ (V.daPrenotare||[]).forEach(x=>out.push({k:'pr-'+x.id,testo:x.testo,nota:x.nota,link:x.link}));
+ V.giorni.forEach((g,i)=>Object.entries(PROP[g.data]||{}).forEach(([id,p])=>{const x=p.idea&&IDX[p.idea];if(x&&x.prenota&&!visti.has(x.id+g.data)){visti.add(x.id+g.data);out.push({k:'pp-'+id,testo:`${x.titolo} · ${corto(g.data)}`,nota:(p.ok?'Nel programma':'Proposta da '+p.autore)+'. '+(x.consiglio||''),link:x.prenota})}}));
+ Object.entries(LST).filter(([k,v])=>v.lista==='desideri'&&v.idea&&IDX[v.idea]?.prenota).forEach(([k,v])=>{const x=IDX[v.idea];out.push({k:'pd-'+k,testo:x.titolo,nota:'Nei desideri di '+v.autore,link:x.prenota})});
+ return out.map(o=>({...o,fatto:!!SPU[o.k]?.fatto,chi:SPU[o.k]?.chi||''}))}
+function vListe(){const tabs=`<div class="ptabs" role="tablist">${LISTE.map(([k,n])=>`<button role="tab" aria-selected="${PT===k}" data-ptab="${k}">${n}${k==='desideri'&&voci('desideri').length?` <small>${voci('desideri').length}</small>`:''}</button>`).join('')}</div>`;
+ if(PT==='desideri'){const L=voci('desideri');return tabs+`<p class="lead">Cose da fare "prima o poi", senza ancora un giorno. Votatele e, quando c'è posto, mettetele in una giornata.</p>${formLista('desideri','Es. vedere una partita di baseball, provare il fugu…')}
+  <ul class="lvlist">${L.length?L.map(v=>{const x=v.idea&&IDX[v.idea];return`<li class="lv des ${v.fatto?'ok':''}" style="--p:${PCOL[v.autore]||'#666'}">${x?ph(x.wiki,300,'class="lph"','',3,x.titolo):''}<div class="ldes"><b>${esc(v.testo)}</b>${v.nota?`<small>${esc(v.nota)}</small>`:''}<span class="lby">${avatar(v.autore,18)} ${esc(v.autore)}${v.fatto?' · già messo in un giorno':''}</span>${rbar(v.k)}
+   <div class="acts">${x?`<button class="btn sm" data-idea="${esc(x.id)}">Scheda</button>`:''}${v.link?`<a class="btn sm" href="${esc(v.link)}" target="_blank" rel="noopener">Link</a>`:''}<button class="btn sm pri" data-lgiorno="${esc(v.k)}">Mettilo in un giorno</button><button class="lnk" data-ldel="${esc(v.k)}">Togli</button></div></div></li>`}).join(''):'<li class="muted">Ancora vuota. Dalle schede dei suggerimenti c\'è il tasto «Salva nei desideri».</li>'}</ul>`}
+ if(PT==='prenotare'){const C=daPrenotare(),M=voci('prenotare');return tabs+`<p class="lead">Tutto quello che va prenotato, con il link al sito ufficiale e chi se ne occupa. Le voci arrivano dal programma e dai suggerimenti proposti; potete aggiungerne.</p>
+  <ul class="lvlist">${C.map(o=>rigaCheck(o)).join('')}${M.map(v=>rigaCheck({...v,man:true})).join('')}</ul>${formLista('prenotare','Altra cosa da prenotare')}`}
+ if(PT==='prima'){const M=voci('prima');return tabs+`<p class="lead">Le cose da sistemare prima del 26 dicembre: le spunte sono condivise.</p><ul class="lvlist">${V.prepartenza.map((t,i)=>rigaCheck({k:'pre-'+i,testo:t,fatto:!!SPU['pre-'+i]?.fatto,chi:SPU['pre-'+i]?.chi||''})).join('')}${M.map(v=>rigaCheck({...v,man:true})).join('')}</ul>${formLista('prima','Altra cosa da fare prima di partire')}`}
+ if(PT==='valigia'){const M=voci('valigia');return tabs+`<p class="lead">La valigia è personale: queste spunte restano su questo telefono. In fondo, le cose che serve portare per tutto il gruppo.</p>${V.bagaglio.map((b,j)=>`<h3 class="isec">${esc(b.gruppo)}</h3>${lista('bag'+j,b.voci)}`).join('')}
+  <h3 class="isec">Per tutto il gruppo</h3><ul class="lvlist">${M.map(v=>rigaCheck({...v,man:true})).join('')||'<li class="muted">Es. una ciabatta multipresa, un mazzo di carte, il cavo HDMI.</li>'}</ul>${formLista('valigia','Cosa porta qualcuno per tutti')}`}
+ return tabs}
+
+/* ---------- diario e tappe visitate ---------- */
+const visti=e=>Object.keys(VIS[rid(e)]||{});
+const fotoDiretta=u=>/\.(jpe?g|png|webp|gif)(\?|$)/i.test(u)||/googleusercontent\.com\//.test(u);
+function diarioGiorno(g,i){const P=Object.entries(DIA).map(([k,v])=>({...v,k})).filter(v=>v.data===g.data).sort((a,b)=>a.t-b.t),A=V.viaggio.album;
+ return`<h2 class="sec" id="diario">Diario del giorno</h2><div class="diario">${A?`<a class="album" href="${esc(A)}" target="_blank" rel="noopener"><span>📷</span><span><b>Album condiviso su Google Foto</b><small>Caricate lì le foto: qui scrivete com'è andata e collegate le più belle</small></span></a>`:''}
+ ${P.map(v=>{const e=v.rid&&PIANO.find(x=>rid(x)===v.rid);return`<article class="dpost" style="--p:${PCOL[v.autore]||'#666'}">${avatar(v.autore,28)}<div><small><b>${esc(v.autore)}</b> · ${esc(quando(v.t))}${e?` · ${esc(e.titolo)}`:''}</small><p>${esc(v.testo)}</p>${v.foto?(fotoDiretta(v.foto)?`<a href="${esc(v.foto)}" target="_blank" rel="noopener"><img class="dimg" src="${esc(v.foto)}" alt="Foto di ${esc(v.autore)}" loading="lazy"></a>`:`<a class="btn sm" href="${esc(v.foto)}" target="_blank" rel="noopener">Apri la foto</a>`):''}${FB&&v.uid===FB.uid?`<button class="lnk" data-ddel="${esc(v.k)}">Elimina</button>`:''}</div></article>`}).join('')}
+ ${IO?`<form class="dform" data-dform="${g.data}"><textarea name="testo" maxlength="1000" rows="2" placeholder="Com'è andata oggi, ${esc(IO)}?" required></textarea><div class="row2b"><label>Tappa<select name="rid"><option value="">Tutta la giornata</option>${PIANO.filter(e=>e.d===i).map(e=>`<option value="${esc(rid(e))}">${esc(e.ora||'')} ${esc(e.titolo)}</option>`).join('')}</select></label><label>Link a una foto<input name="foto" type="url" placeholder="Condividi da Google Foto e incolla"></label></div><button class="btn pri" type="submit">Pubblica nel diario</button></form>`:'<button class="btn" data-login>Scegli il tuo nome per scrivere nel diario</button>'}</div>`}
 
 /* ---------- viste ---------- */
 function vHome(){const v=V.viaggio,s=stato(),n=diff(v.inizio,v.fine)+1,tutte=V.giorni.flatMap(g=>propDi(g.data)),aperte=tutte.filter(p=>!p.ok);
@@ -254,11 +333,11 @@ function vGiorno(i){const g=V.giorni[i],now=adesso(V.viaggio.fuso),live=now.data
  const mangiare=cibo.length?`<h2 class="sec" id="mangiare">Dove mangiare</h2><p class="muted" style="margin-top:-4px">Posti vicini alle tappe del giorno, con prezzi indicativi. Proponeteli per metterli nel programma.</p>${rigaIdee(pr,'Pranzo e spuntini')}${rigaIdee(ce,'Cena')}`:'';
  return`<div style="--c:${col(i)}"><div class="cover">${ph(g.cover,1200,'data-credit style="position:absolute;inset:0;height:auto"',g.scena,i+1,g.titolo)}<div class="sh"></div><div class="tx"><small>Giorno ${i+1} · ${esc(lungo(g.data))}</small><h1>${esc(g.titolo)}</h1></div></div>
  <nav class="daynav" aria-label="Giornate">${V.giorni.map((x,k)=>`<a href="#g${k+1}" style="--c:${col(k)}" ${k===i?'aria-current="page"':''}>${k+1} · ${esc(corto(x.data))}${propDi(x.data).some(p=>!p.ok)?' •':''}</a>`).join('')}</nav>
- <div class="pad"><p class="lead">${esc(g.riassunto||'')}</p>${(()=>{const n=ideeDi(g.data).length,c=ideeDi(g.data,null,true).length;return n?`<div class="daytools"><span>${n-c} alternative e ${c} posti dove mangiare per questo giorno</span><a href="#mappa" data-giornomappa="${i}">Percorso sulla mappa</a>${c?'<a href="#mangiare" data-goto="mangiare">Dove mangiare</a>':''}</div>`:''})()}${(g.avvisi||[]).map(a=>`<div class="alert"><b>Da sapere:</b> ${esc(a)}</div>`).join('')}
+ <div class="pad"><p class="lead">${esc(g.riassunto||'')}</p>${(()=>{const n=ideeDi(g.data).length,c=ideeDi(g.data,null,true).length;return n?`<div class="daytools"><span>${n-c} alternative e ${c} posti dove mangiare per questo giorno</span><a href="#mappa" data-giornomappa="${i}">Percorso sulla mappa</a>${IO?`<button class="lnk2" data-ottimizza="${i}">Ordine con meno strada</button>`:''}<a href="#diario" data-goto="diario">Diario</a>${c?'<a href="#mangiare" data-goto="mangiare">Dove mangiare</a>':''}</div>`:''})()}${(g.avvisi||[]).map(a=>`<div class="alert"><b>Da sapere:</b> ${esc(a)}</div>`).join('')}
  ${propStato==='errore'?`<div class="alert">Proposte non raggiungibili (${esc(propErr)}): si vede solo il programma.</div>`:''}
- ${blocchi}${mangiare}${g.pernotto?`<div class="sleep">Si dorme a <b>${esc(g.pernotto)}</b></div>`:''}
+ ${blocchi}${(()=>{const N=nascoste(i);return N.length?`<details class="tolte"><summary>${N.length} ${N.length===1?'tappa tolta':'tappe tolte'} dal programma</summary>${N.map(e=>`<div class="tolta"><span><b>${esc(e.ora||'')}</b> ${esc(e.titolo)} <small>da ${esc(e.mod.autore||'')}</small></span><button class="btn sm" data-rimetti="${esc(rid(e))}">Rimetti</button></div>`).join('')}</details>`:''})()}${mangiare}${diarioGiorno(g,i)}${g.pernotto?`<div class="sleep">Si dorme a <b>${esc(g.pernotto)}</b></div>`:''}
  <div class="acts" style="margin-top:16px">${i>0?`<a class="btn" href="#g${i}">← Giorno ${i}</a>`:''}${i<V.giorni.length-1?`<a class="btn" href="#g${i+2}">Giorno ${i+2} →</a>`:''}<a class="btn" href="#piano">Vista d'insieme</a></div></div></div>`}
-function vPiano(){return`<div class="pad"><h1 class="disp" style="font-size:30px;margin:4px 0 4px">Pianifica insieme</h1><p class="lead">Tutte le giornate come nel taccuino: in nero il programma, a colori le proposte con i loro pollici. Tocca per aprire, + per proporre.</p>
+function vPiano(){if(PT!=='tabellone')return`<div class="pad"><h1 class="disp" style="font-size:30px;margin:4px 0 4px">Pianifica insieme</h1>${vListe()}</div>`;return`<div class="pad"><h1 class="disp" style="font-size:30px;margin:4px 0 4px">Pianifica insieme</h1>${vListe()}<p class="lead">Tutte le giornate come nel taccuino: in nero il programma, a colori le proposte con i loro pollici. Tocca per aprire, + per proporre.</p>
  ${V.giorni.map((g,i)=>{const T=tappe(i),P=propDi(g.data).filter(p=>!p.ok);return`<div class="pday" style="--c:${col(i)}"><a class="pdh" href="#g${i+1}"><span class="n">${i+1}</span><b>${esc(fmt(g.data,{weekday:'short',day:'numeric',month:'short'}))}</b><small>${esc(g.titolo)}</small></a>
  <div class="pcols">${FASCE.map(([k,nome])=>`<div class="pcell"><span>${nome}</span>${T.filter(e=>fasciaDi(e.ora)===k).map(e=>`<a class="pi ${e.fonte==='gruppo'?'grp':''}" href="#g${i+1}" data-goto="${e.id}"><b>${esc(e.ora||'')}</b> ${esc(e.titolo)}</a>`).join('')}${P.filter(p=>(p.fascia||'mattina')===k).map(p=>`<a class="pi pp" style="--p:${PCOL[p.autore]}" href="#g${i+1}" data-goto="p-${esc(p.id)}">${avatar(p.autore,18)} ${esc(p.titolo)} <em>${p.nv}♥</em></a>`).join('')}${(()=>{const n=ideeDi(g.data,k).length;return n?`<a class="pi idn" href="#g${i+1}">${n} ${n===1?'alternativa':'alternative'}</a>`:''})()}<button class="padd" data-nuova="${g.data}|${k}" aria-label="Proponi per ${nome.toLowerCase()} del ${esc(corto(g.data))}">+</button></div>`).join('')}</div></div>`}).join('')}</div>`}
 function lista(key,voci){const ck=store.get('bij:'+key,{});return`<ul class="checks">${voci.map((t,i)=>`<li><label><input type="checkbox" data-k="${key}" data-i="${i}" ${ck[i]?'checked':''}><span>${esc(t)}</span></label></li>`).join('')}</ul>`}
@@ -268,7 +347,7 @@ function vInfo(){const inf=V.info,per=V.viaggio.persone||1,tot={};V.giorni.forEa
  <div class="box"><h3>Spese inserite</h3><p style="margin:0">${Object.entries(tot).filter(x=>x[1]).map(([c,v])=>`<b class="disp" style="font-size:24px">${soldi(v,c)}</b>`).join(' + ')}</p><p style="margin:6px 0 0;color:var(--muted);font-size:13px">${esc(V.viaggio.notaCosti)}</p></div>
  <h2 class="sec">Da sapere</h2><div class="box"><dl class="kv">${inf.pratiche.map(p=>`<dt>${esc(p.voce)}</dt><dd>${esc(p.valore)}</dd>`).join('')}</dl></div>
  <h2 class="sec">Contatti utili</h2><div class="box"><dl class="kv">${inf.contatti.map(c=>`<dt>${esc(c.nome)}<br><small>${esc(c.ruolo||'')}</small></dt><dd><a href="tel:${esc(c.tel.replace(/\s/g,''))}">${esc(c.tel)}</a>${c.email?`<br><small>${esc(c.email)}</small>`:''}</dd>`).join('')}</dl></div>
- <h2 class="sec">Prima di partire</h2>${lista('pre',V.prepartenza)}${V.bagaglio.map((b,j)=>`<h2 class="sec">${esc(b.gruppo)}</h2>${lista('bag'+j,b.voci)}`).join('')}
+ <h2 class="sec">Liste e diario</h2><div class="acts"><a class="btn" href="#piano" data-ptab="prima">Prima di partire</a><a class="btn" href="#piano" data-ptab="prenotare">Da prenotare</a><a class="btn" href="#piano" data-ptab="valigia">Valigia</a>${V.viaggio.album?`<a class="btn pri" href="${esc(V.viaggio.album)}" target="_blank" rel="noopener">Album Google Foto</a>`:''}</div>
  <h2 class="sec">Link</h2><div class="acts"><a class="btn" href="${esc(V.mymap)}" target="_blank" rel="noopener">Mappa Big In Japan</a></div><p class="foot">${esc(inf.note)} Le spunte restano su questo telefono.</p></div>`}
 
 /* ---------- form proposta (foglio) ---------- */
@@ -295,11 +374,13 @@ $('#sheet').addEventListener('click',e=>{const sg=e.target.closest('[data-sg]');
  if(e.target.closest('[data-chiudi]')||e.target.id==='sheet'){$('#sheet').classList.remove('on');CMID=null;aggiorna()}});
 $('#sheet').addEventListener('submit',async e=>{const cf=e.target.closest('[data-cform]');if(cf){e.preventDefault();const id=cf.dataset.cform,tx=cf.testo.value.trim();if(!tx||!IO)return;if(!FB){toast('Non collegato: riprova tra poco');return}
   const b=cf.querySelector('button');b.disabled=true;try{await FB.Db.set(FB.Db.push(FB.ref('commenti/'+id)),{autore:IO,uid:FB.uid,t:Date.now(),testo:tx.slice(0,500)});cf.testo.value=''}catch(err){toast('Commento non salvato: '+(err.code||err))}b.disabled=false;return}});
-$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
+$('#sheet').addEventListener('submit',async e=>{const mf=e.target.closest('#mform');if(!mf)return;e.preventDefault();const o={ora:mf.ora.value};const k=mf.dataset.rid,e0=PIANO.concat(grezze()).find(x=>rid(x)===k);
+ if(e0&&V.giorni[e0.orig??e0.d]&&mf.data.value!==V.giorni[e0.orig??e0.d].data)o.data=mf.data.value;else if(MOD[k]&&MOD[k].data)o.data=mf.data.value;$('#sheet').classList.remove('on');await salvaMod(k,o)});
+$('#sheet').addEventListener('submit',async e=>{if(e.target.closest('[data-cform]')||e.target.closest('#mform'))return;e.preventDefault();const f=e.target,o={autore:IO,uid:FB?.uid,t:Date.now(),titolo:f.titolo.value.trim()};if(!o.titolo)return;if(!FB){toast('Proposte non collegate: riprova tra poco');return}
  for(const k of['luogo','nota','fascia']){const v=f[k].value.trim();if(v)o[k]=v.slice(0,k==='nota'?600:120)}
  const lk=f.link.value.trim();if(/^https:\/\//.test(lk))o.link=lk;if(NUOVA.lat!=null){o.lat=+NUOVA.lat.toFixed(6);o.lng=+NUOVA.lng.toFixed(6)}
  const b=f.querySelector('[type=submit]');b.disabled=true;
- try{await FB.Db.set(FB.Db.push(FB.ref('proposte/'+f.data.value)),o);$('#sheet').classList.remove('on');toast('Proposta pubblicata');const i=V.giorni.findIndex(g=>g.data===f.data.value);if(location.hash!=='#mappa')location.hash='#g'+(i+1)}catch(err){toast('Non salvata: '+(err.code||err));b.disabled=false}});
+ try{await FB.Db.set(FB.Db.push(FB.ref('proposte/'+f.data.value)),o);if(f.dataset.lst)salva(`liste/${f.dataset.lst}/fatto`,true).catch(()=>{});$('#sheet').classList.remove('on');toast('Proposta pubblicata');const i=V.giorni.findIndex(g=>g.data===f.data.value);if(location.hash!=='#mappa')location.hash='#g'+(i+1)}catch(err){toast('Non salvata: '+(err.code||err));b.disabled=false}});
 
 /* ---------- mappa: MapLibre + OpenFreeMap e altre basi senza chiave ---------- */
 const OFM='https://tiles.openfreemap.org/styles/',GLYPHS='https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf';
@@ -334,6 +415,7 @@ function initMap(){geo();map=new maplibregl.Map({container:'map',style:stileObj(
  map.on('moveend',()=>{clearTimeout(ovT);ovT=setTimeout(ovAggiorna,700)});
  map.on('click',e=>{if(map.queryRenderedFeatures(e.point,{layers:['staz-pt','ov-poi','ov-kb'].filter(l=>map.getLayer(l))}).length)return;if(scegli){scegli=false;$('#mapwrap').classList.remove('picking');quiPopup(e.lngLat)}else{$('#lpanel').classList.remove('on');$('#blayers').classList.remove('on')}});
  pannello();initTline();disegna(true)}
+initDrag();
 let scegli=false;
 function quiPopup(ll){const g=filter??0;new maplibregl.Popup({offset:6,maxWidth:'280px'}).setLngLat(ll).setHTML(`<div class="bd"><b>Questo punto</b><p>${ll.lat.toFixed(5)}, ${ll.lng.toFixed(5)}</p>${vicinaTxt(ll)}<div class="acts"><button class="btn pri" data-qui="${ll.lat},${ll.lng}">Proponi qui</button><a class="btn" href="https://www.google.com/maps/search/?api=1&query=${ll.lat},${ll.lng}" target="_blank" rel="noopener">Google Maps</a></div></div>`).addTo(map)}
 const vicinaTxt=ll=>{const v=vicina(ll.lat,ll.lng);return v?`<div class="sta">${ICO_TRENO}<span><b>${nomeSt(v.s)}</b> · ${piedi(v.d)} min a piedi</span></div>`:''};
@@ -369,7 +451,7 @@ $('#bqui').addEventListener('click',()=>{if(!IO){accesso();return}scegli=!scegli
 let MK=[];
 function evMappa(){if(filter==null||OPZ.tutto)return V.giorni.flatMap((g,i)=>g.zona==='Roma'?[]:tappe(i)).filter(e=>e.lat!=null);return tappe(filter).filter(e=>e.lat!=null)}
 function propMappa(){const gs=filter==null||OPZ.tutto?V.giorni:[V.giorni[filter]];return gs.flatMap(g=>propDi(g.data)).filter(p=>!p.ok&&p.lat!=null)}
-function pinEl(e,label,cls){const el=document.createElement('button');el.className='pinw';el.setAttribute('aria-label',e.titolo);el.innerHTML=`<div class="pin ${cls}" style="--c:${cls.includes('prop')?PCOL[e.autore]:col(e.d)}"><span>${esc(label)}</span></div>`;return el}
+function pinEl(e,label,cls){const el=document.createElement('button');el.className='pinw'+(!e.partenza&&!cls.includes('prop')&&visti(e).length?' vis':'');el.setAttribute('aria-label',e.titolo);el.innerHTML=`<div class="pin ${cls}" style="--c:${cls.includes('prop')?PCOL[e.autore]:col(e.d)}"><span>${esc(label)}</span></div>`;return el}
 function popHTML(e){const g=V.giorni[e.d];return`<div class="pop" style="--c:${col(e.d)}">${e.wiki?ph(e.wiki,560,'','',e.d+1,e.titolo):''}<div class="bd"><small>Giorno ${e.d+1} · ${esc(corto(g.data))}${e.ora?' · '+esc(e.ora):''}</small><h4>${esc(e.titolo)}</h4>${e.prop?`<p class="by">${avatar(e.autore,18)} ${e.ok?'approvata, ':''}proposta di ${esc(e.autore)}</p>`:''}${(e.note||e.nota)?`<p>${esc((e.note||e.nota).slice(0,160))}</p>`:''}${staTxt(e)}${rbar(rid(e),e.prop?e.voti:null,e.prop?`${e.data}|${e.id}`:null)}
  <div class="acts"><a class="btn pri" href="${arrivo(e,ME)}" target="_blank" rel="noopener">Come arrivo</a><a class="btn" href="${esc(gmap(e))}" target="_blank" rel="noopener">Google Maps</a><a class="btn" href="#g${e.d+1}">Giorno ${e.d+1}</a></div></div></div>`}
 function disegna(fit){if(!map)return;MK.forEach(m=>m.remove());MK=[];const giorno=filter!=null&&!OPZ.tutto,evs=evMappa(),ps=propMappa();
@@ -528,6 +610,19 @@ document.addEventListener('click',async e=>{const t=e.target;
  const nu=t.closest('[data-nuova]');if(nu){const[d,f]=nu.dataset.nuova.split('|');apriForm(d||null,f||null);return}
  const qu=t.closest('[data-qui]');if(qu){const[la,ln]=qu.dataset.qui.split(',').map(Number);$$('.maplibregl-popup').forEach(p=>p.remove());apriForm(filter!=null?V.giorni[filter].data:null,null,{lat:la,lng:ln,nome:qu.dataset.nome||'',luogo:qu.dataset.nome||''});return}
  const rb=t.closest('.rbar [data-r]');if(rb){reagisci(rb);return}
+ const pt=t.closest('[data-ptab]');if(pt){PT=pt.dataset.ptab;store.set('bij:ptab',PT);if(location.hash!=='#piano'){if(pt.tagName==='A')return;location.hash='#piano'}else{e.preventDefault();renderView()}return}
+ const md=t.closest('[data-mod]');if(md){const x=PIANO.find(y=>y.id===md.dataset.mod);if(x)modifica(x);return}
+ if(t.closest('[data-modreset]')){const f=$('#mform');$('#sheet').classList.remove('on');await salvaMod(f.dataset.rid,null);return}
+ if(t.closest('[data-modtogli]')){const f=$('#mform');$('#sheet').classList.remove('on');await salvaMod(f.dataset.rid,{nascosto:true});return}
+ const rm=t.closest('[data-rimetti]');if(rm){await salvaMod(rm.dataset.rimetti,null);return}
+ const ot=t.closest('[data-ottimizza]');if(ot){ottimizza(+ot.dataset.ottimizza);return}
+ const oa=t.closest('[data-ottapplica]');if(oa){const L=ottimizza.nuovo||[];$('#sheet').classList.remove('on');for(const x of L)if(x.e.ora!==x.ora){const k=rid(x.e),m=MOD[k];await salvaMod(k,{...(m&&m.data?{data:m.data}:{}),ora:x.ora})}return}
+ const vs=t.closest('[data-vis]');if(vs){if(!IO){accesso();return}const k=vs.dataset.vis,on=VIS[k]?.[IO];try{await salva(`visti/${k}/${IO}`,on?null:Date.now())}catch(err){toast('Non salvato')}return}
+ const di=t.closest('[data-desidea]');if(di){const x=IDX[di.dataset.desidea];if(!x||!IO||!FB)return;const o={lista:'desideri',testo:x.titolo,nota:x.sintesi.slice(0,300),idea:x.id,autore:IO,uid:FB.uid,t:Date.now(),fatto:false};if(x.lat!=null){o.lat=x.lat;o.lng=x.lng}
+  try{await FB.Db.set(FB.Db.push(FB.ref('liste')),o);toast('Salvato nei desideri');di.outerHTML='<span class="muted">Già nei desideri</span>'}catch(err){toast('Non salvato: '+(err.code||err))}return}
+ const ld=t.closest('[data-ldel]');if(ld){try{await salva('liste/'+ld.dataset.ldel,null)}catch(err){toast('Non tolto')}return}
+ const dd=t.closest('[data-ddel]');if(dd){try{await salva('diario/'+dd.dataset.ddel,null)}catch(err){toast('Non eliminato')}return}
+ const lg=t.closest('[data-lgiorno]');if(lg){const v=LST[lg.dataset.lgiorno];if(!v)return;if(v.idea&&IDX[v.idea]){scheda(IDX[v.idea]);return}apriForm(null,'mattina',v.lat!=null?{lat:v.lat,lng:v.lng}:null);setTimeout(()=>{const f=$('#pform');if(f){f.titolo&&(f.titolo.value=v.testo);if(f.nota&&v.nota)f.nota.value=v.nota;if(f.link&&v.link)f.link.value=v.link;f.dataset.lst=lg.dataset.lgiorno}},50);return}
  const cm=t.closest('[data-cm]');if(cm){const id=cm.dataset.cm;if(IDX[id])scheda(IDX[id]);else commenti(id);return}
  const ia=t.closest('[data-idea]');if(ia){const x=IDX[ia.dataset.idea];if(x)scheda(x);return}
  const pi=t.closest('[data-propidea]');if(pi){const x=IDX[pi.dataset.propidea],d=$('[data-ideagiorno]')?.value||x.giorni[0];if(x)proponiIdea(x,d);return}
@@ -543,7 +638,16 @@ document.addEventListener('click',async e=>{const t=e.target;
  const go=t.closest('[data-goto]');if(go){if(go.getAttribute('href')==='#mangiare')e.preventDefault();setTimeout(()=>{const el=document.getElementById(go.dataset.goto)||document.getElementById('s-'+go.dataset.goto);if(el)el.scrollIntoView({behavior:'smooth',block:'center'})},80)}
  const c=t.closest('#view .card[data-sel]');if(c&&!t.closest('a,button')&&innerWidth>860){seleziona(c.dataset.sel);setTimeout(()=>apriPin(c.dataset.sel),750)}
  if(t.closest('.maplibregl-popup a[href^="#g"]'))$$('.maplibregl-popup').forEach(p=>p.remove())});
-$('#view').addEventListener('change',e=>{const i=e.target;if(!i.dataset.k)return;const ck=store.get('bij:'+i.dataset.k,{});ck[i.dataset.i]=i.checked;store.set('bij:'+i.dataset.k,ck)});
+$('#view').addEventListener('submit',async e=>{const f=e.target;
+ if(f.dataset.lform){e.preventDefault();if(!IO||!FB)return;const o={lista:f.dataset.lform,testo:f.testo.value.trim().slice(0,160),autore:IO,uid:FB.uid,t:Date.now(),fatto:false};const l=f.link.value.trim();if(l){if(!/^https:\/\//.test(l)){toast('Il link deve iniziare con https://');return}o.link=l.slice(0,600)}
+  try{await FB.Db.set(FB.Db.push(FB.ref('liste')),o);f.reset()}catch(err){toast('Non salvato: '+(err.code||err))}return}
+ if(f.dataset.dform){e.preventDefault();if(!IO||!FB)return;const o={autore:IO,uid:FB.uid,t:Date.now(),data:f.dataset.dform,testo:f.testo.value.trim().slice(0,1000)};const ft=f.foto.value.trim();if(ft){if(!/^https:\/\//.test(ft)){toast('Il link della foto deve iniziare con https://');return}o.foto=ft.slice(0,600)}if(f.rid.value)o.rid=f.rid.value;
+  try{await FB.Db.set(FB.Db.push(FB.ref('diario')),o);f.reset();toast('Pubblicato nel diario')}catch(err){toast('Non pubblicato: '+(err.code||err))}return}});
+$('#view').addEventListener('change',async e=>{const i=e.target;
+ if(i.dataset.chi!=null){if(!IO){accesso();return}const[tp,k]=[i.dataset.chi.slice(0,1),i.dataset.chi.slice(2)];try{if(tp==='L')await salva(`liste/${k}/chi`,i.value);else await salva('spunte/'+k,{...(SPU[k]||{}),chi:i.value,autore:IO,t:Date.now()})}catch(err){toast('Non salvato')}return}
+ if(i.dataset.lfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}try{await salva(`liste/${i.dataset.lfatto}/fatto`,i.checked)}catch(err){toast('Non salvato')}return}
+ if(i.dataset.sfatto!=null){if(!IO){accesso();i.checked=!i.checked;return}const k=i.dataset.sfatto;try{await salva('spunte/'+k,{...(SPU[k]||{}),fatto:i.checked,autore:IO,t:Date.now()})}catch(err){toast('Non salvato')}return}
+ if(!i.dataset.k)return;const ck=store.get('bij:'+i.dataset.k,{});ck[i.dataset.i]=i.checked;store.set('bij:'+i.dataset.k,ck)});
 addEventListener('hashchange',route);addEventListener('resize',()=>map&&map.resize());
 addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sheet').classList.remove('on');CMID=null;$('#login').classList.remove('on')}});
 
