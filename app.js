@@ -456,7 +456,7 @@ function disegnaIdee(){if(!map)return;const L=ideeMappa(),chiave=L.map(x=>x.id).
  disegnaIdee.k=chiave;IMK.forEach(m=>m.remove());IMK=[];
  L.forEach(x=>{const el=document.createElement('button');el.className='ipin';el.style.setProperty('--k',CATC[x.cat]||'#555');el.setAttribute('aria-label',x.titolo);el.textContent=EMO[x.cat]||'•';
   const pop=new maplibregl.Popup({offset:14,maxWidth:'300px'}).setHTML(`<div class="pop ipop" style="--k:${CATC[x.cat]}">${ph(x.wiki,560,'','',3,x.titolo)}<div class="bd"><div>${badge(x)}</div><h4>${esc(x.titolo)}</h4><p class="imeta"><span>${esc(x.orari)}</span><span>${esc(x.prezzo)}</span></p><p>${esc(x.sintesi.slice(0,170))}${x.sintesi.length>170?'…':''}</p>${rbar(x.id)}<div class="acts"><button class="btn pri" data-idea="${esc(x.id)}">Scheda</button><a class="btn" href="${arrivo(x,ME)}" target="_blank" rel="noopener">Come arrivo</a></div></div></div>`);
-  pop.on('open',()=>riempiFoto(pop.getElement()));
+  pop.on('open',()=>{const el=pop.getElement();riempiFoto(el);const rb=el.querySelector('.rbar');if(rb)rb.outerHTML=rbar(x.id)});
   const m=new maplibregl.Marker({element:el}).setLngLat([x.lng,x.lat]).setPopup(pop).addTo(map);m._id=x.id;IMK.push(m)})}
 function mostraIdea(id){const x=IDX[id];if(!x||x.lat==null)return;$('#sheet').classList.remove('on');
  const vai=()=>{if(OPZ.idee===false){OPZ.idee=true;store.set('bij:opz',OPZ);pannello()}if(!x.giorni.includes(V.giorni[filter??0]?.data)){filter=V.giorni.findIndex(g=>g.data===x.giorni[0]);chips();disegna(false)}else disegnaIdee();
