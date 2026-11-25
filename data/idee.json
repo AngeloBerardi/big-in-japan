@@ -76,6 +76,12 @@
     "dow": [
      0
     ]
+   },
+   "img": "img/idee/tk-fuunji.webp",
+   "foto": {
+    "a": "Andy Li",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tsukemen_(Dipping_Ramen)_-_Goemon_Ramen_Bar_2023-07-16.jpg"
    }
   },
   {
@@ -98,7 +104,13 @@
    "consiglio": "Ci sono tavoli per 6, ma la sera conviene prenotare o arrivare prima delle 18.",
    "wiki": "Tempura",
    "q": "Tsunahachi Shinjuku tempura",
-   "fonti": "Time Out Tokyo, Tabelog"
+   "fonti": "Time Out Tokyo, Tabelog",
+   "img": "img/idee/tk-tsunahachi.webp",
+   "foto": {
+    "a": "PatriceNeff",
+    "l": "CC BY 1.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tempura.jpg"
+   }
   },
   {
    "id": "tk-kabuki-gyoza",
@@ -117,7 +129,13 @@
    "durata": "30 min",
    "sintesi": "Dopo il Golden Gai un ramen al volo: nei vicoli di Kabukichō ci sono locali aperti fino alle 5. Basta scegliere quello con la fila di giapponesi.",
    "wiki": "Ramen",
-   "q": "Kabukicho late night ramen"
+   "q": "Kabukicho late night ramen",
+   "img": "img/idee/tk-kabuki-gyoza.webp",
+   "foto": {
+    "a": "Matsujima",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kouraku_Little_Tokyo.jpg"
+   }
   },
   {
    "id": "tk-bar-tour",
@@ -138,7 +156,13 @@
    "consiglio": "Utile la prima sera per capire come si ordina. Si prenota per 6 persone in un colpo.",
    "wiki": "Izakaya",
    "q": "Shinjuku bar hopping food tour",
-   "fonti": "Magical Trip, GetYourGuide, Tripadvisor"
+   "fonti": "Magical Trip, GetYourGuide, Tripadvisor",
+   "img": "img/idee/tk-bar-tour.webp",
+   "foto": {
+    "a": "MaedaAkihiko",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shinjuku-West_Omoide-Yokocho.jpg"
+   }
   },
   {
    "id": "tk-shibuya-sky",
@@ -193,7 +217,13 @@
    "wiki": "Shimokitazawa",
    "q": "Shimokitazawa vintage",
    "fonti": "Time Out Tokyo, Lonely Planet",
-   "alt": "Alternativa a Ikebukuro e Sunshine City"
+   "alt": "Alternativa a Ikebukuro e Sunshine City",
+   "img": "img/idee/tk-shimokita.webp",
+   "foto": {
+    "a": "Aw1805",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shimokitazawa_Street_2015.jpg"
+   }
   },
   {
    "id": "tk-omotesando",
@@ -213,7 +243,13 @@
    "sintesi": "Il viale alberato con le architetture delle grandi firme, poi Cat Street con streetwear e piccoli marchi giapponesi: si arriva a Shibuya a piedi.",
    "wiki": "Omotesandō",
    "q": "Omotesando Cat Street walk",
-   "fonti": "Lonely Planet"
+   "fonti": "Lonely Planet",
+   "img": "img/idee/tk-omotesando.webp",
+   "foto": {
+    "a": "Rs1421",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Harajuku-Cat-street-05.jpg"
+   }
   },
   {
    "id": "tk-uobei",
@@ -235,7 +271,13 @@
    "wiki": "Conveyor belt sushi",
    "q": "Uobei Shibuya sushi",
    "fonti": "Tokyo Cheapo, Tabelog",
-   "top": true
+   "top": true,
+   "img": "img/idee/tk-uobei.webp",
+   "foto": {
+    "a": "Marek Ślusarczyk (Tupungato) Photo portfolio",
+    "l": "CC BY 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:010_Sushi_master_in_Kyoto,_Japan_-_sushi_chef_%E5%AF%BF%E5%8F%B8%E8%81%B7%E4%BA%BA.jpg"
+   }
   },
   {
    "id": "tk-motomura",
@@ -256,7 +298,13 @@
    "consiglio": "Coda serale lunga: meglio a pranzo o dopo le 21.",
    "wiki": "Tonkatsu",
    "q": "Gyukatsu Motomura Shibuya",
-   "fonti": "Tabelog, Time Out Tokyo"
+   "fonti": "Tabelog, Time Out Tokyo",
+   "img": "img/idee/tk-motomura.webp",
+   "foto": {
+    "a": "pelican from Tokyo, Japan",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Beef_cutlet_(8567066968).jpg"
+   }
   },
   {
    "id": "tk-afuri",
@@ -277,7 +325,13 @@
    "sintesi": "Brodo chiaro di pollo profumato allo yuzu: leggero, ottimo a pranzo prima di Takeshita-dori. C'è anche la versione vegana.",
    "wiki": "Ramen",
    "q": "Afuri ramen Harajuku",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-afuri.webp",
+   "foto": {
+    "a": "Guilhem Vellut from Annecy, France",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Yuzu_Shio_Ramen_@_Afuri_@_Ebisu_(14018053090).jpg"
+   }
   },
   {
    "id": "tk-gyozaro",
@@ -299,7 +353,13 @@
    "consiglio": "Solo contanti in molti casi.",
    "wiki": "Gyoza",
    "q": "Harajuku Gyoza-ro",
-   "fonti": "Tokyo Cheapo"
+   "fonti": "Tokyo Cheapo",
+   "img": "img/idee/tk-gyozaro.webp",
+   "foto": {
+    "a": "Shinji",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:2018-07-29_Yaki_Gyoza_of_Hidakaya.jpg"
+   }
   },
   {
    "id": "tk-shibuya-yokocho",
@@ -340,7 +400,13 @@
    "consiglio": "Coda anche a metà mattina, ma scorre.",
    "wiki": "Ramen",
    "q": "Mutekiya ramen Ikebukuro",
-   "fonti": "Tabelog"
+   "fonti": "Tabelog",
+   "img": "img/idee/tk-mutekiya.webp",
+   "foto": {
+    "a": "Andy Li",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tonkotsu_Ramen_-_Goemon_Ramen_Bar_2023-06-06.jpg"
+   }
   },
   {
    "id": "tk-kimono",
@@ -360,7 +426,13 @@
    "consiglio": "A dicembre chiedere il cappotto haori e calze pesanti.",
    "wiki": "Kimono",
    "q": "Asakusa kimono rental",
-   "fonti": "GetYourGuide, Klook"
+   "fonti": "GetYourGuide, Klook",
+   "img": "img/idee/tk-kimono.webp",
+   "foto": {
+    "a": "Bruno Rijsman",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Takoyaki_(53449616935).jpg"
+   }
   },
   {
    "id": "tk-riscio",
@@ -379,7 +451,13 @@
    "sintesi": "Il conducente spiega il quartiere e scatta foto con lo Skytree sullo sfondo: 3 risciò per 6.",
    "wiki": "Rickshaw",
    "q": "Asakusa rickshaw ride",
-   "fonti": "Viator, Tripadvisor"
+   "fonti": "Viator, Tripadvisor",
+   "img": "img/idee/tk-riscio.webp",
+   "foto": {
+    "a": "Stephen Kelly from San Francisco, CA, USA",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Rickshaw_in_Asakusa_(53415727552).jpg"
+   }
   },
   {
    "id": "tk-skytree",
@@ -427,7 +505,13 @@
    "fonti": "teamLab, Japan Travel Kit",
    "top": true,
    "prenota": "https://www.teamlab.art/e/planets/",
-   "alt": "Alternativa serale a Odaiba"
+   "alt": "Alternativa serale a Odaiba",
+   "img": "img/idee/tk-teamlab.webp",
+   "foto": {
+    "a": "Sasa0403",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Photos_at_teamlab_planets_tokyo.jpg"
+   }
   },
   {
    "id": "tk-gundam",
@@ -468,7 +552,13 @@
    "wiki": "Tendon",
    "q": "Daikokuya tempura Asakusa",
    "fonti": "Tabelog, Time Out Tokyo",
-   "top": true
+   "top": true,
+   "img": "img/idee/tk-daikokuya.webp",
+   "foto": {
+    "a": "pelican from Tokyo, Japan",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Rice_bowl_topped_with_shrimp_tempura_(8281030764).jpg"
+   }
   },
   {
    "id": "tk-sometaro",
@@ -489,7 +579,13 @@
    "consiglio": "Ci si toglie le scarpe. Pochi posti: per 6 meglio dividersi in due tavoli.",
    "wiki": "Okonomiyaki",
    "q": "Sometaro okonomiyaki Asakusa",
-   "fonti": "Lonely Planet, Time Out Tokyo"
+   "fonti": "Lonely Planet, Time Out Tokyo",
+   "img": "img/idee/tk-sometaro.webp",
+   "foto": {
+    "a": "Lianguanlun",
+    "l": "CC BY 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Okonomiyaki_cooking_on_teppan_Osaka.jpg"
+   }
   },
   {
    "id": "tk-imahan",
@@ -518,6 +614,12 @@
       "2026-12-31"
      ]
     ]
+   },
+   "img": "img/idee/tk-imahan.webp",
+   "foto": {
+    "a": "ajari",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Sukiyaki_01.jpg"
    }
   },
   {
@@ -538,7 +640,13 @@
    "sintesi": "Panino dolce croccante fuori e soffice dentro, appena sfornato dietro il tempio. Lo spuntino tipico di Asakusa.",
    "wiki": "Melonpan",
    "q": "Kagetsudo melonpan Asakusa",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-kagetsudo.webp",
+   "foto": {
+    "a": "Sakurai Midori",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Melonpan.jpg"
+   }
   },
   {
    "id": "tk-hoppy",
@@ -580,7 +688,13 @@
    "consiglio": "Si prenota online; alcune partono da Shinagawa, altre da Asakusa.",
    "wiki": "Yakatabune",
    "q": "yakatabune dinner cruise Tokyo",
-   "fonti": "Viator, GetYourGuide"
+   "fonti": "Viator, GetYourGuide",
+   "img": "img/idee/tk-yakatabune.webp",
+   "foto": {
+    "a": "Nesnad",
+    "l": "CC BY 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Yakatabune-nearodaiba-jan27-2015.jpg"
+   }
   },
   {
    "id": "tk-superpotato",
@@ -599,7 +713,13 @@
    "sintesi": "Tre piani di console e cartucce anni 80 e 90, con una sala giochi retrò all'ultimo piano.",
    "wiki": "Akihabara",
    "q": "Super Potato Akihabara",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-superpotato.webp",
+   "foto": {
+    "a": "Jesusbella",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tienda_Super_Potato_(Akihabara,_Tokio).jpg"
+   }
   },
   {
    "id": "tk-gokart",
@@ -619,7 +739,13 @@
    "consiglio": "Serve il permesso internazionale di guida (Convenzione di Ginevra 1949) da fare in Italia prima di partire, oltre alla patente.",
    "wiki": "Go-kart",
    "q": "Akihabara street go kart",
-   "fonti": "GetYourGuide, Viator, Tripadvisor"
+   "fonti": "GetYourGuide, Viator, Tripadvisor",
+   "img": "img/idee/tk-gokart.webp",
+   "foto": {
+    "a": "Souka Kinmei",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:%E5%A4%96%E5%9B%BD%E8%A6%B3%E5%85%89%E5%AE%A2%E3%81%AB%E4%BA%BA%E6%B0%97%E3%81%AE%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%82%AB%E3%83%BC%E3%83%88.jpg"
+   }
   },
   {
    "id": "tk-matsuya",
@@ -642,6 +768,12 @@
    "fonti": "Time Out Tokyo, Tabelog",
    "chiuso": {
     "verifica": 1
+   },
+   "img": "img/idee/tk-matsuya.webp",
+   "foto": {
+    "a": "m-louis from Seiro (soba) at Soba Restaurant Takasho in Nezu, Tokyo東京都文京区根津にある蕎麦",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Seiro_soba_at_Takasho_in_Nezu,_Tokyo.jpg"
    }
   },
   {
@@ -662,7 +794,13 @@
    "sintesi": "Ramen tonkotsu leggero in stile Kyushu, nel cuore di Akihabara: veloce tra un negozio e l'altro.",
    "wiki": "Ramen",
    "q": "Kyushu Jangara Akihabara",
-   "fonti": "Tabelog"
+   "fonti": "Tabelog",
+   "img": "img/idee/tk-jangara.webp",
+   "foto": {
+    "a": "Marufish",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kyushu_Jangara_Ramen_Zenbuire.jpg"
+   }
   },
   {
    "id": "tk-yanaka",
@@ -704,7 +842,13 @@
    "sintesi": "Lungo Ameyoko i banchi diventano izakaya all'aperto: yakitori, ostriche, sushi a poco prezzo. Il 30 è il giorno della spesa di fine anno, molto vivace.",
    "wiki": "Ameya-Yokochō",
    "q": "Ameyoko Ueno street food",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/tk-ameyoko-food.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Ameyoko_June_2022.jpg"
+   }
   },
   {
    "id": "tk-tsukiji",
@@ -735,6 +879,12 @@
       "2027-01-04"
      ]
     ]
+   },
+   "img": "img/idee/tk-tsukiji.webp",
+   "foto": {
+    "a": "Aw1805",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tsukiji_Outer_Market_2.jpg"
    }
   },
   {
@@ -758,6 +908,12 @@
    "fonti": "Time Out Tokyo",
    "chiuso": {
     "verifica": 1
+   },
+   "img": "img/idee/tk-kappabashi.webp",
+   "foto": {
+    "a": "Basile Morin",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kappabashi-dori_streetcorner_(Kitchen_town_-_southern_end)_a_sunny_morning_in_Tokyo_Japan.jpg"
    }
   },
   {
@@ -780,7 +936,13 @@
    "q": "Zojoji New Year bell Tokyo Tower",
    "sito": "https://www.zojoji.or.jp/en/",
    "fonti": "Metropolis Japan",
-   "top": true
+   "top": true,
+   "img": "img/idee/tk-zojoji.webp",
+   "foto": {
+    "a": "redlegsfan21",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Zojo-ji_and_Tokyo_Tower_(15547996154).jpg"
+   }
   },
   {
    "id": "tk-odaiba-countdown",
@@ -800,7 +962,13 @@
    "consiglio": "Attenzione al ritorno: metro e Yurikamome potrebbero non fare servizio notturno. Le JR notturne passano lontano.",
    "wiki": "Odaiba",
    "q": "Tokyo New Year Eve Odaiba fireworks",
-   "fonti": "Metropolis Japan"
+   "fonti": "Metropolis Japan",
+   "img": "img/idee/tk-odaiba-countdown.webp",
+   "foto": {
+    "a": "Kakidai",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Rainbow_Bridge_(Tokyo)_-_Fireworks_8.jpg"
+   }
   },
   {
    "id": "tk-soba-31",
@@ -820,7 +988,13 @@
    "sintesi": "La tradizione vuole un piatto di soba prima di mezzanotte. Se il ristorante della cena non si trova, le catene come Fuji Soba sono aperte fino a tardi.",
    "wiki": "Toshikoshi soba",
    "q": "toshikoshi soba Tokyo",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-soba-31.webp",
+   "foto": {
+    "a": "毒島みるく",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kakesoba_of_Tachiguisoba.jpg"
+   }
   },
   {
    "id": "tk-clubs",
@@ -912,6 +1086,12 @@
    "fonti": "Go Tokyo",
    "chiuso": {
     "verifica": 1
+   },
+   "img": "img/idee/tk-ramen-street.webp",
+   "foto": {
+    "a": "Guilhem Vellut from Annecy, France",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen_@_Shichisai_@_Tokyo_Ramen_Street_(13165344585).jpg"
    }
   },
   {
@@ -934,7 +1114,13 @@
    "q": "Emperor New Year greeting Imperial Palace",
    "sito": "https://www.kunaicho.go.jp/e-event/sanga01.html",
    "fonti": "Time Out Tokyo, Japan Guide",
-   "top": true
+   "top": true,
+   "img": "img/idee/tk-sanga.webp",
+   "foto": {
+    "a": "ぱたごん",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:The_Imperial_Family_and_Visit_of_the_General_Public_to_the_Palace_for_the_New_Year_Greeting(2012.tokyo).JPG"
+   }
   },
   {
    "id": "tk-kamakura",
@@ -1097,7 +1283,13 @@
    "wiki": "Roppongi",
    "q": "99 Sports Bar Roppongi",
    "sito": "https://www.99sportsbar.com",
-   "fonti": "Metropolis Japan"
+   "fonti": "Metropolis Japan",
+   "img": "img/idee/roma-99.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:LEGENDS_SPORTS_BAR.jpg"
+   }
   },
   {
    "id": "roma-venezia",
@@ -1117,7 +1309,13 @@
    "consiglio": "La sveglia per Fushimi Inari è presto: scegliere tra partita e alba ai torii.",
    "wiki": "Association football",
    "q": "Venezia Roma",
-   "fonti": "Sporza, Calcio d'angolo"
+   "fonti": "Sporza, Calcio d'angolo",
+   "img": "img/idee/roma-venezia.webp",
+   "foto": {
+    "a": "Ben Sutherland",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Black_Stars_(Ghana_national_football_team)_fans_watching_televised_match.jpg"
+   }
   },
   {
    "id": "ky-yasaka-pagoda",
@@ -1178,7 +1376,13 @@
    "sintesi": "Una guida racconta la vita delle geishe e i vicoli nascosti di Gion. Tra i tour più recensiti di Kyoto.",
    "wiki": "Gion",
    "q": "Gion night walking tour geisha",
-   "fonti": "Viator, Peek, Tripadvisor"
+   "fonti": "Viator, Peek, Tripadvisor",
+   "img": "img/idee/ky-gion-tour.webp",
+   "foto": {
+    "a": "Moyan Brenn from Italy",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kyoto_(16228521821).jpg"
+   }
   },
   {
    "id": "ky-hohei",
@@ -1200,7 +1404,13 @@
    "consiglio": "Solo contanti; coda all'apertura.",
    "wiki": "Gyoza",
    "q": "Hohei gyoza Gion",
-   "fonti": "Tripadvisor, Inside Kyoto"
+   "fonti": "Tripadvisor, Inside Kyoto",
+   "img": "img/idee/ky-hohei.webp",
+   "foto": {
+    "a": "舌先現象になります",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Yahata_Gyoza_20260308.jpg"
+   }
   },
   {
    "id": "ky-ramen-koji",
@@ -1222,7 +1432,13 @@
    "sintesi": "Al 10° piano della stazione, otto ramen da tutto il Giappone uno accanto all'altro: comodo con le valigie appena arrivati.",
    "wiki": "Kyoto Station",
    "q": "Kyoto Ramen Koji",
-   "fonti": "Inside Kyoto"
+   "fonti": "Inside Kyoto",
+   "img": "img/idee/ky-ramen-koji.webp",
+   "foto": {
+    "a": "Sergiy Galyonkin from Raleigh, USA",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kyoto_Train_station_(52383498360).jpg"
+   }
   },
   {
    "id": "ky-tower",
@@ -1262,7 +1478,13 @@
    "sintesi": "Gyoza, birra e piatti da condividere, a 5 minuti dall'hotel Mystays. Ottimo per un gruppo.",
    "wiki": "Gyoza",
    "q": "Tiger Gyoza Kyoto",
-   "fonti": "Inside Kyoto"
+   "fonti": "Inside Kyoto",
+   "img": "img/idee/ky-tiger.webp",
+   "foto": {
+    "a": "Enming Yan / 闫恩铭",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Gyoza_no_Antei_-_3.jpg"
+   }
   },
   {
    "id": "ky-katsukura",
@@ -1283,7 +1505,13 @@
    "sintesi": "Cotoletta di maiale croccante con riso, cavolo e zuppa a volontà; il sesamo si macina da soli nella ciotola.",
    "wiki": "Tonkatsu",
    "q": "Katsukura Kyoto tonkatsu",
-   "fonti": "Tripadvisor"
+   "fonti": "Tripadvisor",
+   "img": "img/idee/ky-katsukura.webp",
+   "foto": {
+    "a": "ノボホショコロトソ",
+    "l": "CC BY 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tonkatsu_and_Cabbage.jpg"
+   }
   },
   {
    "id": "ky-chaochao",
@@ -1304,7 +1532,13 @@
    "sintesi": "Gyoza creativi e il set con birra a prezzo fisso; aperto tardi, utile prima o dopo il sumo.",
    "wiki": "Gyoza",
    "q": "Chao Chao gyoza Kyoto",
-   "fonti": "Culture Trip, Tripadvisor"
+   "fonti": "Culture Trip, Tripadvisor",
+   "img": "img/idee/ky-chaochao.webp",
+   "foto": {
+    "a": "Mariemon at jp Wikipedia",
+    "l": "CC BY 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E7%80%AC%E5%B7%9D2583.JPG"
+   }
   },
   {
    "id": "ky-nijo",
@@ -1347,7 +1581,13 @@
    "sintesi": "Magazzini di sakè lungo un canale, il museo Gekkeikan con assaggi e piccole birrerie: a 15 minuti di treno.",
    "wiki": "Fushimi-ku, Kyoto",
    "q": "Fushimi sake district Gekkeikan",
-   "fonti": "Lonely Planet"
+   "fonti": "Lonely Planet",
+   "img": "img/idee/ky-fushimi-sake.webp",
+   "foto": {
+    "a": "663highland",
+    "l": "CC BY 2.5",
+    "u": "https://commons.wikimedia.org/wiki/File:Gekkeikan_Okura_Sake_Museum02s4592.jpg"
+   }
   },
   {
    "id": "ky-tenryuji",
@@ -1447,7 +1687,13 @@
    "sintesi": "Il tofu caldo in pentola, specialità buddista di Kyoto, servito in sale con vista sul giardino: perfetto in inverno.",
    "wiki": "Tofu",
    "q": "yudofu Arashiyama",
-   "fonti": "JW Web Magazine, Japanese Taste"
+   "fonti": "JW Web Magazine, Japanese Taste",
+   "img": "img/idee/ky-yudofu.webp",
+   "foto": {
+    "a": "DryPot",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Japanese_SilkyTofu_(Kinugoshi_Tofu).JPG"
+   }
   },
   {
    "id": "ky-inari-udon",
@@ -1467,7 +1713,13 @@
    "sintesi": "Nelle trattorie lungo la salita si mangia la pietanza della volpe, messaggera della dea: udon con tofu fritto dolce e riso avvolto nel tofu.",
    "wiki": "Kitsune udon",
    "q": "Fushimi Inari kitsune udon",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/ky-inari-udon.webp",
+   "foto": {
+    "a": "MemColorLab",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Udon_(Kitsune_udon)_2.jpg"
+   }
   },
   {
    "id": "ky-inari-notte",
@@ -1487,7 +1739,13 @@
    "sintesi": "I torii illuminati dalle lanterne e quasi deserti: un'atmosfera completamente diversa dal giorno. Esistono tour guidati serali molto recensiti.",
    "wiki": "Fushimi Inari-taisha",
    "q": "Fushimi Inari night walk",
-   "fonti": "Viator, Trip.com"
+   "fonti": "Viator, Trip.com",
+   "img": "img/idee/ky-inari-notte.webp",
+   "foto": {
+    "a": "DuckMaestro",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:2026-06-29_kyoto-fushimi-inari_torii-romon_night.jpg"
+   }
   },
   {
    "id": "nr-nakatanidou",
@@ -1510,7 +1768,13 @@
    "q": "Nakatanidou mochi pounding",
    "sito": "http://www.nakatanidou.jp/",
    "fonti": "Wanderlog, Trip.com",
-   "top": true
+   "top": true,
+   "img": "img/idee/nr-nakatanidou.webp",
+   "foto": {
+    "a": "Dimethylsulfoxid",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Mochi_Herstellung.jpg"
+   }
   },
   {
    "id": "nr-kamameshi",
@@ -1530,7 +1794,13 @@
    "sintesi": "Riso cotto nella pentolina di ghisa con gamberi, granchio e funghi, a due passi dal Tōdai-ji. Da 60 anni la sosta dopo il Grande Buddha.",
    "wiki": "Kamameshi",
    "q": "Shizuka kamameshi Nara",
-   "fonti": "Trip.com, Kansai Airport"
+   "fonti": "Trip.com, Kansai Airport",
+   "img": "img/idee/nr-kamameshi.webp",
+   "foto": {
+    "a": "pcs34560 from jawp\n\n This photo was taken with Canon EOS 6D",
+    "l": "Public domain",
+    "u": "https://commons.wikimedia.org/wiki/File:T%C5%8Dge_no_Kamameshi_Oginoya_photo_by_Pcs34560_20160116_1311.jpg"
+   }
   },
   {
    "id": "nr-hiraso",
@@ -1550,7 +1820,13 @@
    "sintesi": "Il kakinoha-zushi, sushi pressato avvolto nella foglia di cachi, specialità di Nara da oltre 150 anni. Anche da portare via per un picnic.",
    "wiki": "Sushi",
    "q": "kakinoha sushi Nara Hiraso",
-   "fonti": "Fodor's, Trip.com"
+   "fonti": "Fodor's, Trip.com",
+   "img": "img/idee/nr-hiraso.webp",
+   "foto": {
+    "a": "ZhengZhou",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kakinoha_(persimmon_leaf)_sushi_in_Nara.jpg"
+   }
   },
   {
    "id": "nr-isuien",
@@ -1629,7 +1905,13 @@
    "sintesi": "Brodo di pollo cremoso come una vellutata, nascosto in un vicolo di Ginza. Uno dei ramen più fotografati di Tokyo.",
    "wiki": "Ramen",
    "q": "Kagari ramen Ginza",
-   "fonti": "Tabelog"
+   "fonti": "Tabelog",
+   "img": "img/idee/gz-kagari.webp",
+   "foto": {
+    "a": "Guilhem Vellut from Paris, France",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tori_Paitan_Ramen,_Kodawari_Ramen,_Paris_001.jpg"
+   }
   },
   {
    "id": "gz-midori",
@@ -1651,7 +1933,13 @@
    "wiki": "Sushi",
    "q": "Sushi no Midori Ginza",
    "fonti": "Fun Japan, Tabelog",
-   "top": true
+   "top": true,
+   "img": "img/idee/gz-midori.webp",
+   "foto": {
+    "a": "Wilfredor",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Sashimi_of_S%C3%A3o_Paulo.jpg"
+   }
   },
   {
    "id": "gz-gadoshita",
@@ -1671,7 +1959,13 @@
    "sintesi": "Sotto gli archi della ferrovia, tavoli all'aperto, fumo di yakitori e treni che passano sopra: l'ultima sera con l'atmosfera di Tokyo.",
    "wiki": "Yakitori",
    "q": "Yurakucho gado shita izakaya",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/gz-gadoshita.webp",
+   "foto": {
+    "a": "Fabio Achilli from Milano, Italy",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:%E3%83%89%E3%82%A4%E3%83%84%E5%B1%85%E9%85%92%E5%B1%8B_(44131336922).jpg"
+   }
   },
   {
    "id": "gz-monja",
@@ -1691,7 +1985,13 @@
    "sintesi": "Una via intera di locali di monja, la frittata liquida di Tokyo cotta sulla piastra al tavolo. A 2 fermate da Ginza.",
    "wiki": "Monjayaki",
    "q": "Tsukishima monja street",
-   "fonti": "Tabelog"
+   "fonti": "Tabelog",
+   "img": "img/idee/gz-monja.webp",
+   "foto": {
+    "a": "Syohei Arai",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Monjayaki-2006-06-25.jpg"
+   }
   },
   {
    "id": "gz-ginzasix",
@@ -1750,7 +2050,13 @@
    "wiki": "Kabuki-za",
    "q": "Kabukiza single act ticket",
    "sito": "https://www.kabuki-za.co.jp/",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/gz-kabukiza.webp",
+   "foto": {
+    "a": "Tak1701d",
+    "l": "Public domain",
+    "u": "https://commons.wikimedia.org/wiki/File:Kabuki-za_Theatre_2013_1125.jpg"
+   }
   },
   {
    "id": "tk-nagi",
@@ -1773,7 +2079,13 @@
    "wiki": "Ramen",
    "q": "Ramen Nagi Golden Gai",
    "fonti": "Tabelog, Time Out Tokyo",
-   "alt": "Prima del drink al Golden Gai"
+   "alt": "Prima del drink al Golden Gai",
+   "img": "img/idee/tk-nagi.webp",
+   "foto": {
+    "a": "Alexkom000",
+    "l": "CC BY 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:2024-10-20_Shinjuku_Golden_Gai_at_night.jpg"
+   }
   },
   {
    "id": "tk-kabuki-yokocho",
@@ -1794,7 +2106,13 @@
    "wiki": "Izakaya",
    "q": "Kabukicho Yokocho Tokyu Kabukicho Tower",
    "fonti": "Time Out Tokyo",
-   "alt": "Alternativa a Omoide Yokocho se è troppo pieno"
+   "alt": "Alternativa a Omoide Yokocho se è troppo pieno",
+   "img": "img/idee/tk-kabuki-yokocho.webp",
+   "foto": {
+    "a": "Dick Thomas Johnson from Tokyo, Japan",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tokyu_Kabukicho_Tower_(53084204043).jpg"
+   }
   },
   {
    "id": "tk-gatto3d",
@@ -1863,6 +2181,12 @@
       "2027-01-01"
      ]
     ]
+   },
+   "img": "img/idee/tk-isetan.webp",
+   "foto": {
+    "a": "ayustety",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Depachika.jpg"
    }
   },
   {
@@ -1885,7 +2209,13 @@
    "consiglio": "Prendere il numero presto e intanto girare Shinjuku: l'attesa può superare un'ora.",
    "wiki": "Udon",
    "q": "Udon Shin Shinjuku",
-   "fonti": "Time Out Tokyo, Tabelog, Michelin"
+   "fonti": "Time Out Tokyo, Tabelog, Michelin",
+   "img": "img/idee/tk-udonshin.webp",
+   "foto": {
+    "a": "Mobius6",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Udon_noodle_Bowl_(Nongshim)_20210701_003.jpg"
+   }
   },
   {
    "id": "tk-ichiran",
@@ -1907,7 +2237,13 @@
    "sintesi": "Ognuno nel suo cubicolo di legno, ordinazione su un foglietto: tonkotsu cremoso e piccante a piacere. Il salvagente delle notti di festa.",
    "wiki": "Ramen",
    "q": "Ichiran Shinjuku",
-   "fonti": "Tripadvisor"
+   "fonti": "Tripadvisor",
+   "img": "img/idee/tk-ichiran.webp",
+   "foto": {
+    "a": "Jkr2255",
+    "l": "CC BY 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Ichiran_Main_Building.JPG"
+   }
   },
   {
    "id": "tk-karaoke",
@@ -1930,7 +2266,13 @@
    "consiglio": "Nelle grandi catene si prenota online o si entra senza.",
    "wiki": "Karaoke box",
    "q": "Karaoke Kan Shibuya",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-karaoke.webp",
+   "foto": {
+    "a": "Christophe95",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Karaoke_in_Nha_Trang.jpg"
+   }
   },
   {
    "id": "tk-gashapon",
@@ -1950,7 +2292,13 @@
    "wiki": "Gashapon",
    "q": "Gashapon Department Store Ikebukuro",
    "fonti": "Go Tokyo",
-   "alt": "Dentro Sunshine City"
+   "alt": "Dentro Sunshine City",
+   "img": "img/idee/tk-gashapon.webp",
+   "foto": {
+    "a": "Mk2010",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Gashapon_machines_(Hong_Kong).jpg"
+   }
   },
   {
    "id": "tk-nakano",
@@ -1990,7 +2338,13 @@
    "sintesi": "Il più grande negozio di anime e manga del mondo, a due passi da Sunshine City.",
    "wiki": "Ikebukuro",
    "q": "Animate Ikebukuro flagship",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-animate.webp",
+   "foto": {
+    "a": "Dick Thomas Johnson",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Animate_Ikebukuro_20120613_2.jpg"
+   }
   },
   {
    "id": "tk-gyoen",
@@ -2059,7 +2413,13 @@
    "sintesi": "Crêpe arrotolate piene di panna, frutta e gelato: il dolce simbolo di Harajuku dagli anni Settanta. Marion e Angels Heart sono le storiche.",
    "wiki": "Crêpe",
    "q": "Harajuku crepe Marion",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-crepes.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Marion_Cr%C3%AApes_in_Harajuku_Takeshita_2.jpg"
+   }
   },
   {
    "id": "tk-purikura",
@@ -2078,7 +2438,13 @@
    "sintesi": "Le cabine fototessera giapponesi che ingrandiscono gli occhi e aggiungono decorazioni: una foto ricordo in 6, un po' ridicola, garantita.",
    "wiki": "Purikura",
    "q": "purikura Harajuku",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-purikura.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:August_2007,_purikura_in_Osaka_2.jpg"
+   }
   },
   {
    "id": "tk-hikarie",
@@ -2119,7 +2485,13 @@
    "sintesi": "Cotolette di maiale tenerissime servite nella sala alta di un vecchio sentō. Un classico di Omotesandō da oltre 50 anni.",
    "wiki": "Tonkatsu",
    "q": "Tonkatsu Maisen Aoyama",
-   "fonti": "Time Out Tokyo, Tabelog"
+   "fonti": "Time Out Tokyo, Tabelog",
+   "img": "img/idee/tk-maisen.webp",
+   "foto": {
+    "a": "Minseong Kim",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tonkatsu_of_Kimukatsu.jpg"
+   }
   },
   {
    "id": "tk-ebisu",
@@ -2139,7 +2511,13 @@
    "sintesi": "Un vicolo coperto di minuscoli banchi dove si mangia gomito a gomito con i tokyoti: spiedini, oden, sashimi. A una fermata da Shibuya.",
    "wiki": "Izakaya",
    "q": "Ebisu Yokocho",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-ebisu.webp",
+   "foto": {
+    "a": "pommes king from Go and shogi center Sankei Club in Ebisu-higashi, Naniwa, Osaka",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Go_and_shogi_center_by_pommes_king_in_Osaka.jpg"
+   }
   },
   {
    "id": "tk-donki",
@@ -2160,7 +2538,13 @@
    "consiglio": "Portare il passaporto per l'esenzione dalle tasse.",
    "wiki": "Don Quijote (store)",
    "q": "Mega Don Quijote Shibuya",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-donki.webp",
+   "foto": {
+    "a": "毒島みるく",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Product_display_in_Don_Quijote_Shibuya_branch.jpg"
+   }
   },
   {
    "id": "tk-asakusa-view",
@@ -2201,7 +2585,13 @@
    "wiki": "Sushi",
    "q": "sushi making class Asakusa",
    "fonti": "Klook, Headout",
-   "prenota": "https://www.klook.com/activity/81812-sushi-nigiri-experience-asakusa"
+   "prenota": "https://www.klook.com/activity/81812-sushi-nigiri-experience-asakusa",
+   "img": "img/idee/tk-sushi-class.webp",
+   "foto": {
+    "a": "Alpha from Melbourne, Australia",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Yakiniku_Nigiri_-_Shira_Nui_AUD4.50_each_(4759206697).jpg"
+   }
   },
   {
    "id": "tk-kura",
@@ -2240,7 +2630,13 @@
    "sintesi": "Costume, lancio di shuriken e passi silenziosi con un istruttore: un'ora leggera e da ridere in 6.",
    "wiki": "Ninja",
    "q": "ninja experience Asakusa Tokyo",
-   "fonti": "GetYourGuide, Viator, Klook"
+   "fonti": "GetYourGuide, Viator, Klook",
+   "img": "img/idee/tk-ninja.webp",
+   "foto": {
+    "a": "M Disdero",
+    "l": "CC BY-SA 2.5",
+    "u": "https://commons.wikimedia.org/wiki/File:Ninja_Shuriken.jpg"
+   }
   },
   {
    "id": "tk-taiko",
@@ -2260,7 +2656,13 @@
    "sintesi": "Si suonano i grandi tamburi giapponesi in gruppo con un maestro. Faticoso e liberatorio, adatto a chi non ha mai suonato.",
    "wiki": "Taiko",
    "q": "taiko drumming experience Tokyo",
-   "fonti": "GetYourGuide, Viator, Klook"
+   "fonti": "GetYourGuide, Viator, Klook",
+   "img": "img/idee/tk-taiko.webp",
+   "foto": {
+    "a": "Mbrickn",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Taiko_Drummers.jpg"
+   }
   },
   {
    "id": "tk-chanko",
@@ -2282,7 +2684,13 @@
    "consiglio": "Perfetta come antipasto del sumo che vedrete a Kyoto. Prenotare per 6.",
    "wiki": "Chankonabe",
    "q": "chanko nabe Ryogoku Kawasaki",
-   "fonti": "Time Out Tokyo, Tabelog"
+   "fonti": "Time Out Tokyo, Tabelog",
+   "img": "img/idee/tk-chanko.webp",
+   "foto": {
+    "a": "George N",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Chankonabe.jpg"
+   }
   },
   {
    "id": "tk-ryogoku",
@@ -2325,7 +2733,13 @@
    "consiglio": "Gli allenamenti si fermano nei giorni di Capodanno: chiedere le date al tour.",
    "wiki": "Sumo",
    "q": "sumo morning practice tour Tokyo",
-   "fonti": "GetYourGuide, Viator, Klook"
+   "fonti": "GetYourGuide, Viator, Klook",
+   "img": "img/idee/tk-sumo-asa.webp",
+   "foto": {
+    "a": "tjabeljan",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Sumo_stable_training,_Tokyo_2014-08-19.jpg"
+   }
   },
   {
    "id": "tk-rainbow",
@@ -2345,7 +2759,13 @@
    "wiki": "Rainbow Bridge (Tokyo)",
    "q": "Rainbow Bridge walk promenade",
    "fonti": "Go Tokyo",
-   "alt": "Alternativa al battello per Odaiba"
+   "alt": "Alternativa al battello per Odaiba",
+   "img": "img/idee/tk-rainbow.webp",
+   "foto": {
+    "a": "妖精書士 (talk)",
+    "l": "Public domain",
+    "u": "https://commons.wikimedia.org/wiki/File:Rainbow_Promenade090505.jpg"
+   }
   },
   {
    "id": "tk-senkyaku",
@@ -2365,7 +2785,13 @@
    "sintesi": "Accanto al mercato del pesce di Toyosu: vie in stile Edo con sushi, grigliate di pesce e un'area terme con vista sulla baia. Comodo prima o dopo teamLab Planets.",
    "wiki": "Toyosu Market",
    "q": "Toyosu Senkyaku Banrai",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-senkyaku.webp",
+   "foto": {
+    "a": "Fred Cherrygarden",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Toyosu_Senkyaku_Banrai.jpg"
+   }
   },
   {
    "id": "tk-joypolis",
@@ -2385,7 +2811,13 @@
    "wiki": "Joypolis",
    "q": "Tokyo Joypolis",
    "fonti": "Go Tokyo",
-   "alt": "Alternativa a Odaiba con la pioggia"
+   "alt": "Alternativa a Odaiba con la pioggia",
+   "img": "img/idee/tk-joypolis.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Joypolis,_Decks.jpg"
+   }
   },
   {
    "id": "tk-smallworlds",
@@ -2423,7 +2855,13 @@
    "sintesi": "Piani interi di macchine per pupazzi, giochi musicali e picchiaduro tra veri campioni. GiGO e Taito Station sono le più grandi.",
    "wiki": "Amusement arcade",
    "q": "Akihabara arcade GiGO",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-arcade.webp",
+   "foto": {
+    "a": "bfishadow",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Akiba_Crossing_003.jpg"
+   }
   },
   {
    "id": "tk-maidcafe",
@@ -2442,7 +2880,13 @@
    "sintesi": "Cameriere in costume, canzoncine e disegni con il ketchup sull'omurice: kitsch puro, da fare una volta. @home café è il più famoso.",
    "wiki": "Maid café",
    "q": "maid cafe Akihabara home cafe",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-maidcafe.webp",
+   "foto": {
+    "a": "Ominae",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Akihabara_Main_Street_Pedestrian_Crossing.jpg"
+   }
   },
   {
    "id": "tk-radiokaikan",
@@ -2461,7 +2905,13 @@
    "sintesi": "Dieci piani di figure, carte da collezione e modellini davanti alla stazione; poco più in là gli otto piani neri di Mandarake.",
    "wiki": "Akihabara",
    "q": "Akihabara Radio Kaikan",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-radiokaikan.webp",
+   "foto": {
+    "a": "Aimaimyi",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Akihabara_Radio_Kaikan_1st_-01.jpg"
+   }
   },
   {
    "id": "tk-yabu",
@@ -2484,6 +2934,12 @@
    "fonti": "Time Out Tokyo",
    "chiuso": {
     "verifica": 1
+   },
+   "img": "img/idee/tk-yabu.webp",
+   "foto": {
+    "a": "Naotake Murayama from San Francisco, CA, USA",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Soba_@Yabu,_Kanda_(6639249067).jpg"
    }
   },
   {
@@ -2529,7 +2985,13 @@
    "wiki": "Onsen",
    "q": "Spa LaQua Tokyo Dome",
    "fonti": "Time Out Tokyo",
-   "alt": "Alternativa a Thermae-yu"
+   "alt": "Alternativa a Thermae-yu",
+   "img": "img/idee/tk-laqua.webp",
+   "foto": {
+    "a": "Kakidai",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:LaQua(Tokyo_Dome_City_).jpg"
+   }
   },
   {
    "id": "tk-pokecafe",
@@ -2611,7 +3073,13 @@
    "q": "teamLab Borderless Azabudai Hills",
    "sito": "https://www.teamlab.art/e/borderless-azabudai/",
    "fonti": "teamLab, Go Tokyo, Japan Travel Kit",
-   "prenota": "https://www.teamlab.art/e/borderless-azabudai/"
+   "prenota": "https://www.teamlab.art/e/borderless-azabudai/",
+   "img": "img/idee/tk-borderless.webp",
+   "foto": {
+    "a": "Domenico Convertini from Zurich, Schweiz",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:TeamLab_Borderless,_Odaiba,_Tokyo,_Japan_(49070645226).jpg"
+   }
   },
   {
    "id": "tk-tokyotower",
@@ -2682,7 +3150,13 @@
    "wiki": "Shabu-shabu",
    "q": "Mo-Mo-Paradise Shinjuku shabu shabu",
    "fonti": "Tabelog, Time Out Tokyo",
-   "alt": "Per la «Cena di fine anno»"
+   "alt": "Per la «Cena di fine anno»",
+   "img": "img/idee/tk-mopa.webp",
+   "foto": {
+    "a": "Don Ramey Logan",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shabu_Shabu_photo_Don_Ramey_Logan.jpg"
+   }
   },
   {
    "id": "tk-hilton",
@@ -2702,7 +3176,13 @@
    "wiki": "Nishi-Shinjuku",
    "q": "Hilton Tokyo countdown party",
    "fonti": "Metropolis Japan",
-   "alt": "Alternativa al Meiji Jingu a mezzanotte"
+   "alt": "Alternativa al Meiji Jingu a mezzanotte",
+   "img": "img/idee/tk-hilton.webp",
+   "foto": {
+    "a": "panayota",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Skyscrapers_in_Nishi-Shinjuku_-_Shinjuku_i-land_Tower,_Shinjuku_Mitsui_Building,_Shinjuku_Sumitomo_Building_-_view_from_Hyatt_Regency_Tokyo_Building_(2016-05-16_by_panayota_@Pixabay_2190027).jpg"
+   }
   },
   {
    "id": "tk-tsukiji-tour",
@@ -2722,7 +3202,13 @@
    "wiki": "Tsukiji fish market",
    "q": "Tsukiji food tour",
    "fonti": "Magical Trip, GetYourGuide, Viator, Klook",
-   "alt": "Dentro la tappa al mercato di Tsukiji"
+   "alt": "Dentro la tappa al mercato di Tsukiji",
+   "img": "img/idee/tk-tsukiji-tour.webp",
+   "foto": {
+    "a": "Kent Wang from London, United Kingdom",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tsukiji_Market_2017_(38052266396).jpg"
+   }
   },
   {
    "id": "tk-shibamata",
@@ -2761,7 +3247,13 @@
    "sintesi": "Per Capodanno i negozi vendono buste chiuse con merce che vale molto più del prezzo. File all'alba davanti a Mitsukoshi e ai negozi di elettronica.",
    "wiki": "Fukubukuro",
    "q": "fukubukuro Tokyo lucky bag",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/tk-fukubukuro.webp",
+   "foto": {
+    "a": "Mr.ちゅらさん",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Fukubukuro_Vege_Go_Lalaport_Kadoma.jpg"
+   }
   },
   {
    "id": "tk-ekiden",
@@ -2781,7 +3273,13 @@
    "consiglio": "Si abbina bene al saluto dell'imperatore.",
    "wiki": "Hakone Ekiden",
    "q": "Hakone Ekiden start Otemachi",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/tk-ekiden.webp",
+   "foto": {
+    "a": "Syced",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Hakone_Ekiden_2026.jpg"
+   }
   },
   {
    "id": "tk-disneysea",
@@ -2846,6 +3344,12 @@
    "alt": "Dentro la gita a Yokohama",
    "chiuso": {
     "verifica": 1
+   },
+   "img": "img/idee/tk-cupnoodles.webp",
+   "foto": {
+    "a": "Rs1421",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Cupnoodles-Museum-Yokohama.jpg"
    }
   },
   {
@@ -2865,7 +3369,13 @@
    "sintesi": "Donne in kimono di corte giocano alla prima partita dell'anno di karuta, un antico gioco di carte con le poesie. Rituale, lento, bellissimo da vedere.",
    "wiki": "Yasaka Shrine",
    "q": "Karuta Hajime Yasaka shrine January 3",
-   "fonti": "Kyoto City Official Travel Guide"
+   "fonti": "Kyoto City Official Travel Guide",
+   "img": "img/idee/ky-karuta.webp",
+   "foto": {
+    "a": "Forms part of: George Grantham Bain Collection (Library of Congress).",
+    "l": "Public domain",
+    "u": "https://commons.wikimedia.org/wiki/File:Playing_uta_garuta.jpg"
+   }
   },
   {
    "id": "ky-kenninji",
@@ -2924,7 +3434,13 @@
    "sintesi": "Il caffè latte più fotografato di Kyoto, servito in una casa di legno lungo la salita. Fila breve, da asporto.",
    "wiki": "Coffee",
    "q": "Arabica Kyoto Higashiyama",
-   "fonti": "Time Out"
+   "fonti": "Time Out",
+   "img": "img/idee/ky-arabica-hg.webp",
+   "foto": {
+    "a": "Takumi Ota",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:%25_Arabica_Kyoto_Higashiyama_by_Takumi_Ota.jpg"
+   }
   },
   {
    "id": "ky-tsujiri",
@@ -2973,6 +3489,12 @@
     "dow": [
      1
     ]
+   },
+   "img": "img/idee/ky-kagizen.webp",
+   "foto": {
+    "a": "Conveyor belt sushi",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Japanese_cuisine;_Kuzukiri_%E3%81%8F%E3%81%9A%E3%81%8D%E3%82%8A.jpg"
    }
   },
   {
@@ -3016,7 +3538,13 @@
    "sintesi": "Cotoletta di manzo da finire sulla pietra calda, versione Kyoto con salsa allo yuzu e brodo dashi. Sotto la stazione, comodo con le valigie.",
    "wiki": "Tonkatsu",
    "q": "Kyoto Katsugyu gyukatsu Kyoto station",
-   "fonti": "Tabelog"
+   "fonti": "Tabelog",
+   "img": "img/idee/ky-katsugyu.webp",
+   "foto": {
+    "a": "pelican from Tokyo, Japan",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Beef_cutlet_(8567066968).jpg"
+   }
   },
   {
    "id": "ky-toji",
@@ -3162,7 +3690,13 @@
    "wiki": "Nishiki Market",
    "q": "Nishiki market food tour Kyoto",
    "fonti": "Arigato Japan, Magical Trip, GetYourGuide, Viator, Klook",
-   "alt": "Dentro la tappa al mercato Nishiki"
+   "alt": "Dentro la tappa al mercato Nishiki",
+   "img": "img/idee/ky-nishiki-tour.webp",
+   "foto": {
+    "a": "collinox",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Tsukemono_shop_by_collinox_in_Nishiki_Ichiba,_Kyoto.jpg"
+   }
   },
   {
    "id": "ky-inoichi",
@@ -3185,7 +3719,13 @@
    "wiki": "Ramen",
    "q": "Menya Inoichi Kyoto",
    "fonti": "Guida Michelin",
-   "top": true
+   "top": true,
+   "img": "img/idee/ky-inoichi.webp",
+   "foto": {
+    "a": "Miscellaneous contributor",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen_with_Sushi_and_Tempura.jpg"
+   }
   },
   {
    "id": "ky-wagyu",
@@ -3208,7 +3748,13 @@
    "wiki": "Wagyu",
    "q": "Kyoto wagyu yakiniku Kiyamachi",
    "fonti": "Tabelog, Inside Kyoto",
-   "alt": "Alternativa a Pontocho"
+   "alt": "Alternativa a Pontocho",
+   "img": "img/idee/ky-wagyu.webp",
+   "foto": {
+    "a": "Naha Mama Pavilionz",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E6%B2%96%E7%B9%A9_OKINAWA_%E9%82%A3%E9%9C%B8_Naha_%E4%B9%85%E8%8C%82%E5%9C%B0_Kumoji_MK_Building_shop_%E5%92%8C%E7%89%9B%E7%87%92%E8%82%89%E5%BA%97_BBQ_Motobu_WAGYU_Yakiniku_Beef_Restaurant_lunch_meal_January_2025_R12S_30.jpg"
+   }
   },
   {
    "id": "ky-obanzai",
@@ -3230,7 +3776,13 @@
    "wiki": "Obanzai",
    "q": "obanzai Kyoto Pontocho",
    "fonti": "Inside Kyoto",
-   "alt": "Dentro la cena a Pontocho"
+   "alt": "Dentro la cena a Pontocho",
+   "img": "img/idee/ky-obanzai.webp",
+   "foto": {
+    "a": "Takoradee",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Obanzai_yasai.JPG"
+   }
   },
   {
    "id": "ky-arcades",
@@ -3250,7 +3802,13 @@
    "sintesi": "Due vie coperte parallele a Nishiki: souvenir, gioielli a forma di sushi, piccoli templi tra un negozio e l'altro. Vicine al sumo.",
    "wiki": "Teramachi Street",
    "q": "Shinkyogoku Teramachi arcade Kyoto",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/ky-arcades.webp",
+   "foto": {
+    "a": "Celuici",
+    "l": "CC BY-SA 3.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Teramachi_shopping_street,_Kyoto,_May_2017.jpg"
+   }
   },
   {
    "id": "ky-geisha",
@@ -3272,7 +3830,13 @@
    "q": "maiko geisha show tea ceremony Kyoto",
    "sito": "https://mai-ko.com/",
    "fonti": "Maikoya, GetYourGuide, Viator, Klook",
-   "prenota": "https://mai-ko.com/"
+   "prenota": "https://mai-ko.com/",
+   "img": "img/idee/ky-geisha.webp",
+   "foto": {
+    "a": "AjarnRichard",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Maiko_Dancing_Performance.jpg"
+   }
   },
   {
    "id": "ky-tofukuji",
@@ -3336,7 +3900,13 @@
    "sito": "https://en.eigamura.com/",
    "fonti": "Kyoto City Official Travel Guide, Pelago",
    "alt": "Alternativa ad Arashiyama",
-   "prenota": "https://en.eigamura.com/hours-tickets/"
+   "prenota": "https://en.eigamura.com/hours-tickets/",
+   "img": "img/idee/ky-eigamura.webp",
+   "foto": {
+    "a": "Maksym Grinenko",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Toei_Kyoto_Studio_Park_from_above.jpg"
+   }
   },
   {
    "id": "ky-kimonoforest",
@@ -3396,7 +3966,13 @@
    "wiki": "Soba",
    "q": "Arashiyama Yoshimura soba",
    "fonti": "Tripadvisor",
-   "alt": "Alternativa al pranzo con yudōfu"
+   "alt": "Alternativa al pranzo con yudōfu",
+   "img": "img/idee/ky-yoshimura.webp",
+   "foto": {
+    "a": "Basile Morin",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Togetsu-ky%C5%8D_bridge_at_golden_hour,_Kyoto,_Japan.jpg"
+   }
   },
   {
    "id": "ky-tea-camellia",
@@ -3418,7 +3994,13 @@
    "sintesi": "In una casa machiya, una maestra spiega e prepara il matcha, poi lo fate voi. Camellia è tra le più recensite di Kyoto e ha turni privati per gruppi.",
    "wiki": "Japanese tea ceremony",
    "q": "Camellia tea ceremony Kyoto",
-   "fonti": "Headout, Expedia, Klook"
+   "fonti": "Headout, Expedia, Klook",
+   "img": "img/idee/ky-tea-camellia.webp",
+   "foto": {
+    "a": "Ermell",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Japan_tea_ceremony_1165.jpg"
+   }
   },
   {
    "id": "ky-kimono-tea",
@@ -3441,7 +4023,13 @@
    "q": "Maikoya kimono tea ceremony Kyoto",
    "sito": "https://mai-ko.com/",
    "fonti": "Maikoya, Expedia",
-   "prenota": "https://mai-ko.com/"
+   "prenota": "https://mai-ko.com/",
+   "img": "img/idee/ky-kimono-tea.webp",
+   "foto": {
+    "a": "Yasumichi Morita (designer)\n\nBasile Morin (photographer)",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kimono_Forest_at_night,_Arashiyama_Station,_Arashiyama,_Kyoto,_Japan.jpg"
+   }
   },
   {
    "id": "ky-samurai",
@@ -3465,7 +4053,13 @@
    "q": "Samurai Ninja Museum Kyoto",
    "sito": "https://mai-ko.com/",
    "fonti": "Maikoya",
-   "prenota": "https://mai-ko.com/"
+   "prenota": "https://mai-ko.com/",
+   "img": "img/idee/ky-samurai.webp",
+   "foto": {
+    "a": "Tadeusz Hare",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Samurai_room_-_Snowshill_Manor_-_PXL_20250316_134130712.jpg"
+   }
   },
   {
    "id": "ky-imperial",
@@ -3612,7 +4206,13 @@
    "sintesi": "La \"cucina di Ōsaka\": ricci di mare, granchio, wagyu alla piastra e frutta enorme. Si mangia lungo la via coperta.",
    "wiki": "Nipponbashi",
    "q": "Kuromon market Osaka",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/os-kuromon.webp",
+   "foto": {
+    "a": "Mr.ちゅらさん",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg"
+   }
   },
   {
    "id": "os-shinsekai",
@@ -3633,7 +4233,13 @@
    "consiglio": "Vietato intingere due volte!",
    "wiki": "Kushikatsu",
    "q": "Shinsekai kushikatsu Daruma",
-   "fonti": "Time Out"
+   "fonti": "Time Out",
+   "img": "img/idee/os-shinsekai.webp",
+   "foto": {
+    "a": "Sakai Yayoi",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Shinsekai_and_Tsutenkaku_Tower.jpg"
+   }
   },
   {
    "id": "os-umeda",
@@ -3693,7 +4299,13 @@
    "wiki": "Beer hall",
    "q": "Ginza Lion beer hall 7-chome",
    "fonti": "Time Out Tokyo",
-   "alt": "Per la cena d'addio"
+   "alt": "Per la cena d'addio",
+   "img": "img/idee/gz-lion.webp",
+   "foto": {
+    "a": "Achim Hepp",
+    "l": "CC BY-SA 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:LION_BEER_HALL_%E9%8A%80%E5%BA%A7%E4%BA%94%E4%B8%81%E7%9B%AE%E5%BA%97_SINCE_1911_(2627643929).jpg"
+   }
   },
   {
    "id": "gz-teppan",
@@ -3715,7 +4327,13 @@
    "wiki": "Teppanyaki",
    "q": "Ginza wagyu teppanyaki Kobe beef",
    "fonti": "Tabelog, Michelin",
-   "alt": "Per la cena d'addio"
+   "alt": "Per la cena d'addio",
+   "img": "img/idee/gz-teppan.webp",
+   "foto": {
+    "a": "David Pursehouse from Kawasaki, Japan",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Teppanyaki_Chicken_(1935883227).jpg"
+   }
   },
   {
    "id": "gz-zanmai",
@@ -3735,7 +4353,13 @@
    "sintesi": "La catena del \"re del tonno\", aperta sempre: un sushi buono e senza prenotazione a 10 minuti a piedi dall'hotel.",
    "wiki": "Sushi",
    "q": "Sushi Zanmai Tsukiji",
-   "fonti": "Tripadvisor"
+   "fonti": "Tripadvisor",
+   "img": "img/idee/gz-zanmai.webp",
+   "foto": {
+    "a": "yuiseki aoba from 東京都台東区花川戸, 日本",
+    "l": "CC BY 2.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Toro_nigiri,_Sushi-Zanmai_Akiba_shop_1F,_Yodobashi_Camera_Akihabara_(%E3%83%88%E3%83%AD%E3%81%96%E3%82%93%E3%81%BE%E3%81%84,_%E3%81%99%E3%81%97%E3%81%96%E3%82%93%E3%81%BE%E3%81%84_AKIBA%E5%BA%971F,_%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%E7%A7%8B%E8%91%89%E5%8E%9F)_(2011-05-01_06.00.10_by_yuiseki_aoba).jpg"
+   }
   },
   {
    "id": "gz-hamarikyu",
@@ -3773,7 +4397,13 @@
    "sintesi": "Dodici piani di Uniqlo e, poco più in là, il Muji più grande del mondo con hotel e ristorante. Per gli acquisti dell'ultimo giorno.",
    "wiki": "Uniqlo",
    "q": "Uniqlo Ginza flagship",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/gz-uniqlo.webp",
+   "foto": {
+    "a": "Basile Morin",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Illuminated_street_corner_at_blue_hour_-_facade_of_the_building_Fujiya_in_Ginza_Chuo-ku_Tokyo_Japan.jpg"
+   }
   },
   {
    "id": "gz-mitsukoshi",
@@ -3793,7 +4423,13 @@
    "sintesi": "Dolci giapponesi da portare a casa, bentō per la cena in camera, frutta da gioielleria. I regali commestibili del ritorno.",
    "wiki": "Mitsukoshi",
    "q": "Ginza Mitsukoshi depachika",
-   "fonti": "Time Out Tokyo"
+   "fonti": "Time Out Tokyo",
+   "img": "img/idee/gz-mitsukoshi.webp",
+   "foto": {
+    "a": "江戸村のとくぞう",
+    "l": "CC BY-SA 4.0",
+    "u": "https://commons.wikimedia.org/wiki/File:Ginza_Mitsukoshi-1.jpg"
+   }
   },
   {
    "id": "gz-colazione",
@@ -3813,7 +4449,13 @@
    "sintesi": "Ciotola di riso con pesce crudo o tamagoyaki caldo, a 10 minuti a piedi dall'hotel: c'è tempo prima del check-out delle 9:30.",
    "wiki": "Tsukiji fish market",
    "q": "Tsukiji breakfast kaisendon",
-   "fonti": "Japan Guide"
+   "fonti": "Japan Guide",
+   "img": "img/idee/gz-colazione.webp",
+   "foto": {
+    "a": "Andy Li",
+    "l": "CC0",
+    "u": "https://commons.wikimedia.org/wiki/File:Take-out_omakase_donburi_on_2022-02-26.jpg"
+   }
   },
   {
    "id": "gz-haneda",
