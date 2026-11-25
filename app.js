@@ -1024,7 +1024,10 @@ Promise.all([fetch('data/viaggio.json',{cache:'no-cache'}).then(r=>r.json()),fet
  try{initMap()}catch(e){$('#map').innerHTML='<p style="padding:20px">La mappa non si è avviata su questo browser.</p>'}
  if(!location.hash){const st=stato();if(st.fase==='durante'&&st.i>=0)history.replaceState(null,'','#g'+(st.i+1))}route();avviaFB();nBadge();sincroAndroid();pianificaPromemoria();if(!IO)setTimeout(accesso,700)})
  .catch(()=>{$('#view').innerHTML='<div class="pad">Il programma non si è caricato. Controllate la connessione e ricaricate.</div>'});
-if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&location.protocol==='https:'){const hadSW=!!navigator.serviceWorker.controller;
+ navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>{r.update().catch(()=>{});document.addEventListener('visibilitychange',()=>{if(!document.hidden)r.update().catch(()=>{})})}).catch(()=>{});
+ /* versione nuova installata: ricarica una volta da sola, così si vede subito */
+ let ric=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadSW||ric)return;ric=true;if(!document.querySelector('#sheet.on')&&!(document.activeElement||{}).closest?.('form'))location.reload();else toast('Nuova versione dell\'app: si aggiorna alla prossima apertura')})}
 /* ---------- notifiche: attività del gruppo, promemoria del programma, impostazioni ----------
    Nessun dato nuovo nel database: le novità si ricavano da ciò che arriva (proposte, commenti, voti, programma, spese, diario)
    e ogni telefono ricorda in localStorage cosa ha già visto. Sul telefono: Notification API nel browser, ponte BIJAndroid nell'app. */
