@@ -1,0 +1,638 @@
+{
+ "tk-fuunji": {
+  "file": "File:Tsukemen (Dipping Ramen) - Goemon Ramen Bar 2023-07-16.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tsukemen_(Dipping_Ramen)_-_Goemon_Ramen_Bar_2023-07-16.jpg",
+  "autore": "Andy Li",
+  "licenza": "CC0"
+ },
+ "tk-tsunahachi": {
+  "file": "File:Tempura.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tempura.jpg",
+  "autore": "PatriceNeff",
+  "licenza": "CC BY 1.0"
+ },
+ "tk-kabuki-gyoza": {
+  "file": "File:Kouraku Little Tokyo.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kouraku_Little_Tokyo.jpg",
+  "autore": "Matsujima",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-bar-tour": {
+  "file": "File:Shinjuku-West Omoide-Yokocho.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shinjuku-West_Omoide-Yokocho.jpg",
+  "autore": "MaedaAkihiko",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-shimokita": {
+  "file": "File:Shimokitazawa Street 2015.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shimokitazawa_Street_2015.jpg",
+  "autore": "Aw1805",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-omotesando": {
+  "file": "File:Harajuku-Cat-street-05.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Harajuku-Cat-street-05.jpg",
+  "autore": "Rs1421",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-uobei": {
+  "file": "File:010 Sushi master in Kyoto, Japan - sushi chef 寿司職人.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:010_Sushi_master_in_Kyoto,_Japan_-_sushi_chef_%E5%AF%BF%E5%8F%B8%E8%81%B7%E4%BA%BA.jpg",
+  "autore": "Marek Ślusarczyk (Tupungato) Photo portfolio",
+  "licenza": "CC BY 3.0"
+ },
+ "tk-motomura": {
+  "file": "File:Beef cutlet (8567066968).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Beef_cutlet_(8567066968).jpg",
+  "autore": "pelican from Tokyo, Japan",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-afuri": {
+  "file": "File:Yuzu Shio Ramen @ Afuri @ Ebisu (14018053090).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Yuzu_Shio_Ramen_@_Afuri_@_Ebisu_(14018053090).jpg",
+  "autore": "Guilhem Vellut from Annecy, France",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-gyozaro": {
+  "file": "File:2018-07-29 Yaki Gyoza of Hidakaya.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:2018-07-29_Yaki_Gyoza_of_Hidakaya.jpg",
+  "autore": "Shinji",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-shibuya-yokocho": {
+  "file": "File:Miyashita Park seen from Shibuya Stream.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Miyashita_Park_seen_from_Shibuya_Stream.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-mutekiya": {
+  "file": "File:Tonkotsu Ramen - Goemon Ramen Bar 2023-06-06.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tonkotsu_Ramen_-_Goemon_Ramen_Bar_2023-06-06.jpg",
+  "autore": "Andy Li",
+  "licenza": "CC0"
+ },
+ "tk-kimono": {
+  "file": "File:Takoyaki (53449616935).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Takoyaki_(53449616935).jpg",
+  "autore": "Bruno Rijsman",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-riscio": {
+  "file": "File:Rickshaw in Asakusa (53415727552).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rickshaw_in_Asakusa_(53415727552).jpg",
+  "autore": "Stephen Kelly from San Francisco, CA, USA",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-teamlab": {
+  "file": "File:Photos at teamlab planets tokyo.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Photos_at_teamlab_planets_tokyo.jpg",
+  "autore": "Sasa0403",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-daikokuya": {
+  "file": "File:Rice bowl topped with shrimp tempura (8281030764).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rice_bowl_topped_with_shrimp_tempura_(8281030764).jpg",
+  "autore": "pelican from Tokyo, Japan",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-sometaro": {
+  "file": "File:Okonomiyaki cooking on teppan Osaka.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Okonomiyaki_cooking_on_teppan_Osaka.jpg",
+  "autore": "Lianguanlun",
+  "licenza": "CC BY 4.0"
+ },
+ "tk-imahan": {
+  "file": "File:Sukiyaki 01.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Sukiyaki_01.jpg",
+  "autore": "ajari",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-kagetsudo": {
+  "file": "File:Melonpan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Melonpan.jpg",
+  "autore": "Sakurai Midori",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-yakatabune": {
+  "file": "File:Yakatabune-nearodaiba-jan27-2015.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Yakatabune-nearodaiba-jan27-2015.jpg",
+  "autore": "Nesnad",
+  "licenza": "CC BY 3.0"
+ },
+ "tk-superpotato": {
+  "file": "File:Tienda Super Potato (Akihabara, Tokio).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tienda_Super_Potato_(Akihabara,_Tokio).jpg",
+  "autore": "Jesusbella",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-gokart": {
+  "file": "File:外国観光客に人気のストリートカート.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%E5%A4%96%E5%9B%BD%E8%A6%B3%E5%85%89%E5%AE%A2%E3%81%AB%E4%BA%BA%E6%B0%97%E3%81%AE%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88%E3%82%AB%E3%83%BC%E3%83%88.jpg",
+  "autore": "Souka Kinmei",
+  "licenza": "CC0"
+ },
+ "tk-matsuya": {
+  "file": "File:Dried soba noodles by FotoosVanRobin.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Dried_soba_noodles_by_FotoosVanRobin.jpg",
+  "autore": "FotoosVanRobin",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-jangara": {
+  "file": "File:Kyushu Jangara Ramen Zenbuire.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kyushu_Jangara_Ramen_Zenbuire.jpg",
+  "autore": "Marufish",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-ameyoko-food": {
+  "file": "File:Ameyoko June 2022.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ameyoko_June_2022.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-tsukiji": {
+  "file": "File:Tsukiji Outer Market 2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tsukiji_Outer_Market_2.jpg",
+  "autore": "Aw1805",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-kappabashi": {
+  "file": "File:Kappabashi-dori streetcorner (Kitchen town - southern end) a sunny morning in Tokyo Japan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kappabashi-dori_streetcorner_(Kitchen_town_-_southern_end)_a_sunny_morning_in_Tokyo_Japan.jpg",
+  "autore": "Basile Morin",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-zojoji": {
+  "file": "File:Zojoji Temple from Tokyo Tower.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Zojoji_Temple_from_Tokyo_Tower.jpg",
+  "autore": "Ph0kin",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-odaiba-countdown": {
+  "file": "File:Rainbow Bridge (Tokyo) - Fireworks 8.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rainbow_Bridge_(Tokyo)_-_Fireworks_8.jpg",
+  "autore": "Kakidai",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-soba-31": {
+  "file": "File:Toshikoshi-soba.shop2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Toshikoshi-soba.shop2.jpg",
+  "autore": "Sobanohito",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-clubs": {
+  "file": "File:Registratur Nightclub Munich Dance Floor.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Registratur_Nightclub_Munich_Dance_Floor.jpg",
+  "autore": "polychromat",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-ramen-street": {
+  "file": "File:Shoyu Ramen @ Shichisai @ Tokyo Ramen Street (13165344585).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen_@_Shichisai_@_Tokyo_Ramen_Street_(13165344585).jpg",
+  "autore": "Guilhem Vellut from Annecy, France",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-sanga": {
+  "file": "File:The Imperial Family and Visit of the General Public to the Palace for the New Year Greeting(2012.tokyo).JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:The_Imperial_Family_and_Visit_of_the_General_Public_to_the_Palace_for_the_New_Year_Greeting(2012.tokyo).JPG",
+  "autore": "ぱたごん",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "roma-fiori": {
+  "file": "File:Tawan daeng Chiang Mai.JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tawan_daeng_Chiang_Mai.JPG",
+  "autore": "Takeaway",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "roma-99": {
+  "file": "File:LEGENDS SPORTS BAR.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:LEGENDS_SPORTS_BAR.jpg",
+  "autore": "Syced",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "roma-venezia": {
+  "file": "File:Black Stars (Ghana national football team) fans watching televised match.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Black_Stars_(Ghana_national_football_team)_fans_watching_televised_match.jpg",
+  "autore": "Ben Sutherland",
+  "licenza": "CC BY 2.0"
+ },
+ "ky-gion-tour": {
+  "file": "File:Kyoto (16228521821).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kyoto_(16228521821).jpg",
+  "autore": "Moyan Brenn from Italy",
+  "licenza": "CC BY 2.0"
+ },
+ "ky-hohei": {
+  "file": "File:Yahata Gyoza 20260308.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Yahata_Gyoza_20260308.jpg",
+  "autore": "舌先現象になります",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-ramen-koji": {
+  "file": "File:Kyoto Train station (52383498360).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kyoto_Train_station_(52383498360).jpg",
+  "autore": "Sergiy Galyonkin from Raleigh, USA",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "ky-katsukura": {
+  "file": "File:Tonkatsu set in Student Union 05.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tonkatsu_set_in_Student_Union_05.jpg",
+  "autore": "ノボホショコロトソ",
+  "licenza": "CC BY 4.0"
+ },
+ "ky-yudofu": {
+  "file": "File:Japanese SilkyTofu (Kinugoshi Tofu).JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Japanese_SilkyTofu_(Kinugoshi_Tofu).JPG",
+  "autore": "DryPot",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "ky-inari-udon": {
+  "file": "File:Udon (Kitsune udon) 2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Udon_(Kitsune_udon)_2.jpg",
+  "autore": "MemColorLab",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-inari-notte": {
+  "file": "File:2026-06-29 kyoto-fushimi-inari torii-romon night.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:2026-06-29_kyoto-fushimi-inari_torii-romon_night.jpg",
+  "autore": "DuckMaestro",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "nr-nakatanidou": {
+  "file": "File:Mochi Herstellung.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Mochi_Herstellung.jpg",
+  "autore": "Dimethylsulfoxid",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "nr-kamameshi": {
+  "file": "File:Tōge no Kamameshi Oginoya photo by Pcs34560 20160116 1311.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:T%C5%8Dge_no_Kamameshi_Oginoya_photo_by_Pcs34560_20160116_1311.jpg",
+  "autore": "pcs34560 from jawp\n\n This photo was taken with Canon EOS 6D",
+  "licenza": "Public domain"
+ },
+ "nr-hiraso": {
+  "file": "File:Kakinoha (persimmon leaf) sushi in Nara.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kakinoha_(persimmon_leaf)_sushi_in_Nara.jpg",
+  "autore": "ZhengZhou",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "gz-kagari": {
+  "file": "File:Tori Paitan Ramen, Kodawari Ramen, Paris 001.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tori_Paitan_Ramen,_Kodawari_Ramen,_Paris_001.jpg",
+  "autore": "Guilhem Vellut from Paris, France",
+  "licenza": "CC BY 2.0"
+ },
+ "gz-midori": {
+  "file": "File:Sashimi of São Paulo.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Sashimi_of_S%C3%A3o_Paulo.jpg",
+  "autore": "Wilfredor",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "gz-gadoshita": {
+  "file": "File:ドイツ居酒屋 (44131336922).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%E3%83%89%E3%82%A4%E3%83%84%E5%B1%85%E9%85%92%E5%B1%8B_(44131336922).jpg",
+  "autore": "Fabio Achilli from Milano, Italy",
+  "licenza": "CC BY 2.0"
+ },
+ "gz-monja": {
+  "file": "File:Monjayaki-2006-06-25.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Monjayaki-2006-06-25.jpg",
+  "autore": "Syohei Arai",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "gz-itoya": {
+  "file": "File:Skyline of Ginza at Itoya Stationery Store.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Skyline_of_Ginza_at_Itoya_Stationery_Store.jpg",
+  "autore": "1904.CC",
+  "licenza": "CC BY 4.0"
+ },
+ "gz-kabukiza": {
+  "file": "File:Kabuki-za Theatre 2013 1125.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kabuki-za_Theatre_2013_1125.jpg",
+  "autore": "Tak1701d",
+  "licenza": "Public domain"
+ },
+ "tk-nagi": {
+  "file": "File:2024-10-20 Shinjuku Golden Gai at night.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:2024-10-20_Shinjuku_Golden_Gai_at_night.jpg",
+  "autore": "Alexkom000",
+  "licenza": "CC BY 4.0"
+ },
+ "tk-kabuki-yokocho": {
+  "file": "File:Tokyu Kabukicho Tower (53084204043).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tokyu_Kabukicho_Tower_(53084204043).jpg",
+  "autore": "Dick Thomas Johnson from Tokyo, Japan",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-isetan": {
+  "file": "File:Depachika.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Depachika.jpg",
+  "autore": "ayustety",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-karaoke": {
+  "file": "File:Karaoke in Nha Trang.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Karaoke_in_Nha_Trang.jpg",
+  "autore": "Christophe95",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-gashapon": {
+  "file": "File:Gashapon machines (Hong Kong).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Gashapon_machines_(Hong_Kong).jpg",
+  "autore": "Mk2010",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-nakano": {
+  "file": "File:Nakano Broadway 2021130 ④.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Nakano_Broadway_2021130_%E2%91%A3.jpg",
+  "autore": "番記者",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-animate": {
+  "file": "File:Animate Ikebukuro 20120613 2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Animate_Ikebukuro_20120613_2.jpg",
+  "autore": "Dick Thomas Johnson",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-crepes": {
+  "file": "File:Marion Crêpes in Harajuku Takeshita 2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Marion_Cr%C3%AApes_in_Harajuku_Takeshita_2.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-purikura": {
+  "file": "File:August 2007, purikura in Osaka 2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:August_2007,_purikura_in_Osaka_2.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-ebisu": {
+  "file": "File:Go and shogi center by pommes king in Osaka.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Go_and_shogi_center_by_pommes_king_in_Osaka.jpg",
+  "autore": "pommes king from Go and shogi center Sankei Club in Ebisu-higashi, Naniwa, Osaka",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-donki": {
+  "file": "File:Product display in Don Quijote Shibuya branch.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Product_display_in_Don_Quijote_Shibuya_branch.jpg",
+  "autore": "毒島みるく",
+  "licenza": "CC0"
+ },
+ "tk-kura": {
+  "file": "File:Kura Sushi,Inc. headquarters.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kura_Sushi,Inc._headquarters.jpg",
+  "autore": "Tokumeigakarinoaoshima",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-ninja": {
+  "file": "File:Ninja Shuriken.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ninja_Shuriken.jpg",
+  "autore": "M Disdero",
+  "licenza": "CC BY-SA 2.5"
+ },
+ "tk-taiko": {
+  "file": "File:Taiko Drummers.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Taiko_Drummers.jpg",
+  "autore": "Mbrickn",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-chanko": {
+  "file": "File:Chankonabe.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Chankonabe.jpg",
+  "autore": "George N",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-sumo-asa": {
+  "file": "File:Sumo stable training, Tokyo 2014-08-19.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Sumo_stable_training,_Tokyo_2014-08-19.jpg",
+  "autore": "tjabeljan",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-rainbow": {
+  "file": "File:Rainbow Promenade090505.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rainbow_Promenade090505.jpg",
+  "autore": "妖精書士 (talk)",
+  "licenza": "Public domain"
+ },
+ "tk-senkyaku": {
+  "file": "File:Toyosu Senkyaku Banrai.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Toyosu_Senkyaku_Banrai.jpg",
+  "autore": "Fred Cherrygarden",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-joypolis": {
+  "file": "File:Joypolis, Decks.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Joypolis,_Decks.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-arcade": {
+  "file": "File:Akiba Crossing 003.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Akiba_Crossing_003.jpg",
+  "autore": "bfishadow",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-maidcafe": {
+  "file": "File:Akihabara Main Street Pedestrian Crossing.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Akihabara_Main_Street_Pedestrian_Crossing.jpg",
+  "autore": "Ominae",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-radiokaikan": {
+  "file": "File:Akihabara Radio Kaikan 1st -01.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Akihabara_Radio_Kaikan_1st_-01.jpg",
+  "autore": "Aimaimyi",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-yabu": {
+  "file": "File:Soba @Yabu, Kanda (6639249067).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Soba_@Yabu,_Kanda_(6639249067).jpg",
+  "autore": "Naotake Murayama from San Francisco, CA, USA",
+  "licenza": "CC BY 2.0"
+ },
+ "tk-laqua": {
+  "file": "File:LaQua(Tokyo Dome City ).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:LaQua(Tokyo_Dome_City_).jpg",
+  "autore": "Kakidai",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-pokecafe": {
+  "file": "File:PokemonCenterTokyo-Nihonbashi Pikachu.JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:PokemonCenterTokyo-Nihonbashi_Pikachu.JPG",
+  "autore": "コロシアム",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-borderless": {
+  "file": "File:TeamLab Borderless, Odaiba, Tokyo, Japan (49070645226).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:TeamLab_Borderless,_Odaiba,_Tokyo,_Japan_(49070645226).jpg",
+  "autore": "Domenico Convertini from Zurich, Schweiz",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-mopa": {
+  "file": "File:Shabu Shabu photo Don Ramey Logan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shabu_Shabu_photo_Don_Ramey_Logan.jpg",
+  "autore": "Don Ramey Logan",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-hilton": {
+  "file": "File:Skyscrapers in Nishi-Shinjuku - Shinjuku i-land Tower, Shinjuku Mitsui Building, Shinjuku Sumitomo Building - view from Hyatt Regency Tokyo Building (2016-05-16 by panayota @Pixabay 2190027).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Skyscrapers_in_Nishi-Shinjuku_-_Shinjuku_i-land_Tower,_Shinjuku_Mitsui_Building,_Shinjuku_Sumitomo_Building_-_view_from_Hyatt_Regency_Tokyo_Building_(2016-05-16_by_panayota_@Pixabay_2190027).jpg",
+  "autore": "panayota",
+  "licenza": "CC0"
+ },
+ "tk-tsukiji-tour": {
+  "file": "File:Tsukiji Market 2017 (38052266396).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tsukiji_Market_2017_(38052266396).jpg",
+  "autore": "Kent Wang from London, United Kingdom",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "tk-fukubukuro": {
+  "file": "File:Fukubukuro Vege Go Lalaport Kadoma.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Fukubukuro_Vege_Go_Lalaport_Kadoma.jpg",
+  "autore": "Mr.ちゅらさん",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-ekiden": {
+  "file": "File:Hakone Ekiden 2026.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Hakone_Ekiden_2026.jpg",
+  "autore": "Syced",
+  "licenza": "CC0"
+ },
+ "tk-cupnoodles": {
+  "file": "File:Cupnoodles-Museum-Yokohama.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Cupnoodles-Museum-Yokohama.jpg",
+  "autore": "Rs1421",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "ky-arabica-hg": {
+  "file": "File:% Arabica Kyoto Higashiyama by Takumi Ota.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%25_Arabica_Kyoto_Higashiyama_by_Takumi_Ota.jpg",
+  "autore": "Takumi Ota",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "ky-tsujiri": {
+  "file": "File:アニーのアイスクリーム屋さんのアイスクリーム(抹茶フェアに惹かれて)2.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%E3%82%A2%E3%83%8B%E3%83%BC%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0%E5%B1%8B%E3%81%95%E3%82%93%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%A0(%E6%8A%B9%E8%8C%B6%E3%83%95%E3%82%A7%E3%82%A2%E3%81%AB%E6%83%B9%E3%81%8B%E3%82%8C%E3%81%A6)2.jpg",
+  "autore": "経済特区",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-kagizen": {
+  "file": "File:Japanese cuisine; Kuzukiri くずきり.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Japanese_cuisine;_Kuzukiri_%E3%81%8F%E3%81%9A%E3%81%8D%E3%82%8A.jpg",
+  "autore": "Conveyor belt sushi",
+  "licenza": "CC BY 2.0"
+ },
+ "ky-katsugyu": {
+  "file": "File:Beef cutlet (8567066968).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Beef_cutlet_(8567066968).jpg",
+  "autore": "pelican from Tokyo, Japan",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "ky-nishiki-tour": {
+  "file": "File:Tsukemono shop by collinox in Nishiki Ichiba, Kyoto.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tsukemono_shop_by_collinox_in_Nishiki_Ichiba,_Kyoto.jpg",
+  "autore": "collinox",
+  "licenza": "CC BY 2.0"
+ },
+ "ky-inoichi": {
+  "file": "File:Katsu Don - Ishikai (2279579990).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Katsu_Don_-_Ishikai_(2279579990).jpg",
+  "autore": "Alpha from Melbourne, Australia",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "ky-wagyu": {
+  "file": "File:JP 日本 Japan 沖繩 OKINAWA 那霸 Naha 久茂地 Kumoji MK Building shop 和牛燒肉店 BBQ Motobu WAGYU Yakiniku Beef Restaurant lunch meal January 2025 R12S 30.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:JP_%E6%97%A5%E6%9C%AC_Japan_%E6%B2%96%E7%B9%A9_OKINAWA_%E9%82%A3%E9%9C%B8_Naha_%E4%B9%85%E8%8C%82%E5%9C%B0_Kumoji_MK_Building_shop_%E5%92%8C%E7%89%9B%E7%87%92%E8%82%89%E5%BA%97_BBQ_Motobu_WAGYU_Yakiniku_Beef_Restaurant_lunch_meal_January_2025_R12S_30.jpg",
+  "autore": "Naha Mama Pavilionz",
+  "licenza": "CC0"
+ },
+ "ky-obanzai": {
+  "file": "File:Obanzai yasai.JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Obanzai_yasai.JPG",
+  "autore": "Takoradee",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "ky-arcades": {
+  "file": "File:Teramachi shopping street, Kyoto, May 2017.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Teramachi_shopping_street,_Kyoto,_May_2017.jpg",
+  "autore": "Celuici",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "ky-geisha": {
+  "file": "File:Maiko Dancing Performance.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Maiko_Dancing_Performance.jpg",
+  "autore": "AjarnRichard",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-eigamura": {
+  "file": "File:Toei Kyoto Studio Park from above.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Toei_Kyoto_Studio_Park_from_above.jpg",
+  "autore": "Maksym Grinenko",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-yoshimura": {
+  "file": "File:Togetsu-kyō bridge at golden hour, Kyoto, Japan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Togetsu-ky%C5%8D_bridge_at_golden_hour,_Kyoto,_Japan.jpg",
+  "autore": "Basile Morin",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-tea-camellia": {
+  "file": "File:Japan tea ceremony 1165.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Japan_tea_ceremony_1165.jpg",
+  "autore": "Ermell",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-kimono-tea": {
+  "file": "File:Kimono Forest at night, Arashiyama Station, Arashiyama, Kyoto, Japan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kimono_Forest_at_night,_Arashiyama_Station,_Arashiyama,_Kyoto,_Japan.jpg",
+  "autore": "Yasumichi Morita (designer)\n\nBasile Morin (photographer)",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-samurai": {
+  "file": "File:Samurai room - Snowshill Manor - PXL 20250316 134130712.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Samurai_room_-_Snowshill_Manor_-_PXL_20250316_134130712.jpg",
+  "autore": "Tadeusz Hare",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "os-kuromon": {
+  "file": "File:Kuromon Ichiba Market at LaLaport Kadoma4.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kuromon_Ichiba_Market_at_LaLaport_Kadoma4.jpg",
+  "autore": "Mr.ちゅらさん",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "os-shinsekai": {
+  "file": "File:Shinsekai and Tsutenkaku Tower.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shinsekai_and_Tsutenkaku_Tower.jpg",
+  "autore": "Sakai Yayoi",
+  "licenza": "CC0"
+ },
+ "gz-lion": {
+  "file": "File:LION BEER HALL 銀座五丁目店 SINCE 1911 (2627643929).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:LION_BEER_HALL_%E9%8A%80%E5%BA%A7%E4%BA%94%E4%B8%81%E7%9B%AE%E5%BA%97_SINCE_1911_(2627643929).jpg",
+  "autore": "Achim Hepp",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "gz-zanmai": {
+  "file": "File:Toro nigiri, Sushi-Zanmai Akiba shop 1F, Yodobashi Camera Akihabara (トロざんまい, すしざんまい AKIBA店1F, ヨドバシカメラ秋葉原) (2011-05-01 06.00.10 by yuiseki aoba).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Toro_nigiri,_Sushi-Zanmai_Akiba_shop_1F,_Yodobashi_Camera_Akihabara_(%E3%83%88%E3%83%AD%E3%81%96%E3%82%93%E3%81%BE%E3%81%84,_%E3%81%99%E3%81%97%E3%81%96%E3%82%93%E3%81%BE%E3%81%84_AKIBA%E5%BA%971F,_%E3%83%A8%E3%83%89%E3%83%90%E3%82%B7%E3%82%AB%E3%83%A1%E3%83%A9%E7%A7%8B%E8%91%89%E5%8E%9F)_(2011-05-01_06.00.10_by_yuiseki_aoba).jpg",
+  "autore": "yuiseki aoba from 東京都台東区花川戸, 日本",
+  "licenza": "CC BY 2.0"
+ },
+ "gz-uniqlo": {
+  "file": "File:Illuminated street corner at blue hour - facade of the building Fujiya in Ginza Chuo-ku Tokyo Japan.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Illuminated_street_corner_at_blue_hour_-_facade_of_the_building_Fujiya_in_Ginza_Chuo-ku_Tokyo_Japan.jpg",
+  "autore": "Basile Morin",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "gz-mitsukoshi": {
+  "file": "File:Ginza Mitsukoshi-1.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ginza_Mitsukoshi-1.jpg",
+  "autore": "江戸村のとくぞう",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "gz-colazione": {
+  "file": "File:Take-out omakase donburi on 2022-02-26.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Take-out_omakase_donburi_on_2022-02-26.jpg",
+  "autore": "Andy Li",
+  "licenza": "CC0"
+ }
+}
