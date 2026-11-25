@@ -441,6 +441,10 @@ body.fujimode .mpanel,body.fujimode .mtop,body.fujimode .near,body.fujimode .lay
 /* i marcatori della mappa restano posizionati da MapLibre: nessuna regola sopra può renderli relative */
 #map .maplibregl-marker{position:absolute}
 .ph.ill img{width:100%;height:100%;object-fit:cover;display:block}
+.mstat{display:flex!important;gap:10px;align-items:center;font-style:normal;flex:none}.mstat span{display:inline-flex;align-items:center;gap:3px}.mstat svg{width:15px;height:15px}.mstat .cmon{color:#b3261e;font-weight:800}
+.rdot{width:10px;height:10px;border-radius:50%;background:#e2241b;display:inline-block;box-shadow:0 0 0 2px #fff;animation:rdp 1.6s ease-in-out 3}
+.rb{position:relative}.rb .rdot{position:absolute;top:3px;right:3px}
+@keyframes rdp{50%{transform:scale(1.35)}}@media(prefers-reduced-motion:reduce){.rdot{animation:none}}
 #bnav{display:none}
 .mob{display:none}
 @media(max-width:860px){
