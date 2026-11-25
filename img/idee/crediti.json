@@ -132,9 +132,9 @@
   "licenza": "CC0"
  },
  "tk-matsuya": {
-  "file": "File:Dried soba noodles by FotoosVanRobin.jpg",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Dried_soba_noodles_by_FotoosVanRobin.jpg",
-  "autore": "FotoosVanRobin",
+  "file": "File:Seiro soba at Takasho in Nezu, Tokyo.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Seiro_soba_at_Takasho_in_Nezu,_Tokyo.jpg",
+  "autore": "m-louis from Seiro (soba) at Soba Restaurant Takasho in Nezu, Tokyo東京都文京区根津にある蕎麦屋「鷹匠」の蒸籠（蕎麦）",
   "licenza": "CC BY-SA 2.0"
  },
  "tk-jangara": {
@@ -162,10 +162,10 @@
   "licenza": "CC BY-SA 4.0"
  },
  "tk-zojoji": {
-  "file": "File:Zojoji Temple from Tokyo Tower.jpg",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Zojoji_Temple_from_Tokyo_Tower.jpg",
-  "autore": "Ph0kin",
-  "licenza": "CC BY-SA 4.0"
+  "file": "File:Zojo-ji and Tokyo Tower (15547996154).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Zojo-ji_and_Tokyo_Tower_(15547996154).jpg",
+  "autore": "redlegsfan21",
+  "licenza": "CC BY-SA 2.0"
  },
  "tk-odaiba-countdown": {
   "file": "File:Rainbow Bridge (Tokyo) - Fireworks 8.jpg",
@@ -174,10 +174,10 @@
   "licenza": "CC BY-SA 4.0"
  },
  "tk-soba-31": {
-  "file": "File:Toshikoshi-soba.shop2.jpg",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Toshikoshi-soba.shop2.jpg",
-  "autore": "Sobanohito",
-  "licenza": "CC BY-SA 3.0"
+  "file": "File:Kakesoba of Tachiguisoba.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Kakesoba_of_Tachiguisoba.jpg",
+  "autore": "毒島みるく",
+  "licenza": "CC0"
  },
  "tk-clubs": {
   "file": "File:Registratur Nightclub Munich Dance Floor.jpg",
@@ -234,8 +234,8 @@
   "licenza": "CC BY-SA 2.0"
  },
  "ky-katsukura": {
-  "file": "File:Tonkatsu set in Student Union 05.jpg",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Tonkatsu_set_in_Student_Union_05.jpg",
+  "file": "File:Tonkatsu and Cabbage.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tonkatsu_and_Cabbage.jpg",
   "autore": "ノボホショコロトソ",
   "licenza": "CC BY 4.0"
  },
@@ -534,10 +534,10 @@
   "licenza": "CC BY 2.0"
  },
  "ky-inoichi": {
-  "file": "File:Katsu Don - Ishikai (2279579990).jpg",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Katsu_Don_-_Ishikai_(2279579990).jpg",
-  "autore": "Alpha from Melbourne, Australia",
-  "licenza": "CC BY-SA 2.0"
+  "file": "File:Shoyu Ramen with Sushi and Tempura.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Shoyu_Ramen_with_Sushi_and_Tempura.jpg",
+  "autore": "Miscellaneous contributor",
+  "licenza": "CC0"
  },
  "ky-wagyu": {
   "file": "File:JP 日本 Japan 沖繩 OKINAWA 那霸 Naha 久茂地 Kumoji MK Building shop 和牛燒肉店 BBQ Motobu WAGYU Yakiniku Beef Restaurant lunch meal January 2025 R12S 30.jpg",
@@ -634,5 +634,77 @@
   "pagina": "https://commons.wikimedia.org/wiki/File:Take-out_omakase_donburi_on_2022-02-26.jpg",
   "autore": "Andy Li",
   "licenza": "CC0"
+ },
+ "tk-thermae": {
+  "file": "File:Orange Spring Mound at Mammoth Hot Springs.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Orange_Spring_Mound_at_Mammoth_Hot_Springs.jpg",
+  "autore": "Brocken Inaglory",
+  "licenza": "CC BY-SA 3.0"
+ },
+ "tk-gundam": {
+  "file": "File:機動戦士ガンダム - panoramio (2).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0_-_panoramio_(2).jpg",
+  "autore": "gundam2345",
+  "licenza": "CC BY 3.0"
+ },
+ "ky-tiger": {
+  "file": "File:Gyoza no Antei - 3.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Gyoza_no_Antei_-_3.jpg",
+  "autore": "Enming Yan / 闫恩铭",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "ky-chaochao": {
+  "file": "File:高瀬川2583.JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E7%80%AC%E5%B7%9D2583.JPG",
+  "autore": "Mariemon at jp Wikipedia",
+  "licenza": "CC BY 3.0"
+ },
+ "ky-fushimi-sake": {
+  "file": "File:Gekkeikan Okura Sake Museum02s4592.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Gekkeikan_Okura_Sake_Museum02s4592.jpg",
+  "autore": "663highland",
+  "licenza": "CC BY 2.5"
+ },
+ "tk-udonshin": {
+  "file": "File:Udon noodle Bowl (Nongshim) 20210701 003.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Udon_noodle_Bowl_(Nongshim)_20210701_003.jpg",
+  "autore": "Mobius6",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-ichiran": {
+  "file": "File:Ichiran Main Building.JPG",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ichiran_Main_Building.JPG",
+  "autore": "Jkr2255",
+  "licenza": "CC BY 3.0"
+ },
+ "tk-maisen": {
+  "file": "File:Tonkatsu of Kimukatsu.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tonkatsu_of_Kimukatsu.jpg",
+  "autore": "Minseong Kim",
+  "licenza": "CC BY-SA 4.0"
+ },
+ "tk-sushi-class": {
+  "file": "File:Yakiniku Nigiri - Shira Nui AUD4.50 each (4759206697).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Yakiniku_Nigiri_-_Shira_Nui_AUD4.50_each_(4759206697).jpg",
+  "autore": "Alpha from Melbourne, Australia",
+  "licenza": "CC BY-SA 2.0"
+ },
+ "ky-karuta": {
+  "file": "File:Playing uta garuta.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Playing_uta_garuta.jpg",
+  "autore": "Forms part of: George Grantham Bain Collection (Library of Congress).",
+  "licenza": "Public domain"
+ },
+ "gz-teppan": {
+  "file": "File:Teppanyaki Chicken (1935883227).jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Teppanyaki_Chicken_(1935883227).jpg",
+  "autore": "David Pursehouse from Kawasaki, Japan",
+  "licenza": "CC BY 2.0"
+ },
+ "gz-haneda": {
+  "file": "File:Haneda-Airport-T1-T2-STA Keikyu-Gate.jpg",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Haneda-Airport-T1-T2-STA_Keikyu-Gate.jpg",
+  "autore": "MaedaAkihiko",
+  "licenza": "CC BY-SA 4.0"
  }
 }
